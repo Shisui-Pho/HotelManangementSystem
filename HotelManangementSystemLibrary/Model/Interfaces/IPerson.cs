@@ -9,5 +9,6 @@ namespace HotelManangementSystemLibrary
         string Name { get;}
         string Surname { get;}
         DateTime DOB { get;}
+        int Age { get; }
     }//IPerson
 }//namespace
