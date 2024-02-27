@@ -38,7 +38,7 @@ namespace HotelManangementSystemLibrary
 
     public class Guest : User, IGuest
     {
-        public ContactDetails ContactDetails { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IContactDetails ContactDetails { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Guest(string _name, string _surname, DateTime _dob) : base(_name, _surname, _dob)
         {
@@ -67,7 +67,7 @@ namespace HotelManangementSystemLibrary
             ContactDetails.EmergencyNumber = _emergency;
         }//SetEmergencyNumber
 
-        public void SetContactDetails(ContactDetails details) => ContactDetails = details;
+        public void SetContactDetails(IContactDetails details) => ContactDetails = details;
     }//class
     public class Administrator : User, IAdministrator
     {

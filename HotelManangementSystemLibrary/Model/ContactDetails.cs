@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public class ContactDetails
+    public class ContactDetails : IContactDetails
     {
         public string EmailAddress { get; set; }
         public string CellphoneNumber { get; set; }
