@@ -20,6 +20,8 @@ namespace HotelManangementSystemLibrary
 
         public decimal AmoutToPay => _amount;
 
+        public string BookingID { get; private set; }
+
         public RoomBooking(IGuest guest, IRoom room, DateTime date, int numberOfDays = 1)
         {
             Guest = guest;
@@ -28,5 +30,6 @@ namespace HotelManangementSystemLibrary
             NumberOfDaysToStay = numberOfDays;
             _amount = Room.Price * numberOfDays;
         }//RoomBooking
+        internal void SetBookingID(string _id) => BookingID = _id;
     }//class
 }//namespace

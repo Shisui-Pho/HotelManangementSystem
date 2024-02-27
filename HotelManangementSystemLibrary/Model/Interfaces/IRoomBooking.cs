@@ -6,6 +6,7 @@ namespace HotelManangementSystemLibrary
 {
     public interface IRoomBooking
     {
+        string BookingID { get; }
         IGuest Guest { get; }
         IRoom Room { get; }
         DateTime DateBookedFor { get; }
