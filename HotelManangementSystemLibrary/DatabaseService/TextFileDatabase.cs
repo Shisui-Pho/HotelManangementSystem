@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Utilities.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,9 @@ namespace HotelManangementSystemLibrary.DatabaseService
         private IRoomBookings _bookings = null;
         private IRooms _rooms = null;
         private IUsers _users = null;
+        private IGuests _guests = null;
 
+        //Properties
         public IRoomBookings Bookings 
         {
             get
@@ -38,35 +41,62 @@ namespace HotelManangementSystemLibrary.DatabaseService
                 return _users;
             }//get
         }//Bookings
+        public IGuests Guests
+        {
+            get
+            {
+                if (_guests is null)
+                    return LoadGuests();
+                return _guests;
+            }
+        }//Guets
+
         public TextFileDatabase()
         {
         }//ctor 01
+        //The Saving and Loading methods are in extension classes
         public IRoomBookings LoadBookings()
         {
-            return default;
+            if (_rooms is null)
+                LoadRooms();
+            if (_guests is null)
+                LoadGuests();
+            return _bookings.LoadBookings(_guests,_rooms);
         }//LoadBookings
 
         public IRooms LoadRooms()
         {
-            return default;
+            return _rooms.LoadRooms();
         }//LoadRooms
 
         public IUsers LoadUsers()
         {
-            return default;
+            return _users.LoadUsers();
         }//LoadUsers
-
+        public IGuests LoadGuests()
+        {
+            if (_users is null)
+                LoadUsers();
+            return _guests.LoadGuests(_users);
+        }//LoadGuests
         public void SaveBookings()
         {
-
+            _bookings.SaveBookings();
         }//SaveBookings
 
         public void SaveRooms()
         {
+            _rooms.SaveRooms();
         }//SaveRooms
 
         public void SaveUsers()
         {
+            _users.SaveUsers();
         }//SaveUsers
+
+        public void SaveGuets()
+        {
+            _guests.SaveGuests();
+        }//SaveGuets
     }//class
 }//namespace
