@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public abstract class User : Person, IUser
+    internal abstract class User : Person, IUser
     { 
         public string UserName { get; private set; }
 
@@ -36,7 +36,7 @@ namespace HotelManangementSystemLibrary
         }//LogIn
     }//class
 
-    public class Guest : User, IGuest
+    internal class Guest : User, IGuest
     {
         public IContactDetails ContactDetails { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -69,7 +69,7 @@ namespace HotelManangementSystemLibrary
 
         public void SetContactDetails(IContactDetails details) => ContactDetails = details;
     }//class
-    public class Administrator : User, IAdministrator
+    internal class Administrator : User, IAdministrator
     {
         public AccessRights Rights { get; private set; }
         public Administrator(string _name, string _surname, DateTime _dob) : base(_name, _surname, _dob)

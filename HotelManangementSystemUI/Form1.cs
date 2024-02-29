@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using HotelManangementSystemLibrary;
+using HotelManangementSystemLibrary.Factory;
 namespace HotelManangementSystemUI
 {
     public partial class Form1 : Form
@@ -15,6 +16,6 @@ namespace HotelManangementSystemUI
         public Form1()
         {
             InitializeComponent();
-        }
-    }
-}
+        }//ctor main
+    }//class
+}//namespace

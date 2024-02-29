@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public abstract class Person : IPerson
+    internal abstract class Person : IPerson
     {
         //data members
         private string _name;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public class Users : IUsers
+    internal class Users : IUsers
     {
         private readonly List<IUser> _users;
         public int Count => _users.Count;

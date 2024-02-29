@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public class Rooms : IRooms
+    internal class Rooms : IRooms
     {
         private List<IRoom> _rooms;
         public int Count => _rooms.Count;

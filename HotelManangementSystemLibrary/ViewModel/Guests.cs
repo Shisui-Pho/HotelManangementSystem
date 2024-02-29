@@ -2,7 +2,7 @@
 using System.Linq;
 namespace HotelManangementSystemLibrary
 {
-    public class Guests : IGuests
+    internal class Guests : IGuests
     {
         private List<IGuest> _guests;
         public int Count => _guests.Count;

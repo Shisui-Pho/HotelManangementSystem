@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public class RoomBooking : IRoomBooking
+    internal class RoomBooking : IRoomBooking
     {
         //Data member
         private decimal _amount;

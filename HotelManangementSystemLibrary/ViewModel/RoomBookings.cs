@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace HotelManangementSystemLibrary
 {
-    public class RoomBookings : IRoomBookings
+    internal class RoomBookings : IRoomBookings
     {
         private List<IRoomBooking> _bookings;
         public int Count => _bookings.Count;

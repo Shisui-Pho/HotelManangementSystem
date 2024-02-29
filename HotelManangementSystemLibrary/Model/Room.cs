@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public abstract class Room : IRoom
+    internal abstract class Room : IRoom
     {
         public string RoomNumber { get; private set; }
 
@@ -36,7 +36,7 @@ namespace HotelManangementSystemLibrary
         {
         }//SetPrice
     }//class
-    public class SingleRoom : Room , ISingleRoom
+    internal class SingleRoom : Room , ISingleRoom
     {
         public SingleRoom(string _roomNumber, bool hasTv = false): base(_roomNumber)
         {
@@ -47,7 +47,7 @@ namespace HotelManangementSystemLibrary
         
     }//Singleroom
 
-    public class DoubleRoom : Room , IDoubleRoom
+    internal class DoubleRoom : Room , IDoubleRoom
     {
         public DoubleRoom(string _roomNumber, bool hasTv = false) : base(_roomNumber)
         {
