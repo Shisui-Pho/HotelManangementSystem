@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Globalization;
 
 namespace HotelManangementSystemLibrary
 {
@@ -37,5 +39,23 @@ namespace HotelManangementSystemLibrary
                 return false;
             return true;
         }//IsCellphoneNumberCorrect
+        private readonly static string[] _deviders = { "\r\n" };
+        public static string[] CheckFilesExistAndLoadTextData(string filename)
+        {
+            if (!File.Exists(filename))
+                return new string[0];
+
+            string _text = File.ReadAllText(filename);
+            return _text.Split(_deviders, StringSplitOptions.RemoveEmptyEntries);
+        }//CheckFilesExistAndLoadTextData
+        public static decimal GetValueOfMoney(string _amount)
+        {
+            char dec = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
+            if (dec == ',' && _amount.IndexOf('.') >= 0)
+                _amount.Replace('.', dec);
+            else if (dec == '.' && _amount.IndexOf(',') >= 0)
+                _amount.Replace(',', dec);
+            return decimal.Parse(_amount);
+        }//GetValueOfMoney
     }//class
 }//namespace
