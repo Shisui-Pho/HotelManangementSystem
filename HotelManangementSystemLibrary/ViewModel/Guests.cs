@@ -35,8 +35,4 @@ namespace HotelManangementSystemLibrary
             return _guests.FirstOrDefault(g => g.UserID == guestId);
         }//FindGuest
     }//class
-    public interface IGuests : ICollectionHotel<IGuest>
-    {
-        IGuest FindGuest(string guestId);
-    }//interface
 }//namespace

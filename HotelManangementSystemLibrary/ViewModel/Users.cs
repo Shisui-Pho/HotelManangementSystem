@@ -49,5 +49,9 @@ namespace HotelManangementSystemLibrary
             foreach (IUser user in _users)
                 yield return user;
         }//GetEnumerator
+        public IUser GetUser(string userid)
+        {
+            return _users.FirstOrDefault<IUser>(user => user.UserID == userid);
+        }//GetUser
     }//class
 }//namespace
