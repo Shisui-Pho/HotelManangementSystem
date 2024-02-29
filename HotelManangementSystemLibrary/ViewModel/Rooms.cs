@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HotelManangementSystemLibrary
@@ -45,5 +46,10 @@ namespace HotelManangementSystemLibrary
                 yield return room;
             }
         }//GetEnumerator
+
+        public IRoom FindRoom(string roomNumber)
+        {
+            return _rooms.FirstOrDefault(r => r.RoomNumber == roomNumber);
+        }//FindRoom
     }//Rooms
 }//namespace

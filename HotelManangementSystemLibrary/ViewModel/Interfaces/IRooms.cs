@@ -6,6 +6,6 @@ namespace HotelManangementSystemLibrary
 {
     public interface IRooms : ICollectionHotel<IRoom>
     {
-
+        IRoom FindRoom(string roomNumber);
     }//IRooms
 }//namespace
