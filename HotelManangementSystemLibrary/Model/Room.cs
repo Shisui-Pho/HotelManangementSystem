@@ -12,7 +12,7 @@ namespace HotelManangementSystemLibrary
 
         public bool IsSingleRoom { get; protected set; }
 
-        public decimal Price { get; protected set; }
+        public decimal Price { get; set; }
         public Room(string _roomNumber)
         {
             RoomNumber = _roomNumber;
@@ -31,6 +31,10 @@ namespace HotelManangementSystemLibrary
         {
             HasTV = false;
         }//RemoveTV
+
+        public void SetPrice(decimal amount)
+        {
+        }//SetPrice
     }//class
     public class SingleRoom : Room , ISingleRoom
     {
@@ -39,6 +43,8 @@ namespace HotelManangementSystemLibrary
             HasTV = hasTv;
             IsSingleRoom = true;
         }//ctor
+
+        
     }//Singleroom
 
     public class DoubleRoom : Room , IDoubleRoom

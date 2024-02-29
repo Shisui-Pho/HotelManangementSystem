@@ -9,7 +9,7 @@ namespace HotelManangementSystemLibrary
         string RoomNumber { get; }
         bool HasTV { get; }
         bool IsSingleRoom { get; }
-        decimal Price { get; }
+        decimal Price { get; set; }
         void ChangeRoomNumber(string _newRoomNumber);
         void AddTV();
         void RemoveTV();
