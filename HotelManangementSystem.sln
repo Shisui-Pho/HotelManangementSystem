@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManangementSystemUI", "HotelManangementSystemUI\HotelManangementSystemUI.csproj", "{085B6864-1682-4093-A9B8-3618DA21EB69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManangementSystemLibrary", "HotelManangementSystemLibrary\HotelManangementSystemLibrary.csproj", "{90BB8BD5-6C10-49E9-8A3D-EDDDAF17908D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManangementSystemLibrary", "HotelManangementSystemLibrary\HotelManangementSystemLibrary.csproj", "{90BB8BD5-6C10-49E9-8A3D-EDDDAF17908D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManangementControlLibrary", "HotelManangementControlLibrary\HotelManangementControlLibrary.csproj", "{381BB8BE-5F4B-4915-A4D9-5C96A0BC568C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{90BB8BD5-6C10-49E9-8A3D-EDDDAF17908D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90BB8BD5-6C10-49E9-8A3D-EDDDAF17908D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90BB8BD5-6C10-49E9-8A3D-EDDDAF17908D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{381BB8BE-5F4B-4915-A4D9-5C96A0BC568C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{381BB8BE-5F4B-4915-A4D9-5C96A0BC568C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{381BB8BE-5F4B-4915-A4D9-5C96A0BC568C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{381BB8BE-5F4B-4915-A4D9-5C96A0BC568C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
