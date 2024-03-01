@@ -52,8 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Login_SignUp\Login_Sign_Up.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_SignUp\Login_Sign_Up.Designer.cs">
+      <DependentUpon>Login_Sign_Up.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Login_SignUp\Login_Sign_Up.resx">
+      <DependentUpon>Login_Sign_Up.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -77,6 +86,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HotelManangementControlLibrary\HotelManangementControlLibrary.csproj">
+      <Project>{381bb8be-5f4b-4915-a4d9-5c96a0bc568c}</Project>
+      <Name>HotelManangementControlLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HotelManangementSystemLibrary\HotelManangementSystemLibrary.csproj">
       <Project>{90bb8bd5-6c10-49e9-8a3d-edddaf17908d}</Project>
       <Name>HotelManangementSystemLibrary</Name>
@@ -85,7 +98,6 @@
   <ItemGroup>
     <Folder Include="Dashboard\" />
     <Folder Include="Input Forms\" />
-    <Folder Include="Login_SignUp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

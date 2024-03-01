@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using HotelManangementSystemUI.Login_SignUp;
 namespace HotelManangementSystemUI
 {
     static class Program
@@ -16,7 +16,7 @@ namespace HotelManangementSystemUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Login_Sign_Up());
         }
     }
 }
