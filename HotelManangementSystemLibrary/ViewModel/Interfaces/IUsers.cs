@@ -8,5 +8,6 @@ namespace HotelManangementSystemLibrary
     {
         bool AlreadyExist(IUser user);
         IUser GetUser(string userid);
+        bool LogInUser(string username, string password);
     }//IUsers
 }//namespace

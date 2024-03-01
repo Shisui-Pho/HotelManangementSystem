@@ -33,7 +33,15 @@ namespace HotelManangementSystemLibrary
                 return false;
             return true;
         }//AlreadyExist
-
+        public bool LogInUser(string username, string password)
+        {
+            IUser user = _users.FirstOrDefault(ur => ur.UserName == username);
+            if (user is null)
+                return false;
+            if (!user.SignIn(username, password))
+                return false;
+            return true;
+        }//LogInUser
         public void Remove(IUser user)
             => _users.Remove(user);
 
