@@ -7,15 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HotelManangementSystemLibrary;
-using HotelManangementSystemLibrary.Factory;
-namespace HotelManangementSystemUI
+
+namespace HotelManangementControlLibrary.Login_SignUp
 {
-    public partial class Form1 : Form
+    public partial class UserControl1 : UserControl
     {
-        public Form1()
+        public UserControl1()
         {
             InitializeComponent();
-        }//ctor main
-    }//class
-}//namespace
+        }
+    }
+}
