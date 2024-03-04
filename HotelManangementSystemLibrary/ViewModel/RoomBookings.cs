@@ -64,5 +64,14 @@ namespace HotelManangementSystemLibrary
         }//GetEnumerator
         private int FindIndex(IRoomBooking booking)
             =>_bookings.FindIndex(_b => booking.BookingID == _b.BookingID);
+
+        public IEnumerator<IRoomBooking> GetBookingsOf(IGuest guest)
+        {
+            foreach (IRoomBooking booking in _bookings)
+            {
+                if(booking.Guest.UserID == guest.UserID)
+                    yield return booking;
+            }//GetBookingsOf
+        }//GetBookingsOf
     }//class
 }//namespace

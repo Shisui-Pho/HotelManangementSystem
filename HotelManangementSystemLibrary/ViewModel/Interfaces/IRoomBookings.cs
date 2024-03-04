@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace HotelManangementSystemLibrary
 {
@@ -6,5 +8,6 @@ namespace HotelManangementSystemLibrary
     {
         bool IsBooked(IRoomBooking item);
         bool IsRoomBooked(IRoom booking, DateTime date);
+        IEnumerator<IRoomBooking> GetBookingsOf(IGuest guest);
     }//Interface
 }//namespace
