@@ -80,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -118,6 +119,7 @@
     <Content Include="images\digital-data.png" />
     <Content Include="images\digital-inventory.png" />
     <Content Include="images\generaluser.png" />
+    <Content Include="images\hotel-icon.png" />
     <Content Include="images\search-online.png" />
     <Content Include="images\sign-up.png" />
     <Content Include="images\writer.png" />
