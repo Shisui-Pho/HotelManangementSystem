@@ -111,5 +111,16 @@
   <ItemGroup>
     <Folder Include="Input Forms\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\adminuser.png" />
+    <Content Include="images\book-online.png" />
+    <Content Include="images\defaulters-list.png" />
+    <Content Include="images\digital-data.png" />
+    <Content Include="images\digital-inventory.png" />
+    <Content Include="images\generaluser.png" />
+    <Content Include="images\search-online.png" />
+    <Content Include="images\sign-up.png" />
+    <Content Include="images\writer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
