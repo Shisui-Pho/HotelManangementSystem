@@ -24,7 +24,10 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
             string[] records = Service.CheckFilesExistAndLoadTextData(file);
             if(records.Length <= 0)
-                throw new FileNotFoundException($"The file {file} was not found");
+            {
+                return bookings;
+                //throw new FileNotFoundException($"The file {file} was not found");
+            }
 
             foreach (string record in records)
             {

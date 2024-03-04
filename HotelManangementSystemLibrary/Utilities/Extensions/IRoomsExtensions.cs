@@ -18,10 +18,12 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
         public static IRooms LoadRooms(this IRooms rooms)
         {
             string[] records = Service.CheckFilesExistAndLoadTextData(file);
-            if (records.Length == 0)//Should just return the empty rooms
-                throw new FileNotFoundException($"The file {file} was not found");
-
             rooms = RoomFactory.CreateRooms();
+            if (records.Length == 0)//Should just return the empty rooms
+            {
+                return rooms;
+                //throw new FileNotFoundException($"The file {file} was not found");
+            }
             foreach (string record in records)
             {
                 string[] fields = record.Split(';');

@@ -23,8 +23,10 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
             users = UsersFactory.CreateUsers();
             string[] records = Service.CheckFilesExistAndLoadTextData(file);
             if(records.Length <= 0)
-                throw new FileNotFoundException($"The file {file} was not found");
-
+            {
+                //throw new FileNotFoundException($"The file {file} was not found");
+                return users;
+            }
             foreach (string record in records)
             {
                 string[] fields = record.Split(';');
