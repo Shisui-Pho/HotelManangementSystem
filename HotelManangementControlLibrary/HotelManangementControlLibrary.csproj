@@ -73,5 +73,11 @@
   <ItemGroup>
     <Folder Include="images\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UIServiceLibraru\UIServiceLibrary.csproj">
+      <Project>{f97029db-2270-4da7-b71a-7d90eff67d2d}</Project>
+      <Name>UIServiceLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

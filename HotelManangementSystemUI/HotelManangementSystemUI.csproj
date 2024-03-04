@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dashboard\CfrmDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\CfrmDashboard.Designer.cs">
+      <DependentUpon>CfrmDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login_SignUp\Login_Sign_Up.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,9 +100,12 @@
       <Project>{90bb8bd5-6c10-49e9-8a3d-edddaf17908d}</Project>
       <Name>HotelManangementSystemLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UIServiceLibraru\UIServiceLibrary.csproj">
+      <Project>{f97029db-2270-4da7-b71a-7d90eff67d2d}</Project>
+      <Name>UIServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dashboard\" />
     <Folder Include="Input Forms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
