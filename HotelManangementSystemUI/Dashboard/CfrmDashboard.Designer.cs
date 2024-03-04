@@ -29,10 +29,18 @@ namespace HotelManangementSystemUI.Dashboard
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // CfrmDashboard
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "CfrmDashboard";
             this.Text = "CfrmDashboard";
+            this.Shown += new System.EventHandler(this.CfrmDashboard_Shown);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

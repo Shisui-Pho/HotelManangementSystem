@@ -30,10 +30,10 @@ namespace HotelManangementSystemUI.Login_SignUp
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.plnContainer = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.plnContainer = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +50,15 @@ namespace HotelManangementSystemUI.Login_SignUp
             this.panel1.Size = new System.Drawing.Size(328, 543);
             this.panel1.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(141, 239);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "label2";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -58,6 +67,15 @@ namespace HotelManangementSystemUI.Login_SignUp
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(211, 193);
             this.panel2.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(89, 63);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
             // 
             // plnContainer
             // 
@@ -69,24 +87,6 @@ namespace HotelManangementSystemUI.Login_SignUp
             this.plnContainer.Size = new System.Drawing.Size(387, 543);
             this.plnContainer.TabIndex = 1;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(89, 63);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(141, 239);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
-            // 
             // Login_Sign_Up
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -97,6 +97,8 @@ namespace HotelManangementSystemUI.Login_SignUp
             this.Controls.Add(this.panel1);
             this.Name = "Login_Sign_Up";
             this.Text = "Login_Sign_Up";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_Sign_Up_FormClosing);
+            this.Load += new System.EventHandler(this.Login_Sign_Up_Load);
             this.Shown += new System.EventHandler(this.Login_Sign_Up_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

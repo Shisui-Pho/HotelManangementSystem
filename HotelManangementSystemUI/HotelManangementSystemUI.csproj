@@ -66,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dashboard\CfrmDashboard.resx">
+      <DependentUpon>CfrmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login_SignUp\Login_Sign_Up.resx">
       <DependentUpon>Login_Sign_Up.cs</DependentUpon>
     </EmbeddedResource>

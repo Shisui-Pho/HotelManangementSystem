@@ -25,6 +25,11 @@ namespace HotelManangementSystemLibrary
         }//ctor 2
         public void Add(IUser user)
             => _users.Add(user);
+        public bool UsernameExists(string username)
+        {
+            int i = _users.FindIndex(user => user.UserName == username);
+            return i >= 0;
+        }//UsernameExists
 
         public bool AlreadyExist(IUser user)
         {
