@@ -12,6 +12,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
 {
     public partial class LogInControl : UserControl
     {
+        public bool LogInHadled { get; private set; }
         private readonly ChangeControl dChange;
         public LogInControl(ChangeControl dChange)
         {
@@ -32,5 +33,16 @@ namespace HotelManangementControlLibrary.Login_SignUp
         {
             dChange();
         }//lblSignIn_Click
+
+        private void btnLogIn_Click(object sender, EventArgs e)
+        {
+            DialogResult ds = MessageBox.Show("Control event first","", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (ds == DialogResult.Yes)
+                LogInHadled = true;
+            else
+                LogInHadled = false;
+                
+        }//btnLogIn_Click
+
     }//class
 }//namespace

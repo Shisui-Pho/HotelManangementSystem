@@ -140,6 +140,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.btnLogIn.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
             this.btnLogIn.TabIndex = 10;
             this.btnLogIn.Values.Text = "LogIn";
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // panel1
             // 
@@ -198,14 +199,14 @@ namespace HotelManangementControlLibrary.Login_SignUp
         }
 
         #endregion
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtxPassword;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtUsername;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnLogIn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblSignIn;
         private System.Windows.Forms.Label lblForgotternPassword;
+        public ComponentFactory.Krypton.Toolkit.KryptonButton btnLogIn;
+        public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtxPassword;
+        public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtUsername;
     }
 }

@@ -32,7 +32,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.btnSignIn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.kryptonDateTimePicker1 = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
+            this.dtDOB = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.txtConfirmPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtxPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtSurname = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -80,12 +80,13 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.btnSignIn.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
             this.btnSignIn.TabIndex = 1;
             this.btnSignIn.Values.Text = "Sign up";
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.kryptonDateTimePicker1);
+            this.panel1.Controls.Add(this.dtDOB);
             this.panel1.Controls.Add(this.txtConfirmPassword);
             this.panel1.Controls.Add(this.txtxPassword);
             this.panel1.Controls.Add(this.txtSurname);
@@ -113,13 +114,13 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.label1.Size = new System.Drawing.Size(375, 10);
             this.label1.TabIndex = 3;
             // 
-            // kryptonDateTimePicker1
+            // dtDOB
             // 
-            this.kryptonDateTimePicker1.Location = new System.Drawing.Point(115, 170);
-            this.kryptonDateTimePicker1.Name = "kryptonDateTimePicker1";
-            this.kryptonDateTimePicker1.Size = new System.Drawing.Size(207, 21);
-            this.kryptonDateTimePicker1.StateCommon.Back.Color1 = System.Drawing.Color.White;
-            this.kryptonDateTimePicker1.TabIndex = 2;
+            this.dtDOB.Location = new System.Drawing.Point(115, 170);
+            this.dtDOB.Name = "dtDOB";
+            this.dtDOB.Size = new System.Drawing.Size(207, 21);
+            this.dtDOB.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.dtDOB.TabIndex = 2;
             // 
             // txtConfirmPassword
             // 
@@ -333,23 +334,23 @@ namespace HotelManangementControlLibrary.Login_SignUp
         }
 
         #endregion
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSignIn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker kryptonDateTimePicker1;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtConfirmPassword;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtxPassword;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtSurname;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel8;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtUsername;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtName;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private System.Windows.Forms.Label lblLogIn;
+        public ComponentFactory.Krypton.Toolkit.KryptonButton btnSignIn;
+        public ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dtDOB;
+        public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtxPassword;
+        public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtSurname;
+        public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtUsername;
+        public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtName;
     }
 }
