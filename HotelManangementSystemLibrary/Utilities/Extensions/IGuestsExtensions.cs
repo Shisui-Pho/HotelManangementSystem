@@ -12,6 +12,8 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
         public static void SaveGuests(this IGuests guests)
         {
+            if (guests is null)
+                return;
             StringBuilder bl = new StringBuilder();
             foreach (IGuest guest in guests)
             {

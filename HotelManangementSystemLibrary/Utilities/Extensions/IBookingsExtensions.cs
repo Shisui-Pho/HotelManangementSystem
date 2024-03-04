@@ -11,8 +11,9 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
         private static readonly string file = "bookings.csv";
         public static void SaveBookings(this IRoomBookings bookings)
         {
+            if (bookings is null)
+                return;
             StringBuilder bl = new StringBuilder();
-
             foreach (IRoomBooking booking in bookings)
                 bl.Append(string.Format($"{booking.BookingID};{booking.Guest.UserID};{booking.Room.RoomNumber};{booking.DateBookedFor.ToString("dd/MM/yyyy")};{booking.NumberOfDaysToStay.ToString()}"));
             File.WriteAllText(file, bl.ToString());

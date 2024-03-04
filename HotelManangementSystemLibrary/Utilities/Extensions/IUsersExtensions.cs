@@ -12,6 +12,8 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
         public static void SaveUsers(this IUsers users)
         {
+            if (users is null)
+                return;
             StringBuilder bl = new StringBuilder();
             foreach (IUser user in users)
                 bl.AppendLine(String.Format($"{user.UserType.ToString()};{user.UserID};{user.UserName};{user.Password};{user.Name};{user.Surname};{user.DOB.ToString("dd/MM/yyyy")}"));

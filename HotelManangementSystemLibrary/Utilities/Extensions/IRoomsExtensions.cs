@@ -10,6 +10,8 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
         private static readonly string file ="rooms.csv";
         public static void SaveRooms(this IRooms rooms)
         {
+            if (rooms is null)
+                return;
             StringBuilder bl = new StringBuilder();
             foreach (IRoom room in rooms)
                 bl.AppendLine(String.Format($"{room.IsSingleRoom};{room.RoomNumber};{room.Price.ToString("0.00")};{room.HasTV}"));
