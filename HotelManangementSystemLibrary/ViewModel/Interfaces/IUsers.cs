@@ -6,6 +6,7 @@ namespace HotelManangementSystemLibrary
 {
     public interface IUsers : ICollectionHotel<IUser>
     {
+        bool UsernameExists(string username);
         bool AlreadyExist(IUser user);
         IUser GetUser(string userid);
         bool LogInUser(string username, string password);
