@@ -78,7 +78,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.btnSignIn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
             this.btnSignIn.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
             this.btnSignIn.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.btnSignIn.TabIndex = 1;
+            this.btnSignIn.TabIndex = 5;
             this.btnSignIn.Values.Text = "Sign up";
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
@@ -140,7 +140,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.txtConfirmPassword.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtConfirmPassword.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmPassword.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5);
-            this.txtConfirmPassword.TabIndex = 1;
+            this.txtConfirmPassword.TabIndex = 4;
             // 
             // txtxPassword
             // 
@@ -239,7 +239,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.txtUsername.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtUsername.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5);
-            this.txtUsername.TabIndex = 1;
+            this.txtUsername.TabIndex = 3;
             this.txtUsername.Text = "username";
             // 
             // txtName
@@ -259,7 +259,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.txtName.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtName.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 0;
             this.txtName.Text = "Name";
             // 
             // kryptonLabel5
@@ -311,7 +311,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.lblLogIn.Location = new System.Drawing.Point(164, 510);
             this.lblLogIn.Name = "lblLogIn";
             this.lblLogIn.Size = new System.Drawing.Size(49, 21);
-            this.lblLogIn.TabIndex = 13;
+            this.lblLogIn.TabIndex = 6;
             this.lblLogIn.Text = "LogIn";
             this.lblLogIn.Click += new System.EventHandler(this.lblLogIn_Click_1);
             this.lblLogIn.MouseLeave += new System.EventHandler(this.lblLogIn_MouseLeave);

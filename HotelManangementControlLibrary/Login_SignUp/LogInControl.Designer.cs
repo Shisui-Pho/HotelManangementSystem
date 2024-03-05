@@ -35,9 +35,12 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnLogIn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.lblSignIn = new System.Windows.Forms.Label();
             this.lblForgotternPassword = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtxPassword
@@ -58,7 +61,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.txtxPassword.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtxPassword.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtxPassword.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5);
-            this.txtxPassword.TabIndex = 7;
+            this.txtxPassword.TabIndex = 1;
             // 
             // kryptonLabel7
             // 
@@ -87,7 +90,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.txtUsername.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtUsername.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5);
-            this.txtUsername.TabIndex = 8;
+            this.txtUsername.TabIndex = 0;
             this.txtUsername.Text = "username";
             // 
             // kryptonLabel5
@@ -138,16 +141,9 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.btnLogIn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
             this.btnLogIn.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
             this.btnLogIn.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.btnLogIn.TabIndex = 10;
+            this.btnLogIn.TabIndex = 2;
             this.btnLogIn.Values.Text = "LogIn";
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(59, 17);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(257, 195);
-            this.panel1.TabIndex = 11;
             // 
             // lblSignIn
             // 
@@ -155,10 +151,10 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.lblSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSignIn.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Underline);
             this.lblSignIn.ForeColor = System.Drawing.Color.Blue;
-            this.lblSignIn.Location = new System.Drawing.Point(153, 469);
+            this.lblSignIn.Location = new System.Drawing.Point(153, 463);
             this.lblSignIn.Name = "lblSignIn";
             this.lblSignIn.Size = new System.Drawing.Size(63, 21);
-            this.lblSignIn.TabIndex = 12;
+            this.lblSignIn.TabIndex = 3;
             this.lblSignIn.Text = "Sign up";
             this.lblSignIn.Click += new System.EventHandler(this.lblSignIn_Click);
             this.lblSignIn.MouseLeave += new System.EventHandler(this.lblSignIn_MouseLeave);
@@ -173,18 +169,38 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.lblForgotternPassword.Location = new System.Drawing.Point(121, 496);
             this.lblForgotternPassword.Name = "lblForgotternPassword";
             this.lblForgotternPassword.Size = new System.Drawing.Size(146, 21);
-            this.lblForgotternPassword.TabIndex = 12;
+            this.lblForgotternPassword.TabIndex = 4;
             this.lblForgotternPassword.Text = "forgotten password";
             this.lblForgotternPassword.MouseLeave += new System.EventHandler(this.lblSignIn_MouseLeave);
             this.lblForgotternPassword.MouseHover += new System.EventHandler(this.lblSignIn_MouseHover);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::HotelManangementControlLibrary.Properties.Resources.generaluser;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(223, 223);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(86, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(227, 227);
+            this.panel1.TabIndex = 14;
             // 
             // LogInControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblForgotternPassword);
             this.Controls.Add(this.lblSignIn);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.txtxPassword);
             this.Controls.Add(this.kryptonLabel7);
@@ -193,6 +209,8 @@ namespace HotelManangementControlLibrary.Login_SignUp
             this.Controls.Add(this.kryptonLabel6);
             this.Name = "LogInControl";
             this.Size = new System.Drawing.Size(387, 543);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,11 +220,12 @@ namespace HotelManangementControlLibrary.Login_SignUp
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblSignIn;
         private System.Windows.Forms.Label lblForgotternPassword;
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnLogIn;
         public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtxPassword;
         public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtUsername;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
