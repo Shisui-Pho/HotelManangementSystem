@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dashboard\RoomBookingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\RoomBookingControl.Designer.cs">
+      <DependentUpon>RoomBookingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login_SignUp\LogInControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -65,9 +71,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Service\Deligate.cs" />
+    <Compile Include="Service\Messages.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dashboard\RoomBookingControl.resx">
+      <DependentUpon>RoomBookingControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login_SignUp\LogInControl.resx">
       <DependentUpon>LogInControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,8 +89,15 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Folder Include="Dashboard\Admin\" />
+    <Folder Include="Dashboard\Guest\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HotelManangementSystemLibrary\HotelManangementSystemLibrary.csproj">
+      <Project>{90bb8bd5-6c10-49e9-8a3d-edddaf17908d}</Project>
+      <Name>HotelManangementSystemLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UIServiceLibraru\UIServiceLibrary.csproj">
       <Project>{f97029db-2270-4da7-b71a-7d90eff67d2d}</Project>
       <Name>UIServiceLibrary</Name>
