@@ -31,43 +31,58 @@ namespace HotelManangementControlLibrary.Dashboard
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.plnRoomDet = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.plnPicRoom = new System.Windows.Forms.Panel();
+            this.lblRoomPrice = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.lblTypeOfRoom = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lblRoomNumber = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.plnBooking = new System.Windows.Forms.Panel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.kryptonDateTimePicker1 = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.plnListLeftRooms = new System.Windows.Forms.Panel();
             this.lstbxAllBookings = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
+            this.lblErrorMessage = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnBookRoom = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnCancelBooking = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lstRooms = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
-            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.lblErrorMessage = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.lblRoomNumber = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.lblTypeOfRoom = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.lblRoomPrice = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.plnPicRoom = new System.Windows.Forms.Panel();
+            this.lblFilterType = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.picRoom = new System.Windows.Forms.PictureBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lstRooms = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.kryptonRadioButton1 = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
+            this.kryptonRadioButton2 = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
+            this.kryptonRadioButton3 = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
+            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonDateTimePicker2 = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
+            this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel1.SuspendLayout();
             this.plnRoomDet.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.plnBooking.SuspendLayout();
-            this.plnListLeftRooms.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel4.SuspendLayout();
             this.plnPicRoom.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.plnBooking.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.plnListLeftRooms.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picRoom)).BeginInit();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -82,6 +97,7 @@ namespace HotelManangementControlLibrary.Dashboard
             // 
             // plnRoomDet
             // 
+            this.plnRoomDet.Controls.Add(this.label2);
             this.plnRoomDet.Controls.Add(this.panel4);
             this.plnRoomDet.Controls.Add(this.panel3);
             this.plnRoomDet.Controls.Add(this.kryptonLabel6);
@@ -91,6 +107,122 @@ namespace HotelManangementControlLibrary.Dashboard
             this.plnRoomDet.Size = new System.Drawing.Size(604, 780);
             this.plnRoomDet.TabIndex = 12;
             // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.plnPicRoom);
+            this.panel4.Controls.Add(this.lblRoomPrice);
+            this.panel4.Controls.Add(this.kryptonLabel4);
+            this.panel4.Controls.Add(this.kryptonLabel8);
+            this.panel4.Controls.Add(this.kryptonButton2);
+            this.panel4.Controls.Add(this.lblTypeOfRoom);
+            this.panel4.Controls.Add(this.kryptonLabel1);
+            this.panel4.Controls.Add(this.lblRoomNumber);
+            this.panel4.Location = new System.Drawing.Point(13, 41);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(589, 327);
+            this.panel4.TabIndex = 12;
+            // 
+            // plnPicRoom
+            // 
+            this.plnPicRoom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.plnPicRoom.Controls.Add(this.picRoom);
+            this.plnPicRoom.Location = new System.Drawing.Point(324, 40);
+            this.plnPicRoom.Name = "plnPicRoom";
+            this.plnPicRoom.Size = new System.Drawing.Size(260, 260);
+            this.plnPicRoom.TabIndex = 10;
+            // 
+            // lblRoomPrice
+            // 
+            this.lblRoomPrice.Location = new System.Drawing.Point(175, 244);
+            this.lblRoomPrice.Name = "lblRoomPrice";
+            this.lblRoomPrice.Size = new System.Drawing.Size(60, 26);
+            this.lblRoomPrice.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblRoomPrice.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoomPrice.TabIndex = 8;
+            this.lblRoomPrice.Values.Text = "R0,00";
+            // 
+            // kryptonLabel4
+            // 
+            this.kryptonLabel4.Location = new System.Drawing.Point(29, 244);
+            this.kryptonLabel4.Name = "kryptonLabel4";
+            this.kryptonLabel4.Size = new System.Drawing.Size(99, 26);
+            this.kryptonLabel4.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.kryptonLabel4.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel4.TabIndex = 8;
+            this.kryptonLabel4.Values.Text = "Price/night";
+            // 
+            // kryptonLabel8
+            // 
+            this.kryptonLabel8.Location = new System.Drawing.Point(45, 191);
+            this.kryptonLabel8.Name = "kryptonLabel8";
+            this.kryptonLabel8.Size = new System.Drawing.Size(60, 26);
+            this.kryptonLabel8.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.kryptonLabel8.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel8.TabIndex = 8;
+            this.kryptonLabel8.Values.Text = "Date :";
+            // 
+            // kryptonButton2
+            // 
+            this.kryptonButton2.Location = new System.Drawing.Point(237, 282);
+            this.kryptonButton2.Name = "kryptonButton2";
+            this.kryptonButton2.Size = new System.Drawing.Size(77, 31);
+            this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
+            this.kryptonButton2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton2.StateCommon.Border.Rounding = 5;
+            this.kryptonButton2.StateCommon.Border.Width = 1;
+            this.kryptonButton2.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonButton2.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonButton2.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonButton2.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.kryptonButton2.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.kryptonButton2.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
+            this.kryptonButton2.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
+            this.kryptonButton2.TabIndex = 9;
+            this.kryptonButton2.Values.Text = "More";
+            // 
+            // lblTypeOfRoom
+            // 
+            this.lblTypeOfRoom.Location = new System.Drawing.Point(167, 83);
+            this.lblTypeOfRoom.Name = "lblTypeOfRoom";
+            this.lblTypeOfRoom.Size = new System.Drawing.Size(116, 26);
+            this.lblTypeOfRoom.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblTypeOfRoom.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTypeOfRoom.TabIndex = 8;
+            this.lblTypeOfRoom.Values.Text = "Single Room";
+            // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.Location = new System.Drawing.Point(18, 83);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(106, 26);
+            this.kryptonLabel1.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel1.TabIndex = 8;
+            this.kryptonLabel1.Values.Text = "Room Type";
+            // 
+            // lblRoomNumber
+            // 
+            this.lblRoomNumber.Location = new System.Drawing.Point(119, 40);
+            this.lblRoomNumber.Name = "lblRoomNumber";
+            this.lblRoomNumber.Size = new System.Drawing.Size(125, 26);
+            this.lblRoomNumber.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblRoomNumber.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoomNumber.TabIndex = 8;
+            this.lblRoomNumber.Values.Text = "Room number";
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.plnBooking);
@@ -99,9 +231,9 @@ namespace HotelManangementControlLibrary.Dashboard
             this.panel3.Controls.Add(this.btnBookRoom);
             this.panel3.Controls.Add(this.btnCancelBooking);
             this.panel3.Controls.Add(this.kryptonLabel2);
-            this.panel3.Location = new System.Drawing.Point(0, 406);
+            this.panel3.Location = new System.Drawing.Point(13, 406);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(573, 373);
+            this.panel3.Size = new System.Drawing.Size(560, 373);
             this.panel3.TabIndex = 11;
             // 
             // plnBooking
@@ -116,6 +248,35 @@ namespace HotelManangementControlLibrary.Dashboard
             this.plnBooking.Name = "plnBooking";
             this.plnBooking.Size = new System.Drawing.Size(317, 207);
             this.plnBooking.TabIndex = 10;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.AutoSize = true;
+            this.numericUpDown1.Location = new System.Drawing.Point(136, 148);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(174, 20);
+            this.numericUpDown1.TabIndex = 12;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(71, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 56);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Booking will be from 08:00 am till 08:00am on the day after last day\r\n";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // kryptonDateTimePicker1
             // 
@@ -163,6 +324,16 @@ namespace HotelManangementControlLibrary.Dashboard
             this.lstbxAllBookings.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.lstbxAllBookings.Size = new System.Drawing.Size(223, 373);
             this.lstbxAllBookings.TabIndex = 0;
+            // 
+            // lblErrorMessage
+            // 
+            this.lblErrorMessage.Location = new System.Drawing.Point(277, 264);
+            this.lblErrorMessage.Name = "lblErrorMessage";
+            this.lblErrorMessage.Size = new System.Drawing.Size(209, 26);
+            this.lblErrorMessage.StateCommon.ShortText.Color1 = System.Drawing.Color.Red;
+            this.lblErrorMessage.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMessage.TabIndex = 8;
+            this.lblErrorMessage.Values.Text = "Cannot book on this date";
             // 
             // btnBookRoom
             // 
@@ -250,8 +421,9 @@ namespace HotelManangementControlLibrary.Dashboard
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.lstRooms);
-            this.panel2.Controls.Add(this.kryptonLabel5);
+            this.panel2.Controls.Add(this.panel7);
+            this.panel2.Controls.Add(this.panel6);
+            this.panel2.Controls.Add(this.panel5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
@@ -259,180 +431,15 @@ namespace HotelManangementControlLibrary.Dashboard
             this.panel2.Size = new System.Drawing.Size(314, 780);
             this.panel2.TabIndex = 11;
             // 
-            // lstRooms
+            // lblFilterType
             // 
-            this.lstRooms.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lstRooms.Location = new System.Drawing.Point(0, 42);
-            this.lstRooms.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.lstRooms.Name = "lstRooms";
-            this.lstRooms.Size = new System.Drawing.Size(314, 738);
-            this.lstRooms.TabIndex = 10;
-            this.lstRooms.SelectedIndexChanged += new System.EventHandler(this.lstRooms_SelectedIndexChanged);
-            // 
-            // kryptonLabel5
-            // 
-            this.kryptonLabel5.Location = new System.Drawing.Point(125, 10);
-            this.kryptonLabel5.Name = "kryptonLabel5";
-            this.kryptonLabel5.Size = new System.Drawing.Size(68, 26);
-            this.kryptonLabel5.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel5.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel5.TabIndex = 8;
-            this.kryptonLabel5.Values.Text = "Rooms";
-            // 
-            // lblErrorMessage
-            // 
-            this.lblErrorMessage.Location = new System.Drawing.Point(277, 264);
-            this.lblErrorMessage.Name = "lblErrorMessage";
-            this.lblErrorMessage.Size = new System.Drawing.Size(209, 26);
-            this.lblErrorMessage.StateCommon.ShortText.Color1 = System.Drawing.Color.Red;
-            this.lblErrorMessage.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorMessage.TabIndex = 8;
-            this.lblErrorMessage.Values.Text = "Cannot book on this date";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(71, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(180, 56);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Booking will be from 08:00 am till 08:00am on the day after last day\r\n";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.AutoSize = true;
-            this.numericUpDown1.Location = new System.Drawing.Point(136, 148);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(174, 20);
-            this.numericUpDown1.TabIndex = 12;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // lblRoomNumber
-            // 
-            this.lblRoomNumber.Location = new System.Drawing.Point(119, 40);
-            this.lblRoomNumber.Name = "lblRoomNumber";
-            this.lblRoomNumber.Size = new System.Drawing.Size(125, 26);
-            this.lblRoomNumber.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblRoomNumber.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoomNumber.TabIndex = 8;
-            this.lblRoomNumber.Values.Text = "Room number";
-            // 
-            // kryptonLabel1
-            // 
-            this.kryptonLabel1.Location = new System.Drawing.Point(18, 83);
-            this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(106, 26);
-            this.kryptonLabel1.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel1.TabIndex = 8;
-            this.kryptonLabel1.Values.Text = "Room Type";
-            // 
-            // lblTypeOfRoom
-            // 
-            this.lblTypeOfRoom.Location = new System.Drawing.Point(167, 83);
-            this.lblTypeOfRoom.Name = "lblTypeOfRoom";
-            this.lblTypeOfRoom.Size = new System.Drawing.Size(116, 26);
-            this.lblTypeOfRoom.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblTypeOfRoom.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTypeOfRoom.TabIndex = 8;
-            this.lblTypeOfRoom.Values.Text = "Single Room";
-            // 
-            // kryptonButton2
-            // 
-            this.kryptonButton2.Location = new System.Drawing.Point(237, 282);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(77, 31);
-            this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
-            this.kryptonButton2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton2.StateCommon.Border.Rounding = 5;
-            this.kryptonButton2.StateCommon.Border.Width = 1;
-            this.kryptonButton2.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonButton2.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton2.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonButton2.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.kryptonButton2.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
-            this.kryptonButton2.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.kryptonButton2.TabIndex = 9;
-            this.kryptonButton2.Values.Text = "More";
-            // 
-            // kryptonLabel8
-            // 
-            this.kryptonLabel8.Location = new System.Drawing.Point(45, 191);
-            this.kryptonLabel8.Name = "kryptonLabel8";
-            this.kryptonLabel8.Size = new System.Drawing.Size(60, 26);
-            this.kryptonLabel8.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel8.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel8.TabIndex = 8;
-            this.kryptonLabel8.Values.Text = "Date :";
-            // 
-            // kryptonLabel4
-            // 
-            this.kryptonLabel4.Location = new System.Drawing.Point(29, 244);
-            this.kryptonLabel4.Name = "kryptonLabel4";
-            this.kryptonLabel4.Size = new System.Drawing.Size(99, 26);
-            this.kryptonLabel4.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel4.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel4.TabIndex = 8;
-            this.kryptonLabel4.Values.Text = "Price/night";
-            // 
-            // lblRoomPrice
-            // 
-            this.lblRoomPrice.Location = new System.Drawing.Point(175, 244);
-            this.lblRoomPrice.Name = "lblRoomPrice";
-            this.lblRoomPrice.Size = new System.Drawing.Size(60, 26);
-            this.lblRoomPrice.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblRoomPrice.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoomPrice.TabIndex = 8;
-            this.lblRoomPrice.Values.Text = "R0,00";
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.plnPicRoom);
-            this.panel4.Controls.Add(this.lblRoomPrice);
-            this.panel4.Controls.Add(this.kryptonLabel4);
-            this.panel4.Controls.Add(this.kryptonLabel8);
-            this.panel4.Controls.Add(this.kryptonButton2);
-            this.panel4.Controls.Add(this.lblTypeOfRoom);
-            this.panel4.Controls.Add(this.kryptonLabel1);
-            this.panel4.Controls.Add(this.lblRoomNumber);
-            this.panel4.Location = new System.Drawing.Point(0, 41);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(602, 327);
-            this.panel4.TabIndex = 12;
-            // 
-            // plnPicRoom
-            // 
-            this.plnPicRoom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.plnPicRoom.Controls.Add(this.picRoom);
-            this.plnPicRoom.Location = new System.Drawing.Point(331, 40);
-            this.plnPicRoom.Name = "plnPicRoom";
-            this.plnPicRoom.Size = new System.Drawing.Size(260, 260);
-            this.plnPicRoom.TabIndex = 10;
+            this.lblFilterType.Location = new System.Drawing.Point(104, 13);
+            this.lblFilterType.Name = "lblFilterType";
+            this.lblFilterType.Size = new System.Drawing.Size(98, 26);
+            this.lblFilterType.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblFilterType.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilterType.TabIndex = 8;
+            this.lblFilterType.Values.Text = "All Rooms";
             // 
             // picRoom
             // 
@@ -444,6 +451,120 @@ namespace HotelManangementControlLibrary.Dashboard
             this.picRoom.TabIndex = 0;
             this.picRoom.TabStop = false;
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.lstRooms);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 249);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(314, 531);
+            this.panel5.TabIndex = 9;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.lblFilterType);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 201);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(314, 48);
+            this.panel6.TabIndex = 10;
+            // 
+            // lstRooms
+            // 
+            this.lstRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstRooms.Location = new System.Drawing.Point(0, 0);
+            this.lstRooms.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.lstRooms.Name = "lstRooms";
+            this.lstRooms.Size = new System.Drawing.Size(314, 531);
+            this.lstRooms.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(10, 780);
+            this.label2.TabIndex = 13;
+            // 
+            // panel7
+            // 
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel7.Controls.Add(this.kryptonDateTimePicker2);
+            this.panel7.Controls.Add(this.groupBox1);
+            this.panel7.Controls.Add(this.kryptonLabel5);
+            this.panel7.Controls.Add(this.kryptonLabel9);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(314, 201);
+            this.panel7.TabIndex = 11;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.kryptonRadioButton3);
+            this.groupBox1.Controls.Add(this.kryptonRadioButton2);
+            this.groupBox1.Controls.Add(this.kryptonRadioButton1);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(14, 123);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(292, 62);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filter Rooms";
+            // 
+            // kryptonRadioButton1
+            // 
+            this.kryptonRadioButton1.Checked = true;
+            this.kryptonRadioButton1.Location = new System.Drawing.Point(6, 21);
+            this.kryptonRadioButton1.Name = "kryptonRadioButton1";
+            this.kryptonRadioButton1.Size = new System.Drawing.Size(36, 20);
+            this.kryptonRadioButton1.TabIndex = 0;
+            this.kryptonRadioButton1.Values.Text = "All";
+            // 
+            // kryptonRadioButton2
+            // 
+            this.kryptonRadioButton2.Location = new System.Drawing.Point(113, 21);
+            this.kryptonRadioButton2.Name = "kryptonRadioButton2";
+            this.kryptonRadioButton2.Size = new System.Drawing.Size(56, 20);
+            this.kryptonRadioButton2.TabIndex = 0;
+            this.kryptonRadioButton2.Values.Text = "Single";
+            // 
+            // kryptonRadioButton3
+            // 
+            this.kryptonRadioButton3.Location = new System.Drawing.Point(224, 21);
+            this.kryptonRadioButton3.Name = "kryptonRadioButton3";
+            this.kryptonRadioButton3.Size = new System.Drawing.Size(62, 20);
+            this.kryptonRadioButton3.TabIndex = 0;
+            this.kryptonRadioButton3.Values.Text = "Double";
+            // 
+            // kryptonLabel5
+            // 
+            this.kryptonLabel5.Location = new System.Drawing.Point(25, 79);
+            this.kryptonLabel5.Name = "kryptonLabel5";
+            this.kryptonLabel5.Size = new System.Drawing.Size(124, 26);
+            this.kryptonLabel5.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.kryptonLabel5.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel5.TabIndex = 8;
+            this.kryptonLabel5.Values.Text = "Available on :";
+            // 
+            // kryptonDateTimePicker2
+            // 
+            this.kryptonDateTimePicker2.Location = new System.Drawing.Point(155, 80);
+            this.kryptonDateTimePicker2.Name = "kryptonDateTimePicker2";
+            this.kryptonDateTimePicker2.Size = new System.Drawing.Size(151, 21);
+            this.kryptonDateTimePicker2.TabIndex = 9;
+            // 
+            // kryptonLabel9
+            // 
+            this.kryptonLabel9.Location = new System.Drawing.Point(92, 19);
+            this.kryptonLabel9.Name = "kryptonLabel9";
+            this.kryptonLabel9.Size = new System.Drawing.Size(112, 26);
+            this.kryptonLabel9.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.kryptonLabel9.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel9.TabIndex = 8;
+            this.kryptonLabel9.Values.Text = "Search room";
+            // 
             // RoomBookingControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -454,18 +575,24 @@ namespace HotelManangementControlLibrary.Dashboard
             this.panel1.ResumeLayout(false);
             this.plnRoomDet.ResumeLayout(false);
             this.plnRoomDet.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.plnPicRoom.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.plnBooking.ResumeLayout(false);
             this.plnBooking.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.plnListLeftRooms.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.plnPicRoom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picRoom)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -479,8 +606,7 @@ namespace HotelManangementControlLibrary.Dashboard
         private ComponentFactory.Krypton.Toolkit.KryptonListBox lstbxAllBookings;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
         private System.Windows.Forms.Panel panel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonListBox lstRooms;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblFilterType;
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnCancelBooking;
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnBookRoom;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker kryptonDateTimePicker1;
@@ -501,5 +627,17 @@ namespace HotelManangementControlLibrary.Dashboard
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblTypeOfRoom;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblRoomNumber;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel7;
+        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker kryptonDateTimePicker2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton kryptonRadioButton3;
+        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton kryptonRadioButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonRadioButton kryptonRadioButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
+        private System.Windows.Forms.Panel panel6;
+        private ComponentFactory.Krypton.Toolkit.KryptonListBox lstRooms;
     }
 }

@@ -34,6 +34,8 @@ namespace HotelManangementControlLibrary.Dashboard
         }//
         private void btnCancelBooking_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Trigered");
+            return;
             cancelBooking(null);
         }//btnCancelBooking_Click
         private void btnBookRoom_Click(object sender, EventArgs e)
