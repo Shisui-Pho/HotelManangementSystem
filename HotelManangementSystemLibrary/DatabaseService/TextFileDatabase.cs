@@ -61,23 +61,27 @@ namespace HotelManangementSystemLibrary.DatabaseService
                 LoadRooms();
             if (_guests is null)
                 LoadGuests();
-            return _bookings.LoadBookings(_guests,_rooms);
+            _bookings = _bookings.LoadBookings(_guests, _rooms);
+            return _bookings;
         }//LoadBookings
 
         public IRooms LoadRooms()
         {
-            return _rooms.LoadRooms();
+            _rooms = _rooms.LoadRooms();
+            return _rooms;
         }//LoadRooms
 
         public IUsers LoadUsers()
         {
-            return _users.LoadUsers();
+            _users = _users.LoadUsers();
+            return _users;
         }//LoadUsers
         public IGuests LoadGuests()
         {
             if (_users is null)
                 LoadUsers();
-            return _guests.LoadGuests(_users);
+            _guests = _guests.LoadGuests(_users);
+            return _guests;
         }//LoadGuests
         public void SaveBookings()
         {
