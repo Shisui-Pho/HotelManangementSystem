@@ -9,6 +9,6 @@ namespace HotelManangementSystemLibrary
         bool UsernameExists(string username);
         bool AlreadyExist(IUser user);
         IUser GetUser(string userid);
-        bool LogInUser(string username, string password);
+        bool LogInUser(string username, string password, out IUser logged_in_user);
     }//IUsers
 }//namespace

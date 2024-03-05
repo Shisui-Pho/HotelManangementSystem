@@ -38,12 +38,12 @@ namespace HotelManangementSystemLibrary
                 return false;
             return true;
         }//AlreadyExist
-        public bool LogInUser(string username, string password)
+        public bool LogInUser(string username, string password, out IUser _logged_in_user)
         {
-            IUser user = _users.FirstOrDefault(ur => ur.UserName == username);
-            if (user is null)
+            _logged_in_user = _users.FirstOrDefault(ur => ur.UserName == username);
+            if (_logged_in_user is null)
                 return false;
-            if (!user.SignIn(username, password))
+            if (!_logged_in_user.SignIn(username, password))
                 return false;
             return true;
         }//LogInUser

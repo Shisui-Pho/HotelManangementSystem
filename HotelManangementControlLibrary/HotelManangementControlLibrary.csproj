@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dashboard\Admin\RoomsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Admin\RoomsControl.Designer.cs">
+      <DependentUpon>RoomsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\RoomBookingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dashboard\Admin\RoomsControl.resx">
+      <DependentUpon>RoomsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\RoomBookingControl.resx">
       <DependentUpon>RoomBookingControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,7 +99,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dashboard\Admin\" />
     <Folder Include="Dashboard\Guest\" />
   </ItemGroup>
   <ItemGroup>
