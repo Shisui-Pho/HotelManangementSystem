@@ -8,7 +8,7 @@ namespace HotelManangementSystemLibrary
     {
         //Data member
         private decimal _amount;
-
+        private static int maxDays = 10;
         //Properties
         public IGuest Guest { get; private set; }
 
@@ -31,5 +31,13 @@ namespace HotelManangementSystemLibrary
             _amount = Room.Price * numberOfDays;
         }//RoomBooking
         internal void SetBookingID(string _id) => BookingID = _id;
+
+        public void ChangeBooking(DateTime date, int numberOfDays = 1)
+        {
+            if (numberOfDays > maxDays)
+                numberOfDays = maxDays;
+            DateBookedFor = date;
+            NumberOfDaysToStay = numberOfDays;
+        }//ChangeBooking
     }//class
 }//namespace

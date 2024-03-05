@@ -12,5 +12,6 @@ namespace HotelManangementSystemLibrary
         DateTime DateBookedFor { get; }
         int NumberOfDaysToStay { get; }
         decimal AmoutToPay { get; }
+        void ChangeBooking(DateTime date, int numberOfDays = 1);
     }//IRoomBooking
 }//namespace
