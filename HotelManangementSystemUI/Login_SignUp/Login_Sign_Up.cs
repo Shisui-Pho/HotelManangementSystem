@@ -95,14 +95,14 @@ namespace HotelManangementSystemUI.Login_SignUp
         {
             string username = _logIn.txtUsername.Text;
             string password = _logIn.txtxPassword.Text;
-            if (!database.Users.LogInUser(username, password))
+            if (!database.Users.LogInUser(username, password, out IUser _logged_in_user))
             {
                 MessageBox.Show("Invalid username or password.", "Log in error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _logIn.txtxPassword.Text = "";
                 return;
             }//end if
             //Successfull
-            CfrmDashboard window = new CfrmDashboard(database);
+            CfrmDashboard window = new CfrmDashboard(database, _logged_in_user);
             IsDataPossiblyChanged = true;
             if(window.ShowDialog() == DialogResult.Cancel)
             {

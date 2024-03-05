@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HotelManangementSystemUI.Dashboard;
 using HotelManangementSystemUI.Login_SignUp;
 namespace HotelManangementSystemUI
 {
@@ -16,7 +17,8 @@ namespace HotelManangementSystemUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login_Sign_Up());
+            Application.Run(new CfrmDashboard());
+            //Application.Run(new Login_Sign_Up());
         }
     }
 }
