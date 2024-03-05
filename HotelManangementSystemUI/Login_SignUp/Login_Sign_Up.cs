@@ -12,6 +12,8 @@ namespace HotelManangementSystemUI.Login_SignUp
 {
     public partial class Login_Sign_Up : Form
     {
+        //member to determine if posible data changes were made
+        private bool IsDataPossiblyChanged = false;
         private readonly SignInControl _signIn;
         private readonly LogInControl _logIn;
         private readonly IDatabaseService database;
@@ -101,6 +103,7 @@ namespace HotelManangementSystemUI.Login_SignUp
             }//end if
             //Successfull
             CfrmDashboard window = new CfrmDashboard(database);
+            IsDataPossiblyChanged = true;
             if(window.ShowDialog() == DialogResult.Cancel)
             {
                 MessageBox.Show("You have successfully logged out!!");
@@ -126,6 +129,9 @@ namespace HotelManangementSystemUI.Login_SignUp
         {
             await Task.Run(() =>
             {
+                
+                if (!IsDataPossiblyChanged)//if data was not changed
+                    return;
                 //Save all data
                 database.SaveBookings();
                 database.SaveUsers();
@@ -133,5 +139,10 @@ namespace HotelManangementSystemUI.Login_SignUp
                 database.SaveGuets();
             });
         }//SaveData
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }//btnClose_Click
     }//class
 }//namespace

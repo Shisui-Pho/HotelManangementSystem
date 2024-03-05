@@ -132,6 +132,7 @@ namespace HotelManangementSystemUI.Login_SignUp
             this.btnClose.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.Red;
             this.btnClose.TabIndex = 3;
             this.btnClose.Values.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel3
             // 
