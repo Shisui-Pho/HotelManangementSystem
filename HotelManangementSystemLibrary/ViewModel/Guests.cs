@@ -12,10 +12,18 @@ namespace HotelManangementSystemLibrary
         }
 
         public void Add(IGuest guest)
-            => _guests.Add(guest);
+        {
+            if (Exists(guest))
+                return;
+            _guests.Add(guest);
+        }
 
         public void Remove(IGuest guest)
-            => _guests.Remove(guest);
+        {
+            if (Exists(guest))
+                return;
+            _guests.Remove(guest);
+        }
 
         public void Update(IGuest old, IGuest _new)
         {
@@ -34,5 +42,9 @@ namespace HotelManangementSystemLibrary
         {
             return _guests.FirstOrDefault(g => g.UserID == guestId);
         }//FindGuest
+        private bool Exists(IGuest guest)
+        {
+            return _guests.Exists(gs => guest.UserID == gs.UserID);
+        }
     }//class
 }//namespace
