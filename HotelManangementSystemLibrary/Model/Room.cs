@@ -13,6 +13,9 @@ namespace HotelManangementSystemLibrary
         public bool IsSingleRoom { get; protected set; }
 
         public decimal Price { get; set; }
+
+        public string TelephoneNumber { get; private set; }
+
         public Room(string _roomNumber)
         {
             RoomNumber = _roomNumber;
@@ -35,10 +38,19 @@ namespace HotelManangementSystemLibrary
         public void SetPrice(decimal amount)
         {
         }//SetPrice
+        public void UpdateTelephoneNumber(string _number)
+        {
+
+        }//UpdateTelephoneNumber
         public override string ToString()
         {
             return String.Format($"{IsSingleRoom};{RoomNumber};{Price.ToString("0.00")};{HasTV}");
         }//ToString
+
+        public string ToCSVFormat()
+        {
+            return String.Format($"{IsSingleRoom};{RoomNumber};{Price.ToString("0.00")};{HasTV}");
+        }//ToCSVFormat
     }//class
     internal class SingleRoom : Room , ISingleRoom
     {
