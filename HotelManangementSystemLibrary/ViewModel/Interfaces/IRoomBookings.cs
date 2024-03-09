@@ -8,6 +8,7 @@ namespace HotelManangementSystemLibrary
     {
         bool IsBooked(IRoomBooking item);
         bool IsRoomBooked(IRoom booking, DateTime date);
+        IRoomBooking[] HasBookings(IRoom room);
         IEnumerator<IRoomBooking> GetBookingsOf(IGuest guest);
     }//Interface
 }//namespace
