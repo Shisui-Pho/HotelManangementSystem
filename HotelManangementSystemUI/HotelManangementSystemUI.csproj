@@ -58,6 +58,13 @@
     <Compile Include="Dashboard\CfrmDashboard.Designer.cs">
       <DependentUpon>CfrmDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="FactoryTest.cs" />
+    <Compile Include="Input Forms\CdlgCustomRooms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input Forms\CdlgCustomRooms.Designer.cs">
+      <DependentUpon>CdlgCustomRooms.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login_SignUp\Login_Sign_Up.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +75,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dashboard\CfrmDashboard.resx">
       <DependentUpon>CfrmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input Forms\CdlgCustomRooms.resx">
+      <DependentUpon>CdlgCustomRooms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_SignUp\Login_Sign_Up.resx">
       <DependentUpon>Login_Sign_Up.cs</DependentUpon>
@@ -109,9 +119,7 @@
       <Name>UIServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Input Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="images\adminuser.png" />
     <Content Include="images\book-online.png" />
