@@ -1,16 +1,12 @@
-﻿using HotelManangementControlLibrary.Dashboard;
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using HotelManangementControlLibrary.Dashboard;
 using HotelManangementControlLibrary.Dashboard.Admin;
 using HotelManangementSystemLibrary;
 using HotelManangementSystemLibrary.DatabaseService;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using HotelManangementSystemUI.Input_Forms;
+using HotelManangementControlLibrary.Dashboard.Guest;
 
 namespace HotelManangementSystemUI.Dashboard
 {
@@ -23,18 +19,25 @@ namespace HotelManangementSystemUI.Dashboard
         //Controls
         private readonly RoomBookingControl _guestRoomBookingsControl;
         private readonly RoomsControl _adminRoomsControl;
+        private readonly GuestProfileControl _guestProfileControl;
         public CfrmDashboard(IDatabaseService database, IUser _logged_in_user)
         {
             InitializeComponent();
             this.database = database;
             _guestRoomBookingsControl = new RoomBookingControl(database, null,null);//use ctor 01
+            _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
             this._logged_in_user = _logged_in_user;
         }//ctor 01
+
+        //Testing
         public CfrmDashboard()
         {
             InitializeComponent();
-            _guestRoomBookingsControl = new RoomBookingControl();
-            _adminRoomsControl = new RoomsControl();
+            //_guestRoomBookingsControl = new RoomBookingControl();
+            //_adminRoomsControl = new RoomsControl(ModifyRoom, NewRoom);
+            database = FactoryTest.CreateDatabase();
+            _guestRoomBookingsControl = new RoomBookingControl(database, null, null);//use ctor 01
+            _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
         }
         private async Task LoadAllBookings()
         {
@@ -82,5 +85,65 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl.Visible = true;
             _adminRoomsControl.Visible = false;
         }//btnBookRoom_Click
+        private IRoom NewRoom()
+        {
+            CdlgCustomRooms newroom = new CdlgCustomRooms();
+            if(newroom.ShowDialog() == DialogResult.OK)
+            {
+                database.Rooms.Add(newroom.Room);
+                return newroom.Room;
+            }
+            return default;
+        }//NewRoom
+        private IRoom ModifyRoom(IRoom oldroom)
+        {
+            CdlgCustomRooms newroom = new CdlgCustomRooms(oldroom);
+            if (newroom.ShowDialog() == DialogResult.Cancel)
+                return newroom.Room;
+
+            //Update the database
+            database.Rooms.Remove(oldroom);
+            database.Rooms.Add(newroom.Room);
+
+            //Check if the room has previous bookings
+            IRoomBooking[] bookings = database.Bookings.HasBookings(oldroom);
+            if (bookings.Length <= 0)
+                return newroom.Room;
+
+            //Ask the admin if the want to keep the bookings or not
+            if (MessageBox.Show($"Room {oldroom.RoomNumber} still has bookings, do you wish to move bookings to {newroom.Room.RoomNumber} ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                == DialogResult.No)
+                return newroom.Room;
+            //Book the room for the specified dates
+            IRoom room = newroom.Room;
+            DoBookings(room, bookings);
+            return room;
+            //return default;
+        }//ModifyRoom
+        private void DoBookings(IRoom room,IRoomBooking[] bookings)
+        {
+            foreach (IRoomBooking booking in bookings)
+            {
+                IRoomBooking b = booking;
+                b.ChangeRoom(room);
+                database.Bookings.Add(booking);
+            }//end foreach
+        }//DoBookings
+        private void btnManangeBookings_Click(object sender, EventArgs e)
+        {
+
+        
+        }//btnManangeBookings_Click
+
+        private void btnManangeGuests_Click(object sender, EventArgs e)
+        {
+
+        }//btnManangeGuests_Click
+
+        private void btnManangeOldBookings_Click(object sender, EventArgs e)
+        {
+
+        }//btnManangeOldBookings_Click
     }//class
+
 }//namespace
