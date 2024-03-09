@@ -52,6 +52,12 @@
     <Compile Include="Dashboard\Admin\RoomsControl.Designer.cs">
       <DependentUpon>RoomsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\Guest\GuestProfileControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Guest\GuestProfileControl.Designer.cs">
+      <DependentUpon>GuestProfileControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\RoomBookingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     <EmbeddedResource Include="Dashboard\Admin\RoomsControl.resx">
       <DependentUpon>RoomsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Guest\GuestProfileControl.resx">
+      <DependentUpon>GuestProfileControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\RoomBookingControl.resx">
       <DependentUpon>RoomBookingControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,9 +107,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dashboard\Guest\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\HotelManangementSystemLibrary\HotelManangementSystemLibrary.csproj">
       <Project>{90bb8bd5-6c10-49e9-8a3d-edddaf17908d}</Project>
@@ -112,8 +119,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\double.jpeg" />
     <Content Include="images\generaluser.png" />
     <Content Include="images\sign-up.png" />
+    <Content Include="images\single.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
