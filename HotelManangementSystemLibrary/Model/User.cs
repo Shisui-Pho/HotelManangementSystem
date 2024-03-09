@@ -34,6 +34,10 @@ namespace HotelManangementSystemLibrary
         {
             return UserName == _username && Password == _password;
         }//LogIn
+        public override string ToString()
+        {
+            return String.Format($"{UserType.ToString()};{UserID};{UserName};{Password};{Name};{Surname};{DOB.ToString("dd/MM/yyyy")}");
+        }//ToString
     }//class
 
     internal class Guest : User, IGuest
@@ -68,6 +72,10 @@ namespace HotelManangementSystemLibrary
         }//SetEmergencyNumber
 
         public void SetContactDetails(IContactDetails details) => ContactDetails = details;
+        public override string ToString()
+        {
+            return String.Format($"{UserID};{ContactDetails.CellphoneNumber};{ContactDetails.EmailAddress};{ContactDetails.EmergencyNumber}");
+        }//ToString
     }//class
     internal class Administrator : User, IAdministrator
     {

@@ -39,5 +39,9 @@ namespace HotelManangementSystemLibrary
             DateBookedFor = date;
             NumberOfDaysToStay = numberOfDays;
         }//ChangeBooking
+        public override string ToString()
+        {
+            return string.Format($"{BookingID};{Guest.UserID};{Room.RoomNumber};{DateBookedFor.ToString("dd/MM/yyyy")};{NumberOfDaysToStay.ToString()}");
+        }
     }//class
 }//namespace

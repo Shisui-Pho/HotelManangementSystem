@@ -35,6 +35,10 @@ namespace HotelManangementSystemLibrary
         public void SetPrice(decimal amount)
         {
         }//SetPrice
+        public override string ToString()
+        {
+            return String.Format($"{IsSingleRoom};{RoomNumber};{Price.ToString("0.00")};{HasTV}");
+        }//ToString
     }//class
     internal class SingleRoom : Room , ISingleRoom
     {
@@ -43,8 +47,6 @@ namespace HotelManangementSystemLibrary
             HasTV = hasTv;
             IsSingleRoom = true;
         }//ctor
-
-        
     }//Singleroom
 
     internal class DoubleRoom : Room , IDoubleRoom
@@ -52,7 +54,7 @@ namespace HotelManangementSystemLibrary
         public DoubleRoom(string _roomNumber, bool hasTv = false) : base(_roomNumber)
         {
             HasTV = hasTv;
-            IsSingleRoom = true;
+            IsSingleRoom = false;
         }//ctor
     }//DoubleRoom
 }//namespace
