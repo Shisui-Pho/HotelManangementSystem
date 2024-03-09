@@ -63,6 +63,16 @@ namespace HotelManangementControlLibrary.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _double {
+            get {
+                object obj = ResourceManager.GetObject("double", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap generaluser {
             get {
                 object obj = ResourceManager.GetObject("generaluser", resourceCulture);
@@ -76,6 +86,16 @@ namespace HotelManangementControlLibrary.Properties {
         internal static System.Drawing.Bitmap sign_up {
             get {
                 object obj = ResourceManager.GetObject("sign-up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap single {
+            get {
+                object obj = ResourceManager.GetObject("single", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
