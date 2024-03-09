@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IRoomBooking
+    public interface IRoomBooking : IHotelModel
     {
         string BookingID { get; }
         IGuest Guest { get; }
@@ -12,6 +12,7 @@ namespace HotelManangementSystemLibrary
         DateTime DateBookedFor { get; }
         int NumberOfDaysToStay { get; }
         decimal AmoutToPay { get; }
-        void ChangeBooking(DateTime date, int numberOfDays = 1);
+        void ChangeBookingDate(DateTime date, int numberOfDays = 1);
+        void ChangeRoom(IRoom room);
     }//IRoomBooking
 }//namespace

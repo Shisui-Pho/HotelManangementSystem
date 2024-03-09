@@ -36,8 +36,14 @@ namespace HotelManangementSystemLibrary
         }//LogIn
         public override string ToString()
         {
-            return String.Format($"{UserType.ToString()};{UserID};{UserName};{Password};{Name};{Surname};{DOB.ToString("dd/MM/yyyy")}");
+            return base.Name + " " + base.Surname;
+            //return String.Format($"{UserType.ToString()};{UserID};{UserName};{Password};{Name};{Surname};{DOB.ToString("dd/MM/yyyy")}");
         }//ToString
+
+        public string ToCSVFormat()
+        {
+            return String.Format($"{UserType.ToString()};{UserID};{UserName};{Password};{Name};{Surname};{DOB.ToString("dd/MM/yyyy")}");
+        }//ToCSVFormat
     }//class
 
     internal class Guest : User, IGuest
@@ -72,10 +78,10 @@ namespace HotelManangementSystemLibrary
         }//SetEmergencyNumber
 
         public void SetContactDetails(IContactDetails details) => ContactDetails = details;
-        public override string ToString()
+        public new string ToCSVFormat()
         {
             return String.Format($"{UserID};{ContactDetails.CellphoneNumber};{ContactDetails.EmailAddress};{ContactDetails.EmergencyNumber}");
-        }//ToString
+        }//ToCSVFormat
     }//class
     internal class Administrator : User, IAdministrator
     {

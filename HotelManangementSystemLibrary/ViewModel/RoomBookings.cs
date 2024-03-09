@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace HotelManangementSystemLibrary
 {
     internal class RoomBookings : IRoomBookings
@@ -53,7 +55,8 @@ namespace HotelManangementSystemLibrary
 
         void ICollectionHotel<IRoomBooking>.Add(IRoomBooking item)
         {
-            throw new NotImplementedException();
+            _bookings.Add(item);
+            //throw new NotImplementedException();
         }//ICollectionHotel<IRoomBooking>.Add
         public IEnumerator<IRoomBooking> GetEnumerator()
         {
@@ -73,5 +76,10 @@ namespace HotelManangementSystemLibrary
                     yield return booking;
             }//GetBookingsOf
         }//GetBookingsOf
+
+        public IRoomBooking[] HasBookings(IRoom room)
+        {
+            return _bookings.Where(b => b.Room.RoomNumber == room.RoomNumber).ToArray();
+        }//HasBookings
     }//class
 }//namespace

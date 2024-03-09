@@ -32,7 +32,7 @@ namespace HotelManangementSystemLibrary
         }//RoomBooking
         internal void SetBookingID(string _id) => BookingID = _id;
 
-        public void ChangeBooking(DateTime date, int numberOfDays = 1)
+        public void ChangeBookingDate(DateTime date, int numberOfDays = 1)
         {
             if (numberOfDays > maxDays)
                 numberOfDays = maxDays;
@@ -43,5 +43,12 @@ namespace HotelManangementSystemLibrary
         {
             return string.Format($"{BookingID};{Guest.UserID};{Room.RoomNumber};{DateBookedFor.ToString("dd/MM/yyyy")};{NumberOfDaysToStay.ToString()}");
         }
+
+        public void ChangeRoom(IRoom room)
+        {
+            if (room is null)
+                return;
+            Room = room;
+        }//ChangeRoom
     }//class
 }//namespace
