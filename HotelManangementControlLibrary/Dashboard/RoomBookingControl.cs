@@ -1,14 +1,6 @@
 ﻿using HotelManangementSystemLibrary.DatabaseService;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using HotelManangementSystemLibrary.Factory;
 using HotelManangementControlLibrary.Service;
 using HotelManangementSystemLibrary;
 
@@ -27,7 +19,19 @@ namespace HotelManangementControlLibrary.Dashboard
             cancelBooking = cancelroom_method;
             //Set the display members
             lstRooms.DisplayMember = "RoomNumber";
+            ListRooms(database.Rooms);
         }//ctor 01
+        private void ListRooms(IRooms rooms)
+        {
+            lstRooms.Items.Clear();
+            foreach (IRoom room in rooms)
+            {
+                lstRooms.Items.Add(room);
+            }//end foreach
+            //Selct the first room
+            if (rooms.Count > 0)
+                lstRooms.SelectedIndex = 0;
+        }//FillList
         public RoomBookingControl()
         {
             InitializeComponent();
@@ -66,8 +70,14 @@ namespace HotelManangementControlLibrary.Dashboard
         }//RefreshLists
         private void lstRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            IRoom room = (IRoom)lstRooms.SelectedItem;
+            lblRoomNumber.Text = room.RoomNumber;
+            lblTypeOfRoom.Text = (room.IsSingleRoom) ? TypeOfRoom.SingleRoom.ToString() : TypeOfRoom.SharingRoom.ToString();
+            lblRoomPrice.Text = ((decimal)500.6m).ToString("C");
+            if (room is ISingleRoom)
+                picRoom.ImageLocation = @"images/single.jpg";
+            else
+                picRoom.ImageLocation = @"images/double.jpeg";
         }//lstRooms_SelectedIndexChanged
-
     }//class
 }//namespcae
