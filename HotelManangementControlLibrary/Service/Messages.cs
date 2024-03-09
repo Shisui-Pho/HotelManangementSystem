@@ -21,5 +21,9 @@ namespace HotelManangementControlLibrary.Service
         {
             return MessageBox.Show(sMsg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
+        public static DialogResult Warning(string sMsg, string title)
+        {
+            return MessageBox.Show(sMsg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        }
     }
 }

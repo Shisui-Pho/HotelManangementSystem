@@ -9,5 +9,7 @@ namespace HotelManangementControlLibrary
 {
     public delegate void ChangeControl();
     public delegate void BookRoom(IRoom room);//The user will be the current user
-    public delegate void CancelBooking(IRoom room);//The user will be the current user
+    public delegate void CancelBooking(IRoom room);//The user will be the current user'
+    public delegate IRoom AddNewRoom();
+    public delegate IRoom ModifyRoom(IRoom room);
 }//namespace
