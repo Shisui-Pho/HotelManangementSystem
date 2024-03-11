@@ -283,6 +283,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.btnViewProfile.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
             this.btnViewProfile.TabIndex = 4;
             this.btnViewProfile.Values.Text = "View Profile";
+            this.btnViewProfile.Click += new System.EventHandler(this.btnViewProfile_Click);
             // 
             // btnViewBookings
             // 
@@ -469,6 +470,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.Name = "CfrmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CfrmDashboard";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CfrmDashboard_FormClosing);
             this.Shown += new System.EventHandler(this.CfrmDashboard_Shown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

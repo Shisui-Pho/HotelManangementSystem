@@ -26,10 +26,13 @@ namespace HotelManangementSystemUI.Dashboard
             this.database = database;
             _guestRoomBookingsControl = new RoomBookingControl(database, null,null);//use ctor 01
             _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
+            _guestProfileControl = new GuestProfileControl(database.Guests.FindGuest(_logged_in_user));
             this._logged_in_user = _logged_in_user;
-        }//ctor 01
 
-        //Testing
+            //Setting custom events
+            _guestProfileControl.PasswordChanged += _guestProfileControl_PasswordChanged;
+        }//ctor 01
+         //Testing
         public CfrmDashboard()
         {
             InitializeComponent();
@@ -38,7 +41,13 @@ namespace HotelManangementSystemUI.Dashboard
             database = FactoryTest.CreateDatabase();
             _guestRoomBookingsControl = new RoomBookingControl(database, null, null);//use ctor 01
             _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
+            _guestProfileControl = new GuestProfileControl();
         }
+        private void _guestProfileControl_PasswordChanged(string newpassword)
+        {
+            //Set the password
+            _logged_in_user.SetPassword(newpassword);
+        }//_guestProfileControl_PasswordChanged
         private async Task LoadAllBookings()
         {
             //This will load all the other Properties
@@ -62,29 +71,12 @@ namespace HotelManangementSystemUI.Dashboard
         {
             plnContainer.Controls.Add(_guestRoomBookingsControl);
             plnContainer.Controls.Add(_adminRoomsControl);
+            plnContainer.Controls.Add(_guestProfileControl);
             _guestRoomBookingsControl.BringToFront();
             _guestRoomBookingsControl.Visible = true;
             _adminRoomsControl.Visible = false;
         }//AddControls
 
-        private void btnSignOut_Click(object sender, EventArgs e)
-        {
-            plnAdminPanel.Visible = !plnAdminPanel.Visible;
-        }//btnSignOut_Click
-
-        private void btnManangeRooms_Click(object sender, EventArgs e)
-        {
-            _adminRoomsControl.BringToFront();
-            _guestRoomBookingsControl.Visible = false;
-            _adminRoomsControl.Visible = true;
-        }//btnManangeRooms_Click
-
-        private void btnBookRoom_Click(object sender, EventArgs e)
-        {
-            _guestRoomBookingsControl.BringToFront();
-            _guestRoomBookingsControl.Visible = true;
-            _adminRoomsControl.Visible = false;
-        }//btnBookRoom_Click
         private IRoom NewRoom()
         {
             CdlgCustomRooms newroom = new CdlgCustomRooms();
@@ -129,12 +121,35 @@ namespace HotelManangementSystemUI.Dashboard
                 database.Bookings.Add(booking);
             }//end foreach
         }//DoBookings
-        private void btnManangeBookings_Click(object sender, EventArgs e)
+
+        private void CfrmDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //Unsubscribe to events
+            _guestProfileControl.PasswordChanged -= _guestProfileControl_PasswordChanged;
+        }//CfrmDashboard_FormClosing
 
-        
-        }//btnManangeBookings_Click
 
+        #region Clicks event handlers
+        private void btnSignOut_Click(object sender, EventArgs e)
+        {
+            plnAdminPanel.Visible = !plnAdminPanel.Visible;
+        }//btnSignOut_Click
+
+        private void btnManangeRooms_Click(object sender, EventArgs e)
+        {
+            _adminRoomsControl.BringToFront();
+            _guestRoomBookingsControl.Visible = false;
+            _guestProfileControl.Visible = false;
+            _adminRoomsControl.Visible = true;
+        }//btnManangeRooms_Click
+
+        private void btnBookRoom_Click(object sender, EventArgs e)
+        {
+            _guestRoomBookingsControl.BringToFront();
+            _guestRoomBookingsControl.Visible = true;
+            _adminRoomsControl.Visible = false;
+            _guestProfileControl.Visible = false;
+        }//btnBookRoom_Click
         private void btnManangeGuests_Click(object sender, EventArgs e)
         {
 
@@ -144,6 +159,19 @@ namespace HotelManangementSystemUI.Dashboard
         {
 
         }//btnManangeOldBookings_Click
+        private void btnViewProfile_Click(object sender, EventArgs e)
+        {
+            _guestProfileControl.BringToFront();
+            _guestRoomBookingsControl.Visible = false;
+            _guestProfileControl.Visible = true;
+            _adminRoomsControl.Visible = false;
+        }//btnViewProfile_Click
+        private void btnManangeBookings_Click(object sender, EventArgs e)
+        {
+
+
+        }//btnManangeBookings_Click
+        #endregion Clicks event handlers
     }//class
 
 }//namespace
