@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HotelManangementSystemLibrary.Factory;
+using System.Collections.Generic;
 using System.Linq;
 namespace HotelManangementSystemLibrary
 {
@@ -16,14 +17,14 @@ namespace HotelManangementSystemLibrary
             if (Exists(guest))
                 return;
             _guests.Add(guest);
-        }
+        }//Add
 
         public void Remove(IGuest guest)
         {
             if (Exists(guest))
                 return;
             _guests.Remove(guest);
-        }
+        }//Remove
 
         public void Update(IGuest old, IGuest _new)
         {
@@ -45,6 +46,22 @@ namespace HotelManangementSystemLibrary
         private bool Exists(IGuest guest)
         {
             return _guests.Exists(gs => guest.UserID == gs.UserID);
-        }
+        }//Exists
+
+        public IGuest FindGuest(IUser user)
+        {
+            if (!(user is IGuest))
+                throw new System.ArgumentException($"Cannot retrieve profile of {user.UserType.ToString()}");
+            
+            int i = _guests.FindIndex(gs => gs.UserID == user.UserID);
+            //If the guest exists
+            if (i >= 0)
+                return _guests[i];
+            //if guest does not exist
+            //-Create a new guest profile
+            IGuest guest = UsersFactory.CreateGuest(user);
+            Add(guest);
+            return guest;
+        }//FindGuest
     }//class
 }//namespace
