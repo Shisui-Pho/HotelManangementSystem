@@ -15,18 +15,18 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
     public partial class RoomsControl : UserControl
     {
         //Functions
-        private readonly ModifyRoom ModifyRoomFunc;
-        private readonly AddNewRoom AddNewRoomFunc;
+        private readonly delModifyRoom ModifyRoomFunc;
+        private readonly delAddNewRoom AddNewRoomFunc;
 
         //datamember
         private readonly IRooms _rooms;
-        public RoomsControl(ModifyRoom mod, AddNewRoom add)
+        public RoomsControl(delModifyRoom mod, delAddNewRoom add)
         {
             InitializeComponent();
             ModifyRoomFunc = mod;
             AddNewRoomFunc = add;
         }//ctor 01
-        public RoomsControl(IRooms rooms, ModifyRoom mod, AddNewRoom add)
+        public RoomsControl(IRooms rooms, delModifyRoom mod, delAddNewRoom add)
         {
             InitializeComponent();
             this._rooms = rooms;
