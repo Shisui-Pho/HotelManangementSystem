@@ -39,9 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lblGender = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lblAge = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lblDOB = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtConfirmPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -90,11 +90,11 @@
             this.panel2.Controls.Add(this.kryptonLabel16);
             this.panel2.Controls.Add(this.txtSurname);
             this.panel2.Controls.Add(this.kryptonLabel17);
-            this.panel2.Controls.Add(this.kryptonLabel7);
+            this.panel2.Controls.Add(this.lblGender);
             this.panel2.Controls.Add(this.kryptonLabel6);
-            this.panel2.Controls.Add(this.kryptonLabel8);
+            this.panel2.Controls.Add(this.lblAge);
             this.panel2.Controls.Add(this.kryptonLabel4);
-            this.panel2.Controls.Add(this.kryptonLabel9);
+            this.panel2.Controls.Add(this.lblDOB);
             this.panel2.Controls.Add(this.kryptonLabel3);
             this.panel2.Controls.Add(this.kryptonLabel2);
             this.panel2.Controls.Add(this.txtName);
@@ -216,35 +216,35 @@
             this.kryptonLabel6.TabIndex = 18;
             this.kryptonLabel6.Values.Text = "Gender";
             // 
-            // kryptonLabel7
+            // lblGender
             // 
-            this.kryptonLabel7.Location = new System.Drawing.Point(151, 223);
-            this.kryptonLabel7.Name = "kryptonLabel7";
-            this.kryptonLabel7.Size = new System.Drawing.Size(174, 22);
-            this.kryptonLabel7.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel7.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel7.TabIndex = 18;
-            this.kryptonLabel7.Values.Text = "Male/Female/Nonbinary";
+            this.lblGender.Location = new System.Drawing.Point(151, 223);
+            this.lblGender.Name = "lblGender";
+            this.lblGender.Size = new System.Drawing.Size(174, 22);
+            this.lblGender.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblGender.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGender.TabIndex = 18;
+            this.lblGender.Values.Text = "Male/Female/Nonbinary";
             // 
-            // kryptonLabel8
+            // lblAge
             // 
-            this.kryptonLabel8.Location = new System.Drawing.Point(162, 173);
-            this.kryptonLabel8.Name = "kryptonLabel8";
-            this.kryptonLabel8.Size = new System.Drawing.Size(20, 22);
-            this.kryptonLabel8.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel8.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel8.TabIndex = 18;
-            this.kryptonLabel8.Values.Text = "0";
+            this.lblAge.Location = new System.Drawing.Point(162, 173);
+            this.lblAge.Name = "lblAge";
+            this.lblAge.Size = new System.Drawing.Size(20, 22);
+            this.lblAge.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblAge.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAge.TabIndex = 18;
+            this.lblAge.Values.Text = "0";
             // 
-            // kryptonLabel9
+            // lblDOB
             // 
-            this.kryptonLabel9.Location = new System.Drawing.Point(162, 125);
-            this.kryptonLabel9.Name = "kryptonLabel9";
-            this.kryptonLabel9.Size = new System.Drawing.Size(87, 22);
-            this.kryptonLabel9.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel9.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel9.TabIndex = 18;
-            this.kryptonLabel9.Values.Text = "0000/00/00";
+            this.lblDOB.Location = new System.Drawing.Point(162, 125);
+            this.lblDOB.Name = "lblDOB";
+            this.lblDOB.Size = new System.Drawing.Size(87, 22);
+            this.lblDOB.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblDOB.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDOB.TabIndex = 18;
+            this.lblDOB.Values.Text = "0000/00/00";
             // 
             // label2
             // 
@@ -569,11 +569,11 @@
         public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtName;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblGender;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel8;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblAge;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblDOB;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtUsername;
