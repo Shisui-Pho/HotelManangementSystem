@@ -63,7 +63,8 @@ namespace HotelManangementSystemUI
         }
         private static void AddTestBookings(IDatabaseService ser)
         {
-            IGuest gs = ser.Guests.FindGuest("GU-{1253123}");
+            IUser us = ser.Users.GetUser("GU-{1253123}");
+            IGuest gs = ser.Guests.FindGuest(us);
             IRoomBooking booking = BookingsFactory.CreateBooking(gs, ser.Rooms.FindRoom("Room 01"), DateTime.Now);
             ser.Bookings.Add(booking);
         }
