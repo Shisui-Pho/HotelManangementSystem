@@ -37,6 +37,20 @@ namespace UIServiceLibrary.Evaluations
                 return true;
             return false;
         }//IsValidPhoneNumber
-
+        public static bool IsPasswordAllowed(this string password, out string exception )
+        {
+            if (password.IndexOf(" ") >= 0)
+            {
+                exception = "Password cannot have a space in it.";
+                return false;
+            }//end if
+            if(password.Length < 10)
+            {
+                exception = "Password too short.";
+                return false;
+            }//end if
+            exception = "All good to go";
+            return true;
+        }//IsPasswordAllowed
     }//class
 }//namespace
