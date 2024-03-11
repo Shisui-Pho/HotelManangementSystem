@@ -9,7 +9,7 @@ namespace HotelManangementControlLibrary.Service
 {
     public static class Messages
     {
-        public static void ShowErrorMessage(string sMsg, string title)
+        public static void ShowErrorMessage(string sMsg, string title = "Hotel Manangement System")
         {
             MessageBox.Show(sMsg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }        
