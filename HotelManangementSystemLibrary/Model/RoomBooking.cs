@@ -41,7 +41,7 @@ namespace HotelManangementSystemLibrary
         }//ChangeBooking
         public override string ToString()
         {
-            return string.Format($"{BookingID};{Guest.UserID};{Room.RoomNumber};{DateBookedFor.ToString("dd/MM/yyyy")};{NumberOfDaysToStay.ToString()}");
+            return Room.RoomNumber + "\t" + Guest.Name;
         }
 
         public void ChangeRoom(IRoom room)
@@ -50,5 +50,10 @@ namespace HotelManangementSystemLibrary
                 return;
             Room = room;
         }//ChangeRoom
+
+        public string ToCSVFormat()
+        {
+            return string.Format($"{BookingID};{Guest.UserID};{Room.RoomNumber};{DateBookedFor.ToString("dd/MM/yyyy")};{NumberOfDaysToStay.ToString()}");
+        }//ToCSVFormat
     }//class
 }//namespace
