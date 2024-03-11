@@ -10,6 +10,15 @@ namespace HotelManangementSystemLibrary
         private List<IRoom> _rooms;
         public int Count => _rooms.Count;
 
+        public IRoom this[int index]
+        {
+            get
+            {
+                if (index >= Count)
+                    throw new IndexOutOfRangeException();
+                return _rooms[index];
+            }
+        }//end indexer
         public Rooms()
         {
             _rooms = new List<IRoom>();

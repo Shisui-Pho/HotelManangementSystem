@@ -1,12 +1,23 @@
 ﻿using HotelManangementSystemLibrary.Factory;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 namespace HotelManangementSystemLibrary
 {
     internal class Guests : IGuests
     {
         private List<IGuest> _guests;
         public int Count => _guests.Count;
+
+        public IGuest this[int index]
+        {
+            get
+            {
+                if (index >= Count)
+                    throw new IndexOutOfRangeException();
+                return _guests[index];
+            }
+        }//end indexer
         public Guests()
         {
             _guests = new List<IGuest>();

@@ -10,6 +10,15 @@ namespace HotelManangementSystemLibrary
         private readonly List<IUser> _users;
         public int Count => _users.Count;
 
+        public IUser this[int index]
+        {
+            get
+            {
+                if (index >= Count)
+                    throw new IndexOutOfRangeException();
+                return _users[index];
+            }
+        }//end indexers
         public Users()
         {
             _users = new List<IUser>();

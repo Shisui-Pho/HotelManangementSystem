@@ -9,6 +9,15 @@ namespace HotelManangementSystemLibrary
         private List<IRoomBooking> _bookings;
         public int Count => _bookings.Count;
 
+        public IRoomBooking this[int index]
+        {
+            get
+            {
+                if (index >= Count)
+                    throw new IndexOutOfRangeException();
+                return _bookings[index];
+            }
+        }//end indexer
         public RoomBookings()
         {
             _bookings = new List<IRoomBooking>();

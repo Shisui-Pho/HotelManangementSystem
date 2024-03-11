@@ -13,5 +13,9 @@ namespace HotelManangementSystemLibrary
             TicketID = id;
             Description = description;
         }//ctor 01
+        public override string ToString()
+        {
+            return String.Format($"{TicketID.ToString().PadRight(10)} {Description}");
+        }//ToString
     }//clas
 }//namespace
