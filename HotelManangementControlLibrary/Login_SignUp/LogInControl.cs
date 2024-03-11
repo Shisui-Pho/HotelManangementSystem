@@ -12,8 +12,8 @@ namespace HotelManangementControlLibrary.Login_SignUp
 {
     public partial class LogInControl : UserControl
     {
-        private readonly ChangeControl dChange;
-        public LogInControl(ChangeControl dChange)
+        private readonly delChangeControl dChange;
+        public LogInControl(delChangeControl dChange)
         {
             InitializeComponent();
             this.dChange = dChange;

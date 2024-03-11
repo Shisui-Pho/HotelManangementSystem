@@ -8,8 +8,8 @@ namespace HotelManangementControlLibrary.Login_SignUp
     {
         //Property for checking if all the data is correct
         public bool IsSignInHandled { get; private set; } = false;
-        private readonly ChangeControl dChange;
-        public SignInControl(ChangeControl dChange)
+        private readonly delChangeControl dChange;
+        public SignInControl(delChangeControl dChange)
         {
             InitializeComponent();
             this.dChange = dChange;
