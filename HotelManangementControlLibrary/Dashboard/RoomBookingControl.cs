@@ -8,10 +8,10 @@ namespace HotelManangementControlLibrary.Dashboard
 {
     public partial class RoomBookingControl : UserControl
     {
-        private BookRoom bookRoom;
-        private CancelBooking cancelBooking;
+        private delBookRoom bookRoom;
+        private delCancelBooking cancelBooking;
         private readonly IDatabaseService database;
-        public RoomBookingControl(IDatabaseService database, BookRoom bookroom_method, CancelBooking cancelroom_method)
+        public RoomBookingControl(IDatabaseService database, delBookRoom bookroom_method, delCancelBooking cancelroom_method)
         {
             InitializeComponent();
             this.database = database;
