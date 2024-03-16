@@ -5,7 +5,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 {
     public static class IHotelCollections
     {
-        public static void SaveData<T>(this ICollectionHotel<T> data,string file) 
+        public static void SaveData<T>(this IGeneralCollection<T> data,string file) 
             where T : IHotelModel
         {
             StringBuilder bl = new StringBuilder();

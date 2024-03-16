@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IUsers : ICollectionHotel<IUser>
+    public interface IUsers : IGeneralCollection<IUser>
     {
         bool UsernameExists(string username);
         bool AlreadyExist(IUser user);

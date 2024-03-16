@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IRooms : ICollectionHotel<IRoom>
+    public interface IRooms : IGeneralCollection<IRoom>
     {
         IRoom this[string roomnumber] { get;set; }
         IRoom FindRoom(string roomNumber);

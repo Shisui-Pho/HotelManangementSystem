@@ -4,7 +4,7 @@ namespace HotelManangementSystemLibrary
 {
     internal static class IDGenerator
     {
-        public static string GenerateID<T>(ICollectionHotel<T> collection)
+        public static string GenerateID<T>(IGeneralCollection<T> collection)
             where T : IHotelModel
         { 
             T elem1 = collection[0];

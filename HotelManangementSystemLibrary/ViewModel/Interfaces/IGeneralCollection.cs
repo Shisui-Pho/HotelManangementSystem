@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface ICollectionHotel<T>
+    public interface IGeneralCollection<T>
     {
         event delOnRemovedEvent ItemRemovedEvent;
         event delOnAddedEvent ItemAddedEvent;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IGuests : ICollectionHotel<IGuest>
+    public interface IGuests : IGeneralCollection<IGuest>
     {
         IGuest FindGuest(string guestId);
         IGuest FindGuest(IUser user);

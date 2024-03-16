@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    internal abstract class GeneralCollection<T> : ICollectionHotel<T>
+    internal abstract class GeneralCollection<T> : IGeneralCollection<T>
     {
         //private data members
         protected List<T> _collection;

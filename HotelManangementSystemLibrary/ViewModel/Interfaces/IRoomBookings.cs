@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IRoomBookings : ICollectionHotel<IRoomBooking>
+    public interface IRoomBookings : IGeneralCollection<IRoomBooking>
     {
         bool IsBooked(IRoomBooking item);
         bool IsRoomBooked(IRoom booking, DateTime date);

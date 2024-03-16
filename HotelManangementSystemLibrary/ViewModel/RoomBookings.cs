@@ -30,7 +30,7 @@ namespace HotelManangementSystemLibrary
             }
             return false;
         }//IsRoomBooked
-        void ICollectionHotel<IRoomBooking>.Add(IRoomBooking item)
+        void IGeneralCollection<IRoomBooking>.Add(IRoomBooking item)
         { 
             if (FindIndex(item) >= 0)
                 throw new ArgumentException("Room has already been booked for that date.");
