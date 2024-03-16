@@ -5,8 +5,10 @@ using System.Text;
 namespace HotelManangementSystemLibrary
 {
     public interface ICollectionHotel<T>
-        //where T : IComparable<T>
     {
+        event delOnRemovedEvent ItemRemovedEvent;
+        event delOnAddedEvent ItemAddedEvent;
+        event delOnUpdatedEvent UpdatedEvent;
         int Count { get; }
         T this[int index] { get; }//An indexer for the 
         void Add(T item);
