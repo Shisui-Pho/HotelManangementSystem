@@ -4,59 +4,18 @@ using System.Linq;
 using System;
 namespace HotelManangementSystemLibrary
 {
-    internal class Guests : IGuests
+    internal class Guests : GeneralCollection<IGuest>, IGuests
     {
-        private List<IGuest> _guests;
-        public int Count => _guests.Count;
-
-        public IGuest this[int index]
-        {
-            get
-            {
-                if (index >= Count)
-                    throw new IndexOutOfRangeException();
-                return _guests[index];
-            }
-        }//end indexer
-        public Guests()
-        {
-            _guests = new List<IGuest>();
-        }
-
-        public void Add(IGuest guest)
-        {
-            if (Exists(guest))
-                return;
-            _guests.Add(guest);
-        }//Add
-
-        public void Remove(IGuest guest)
-        {
-            if (Exists(guest))
-                return;
-            _guests.Remove(guest);
-        }//Remove
-
-        public void Update(IGuest old, IGuest _new)
-        {
-            int i = _guests.IndexOf(old);
-            if (i < 0)
-                throw new KeyNotFoundException();
-            _guests[i] = _new;
-        }//Update
-        public IEnumerator<IGuest> GetEnumerator()
-        {
-            foreach (IGuest guest in _guests)
-                yield return guest;
-        }//GetEnumerator
-
+        public Guests() : base() { }//ctor 01
+        public Guests(IGuest[] guests) : base(guests) { }//ctor 02
+        public Guests(List<IGuest> guests) : base(guests) { }//ctor 03
         public IGuest FindGuest(string guestId)
         {
-            return _guests.FirstOrDefault(g => g.UserID == guestId);
+            return base._collection.FirstOrDefault(g => g.UserID == guestId);
         }//FindGuest
         private bool Exists(IGuest guest)
         {
-            return _guests.Exists(gs => guest.UserID == gs.UserID);
+            return base._collection.Exists(gs => guest.UserID == gs.UserID);
         }//Exists
 
         public IGuest FindGuest(IUser user)
@@ -64,20 +23,15 @@ namespace HotelManangementSystemLibrary
             if (!(user is IGuest))
                 throw new System.ArgumentException($"Cannot retrieve profile of {user.UserType.ToString()}");
             
-            int i = _guests.FindIndex(gs => gs.UserID == user.UserID);
+            int i = base._collection.FindIndex(gs => gs.UserID == user.UserID);
             //If the guest exists
             if (i >= 0)
-                return _guests[i];
+                return base._collection[i];
             //if guest does not exist
             //-Create a new guest profile
             IGuest guest = UsersFactory.CreateGuest(user);
             Add(guest);
             return guest;
         }//FindGuest
-
-        public void BatchSort()
-        {
-            _guests.Sort();
-        }//
     }//class
 }//namespace

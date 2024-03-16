@@ -4,32 +4,16 @@ using System.Linq;
 
 namespace HotelManangementSystemLibrary
 {
-    internal class RoomBookings : IRoomBookings
+    internal class RoomBookings: GeneralCollection<IRoomBooking>, IRoomBookings
     {
-        private List<IRoomBooking> _bookings;
-        public int Count => _bookings.Count;
-
-        public IRoomBooking this[int index]
+        public RoomBookings():base()
         {
-            get
-            {
-                if (index >= Count)
-                    throw new IndexOutOfRangeException();
-                return _bookings[index];
-            }
-        }//end indexer
-        public RoomBookings()
-        {
-            _bookings = new List<IRoomBooking>();
         }//ctor 01     
-        public RoomBookings(List<IRoomBooking> bookings)
+        public RoomBookings(List<IRoomBooking> bookings):base(bookings)
         {
-            _bookings = bookings;
         }//ctor 02
-        public RoomBookings(IRoomBooking[] bookings)
+        public RoomBookings(IRoomBooking[] bookings):base(bookings)
         {
-            _bookings = new List<IRoomBooking>();
-            _bookings.AddRange(bookings);
         }//ctor 03
 
         public bool IsBooked(IRoomBooking booking)
@@ -38,56 +22,32 @@ namespace HotelManangementSystemLibrary
         }//IsBooked
         public bool IsRoomBooked(IRoom booking, DateTime date)
         {
-            for (int i = 0; i < _bookings.Count; i++)
+            for (int i = 0; i < base._collection.Count; i++)
             {
-                IRoom room = _bookings[i].Room;
-                if (_bookings[i].DateBookedFor == date && room.RoomNumber == booking.RoomNumber)
+                IRoom room = base._collection[i].Room;
+                if (base._collection[i].DateBookedFor == date && room.RoomNumber == booking.RoomNumber)
                     return true;
             }
             return false;
         }//IsRoomBooked
-        public void Remove(IRoomBooking booking)
-        {
-            int i = FindIndex(booking);
-            if (i < 0)
-                throw new ArgumentException("No such booking was made");
-            _bookings.RemoveAt(i);
-        }//Remove
-
-        public void Update(IRoomBooking old, IRoomBooking _new)
-        {
-            int i = FindIndex(old);
-            if (i < 0)
-                throw new ArgumentException("No such booking was made");
-            _bookings[i] = _new;
-        }//Update
-
         void ICollectionHotel<IRoomBooking>.Add(IRoomBooking item)
-        {
+        { 
             if (FindIndex(item) >= 0)
                 throw new ArgumentException("Room has already been booked for that date.");
-            _bookings.Add(item);
-            //throw new NotImplementedException();
+            base._collection.Add(item);
         }//ICollectionHotel<IRoomBooking>.Add
-        public IEnumerator<IRoomBooking> GetEnumerator()
-        {
-            foreach (IRoomBooking booking in _bookings)
-            {
-                yield return booking;
-            }
-        }//GetEnumerator
         private int FindIndex(IRoomBooking booking)
         {
-            int i = _bookings.FindIndex(_b => booking.BookingID == _b.BookingID);
+            int i = base._collection.FindIndex(_b => booking.BookingID == _b.BookingID);
             if (i >= 0)
                 return i;
-            i = _bookings.FindIndex(_b => _b.DateBookedFor == booking.DateBookedFor
+            i = base._collection.FindIndex(_b => _b.DateBookedFor == booking.DateBookedFor
                                     && _b.Room.RoomNumber == booking.Room.RoomNumber);
             return i;
         }//
         public IEnumerator<IRoomBooking> GetBookingsOf(IGuest guest)
         {
-            foreach (IRoomBooking booking in _bookings)
+            foreach (IRoomBooking booking in base._collection)
             {
                 if(booking.Guest.UserID == guest.UserID)
                     yield return booking;
@@ -96,12 +56,7 @@ namespace HotelManangementSystemLibrary
 
         public IRoomBooking[] HasBookings(IRoom room)
         {
-            return _bookings.Where(b => b.Room.RoomNumber == room.RoomNumber).ToArray();
+            return base._collection.Where(b => b.Room.RoomNumber == room.RoomNumber).ToArray();
         }//HasBookings
-
-        public void BatchSort()
-        {
-            _bookings.Sort();
-        }//BatchSort
     }//class
 }//namespace
