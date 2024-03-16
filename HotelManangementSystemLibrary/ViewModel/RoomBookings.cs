@@ -64,6 +64,8 @@ namespace HotelManangementSystemLibrary
 
         void ICollectionHotel<IRoomBooking>.Add(IRoomBooking item)
         {
+            if (FindIndex(item) >= 0)
+                throw new ArgumentException("Room has already been booked for that date.");
             _bookings.Add(item);
             //throw new NotImplementedException();
         }//ICollectionHotel<IRoomBooking>.Add
@@ -75,8 +77,14 @@ namespace HotelManangementSystemLibrary
             }
         }//GetEnumerator
         private int FindIndex(IRoomBooking booking)
-            =>_bookings.FindIndex(_b => booking.BookingID == _b.BookingID);
-
+        {
+            int i = _bookings.FindIndex(_b => booking.BookingID == _b.BookingID);
+            if (i >= 0)
+                return i;
+            i = _bookings.FindIndex(_b => _b.DateBookedFor == booking.DateBookedFor
+                                    && _b.Room.RoomNumber == booking.Room.RoomNumber);
+            return i;
+        }//
         public IEnumerator<IRoomBooking> GetBookingsOf(IGuest guest)
         {
             foreach (IRoomBooking booking in _bookings)
@@ -90,5 +98,10 @@ namespace HotelManangementSystemLibrary
         {
             return _bookings.Where(b => b.Room.RoomNumber == room.RoomNumber).ToArray();
         }//HasBookings
+
+        public void BatchSort()
+        {
+            _bookings.Sort();
+        }//BatchSort
     }//class
 }//namespace

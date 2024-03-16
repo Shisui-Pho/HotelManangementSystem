@@ -74,5 +74,10 @@ namespace HotelManangementSystemLibrary
             Add(guest);
             return guest;
         }//FindGuest
+
+        public void BatchSort()
+        {
+            _guests.Sort();
+        }//
     }//class
 }//namespace

@@ -75,5 +75,10 @@ namespace HotelManangementSystemLibrary
         {
             return _users.FirstOrDefault<IUser>(user => user.UserID == userid);
         }//GetUser
+
+        public void BatchSort()
+        {
+            _users.Sort();
+        }//BatchSort
     }//class
 }//namespace

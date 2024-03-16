@@ -9,7 +9,7 @@ namespace HotelManangementSystemLibrary
     {
         private List<IRoom> _rooms;
         public int Count => _rooms.Count;
-
+        private bool isSorted = false;
         public IRoom this[int index]
         {
             get
@@ -19,6 +19,16 @@ namespace HotelManangementSystemLibrary
                 return _rooms[index];
             }
         }//end indexer
+        public IRoom this[string roomnumber]
+        {
+            get => _rooms.FirstOrDefault(r => r.RoomNumber == roomnumber);
+            set
+            {
+                IRoom rr = _rooms.FirstOrDefault(r => r.RoomNumber == roomnumber);
+                if (rr != null)
+                    rr = value;
+            }
+        }
         public Rooms()
         {
             _rooms = new List<IRoom>();
@@ -60,5 +70,21 @@ namespace HotelManangementSystemLibrary
         {
             return _rooms.FirstOrDefault(r => r.RoomNumber == roomNumber);
         }//FindRoom
+
+        public List<T> GetRoomFilter<T>()
+        {
+            return _rooms.Where(r => r is T)
+                .Select(room => (T)room)
+                .ToList();
+        }//GetRoomFilter
+
+        public void BatchSort()
+        {
+            if (!isSorted)
+            {
+                isSorted = true;
+                _rooms.Sort();
+            }//end if             
+        }//BatchSort
     }//Rooms
 }//namespace
