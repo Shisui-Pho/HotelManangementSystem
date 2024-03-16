@@ -55,5 +55,10 @@ namespace HotelManangementSystemLibrary
         {
             return string.Format($"{BookingID};{Guest.UserID};{Room.RoomNumber};{DateBookedFor.ToString("dd/MM/yyyy")};{NumberOfDaysToStay.ToString()}");
         }//ToCSVFormat
+
+        public int CompareTo(object obj)
+        {
+            return this.BookingID.CompareTo(((IRoomBooking)obj).BookingID);
+        }//CompareTo
     }//class
 }//namespace

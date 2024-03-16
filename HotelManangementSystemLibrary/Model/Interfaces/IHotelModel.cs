@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IHotelModel
+    public interface IHotelModel : IComparable
     {
         string ToCSVFormat();
     }//class

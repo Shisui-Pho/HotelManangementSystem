@@ -11,10 +11,12 @@ namespace HotelManangementSystemLibrary
         bool IsSingleRoom { get; }
         decimal Price { get; set; }
         string TelephoneNumber { get; }
+        bool IsRoomHidden { get; }
         void ChangeRoomNumber(string _newRoomNumber);
         void AddTV();
         void RemoveTV();
         void UpdateTelephoneNumber(string _number);
+        void HideUnhideRoom();
     }//IRoom
     public interface ISingleRoom : IRoom
     { 

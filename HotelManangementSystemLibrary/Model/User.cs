@@ -44,6 +44,11 @@ namespace HotelManangementSystemLibrary
         {
             return String.Format($"{UserType.ToString()};{UserID};{UserName};{Password};{Name};{Surname};{DOB.ToString("dd/MM/yyyy")}");
         }//ToCSVFormat
+
+        public int CompareTo(object obj)
+        {
+            return this.UserID.CompareTo(((IUser)obj).UserID);
+        }//CompareTo
     }//class
 
     internal class Guest : User, IGuest

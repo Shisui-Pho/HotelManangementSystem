@@ -6,6 +6,11 @@ namespace HotelManangementSystemLibrary
 {
     internal abstract class Room : IRoom
     {
+        //Data members        
+        protected static decimal _doubleRoomStandardValue = 400m;
+        protected static decimal _singleRoomStandardValue = 550m;
+        protected static decimal _entertainments = 50m;
+        //Properties
         public string RoomNumber { get; private set; }
 
         public bool HasTV { get; protected set; } = false;
@@ -15,6 +20,8 @@ namespace HotelManangementSystemLibrary
         public decimal Price { get; set; }
 
         public string TelephoneNumber { get; private set; }
+
+        public bool IsRoomHidden { get; private set; } = false;
 
         public Room(string _roomNumber)
         {
@@ -28,29 +35,56 @@ namespace HotelManangementSystemLibrary
 
         public void AddTV()
         {
+            if (HasTV)
+                return;
             HasTV = true;
+            Price += _entertainments;
         }//AddTV
         public void RemoveTV()
         {
+            if (!HasTV)
+                return;
             HasTV = false;
+            Price -= _entertainments;
         }//RemoveTV
 
         public void SetPrice(decimal amount)
         {
+            if (IsSingleRoom)
+            {
+                if (amount < _singleRoomStandardValue)
+                    Price = _singleRoomStandardValue;
+            }
+            else
+            {
+                if (amount < _doubleRoomStandardValue)
+                    Price = _doubleRoomStandardValue;
+            }
         }//SetPrice
         public void UpdateTelephoneNumber(string _number)
         {
-
+            if (Service.IsCellphoneNumberCorrect(_number))
+                TelephoneNumber = _number;
         }//UpdateTelephoneNumber
         public override string ToString()
         {
-            return String.Format($"{IsSingleRoom};{RoomNumber};{Price.ToString("0.00")};{HasTV}");
+            return String.Format($"{IsSingleRoom};{RoomNumber};{Price.ToString("0.00")};{HasTV};{IsRoomHidden}");
         }//ToString
 
         public string ToCSVFormat()
         {
             return String.Format($"{IsSingleRoom};{RoomNumber};{Price.ToString("0.00")};{HasTV}");
         }//ToCSVFormat
+
+        public int CompareTo(object obj)
+        {
+            return this.RoomNumber.CompareTo(((IRoom)obj).RoomNumber);
+        }//CompareTo
+
+        public void HideUnhideRoom()
+        {
+            IsRoomHidden = !IsRoomHidden;
+        }//HideUnhideRoom
     }//class
     internal class SingleRoom : Room , ISingleRoom
     {
@@ -58,6 +92,8 @@ namespace HotelManangementSystemLibrary
         {
             HasTV = hasTv;
             IsSingleRoom = true;
+
+            Price = _singleRoomStandardValue + (hasTv ? _entertainments : 0); 
         }//ctor
     }//Singleroom
 
@@ -67,6 +103,8 @@ namespace HotelManangementSystemLibrary
         {
             HasTV = hasTv;
             IsSingleRoom = false;
+
+            Price = _doubleRoomStandardValue + (hasTv ? _entertainments : 0);
         }//ctor
     }//DoubleRoom
 }//namespace
