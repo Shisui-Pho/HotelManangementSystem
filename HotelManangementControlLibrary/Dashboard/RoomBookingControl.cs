@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using HotelManangementControlLibrary.Service;
 using HotelManangementSystemLibrary;
-
+using ComponentFactory.Krypton.Toolkit;
 namespace HotelManangementControlLibrary.Dashboard
 {
     public partial class RoomBookingControl : UserControl
@@ -19,19 +19,8 @@ namespace HotelManangementControlLibrary.Dashboard
             cancelBooking = cancelroom_method;
             //Set the display members
             lstRooms.DisplayMember = "RoomNumber";
-            ListRooms(database.Rooms);
+            RefreshLists();
         }//ctor 01
-        private void ListRooms(IRooms rooms)
-        {
-            lstRooms.Items.Clear();
-            foreach (IRoom room in rooms)
-            {
-                lstRooms.Items.Add(room);
-            }//end foreach
-            //Selct the first room
-            if (rooms.Count > 0)
-                lstRooms.SelectedIndex = 0;
-        }//FillList
         public RoomBookingControl()
         {
             InitializeComponent();
@@ -54,7 +43,7 @@ namespace HotelManangementControlLibrary.Dashboard
             bookRoom((IRoom)lstRooms.Items[i]);//book the room via a delegate method
 
             //Refresh
-            RefreshLists(false);
+            lstRooms.Items.RemoveAt(i);
         }//btnBookRoom_Click
         private void RefreshLists(bool isFirstTime = true)
         {
@@ -66,18 +55,54 @@ namespace HotelManangementControlLibrary.Dashboard
                 {
                     lstRooms.Items.Add(room);
                 }//end foreach
-            }
+            }//end if
+            else
+            {
+                //Filter rooms booked
+                foreach (var room in lstRooms.Items)
+                {
+                    if (database.Bookings.IsRoomBooked((IRoom)room, dtNotBookedOn.Value))
+                        lstRooms.Items.Remove((IRoom)room);
+                }//end for each
+            }//end if
+            if (lstRooms.Items.Count > 0)
+                lstRooms.SelectedIndex = 0;
         }//RefreshLists
         private void lstRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
             IRoom room = (IRoom)lstRooms.SelectedItem;
             lblRoomNumber.Text = room.RoomNumber;
             lblTypeOfRoom.Text = (room.IsSingleRoom) ? TypeOfRoom.SingleRoom.ToString() : TypeOfRoom.SharingRoom.ToString();
-            lblRoomPrice.Text = ((decimal)500.6m).ToString("C");
+            lblRoomPrice.Text = room.Price.ToString("C2");
             if (room is ISingleRoom)
                 picRoom.ImageLocation = @"images/single.jpg";
             else
                 picRoom.ImageLocation = @"images/double.jpeg";
         }//lstRooms_SelectedIndexChanged
+
+        private void radDoubleRoom_Click(object sender, EventArgs e)
+        {
+            KryptonRadioButton radSelected = (KryptonRadioButton)sender;
+            if (radSelected == radAllRooms)
+                RefreshLists();
+            if (radSelected == radSingleRooms)
+                FilterRooms<ISingleRoom>();
+            if (radSelected == radDoubleRoom)
+                FilterRooms<IDoubleRoom>();
+        }//radDoubleRoom_Click
+        private void FilterRooms<T>()
+            where T : IRoom
+        {
+            lstRooms.Items.Clear();
+            foreach (T room in database.Rooms.GetRoomFilter<T>())
+            {
+                lstRooms.Items.Add(room);
+            }//end foreach
+        }//RefreshLists
+
+        private void dtNotBookedOn_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshLists(false);
+        }//dtNotBookedOn_ValueChanged
     }//class
 }//namespcae

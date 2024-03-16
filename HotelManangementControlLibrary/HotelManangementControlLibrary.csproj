@@ -30,8 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Docking">
+      <HintPath>..\..\..\Frameworks\Desktop Applications\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator">
+      <HintPath>..\..\..\Frameworks\Desktop Applications\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Ribbon">
+      <HintPath>..\..\..\Frameworks\Desktop Applications\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit">
       <HintPath>..\..\..\Frameworks\Desktop Applications\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace">
+      <HintPath>..\..\..\Frameworks\Desktop Applications\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,6 +58,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dashboard\Admin\BookingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Admin\BookingsControl.Designer.cs">
+      <DependentUpon>BookingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Admin\GuestsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Admin\GuestsControl.Designer.cs">
+      <DependentUpon>GuestsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Admin\HistoricalBookingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Admin\HistoricalBookingsControl.Designer.cs">
+      <DependentUpon>HistoricalBookingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Admin\HotelStatisticsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Admin\HotelStatisticsControl.Designer.cs">
+      <DependentUpon>HotelStatisticsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\Admin\RoomsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,6 +123,18 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dashboard\Admin\BookingsControl.resx">
+      <DependentUpon>BookingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Admin\GuestsControl.resx">
+      <DependentUpon>GuestsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Admin\HistoricalBookingsControl.resx">
+      <DependentUpon>HistoricalBookingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Admin\HotelStatisticsControl.resx">
+      <DependentUpon>HotelStatisticsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Admin\RoomsControl.resx">
       <DependentUpon>RoomsControl.cs</DependentUpon>
     </EmbeddedResource>
