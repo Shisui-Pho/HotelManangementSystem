@@ -48,6 +48,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.picUser = new System.Windows.Forms.PictureBox();
             this.plnContainer = new System.Windows.Forms.Panel();
+            this.btnStaff = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.plnUserSpecificControls.SuspendLayout();
@@ -78,16 +79,16 @@ namespace HotelManangementSystemUI.Dashboard
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 251);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(259, 416);
+            this.panel2.Size = new System.Drawing.Size(259, 477);
             this.panel2.TabIndex = 5;
             // 
             // plnUserSpecificControls
             // 
+            this.plnUserSpecificControls.Controls.Add(this.btnStatistics);
             this.plnUserSpecificControls.Controls.Add(this.plnGuestPanel);
-            this.plnUserSpecificControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plnUserSpecificControls.Location = new System.Drawing.Point(0, 66);
             this.plnUserSpecificControls.Name = "plnUserSpecificControls";
-            this.plnUserSpecificControls.Size = new System.Drawing.Size(259, 350);
+            this.plnUserSpecificControls.Size = new System.Drawing.Size(259, 412);
             this.plnUserSpecificControls.TabIndex = 1;
             // 
             // plnGuestPanel
@@ -98,26 +99,26 @@ namespace HotelManangementSystemUI.Dashboard
             this.plnGuestPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.plnGuestPanel.Location = new System.Drawing.Point(0, 0);
             this.plnGuestPanel.Name = "plnGuestPanel";
-            this.plnGuestPanel.Size = new System.Drawing.Size(259, 324);
+            this.plnGuestPanel.Size = new System.Drawing.Size(259, 412);
             this.plnGuestPanel.TabIndex = 0;
             // 
             // plnAdminPanel
             // 
-            this.plnAdminPanel.Controls.Add(this.btnStatistics);
             this.plnAdminPanel.Controls.Add(this.btnManangeOldBookings);
+            this.plnAdminPanel.Controls.Add(this.btnStaff);
             this.plnAdminPanel.Controls.Add(this.btnManangeGuests);
             this.plnAdminPanel.Controls.Add(this.btnManangeBookings);
             this.plnAdminPanel.Controls.Add(this.btnManangeRooms);
             this.plnAdminPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.plnAdminPanel.Location = new System.Drawing.Point(0, 0);
             this.plnAdminPanel.Name = "plnAdminPanel";
-            this.plnAdminPanel.Size = new System.Drawing.Size(259, 325);
+            this.plnAdminPanel.Size = new System.Drawing.Size(259, 412);
             this.plnAdminPanel.TabIndex = 0;
             this.plnAdminPanel.Visible = false;
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Location = new System.Drawing.Point(4, 257);
+            this.btnStatistics.Location = new System.Drawing.Point(8, 317);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(249, 51);
             this.btnStatistics.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
@@ -151,7 +152,7 @@ namespace HotelManangementSystemUI.Dashboard
             // 
             // btnManangeOldBookings
             // 
-            this.btnManangeOldBookings.Location = new System.Drawing.Point(4, 194);
+            this.btnManangeOldBookings.Location = new System.Drawing.Point(7, 255);
             this.btnManangeOldBookings.Name = "btnManangeOldBookings";
             this.btnManangeOldBookings.Size = new System.Drawing.Size(249, 51);
             this.btnManangeOldBookings.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
@@ -185,7 +186,7 @@ namespace HotelManangementSystemUI.Dashboard
             // 
             // btnManangeGuests
             // 
-            this.btnManangeGuests.Location = new System.Drawing.Point(6, 131);
+            this.btnManangeGuests.Location = new System.Drawing.Point(7, 131);
             this.btnManangeGuests.Name = "btnManangeGuests";
             this.btnManangeGuests.Size = new System.Drawing.Size(249, 51);
             this.btnManangeGuests.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
@@ -219,7 +220,7 @@ namespace HotelManangementSystemUI.Dashboard
             // 
             // btnManangeBookings
             // 
-            this.btnManangeBookings.Location = new System.Drawing.Point(6, 68);
+            this.btnManangeBookings.Location = new System.Drawing.Point(7, 68);
             this.btnManangeBookings.Name = "btnManangeBookings";
             this.btnManangeBookings.Size = new System.Drawing.Size(249, 51);
             this.btnManangeBookings.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
@@ -253,7 +254,7 @@ namespace HotelManangementSystemUI.Dashboard
             // 
             // btnManangeRooms
             // 
-            this.btnManangeRooms.Location = new System.Drawing.Point(6, 5);
+            this.btnManangeRooms.Location = new System.Drawing.Point(7, 5);
             this.btnManangeRooms.Name = "btnManangeRooms";
             this.btnManangeRooms.Size = new System.Drawing.Size(249, 51);
             this.btnManangeRooms.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
@@ -358,7 +359,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.plnCommonControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.plnCommonControls.Location = new System.Drawing.Point(0, 0);
             this.plnCommonControls.Name = "plnCommonControls";
-            this.plnCommonControls.Size = new System.Drawing.Size(259, 66);
+            this.plnCommonControls.Size = new System.Drawing.Size(259, 478);
             this.plnCommonControls.TabIndex = 0;
             // 
             // btnBookRoom
@@ -460,6 +461,39 @@ namespace HotelManangementSystemUI.Dashboard
             this.plnContainer.Size = new System.Drawing.Size(955, 780);
             this.plnContainer.TabIndex = 1;
             // 
+            // btnStaff
+            // 
+            this.btnStaff.Location = new System.Drawing.Point(7, 193);
+            this.btnStaff.Name = "btnStaff";
+            this.btnStaff.Size = new System.Drawing.Size(249, 51);
+            this.btnStaff.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStaff.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStaff.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
+            this.btnStaff.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnStaff.StateCommon.Border.Rounding = 5;
+            this.btnStaff.StateCommon.Border.Width = 1;
+            this.btnStaff.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnStaff.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnStaff.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStaff.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnStaff.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnStaff.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStaff.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStaff.StateNormal.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnStaff.StateNormal.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnStaff.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStaff.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStaff.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
+            this.btnStaff.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
+            this.btnStaff.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStaff.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStaff.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
+            this.btnStaff.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
+            this.btnStaff.TabIndex = 4;
+            this.btnStaff.Values.Text = "Hotel Staff";
+            // 
             // CfrmDashboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -506,5 +540,6 @@ namespace HotelManangementSystemUI.Dashboard
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnViewProfile;
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnViewBookings;
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnStatistics;
+        public ComponentFactory.Krypton.Toolkit.KryptonButton btnStaff;
     }
 }

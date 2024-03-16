@@ -56,7 +56,13 @@ namespace HotelManangementSystemUI.Dashboard
             _adminHotelStatics = new HotelStatisticsControl();
             _adminBookingsControl = new BookingsControl();
             _adminOldBookings = new HistoricalBookingsControl();
+            LinkUnlinkedButtons();
         }//ctir testing
+        private void LinkUnlinkedButtons()
+        {
+            btnStaff.Parent = plnAdminPanel;
+            btnStatistics.Parent = plnAdminPanel;
+        }//LinkUnlinkedButtons
         private void _guestProfileControl_PasswordChanged(string newpassword)
         {
             //Set the password
