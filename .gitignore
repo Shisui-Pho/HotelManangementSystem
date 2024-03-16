@@ -338,3 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/HotelManangementSystemLibrary/Utilities/Extensions/Extensions.cs
