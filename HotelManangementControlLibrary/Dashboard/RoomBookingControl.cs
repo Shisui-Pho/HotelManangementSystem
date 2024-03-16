@@ -8,15 +8,15 @@ namespace HotelManangementControlLibrary.Dashboard
 {
     public partial class RoomBookingControl : UserControl
     {
-        private delBookRoom bookRoom;
-        private delCancelBooking cancelBooking;
+        private delBookRoom funcBookRoom;
+        private delCancelBooking funcCancelBooking;
         private readonly IDatabaseService database;
         public RoomBookingControl(IDatabaseService database, delBookRoom bookroom_method, delCancelBooking cancelroom_method)
         {
             InitializeComponent();
             this.database = database;
-            bookRoom = bookroom_method;
-            cancelBooking = cancelroom_method;
+            funcBookRoom = bookroom_method;
+            funcCancelBooking = cancelroom_method;
             //Set the display members
             lstRooms.DisplayMember = "RoomNumber";
             RefreshLists();
@@ -29,7 +29,7 @@ namespace HotelManangementControlLibrary.Dashboard
         {
             MessageBox.Show("Trigered");
             return;
-            cancelBooking(null);
+            funcCancelBooking(null);
         }//btnCancelBooking_Click
         private void btnBookRoom_Click(object sender, EventArgs e)
         {
@@ -40,7 +40,7 @@ namespace HotelManangementControlLibrary.Dashboard
                 Messages.ShowErrorMessage("Please select room", "Selection error");
                 return;
             }//end if
-            bookRoom((IRoom)lstRooms.Items[i]);//book the room via a delegate method
+            funcBookRoom((IRoom)lstRooms.Items[i]);//book the room via a delegate method
 
             //Refresh
             lstRooms.Items.RemoveAt(i);
@@ -79,8 +79,26 @@ namespace HotelManangementControlLibrary.Dashboard
                 picRoom.ImageLocation = @"images/single.jpg";
             else
                 picRoom.ImageLocation = @"images/double.jpeg";
+            //Add room bookings
+            AddBookings(database.Bookings.HasBookings(room));
         }//lstRooms_SelectedIndexChanged
+        private void AddBookings(IRoomBooking[] bookings)
+        {
+            lstbxAllBookings.Items.Clear();
+            if (bookings.Length <= 0)
+            {
+                lstbxAllBookings.Items.Add("Room has not been booked");
+                return;
+            }//end if
 
+            for (int i = 0; i < bookings.Length; i++)
+            {
+                for (int j = 0; j < bookings[i].NumberOfDaysToStay; j++)
+                {
+                    lstbxAllBookings.Items.Add(bookings[i].DateBookedFor.AddDays(i).ToString("dd  MMMM  yyyy"));
+                }//end outer for
+            }//end for
+        }//AddBooking
         private void radDoubleRoom_Click(object sender, EventArgs e)
         {
             KryptonRadioButton radSelected = (KryptonRadioButton)sender;
