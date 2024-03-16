@@ -63,9 +63,9 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
                 return;
 
             //Modify the room
-            _rooms.Remove(oldRoom);
-            _rooms.Add(modifiedRoom);
-
+            //_rooms.Remove(oldRoom);
+            //_rooms.Add(modifiedRoom);
+            _rooms.Update(oldRoom, modifiedRoom);
             //Refresh
             lstbxRooms.Items.Remove(oldRoom);
             lstbxRooms.Items.Insert(index,modifiedRoom);
@@ -85,7 +85,8 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             if (Messages.AskYesOrNot($"You are about to {btnHideRoom.Text} {room.RoomNumber}.\nDou you wish to continue with this operation.", "Hide room")
                  == DialogResult.No)
                 return;
-            _rooms[room.RoomNumber].HideUnhideRoom(); 
+            _rooms[room.RoomNumber].HideUnhideRoom();
+            ApplyFilter();
         }//btnHideRoom_Click
 
         private void btnRemoveRoom_Click(object sender, EventArgs e)
@@ -104,6 +105,7 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             //Refresh
             lstbxRooms.Items.RemoveAt(index);
             lstbxRooms.SelectedIndex = 0;
+            ApplyFilter();
         }//btnRemoveRoom_Click
         private void cmboTypeOfRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -114,6 +116,20 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
         {
             ApplyFilter();
         }//cmboRoomStatus_SelectedIndexChanged
+        private void lstbxRooms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IRoom room = (IRoom)lstbxRooms.SelectedItem;
+            if (room == null)
+                return;
+
+            //Perfom some operations
+            btnHideRoom.Text = (room.IsRoomHidden) ? "Unhide Room" : "Hide Room";
+
+
+
+
+        }//lstbxRooms_SelectedIndexChanged
+        #region Filter
         private void ApplyFilter()
         {
             //For filtering room type
@@ -155,19 +171,6 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             lstbxRooms.Items.Clear();
             lstbxRooms.Items.AddRange(lstBox.Items);
         }//FilterStatusOfRooms
-
-        private void lstbxRooms_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            IRoom room = (IRoom)lstbxRooms.SelectedItem;
-            if (room == null)
-                return;
-
-            //Perfom some operations
-            btnHideRoom.Text = (room.IsRoomHidden) ? "Unhide Room" : "Hide Room";
-
-
-
-
-        }//lstbxRooms_SelectedIndexChanged
+        #endregion Filter
     }//class
 }//namespace
