@@ -20,6 +20,14 @@ namespace HotelManangementSystemUI.Dashboard
         private readonly RoomBookingControl _guestRoomBookingsControl;
         private readonly RoomsControl _adminRoomsControl;
         private readonly GuestProfileControl _guestProfileControl;
+
+        //To modify
+        private readonly BookingsControl _adminBookingsControl;
+        private readonly GuestsControl _adminGuestControl;
+        private readonly HotelStatisticsControl _adminHotelStatics;
+        private readonly HistoricalBookingsControl _adminOldBookings;
+
+
         public CfrmDashboard(IDatabaseService database, IUser _logged_in_user)
         {
             InitializeComponent();
@@ -42,7 +50,13 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl = new RoomBookingControl(database, null, null);//use ctor 01
             _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
             _guestProfileControl = new GuestProfileControl();
-        }
+
+            //To modify
+            _adminGuestControl = new GuestsControl();
+            _adminHotelStatics = new HotelStatisticsControl();
+            _adminBookingsControl = new BookingsControl();
+            _adminOldBookings = new HistoricalBookingsControl();
+        }//ctir testing
         private void _guestProfileControl_PasswordChanged(string newpassword)
         {
             //Set the password
@@ -72,9 +86,14 @@ namespace HotelManangementSystemUI.Dashboard
             plnContainer.Controls.Add(_guestRoomBookingsControl);
             plnContainer.Controls.Add(_adminRoomsControl);
             plnContainer.Controls.Add(_guestProfileControl);
+            plnContainer.Controls.Add(_adminBookingsControl);
+            plnContainer.Controls.Add(_adminGuestControl);
+            plnContainer.Controls.Add(_adminHotelStatics);
+            plnContainer.Controls.Add(_adminOldBookings);
+
+
             _guestRoomBookingsControl.BringToFront();
             _guestRoomBookingsControl.Visible = true;
-            _adminRoomsControl.Visible = false;
         }//AddControls
 
         private IRoom NewRoom()
@@ -141,6 +160,10 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl.Visible = false;
             _guestProfileControl.Visible = false;
             _adminRoomsControl.Visible = true;
+
+            _adminHotelStatics.Visible = false;
+            _adminGuestControl.Visible = false;
+            _adminBookingsControl.Visible = false;
         }//btnManangeRooms_Click
 
         private void btnBookRoom_Click(object sender, EventArgs e)
@@ -149,15 +172,36 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl.Visible = true;
             _adminRoomsControl.Visible = false;
             _guestProfileControl.Visible = false;
+
+            _adminHotelStatics.Visible = false;
+            _adminGuestControl.Visible = false;
+            _adminBookingsControl.Visible = false;
+            _adminOldBookings.Visible = false;
         }//btnBookRoom_Click
         private void btnManangeGuests_Click(object sender, EventArgs e)
         {
+            _adminGuestControl.BringToFront();
+            _guestRoomBookingsControl.Visible = false;
+            _guestProfileControl.Visible = false;
+            _adminRoomsControl.Visible = false;
 
+            _adminHotelStatics.Visible = false;
+            _adminGuestControl.Visible = true;
+            _adminBookingsControl.Visible = false;
+            _adminOldBookings.Visible = false;
         }//btnManangeGuests_Click
 
         private void btnManangeOldBookings_Click(object sender, EventArgs e)
         {
+            _adminOldBookings.BringToFront();
+            _guestRoomBookingsControl.Visible = false;
+            _guestProfileControl.Visible = false;
+            _adminRoomsControl.Visible = false;
 
+            _adminHotelStatics.Visible = false;
+            _adminGuestControl.Visible = false;
+            _adminBookingsControl.Visible = false;
+            _adminOldBookings.Visible = true;
         }//btnManangeOldBookings_Click
         private void btnViewProfile_Click(object sender, EventArgs e)
         {
@@ -165,12 +209,37 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl.Visible = false;
             _guestProfileControl.Visible = true;
             _adminRoomsControl.Visible = false;
+
+            _adminHotelStatics.Visible = false;
+            _adminGuestControl.Visible = false;
+            _adminBookingsControl.Visible = false;
+            _adminOldBookings.Visible = false;
         }//btnViewProfile_Click
         private void btnManangeBookings_Click(object sender, EventArgs e)
         {
+            _adminBookingsControl.BringToFront();
+            _guestRoomBookingsControl.Visible = false;
+            _guestProfileControl.Visible = false;
+            _adminRoomsControl.Visible = false;
 
+            _adminHotelStatics.Visible = false;
+            _adminGuestControl.Visible = false;
+            _adminBookingsControl.Visible = true;
+            _adminOldBookings.Visible = false;
 
         }//btnManangeBookings_Click
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            _adminHotelStatics.BringToFront();
+            _guestRoomBookingsControl.Visible = false;
+            _guestProfileControl.Visible = false;
+            _adminRoomsControl.Visible = false;
+
+            _adminHotelStatics.Visible = true;
+            _adminGuestControl.Visible = false;
+            _adminBookingsControl.Visible = false;
+            _adminOldBookings.Visible = false;
+        }//btnStatistics_Click
         #endregion Clicks event handlers
     }//class
 

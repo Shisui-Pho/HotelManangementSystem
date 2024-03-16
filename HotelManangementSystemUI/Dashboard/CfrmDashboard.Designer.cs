@@ -34,6 +34,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.plnUserSpecificControls = new System.Windows.Forms.Panel();
             this.plnGuestPanel = new System.Windows.Forms.Panel();
             this.plnAdminPanel = new System.Windows.Forms.Panel();
+            this.btnStatistics = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnManangeOldBookings = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnManangeGuests = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnManangeBookings = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -47,7 +48,6 @@ namespace HotelManangementSystemUI.Dashboard
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.picUser = new System.Windows.Forms.PictureBox();
             this.plnContainer = new System.Windows.Forms.Panel();
-            this.btnStatistics = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.plnUserSpecificControls.SuspendLayout();
@@ -114,6 +114,40 @@ namespace HotelManangementSystemUI.Dashboard
             this.plnAdminPanel.Size = new System.Drawing.Size(259, 325);
             this.plnAdminPanel.TabIndex = 0;
             this.plnAdminPanel.Visible = false;
+            // 
+            // btnStatistics
+            // 
+            this.btnStatistics.Location = new System.Drawing.Point(4, 257);
+            this.btnStatistics.Name = "btnStatistics";
+            this.btnStatistics.Size = new System.Drawing.Size(249, 51);
+            this.btnStatistics.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStatistics.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStatistics.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
+            this.btnStatistics.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnStatistics.StateCommon.Border.Rounding = 5;
+            this.btnStatistics.StateCommon.Border.Width = 1;
+            this.btnStatistics.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnStatistics.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnStatistics.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStatistics.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnStatistics.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnStatistics.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStatistics.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStatistics.StateNormal.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnStatistics.StateNormal.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnStatistics.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStatistics.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStatistics.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
+            this.btnStatistics.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
+            this.btnStatistics.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStatistics.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
+            this.btnStatistics.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
+            this.btnStatistics.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
+            this.btnStatistics.TabIndex = 4;
+            this.btnStatistics.Values.Text = "Hotel Statistics";
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
             // btnManangeOldBookings
             // 
@@ -425,40 +459,6 @@ namespace HotelManangementSystemUI.Dashboard
             this.plnContainer.Name = "plnContainer";
             this.plnContainer.Size = new System.Drawing.Size(955, 780);
             this.plnContainer.TabIndex = 1;
-            // 
-            // btnStatistics
-            // 
-            this.btnStatistics.Location = new System.Drawing.Point(4, 257);
-            this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Size = new System.Drawing.Size(249, 51);
-            this.btnStatistics.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
-            this.btnStatistics.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
-            this.btnStatistics.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
-            this.btnStatistics.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnStatistics.StateCommon.Border.Rounding = 5;
-            this.btnStatistics.StateCommon.Border.Width = 1;
-            this.btnStatistics.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
-            this.btnStatistics.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
-            this.btnStatistics.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStatistics.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnStatistics.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnStatistics.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
-            this.btnStatistics.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
-            this.btnStatistics.StateNormal.Content.ShortText.Color1 = System.Drawing.Color.Black;
-            this.btnStatistics.StateNormal.Content.ShortText.Color2 = System.Drawing.Color.Black;
-            this.btnStatistics.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
-            this.btnStatistics.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
-            this.btnStatistics.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
-            this.btnStatistics.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.btnStatistics.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
-            this.btnStatistics.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(146)))), ((int)(((byte)(163)))));
-            this.btnStatistics.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
-            this.btnStatistics.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.btnStatistics.TabIndex = 4;
-            this.btnStatistics.Values.Text = "Hotel Statistics";
-            this.btnStatistics.Click += new System.EventHandler(this.btnManangeOldBookings_Click);
             // 
             // CfrmDashboard
             // 
