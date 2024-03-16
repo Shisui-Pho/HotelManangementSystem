@@ -53,7 +53,8 @@ namespace HotelManangementControlLibrary.Dashboard
                 lstRooms.Items.Clear();
                 foreach (IRoom room in database.Rooms)
                 {
-                    lstRooms.Items.Add(room);
+                    if(!room.IsRoomHidden)
+                        lstRooms.Items.Add(room);
                 }//end foreach
             }//end if
             else
@@ -96,7 +97,8 @@ namespace HotelManangementControlLibrary.Dashboard
             lstRooms.Items.Clear();
             foreach (T room in database.Rooms.GetRoomFilter<T>())
             {
-                lstRooms.Items.Add(room);
+                if(!room.IsRoomHidden)
+                    lstRooms.Items.Add(room);
             }//end foreach
         }//RefreshLists
 
