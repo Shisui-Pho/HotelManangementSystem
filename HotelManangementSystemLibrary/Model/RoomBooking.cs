@@ -26,6 +26,9 @@ namespace HotelManangementSystemLibrary
         {
             Guest = guest;
             Room = room;
+            //Make sure guest cannot book for a past date
+            if (DateTime.UtcNow > date)
+                throw new ArgumentException("Cannot book on this date!.");
             DateBookedFor = date;
             NumberOfDaysToStay = numberOfDays;
             _amount = Room.Price * numberOfDays;
