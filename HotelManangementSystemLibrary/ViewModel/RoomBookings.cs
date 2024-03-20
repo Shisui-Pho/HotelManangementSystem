@@ -45,7 +45,7 @@ namespace HotelManangementSystemLibrary
                                     && _b.Room.RoomNumber == booking.Room.RoomNumber);
             return i;
         }//
-        public IEnumerator<IRoomBooking> GetBookingsOf(IGuest guest)
+        public IEnumerable<IRoomBooking> GetBookingsOf(IGuest guest)
         {
             foreach (IRoomBooking booking in base._collection)
             {
@@ -58,5 +58,13 @@ namespace HotelManangementSystemLibrary
         {
             return base._collection.Where(b => b.Room.RoomNumber == room.RoomNumber).ToArray();
         }//HasBookings
+
+        public IEnumerable<IRoom> GetBookedRooms<T>()
+            where T : IRoom
+        {
+            return _collection.Distinct()
+                              .Where(s => s.Room is T)
+                              .Select(s => s.Room);
+        }//GetBookedRooms
     }//class
 }//namespace

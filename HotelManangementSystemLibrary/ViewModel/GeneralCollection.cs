@@ -6,8 +6,9 @@ namespace HotelManangementSystemLibrary
 {
     internal abstract class GeneralCollection<T> : IGeneralCollection<T>
     {
-        //private data members
+        //Protected variable made available to the uderlying classes
         protected List<T> _collection;
+        //private data members
         private bool isSorted = false;
 
         //indexers
@@ -73,5 +74,10 @@ namespace HotelManangementSystemLibrary
             _collection[i] = _new;
             UpdatedEvent?.Invoke(old, _new, new HotelEventArgs("", "") { IsHandled = false });
         }//Update
+
+        public void ClearAllData()
+        {
+            _collection = new List<T>();
+        }//ClearAllData
     }////class
 }//namespace
