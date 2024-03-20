@@ -8,8 +8,8 @@ namespace HotelManangementControlLibrary.Dashboard
 {
     public partial class RoomBookingControl : UserControl
     {
-        private delBookRoom funcBookRoom;
-        private delCancelBooking funcCancelBooking;
+        private readonly delBookRoom funcBookRoom;
+        private readonly delCancelBooking funcCancelBooking;
         private readonly IDatabaseService database;
         public RoomBookingControl(IDatabaseService database, delBookRoom bookroom_method, delCancelBooking cancelroom_method)
         {

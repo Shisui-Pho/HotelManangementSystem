@@ -91,6 +91,7 @@ namespace HotelManangementControlLibrary.Dashboard
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.plnRoomDet);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -101,6 +102,7 @@ namespace HotelManangementControlLibrary.Dashboard
             // 
             // plnRoomDet
             // 
+            this.plnRoomDet.BackColor = System.Drawing.Color.Transparent;
             this.plnRoomDet.Controls.Add(this.label2);
             this.plnRoomDet.Controls.Add(this.panel4);
             this.plnRoomDet.Controls.Add(this.panel3);
@@ -499,6 +501,7 @@ namespace HotelManangementControlLibrary.Dashboard
             // 
             // panel7
             // 
+            this.panel7.BackColor = System.Drawing.Color.Transparent;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel7.Controls.Add(this.dtNotBookedOn);
             this.panel7.Controls.Add(this.groupBox1);
@@ -581,6 +584,7 @@ namespace HotelManangementControlLibrary.Dashboard
             // 
             // panel6
             // 
+            this.panel6.BackColor = System.Drawing.Color.Transparent;
             this.panel6.Controls.Add(this.lblFilterType);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 201);

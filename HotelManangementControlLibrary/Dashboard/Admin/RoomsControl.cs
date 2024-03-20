@@ -125,9 +125,6 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             //Perfom some operations
             btnHideRoom.Text = (room.IsRoomHidden) ? "Unhide Room" : "Hide Room";
 
-
-
-
         }//lstbxRooms_SelectedIndexChanged
         #region Filter
         private void ApplyFilter()
