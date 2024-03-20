@@ -87,6 +87,10 @@ namespace HotelManangementSystemLibrary
         {
             return String.Format($"{UserID};{ContactDetails.CellphoneNumber};{ContactDetails.EmailAddress};{ContactDetails.EmergencyNumber}");
         }//ToCSVFormat
+        public override string ToString()
+        {
+            return $"{this.UserID.PadRight(15)} {this.Name.PadRight(15)} {this.Surname}";
+        }//ToString
     }//class
     internal class Administrator : User, IAdministrator
     {

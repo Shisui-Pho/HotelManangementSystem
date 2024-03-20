@@ -17,4 +17,5 @@ namespace HotelManangementControlLibrary
     //Event delegates
     public delegate void delOnUpdatePassword(string newpassword);
     public delegate void delOnUpdateContactDetails();
+    public delegate void delOnBookingCancelled(IRoomBooking booking);
 }//namespace

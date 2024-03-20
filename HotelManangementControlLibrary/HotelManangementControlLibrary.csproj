@@ -100,6 +100,7 @@
     <Compile Include="Dashboard\RoomBookingControl.Designer.cs">
       <DependentUpon>RoomBookingControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Login_SignUp\LogInControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -119,7 +120,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Service\Deligate.cs" />
+    <Compile Include="Service\Filter.cs" />
     <Compile Include="Service\Messages.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
