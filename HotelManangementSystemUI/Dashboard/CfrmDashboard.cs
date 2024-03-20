@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using ComponentFactory.Krypton.Toolkit;
 using HotelManangementControlLibrary.Dashboard;
 using HotelManangementControlLibrary.Dashboard.Admin;
 using HotelManangementSystemLibrary;
@@ -52,9 +54,9 @@ namespace HotelManangementSystemUI.Dashboard
             _guestProfileControl = new GuestProfileControl();
 
             //To modify
-            _adminGuestControl = new GuestsControl();
+            _adminGuestControl = new GuestsControl(database.Guests);
             _adminHotelStatics = new HotelStatisticsControl();
-            _adminBookingsControl = new BookingsControl();
+            _adminBookingsControl = new BookingsControl(database.Bookings);
             _adminOldBookings = new HistoricalBookingsControl();
             LinkUnlinkedButtons();
         }//ctir testing
@@ -89,6 +91,7 @@ namespace HotelManangementSystemUI.Dashboard
         }//CfrmDashboard_Shown
         private void AddControls()
         {
+            //Add the controls in the container
             plnContainer.Controls.Add(_guestRoomBookingsControl);
             plnContainer.Controls.Add(_adminRoomsControl);
             plnContainer.Controls.Add(_guestProfileControl);
@@ -97,9 +100,11 @@ namespace HotelManangementSystemUI.Dashboard
             plnContainer.Controls.Add(_adminHotelStatics);
             plnContainer.Controls.Add(_adminOldBookings);
 
-
+            //Make the room booking container visible
+           
             _guestRoomBookingsControl.BringToFront();
             _guestRoomBookingsControl.Visible = true;
+            _guestRoomBookingsControl.BackColor = System.Drawing.Color.Transparent;
         }//AddControls
 
         private IRoom NewRoom()
@@ -170,6 +175,7 @@ namespace HotelManangementSystemUI.Dashboard
             _adminHotelStatics.Visible = false;
             _adminGuestControl.Visible = false;
             _adminBookingsControl.Visible = false;
+            TrackButton(((KryptonButton)sender).Name);
         }//btnManangeRooms_Click
 
         private void btnBookRoom_Click(object sender, EventArgs e)
@@ -183,6 +189,7 @@ namespace HotelManangementSystemUI.Dashboard
             _adminGuestControl.Visible = false;
             _adminBookingsControl.Visible = false;
             _adminOldBookings.Visible = false;
+            TrackButton(((KryptonButton)sender).Name);
         }//btnBookRoom_Click
         private void btnManangeGuests_Click(object sender, EventArgs e)
         {
@@ -195,6 +202,7 @@ namespace HotelManangementSystemUI.Dashboard
             _adminGuestControl.Visible = true;
             _adminBookingsControl.Visible = false;
             _adminOldBookings.Visible = false;
+            TrackButton(((KryptonButton)sender).Name);
         }//btnManangeGuests_Click
 
         private void btnManangeOldBookings_Click(object sender, EventArgs e)
@@ -208,6 +216,7 @@ namespace HotelManangementSystemUI.Dashboard
             _adminGuestControl.Visible = false;
             _adminBookingsControl.Visible = false;
             _adminOldBookings.Visible = true;
+            TrackButton(((KryptonButton)sender).Name);
         }//btnManangeOldBookings_Click
         private void btnViewProfile_Click(object sender, EventArgs e)
         {
@@ -220,6 +229,7 @@ namespace HotelManangementSystemUI.Dashboard
             _adminGuestControl.Visible = false;
             _adminBookingsControl.Visible = false;
             _adminOldBookings.Visible = false;
+            TrackButton(((KryptonButton)sender).Name);
         }//btnViewProfile_Click
         private void btnManangeBookings_Click(object sender, EventArgs e)
         {
@@ -232,7 +242,7 @@ namespace HotelManangementSystemUI.Dashboard
             _adminGuestControl.Visible = false;
             _adminBookingsControl.Visible = true;
             _adminOldBookings.Visible = false;
-
+            TrackButton(((KryptonButton)sender).Name);
         }//btnManangeBookings_Click
         private void btnStatistics_Click(object sender, EventArgs e)
         {
@@ -245,8 +255,16 @@ namespace HotelManangementSystemUI.Dashboard
             _adminGuestControl.Visible = false;
             _adminBookingsControl.Visible = false;
             _adminOldBookings.Visible = false;
+            TrackButton(((KryptonButton)sender).Name);
         }//btnStatistics_Click
+        private void TrackButton(string buttonName)
+        {
+           
+        }//TrackButton
+        private void RevertColors()
+        {
+
+        }
         #endregion Clicks event handlers
     }//class
-
 }//namespace
