@@ -2,10 +2,6 @@
 using HotelManangementSystemLibrary.DatabaseService;
 using HotelManangementSystemLibrary.Factory;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelManangementSystemUI
 {
@@ -65,6 +61,11 @@ namespace HotelManangementSystemUI
             user = UsersFactory.CreateUser(TypeOfUser.Guest, "Abraham", "Fischer", DateTime.Now);
             user.SetUsername("abraham");
             user.SetPassword("abr");
+            ser.Users.Add(user);
+
+            user = UsersFactory.CreateUser(TypeOfUser.Guest, "Phidophelia", "Mathebula", DateTime.Now);
+            user.SetUsername("phi");
+            user.SetPassword("phi");
             ser.Users.Add(user);
 
             user = UsersFactory.CreateUser(TypeOfUser.Guest, "Henry", "Mac'dalton", DateTime.Now);
