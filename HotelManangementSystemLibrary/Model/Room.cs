@@ -85,6 +85,16 @@ namespace HotelManangementSystemLibrary
         {
             IsRoomHidden = !IsRoomHidden;
         }//HideUnhideRoom
+
+        public bool Equals(IRoom x, IRoom y)
+        {
+            return x.RoomNumber == y.RoomNumber;
+        }
+
+        public int GetHashCode(IRoom obj)
+        {
+            return obj.GetHashCode();
+        }
     }//class
     internal class SingleRoom : Room , ISingleRoom
     {
