@@ -62,9 +62,10 @@ namespace HotelManangementSystemLibrary
         public IEnumerable<IRoom> GetBookedRooms<T>()
             where T : IRoom
         {
-            return _collection.Distinct()
-                              .Where(s => s.Room is T)
-                              .Select(s => s.Room);
+            return _collection.Select(a => a.Room);
+            //return _collection.Distinct()
+            //                  .Where(s => s.Room is T)
+            //                  .Select(s => s.Room);
         }//GetBookedRooms
     }//class
 }//namespace

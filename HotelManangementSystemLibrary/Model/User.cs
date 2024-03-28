@@ -53,12 +53,14 @@ namespace HotelManangementSystemLibrary
 
     internal class Guest : User, IGuest
     {
-        public IContactDetails ContactDetails { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+        public IContactDetails ContactDetails { get;private set; }
+        private static int _count = 0;
         public Guest(string _name, string _surname, DateTime _dob) : base(_name, _surname, _dob)
         {
+            _count++;
             UserType = TypeOfUser.Guest;
-            UserID = "GU-{1253123}";
+            UserID = $"GU-895485685{_count}";
+            ContactDetails = new ContactDetails();
         }//ctor 01
 
         public void SetEmailAddress(string email)
