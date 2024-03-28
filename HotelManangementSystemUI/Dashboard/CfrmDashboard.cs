@@ -34,7 +34,7 @@ namespace HotelManangementSystemUI.Dashboard
         {
             InitializeComponent();
             this.database = database;
-            _guestRoomBookingsControl = new RoomBookingControl(database, null,null);//use ctor 01
+            _guestRoomBookingsControl = new RoomBookingControl(database, BookRoom, CancelBooking);//use ctor 01
             _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
             _guestProfileControl = new GuestProfileControl(database.Guests.FindGuest(_logged_in_user));
             this._logged_in_user = _logged_in_user;
@@ -49,9 +49,10 @@ namespace HotelManangementSystemUI.Dashboard
             //_guestRoomBookingsControl = new RoomBookingControl();
             //_adminRoomsControl = new RoomsControl(ModifyRoom, NewRoom);
             database = FactoryTest.CreateDatabase();
-            _guestRoomBookingsControl = new RoomBookingControl(database, null, null);//use ctor 01
+            this._logged_in_user = database.Guests[0];
+            _guestRoomBookingsControl = new RoomBookingControl(database, BookRoom, CancelBooking);//use ctor 01
             _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
-            _guestProfileControl = new GuestProfileControl();
+            _guestProfileControl = new GuestProfileControl(database.Guests[0]);
 
             //To modify
             _adminGuestControl = new GuestsControl(database.Guests);
@@ -81,7 +82,6 @@ namespace HotelManangementSystemUI.Dashboard
             if (_logged_in_user.UserType == TypeOfUser.Guest)
                 plnGuestPanel.Visible = true;
         }//LoadGuest
-
         private /*async*/ void CfrmDashboard_Shown(object sender, EventArgs e)
         {
             //Load Data after form has been loaded
@@ -107,6 +107,7 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl.BackColor = System.Drawing.Color.Transparent;
         }//AddControls
 
+        #region Delegate Functions
         private IRoom NewRoom()
         {
             CdlgCustomRooms newroom = new CdlgCustomRooms();
@@ -151,7 +152,15 @@ namespace HotelManangementSystemUI.Dashboard
                 database.Bookings.Add(booking);
             }//end foreach
         }//DoBookings
+        private void BookRoom(IRoom room)
+        {
 
+        }
+        private void CancelBooking(IRoom room)
+        {
+            //Add to the data warehouse;
+        }
+        #endregion Delegate Functions
         private void CfrmDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Unsubscribe to events

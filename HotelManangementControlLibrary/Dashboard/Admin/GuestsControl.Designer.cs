@@ -51,6 +51,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lstbxGuests = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.radEnaleSearch = new System.Windows.Forms.RadioButton();
+            this.radAll = new System.Windows.Forms.RadioButton();
+            this.plnSearch = new System.Windows.Forms.Panel();
             this.txtSearchUserID = new System.Windows.Forms.TextBox();
             this.txtSearchSurname = new System.Windows.Forms.TextBox();
             this.txtSearchName = new System.Windows.Forms.TextBox();
@@ -58,16 +66,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.lstbxGuests = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.plnSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonLabel18
             // 
             this.kryptonLabel18.AutoSize = false;
-            this.kryptonLabel18.Location = new System.Drawing.Point(111, 529);
+            this.kryptonLabel18.Location = new System.Drawing.Point(112, 568);
             this.kryptonLabel18.Name = "kryptonLabel18";
             this.kryptonLabel18.Size = new System.Drawing.Size(413, 161);
             this.kryptonLabel18.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -99,14 +106,14 @@
             this.panel2.Controls.Add(this.kryptonLabel5);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(330, 3);
+            this.panel2.Location = new System.Drawing.Point(389, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(622, 770);
+            this.panel2.Size = new System.Drawing.Size(563, 770);
             this.panel2.TabIndex = 21;
             // 
             // txtEmergencyNumber
             // 
-            this.txtEmergencyNumber.Location = new System.Drawing.Point(176, 394);
+            this.txtEmergencyNumber.Location = new System.Drawing.Point(176, 451);
             this.txtEmergencyNumber.Multiline = true;
             this.txtEmergencyNumber.Name = "txtEmergencyNumber";
             this.txtEmergencyNumber.ReadOnly = true;
@@ -126,7 +133,7 @@
             // 
             // txtEmailAddress
             // 
-            this.txtEmailAddress.Location = new System.Drawing.Point(176, 349);
+            this.txtEmailAddress.Location = new System.Drawing.Point(176, 406);
             this.txtEmailAddress.Multiline = true;
             this.txtEmailAddress.Name = "txtEmailAddress";
             this.txtEmailAddress.ReadOnly = true;
@@ -146,7 +153,7 @@
             // 
             // txtCellphoneNumber
             // 
-            this.txtCellphoneNumber.Location = new System.Drawing.Point(176, 304);
+            this.txtCellphoneNumber.Location = new System.Drawing.Point(176, 361);
             this.txtCellphoneNumber.Multiline = true;
             this.txtCellphoneNumber.Name = "txtCellphoneNumber";
             this.txtCellphoneNumber.ReadOnly = true;
@@ -166,7 +173,7 @@
             // 
             // kryptonLabel15
             // 
-            this.kryptonLabel15.Location = new System.Drawing.Point(10, 304);
+            this.kryptonLabel15.Location = new System.Drawing.Point(10, 361);
             this.kryptonLabel15.Name = "kryptonLabel15";
             this.kryptonLabel15.Size = new System.Drawing.Size(134, 22);
             this.kryptonLabel15.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -176,7 +183,7 @@
             // 
             // kryptonLabel10
             // 
-            this.kryptonLabel10.Location = new System.Drawing.Point(10, 405);
+            this.kryptonLabel10.Location = new System.Drawing.Point(10, 462);
             this.kryptonLabel10.Name = "kryptonLabel10";
             this.kryptonLabel10.Size = new System.Drawing.Size(141, 22);
             this.kryptonLabel10.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -186,7 +193,7 @@
             // 
             // kryptonLabel16
             // 
-            this.kryptonLabel16.Location = new System.Drawing.Point(10, 353);
+            this.kryptonLabel16.Location = new System.Drawing.Point(10, 410);
             this.kryptonLabel16.Name = "kryptonLabel16";
             this.kryptonLabel16.Size = new System.Drawing.Size(109, 22);
             this.kryptonLabel16.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -196,7 +203,7 @@
             // 
             // txtSurname
             // 
-            this.txtSurname.Location = new System.Drawing.Point(378, 38);
+            this.txtSurname.Location = new System.Drawing.Point(92, 91);
             this.txtSurname.Multiline = true;
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.ReadOnly = true;
@@ -217,7 +224,7 @@
             // 
             // kryptonLabel17
             // 
-            this.kryptonLabel17.Location = new System.Drawing.Point(143, 272);
+            this.kryptonLabel17.Location = new System.Drawing.Point(143, 329);
             this.kryptonLabel17.Name = "kryptonLabel17";
             this.kryptonLabel17.Size = new System.Drawing.Size(134, 26);
             this.kryptonLabel17.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -227,7 +234,7 @@
             // 
             // lblGender
             // 
-            this.lblGender.Location = new System.Drawing.Point(151, 190);
+            this.lblGender.Location = new System.Drawing.Point(160, 247);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(174, 22);
             this.lblGender.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -237,7 +244,7 @@
             // 
             // kryptonLabel6
             // 
-            this.kryptonLabel6.Location = new System.Drawing.Point(18, 190);
+            this.kryptonLabel6.Location = new System.Drawing.Point(27, 247);
             this.kryptonLabel6.Name = "kryptonLabel6";
             this.kryptonLabel6.Size = new System.Drawing.Size(60, 22);
             this.kryptonLabel6.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -247,7 +254,7 @@
             // 
             // lblAge
             // 
-            this.lblAge.Location = new System.Drawing.Point(162, 140);
+            this.lblAge.Location = new System.Drawing.Point(171, 197);
             this.lblAge.Name = "lblAge";
             this.lblAge.Size = new System.Drawing.Size(20, 22);
             this.lblAge.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -257,7 +264,7 @@
             // 
             // kryptonLabel4
             // 
-            this.kryptonLabel4.Location = new System.Drawing.Point(18, 140);
+            this.kryptonLabel4.Location = new System.Drawing.Point(27, 197);
             this.kryptonLabel4.Name = "kryptonLabel4";
             this.kryptonLabel4.Size = new System.Drawing.Size(39, 22);
             this.kryptonLabel4.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -267,7 +274,7 @@
             // 
             // lblDOB
             // 
-            this.lblDOB.Location = new System.Drawing.Point(162, 92);
+            this.lblDOB.Location = new System.Drawing.Point(171, 149);
             this.lblDOB.Name = "lblDOB";
             this.lblDOB.Size = new System.Drawing.Size(87, 22);
             this.lblDOB.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -277,7 +284,7 @@
             // 
             // kryptonLabel3
             // 
-            this.kryptonLabel3.Location = new System.Drawing.Point(18, 92);
+            this.kryptonLabel3.Location = new System.Drawing.Point(27, 149);
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(102, 22);
             this.kryptonLabel3.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -287,7 +294,7 @@
             // 
             // kryptonLabel2
             // 
-            this.kryptonLabel2.Location = new System.Drawing.Point(302, 44);
+            this.kryptonLabel2.Location = new System.Drawing.Point(16, 97);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(70, 22);
             this.kryptonLabel2.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -339,59 +346,148 @@
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Location = new System.Drawing.Point(4, 451);
+            this.label2.Location = new System.Drawing.Point(0, 503);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(615, 21);
+            this.label2.Size = new System.Drawing.Size(583, 21);
             this.label2.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(3, 229);
+            this.label1.Location = new System.Drawing.Point(10, 289);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(616, 21);
+            this.label1.Size = new System.Drawing.Size(566, 21);
             this.label1.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtSearchUserID);
-            this.panel1.Controls.Add(this.txtSearchSurname);
-            this.panel1.Controls.Add(this.txtSearchName);
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.plnSearch);
+            this.panel1.Controls.Add(this.radAll);
+            this.panel1.Controls.Add(this.radEnaleSearch);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.kryptonLabel7);
             this.panel1.Controls.Add(this.lstbxGuests);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(323, 767);
+            this.panel1.Size = new System.Drawing.Size(380, 777);
             this.panel1.TabIndex = 22;
+            // 
+            // kryptonLabel7
+            // 
+            this.kryptonLabel7.Location = new System.Drawing.Point(125, 0);
+            this.kryptonLabel7.Name = "kryptonLabel7";
+            this.kryptonLabel7.Size = new System.Drawing.Size(99, 28);
+            this.kryptonLabel7.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.kryptonLabel7.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel7.TabIndex = 16;
+            this.kryptonLabel7.Values.Text = "SEARCH";
+            // 
+            // lstbxGuests
+            // 
+            this.lstbxGuests.Location = new System.Drawing.Point(3, 268);
+            this.lstbxGuests.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.lstbxGuests.Name = "lstbxGuests";
+            this.lstbxGuests.Size = new System.Drawing.Size(367, 507);
+            this.lstbxGuests.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstbxGuests.TabIndex = 12;
+            this.lstbxGuests.SelectedIndexChanged += new System.EventHandler(this.lstbxGuests_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(9, 247);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 16);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "User ID ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(122, 247);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 16);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Name";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(234, 247);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 16);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Surname";
+            // 
+            // radEnaleSearch
+            // 
+            this.radEnaleSearch.AutoSize = true;
+            this.radEnaleSearch.Location = new System.Drawing.Point(214, 38);
+            this.radEnaleSearch.Name = "radEnaleSearch";
+            this.radEnaleSearch.Size = new System.Drawing.Size(95, 17);
+            this.radEnaleSearch.TabIndex = 23;
+            this.radEnaleSearch.TabStop = true;
+            this.radEnaleSearch.Text = "Enable Search";
+            this.radEnaleSearch.UseVisualStyleBackColor = true;
+            this.radEnaleSearch.CheckedChanged += new System.EventHandler(this.radEnaleSearch_CheckedChanged);
+            this.radEnaleSearch.Click += new System.EventHandler(this.radEnaleSearch_Click);
+            // 
+            // radAll
+            // 
+            this.radAll.AutoSize = true;
+            this.radAll.Location = new System.Drawing.Point(68, 38);
+            this.radAll.Name = "radAll";
+            this.radAll.Size = new System.Drawing.Size(70, 17);
+            this.radAll.TabIndex = 23;
+            this.radAll.TabStop = true;
+            this.radAll.Text = "All guests";
+            this.radAll.UseVisualStyleBackColor = true;
+            this.radAll.CheckedChanged += new System.EventHandler(this.radEnaleSearch_CheckedChanged);
+            this.radAll.Click += new System.EventHandler(this.radEnaleSearch_Click);
+            // 
+            // plnSearch
+            // 
+            this.plnSearch.Controls.Add(this.txtSearchUserID);
+            this.plnSearch.Controls.Add(this.txtSearchSurname);
+            this.plnSearch.Controls.Add(this.txtSearchName);
+            this.plnSearch.Controls.Add(this.btnSearch);
+            this.plnSearch.Controls.Add(this.label4);
+            this.plnSearch.Controls.Add(this.label3);
+            this.plnSearch.Controls.Add(this.label5);
+            this.plnSearch.Location = new System.Drawing.Point(24, 71);
+            this.plnSearch.Name = "plnSearch";
+            this.plnSearch.Size = new System.Drawing.Size(346, 173);
+            this.plnSearch.TabIndex = 24;
             // 
             // txtSearchUserID
             // 
-            this.txtSearchUserID.Location = new System.Drawing.Point(85, 145);
+            this.txtSearchUserID.Location = new System.Drawing.Point(100, 94);
             this.txtSearchUserID.Name = "txtSearchUserID";
             this.txtSearchUserID.Size = new System.Drawing.Size(229, 20);
-            this.txtSearchUserID.TabIndex = 22;
+            this.txtSearchUserID.TabIndex = 27;
             // 
             // txtSearchSurname
             // 
-            this.txtSearchSurname.Location = new System.Drawing.Point(85, 91);
+            this.txtSearchSurname.Location = new System.Drawing.Point(100, 54);
             this.txtSearchSurname.Name = "txtSearchSurname";
             this.txtSearchSurname.Size = new System.Drawing.Size(229, 20);
-            this.txtSearchSurname.TabIndex = 22;
+            this.txtSearchSurname.TabIndex = 28;
             // 
             // txtSearchName
             // 
-            this.txtSearchName.Location = new System.Drawing.Point(85, 46);
+            this.txtSearchName.Location = new System.Drawing.Point(100, 16);
             this.txtSearchName.Name = "txtSearchName";
             this.txtSearchName.Size = new System.Drawing.Size(229, 20);
-            this.txtSearchName.TabIndex = 22;
+            this.txtSearchName.TabIndex = 29;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(237, 173);
+            this.btnSearch.Location = new System.Drawing.Point(252, 126);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(77, 31);
             this.btnSearch.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
@@ -417,7 +513,7 @@
             this.btnSearch.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
             this.btnSearch.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
             this.btnSearch.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.btnSearch.TabIndex = 21;
+            this.btnSearch.TabIndex = 26;
             this.btnSearch.Values.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -425,50 +521,31 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 145);
+            this.label4.Location = new System.Drawing.Point(18, 94);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 16);
-            this.label4.TabIndex = 19;
+            this.label4.TabIndex = 23;
             this.label4.Text = "User ID ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 92);
+            this.label3.Location = new System.Drawing.Point(18, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 16);
-            this.label3.TabIndex = 19;
+            this.label3.TabIndex = 24;
             this.label3.Text = "Surname";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 47);
+            this.label5.Location = new System.Drawing.Point(18, 17);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 16);
-            this.label5.TabIndex = 19;
+            this.label5.TabIndex = 25;
             this.label5.Text = "Name";
-            // 
-            // kryptonLabel7
-            // 
-            this.kryptonLabel7.Location = new System.Drawing.Point(125, 6);
-            this.kryptonLabel7.Name = "kryptonLabel7";
-            this.kryptonLabel7.Size = new System.Drawing.Size(99, 28);
-            this.kryptonLabel7.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel7.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel7.TabIndex = 16;
-            this.kryptonLabel7.Values.Text = "SEARCH";
-            // 
-            // lstbxGuests
-            // 
-            this.lstbxGuests.Location = new System.Drawing.Point(3, 206);
-            this.lstbxGuests.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.lstbxGuests.Name = "lstbxGuests";
-            this.lstbxGuests.Size = new System.Drawing.Size(311, 558);
-            this.lstbxGuests.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstbxGuests.TabIndex = 12;
             // 
             // GuestsControl
             // 
@@ -482,6 +559,8 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.plnSearch.ResumeLayout(false);
+            this.plnSearch.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -512,13 +591,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private ComponentFactory.Krypton.Toolkit.KryptonListBox lstbxGuests;
-        private System.Windows.Forms.Label label5;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel plnSearch;
         private System.Windows.Forms.TextBox txtSearchUserID;
         private System.Windows.Forms.TextBox txtSearchSurname;
         private System.Windows.Forms.TextBox txtSearchName;
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnSearch;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton radAll;
+        private System.Windows.Forms.RadioButton radEnaleSearch;
     }
 }

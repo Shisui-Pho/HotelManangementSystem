@@ -43,7 +43,7 @@ namespace HotelManangementControlLibrary.Dashboard
             cmboTypeOfRooms.Items.AddRange(new string[] { "All", "Single", "Double" });
 
             lstbxRoomsBooked.Items.Clear();
-            _bookedRooms = RoomFactory.CreateRooms(bookings.GetBookedRooms<IRoom>().ToList());
+            _bookedRooms = RoomFactory.CreateRooms(bookings.GetBookedRooms<IRoom>().ToList().Distinct().ToList());
             foreach (IRoom room in _bookedRooms)
                 lstbxRoomsBooked.Items.Add(room);
 

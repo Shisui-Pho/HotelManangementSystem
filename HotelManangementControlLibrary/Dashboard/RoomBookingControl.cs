@@ -34,7 +34,7 @@ namespace HotelManangementControlLibrary.Dashboard
         private void btnBookRoom_Click(object sender, EventArgs e)
         {
             //Book the room
-            int i = lstbxAllBookings.SelectedIndex;
+            int i = lstRooms.SelectedIndex;
             if (i < 0)
             {
                 Messages.ShowErrorMessage("Please select room", "Selection error");
