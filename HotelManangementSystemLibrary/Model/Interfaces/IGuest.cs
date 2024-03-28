@@ -7,7 +7,7 @@ namespace HotelManangementSystemLibrary
     public interface IGuest : IUser
     {
          //To Add Guest Card
-        IContactDetails ContactDetails { get; set; }
+        IContactDetails ContactDetails { get; }
         void SetEmailAddress(string email);
         void SetCellNumber(string _cellnumber);
         void SetEmergencyNumber(string _emergency);
