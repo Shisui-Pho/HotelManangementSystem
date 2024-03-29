@@ -11,8 +11,12 @@ namespace HotelManangementSystemLibrary
         IRoom Room { get; }
         DateTime DateBookedFor { get; }
         int NumberOfDaysToStay { get; }
+        int DaysStayed { get; set; }
+        decimal AmountPaid { get; }
+        bool IsCheckedIn { get; }
         decimal AmoutToPay { get; }
         void ChangeBookingDate(DateTime date, int numberOfDays = 1);
         void ChangeRoom(IRoom room);
+        void CheckIn();
     }//IRoomBooking
 }//namespace

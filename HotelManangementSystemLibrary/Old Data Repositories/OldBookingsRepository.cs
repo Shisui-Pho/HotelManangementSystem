@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,9 +7,16 @@ namespace HotelManangementSystemLibrary
 {
     internal class OldBookingsRepository:GeneralCollection<IOldBooking>, IOldBookingRepoistory, IGeneralCollection<IOldBooking>
     {
-        public OldBookingsRepository() : base()
+        private static readonly IOldBookingRepoistory repository = new OldBookingsRepository();
+        private OldBookingsRepository() : base()
         {
+            //No need to load data
         }
+        ~OldBookingsRepository()
+        {
+            IOldBookingsRepositoryFile.Save(_collection);
+        }//destructor
+        public static IOldBookingRepoistory GetRepoistoryInstance() => repository;
         public IEnumerator<IOldBooking> GetBookingsOf(IGuest guest)
         {
             foreach (IOldBooking booking in base._collection)

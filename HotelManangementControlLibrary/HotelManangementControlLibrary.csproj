@@ -88,6 +88,12 @@
     <Compile Include="Dashboard\Admin\RoomsControl.Designer.cs">
       <DependentUpon>RoomsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\Admin\StaffControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Admin\StaffControl.Designer.cs">
+      <DependentUpon>StaffControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\Guest\GuestProfileControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Admin\RoomsControl.resx">
       <DependentUpon>RoomsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Admin\StaffControl.resx">
+      <DependentUpon>StaffControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Guest\GuestProfileControl.resx">
       <DependentUpon>GuestProfileControl.cs</DependentUpon>

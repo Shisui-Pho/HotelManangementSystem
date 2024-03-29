@@ -57,7 +57,6 @@ namespace HotelManangementControlLibrary.Dashboard
             this.lstbxAllBookings = new ComponentFactory.Krypton.Toolkit.KryptonListBox();
             this.lblErrorMessage = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnBookRoom = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnCancelBooking = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -297,7 +296,6 @@ namespace HotelManangementControlLibrary.Dashboard
             this.panel3.Controls.Add(this.plnListLeftRooms);
             this.panel3.Controls.Add(this.lblErrorMessage);
             this.panel3.Controls.Add(this.btnBookRoom);
-            this.panel3.Controls.Add(this.btnCancelBooking);
             this.panel3.Controls.Add(this.kryptonLabel2);
             this.panel3.Location = new System.Drawing.Point(13, 406);
             this.panel3.Name = "panel3";
@@ -434,38 +432,6 @@ namespace HotelManangementControlLibrary.Dashboard
             this.btnBookRoom.TabIndex = 9;
             this.btnBookRoom.Values.Text = "Book Room";
             this.btnBookRoom.Click += new System.EventHandler(this.btnBookRoom_Click);
-            // 
-            // btnCancelBooking
-            // 
-            this.btnCancelBooking.Location = new System.Drawing.Point(229, 319);
-            this.btnCancelBooking.Name = "btnCancelBooking";
-            this.btnCancelBooking.Size = new System.Drawing.Size(145, 51);
-            this.btnCancelBooking.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
-            this.btnCancelBooking.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnCancelBooking.StateCommon.Border.Rounding = 5;
-            this.btnCancelBooking.StateCommon.Border.Width = 1;
-            this.btnCancelBooking.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.btnCancelBooking.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.btnCancelBooking.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelBooking.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.btnCancelBooking.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.btnCancelBooking.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnCancelBooking.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
-            this.btnCancelBooking.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.btnCancelBooking.TabIndex = 9;
-            this.btnCancelBooking.Values.Text = "Cancel Booking";
-            this.btnCancelBooking.Click += new System.EventHandler(this.btnCancelBooking_Click);
             // 
             // kryptonLabel2
             // 
@@ -663,7 +629,6 @@ namespace HotelManangementControlLibrary.Dashboard
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
         private System.Windows.Forms.Panel panel2;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblFilterType;
-        public ComponentFactory.Krypton.Toolkit.KryptonButton btnCancelBooking;
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnBookRoom;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dtBookDate;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;

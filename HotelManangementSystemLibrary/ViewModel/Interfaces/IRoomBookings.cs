@@ -6,6 +6,8 @@ namespace HotelManangementSystemLibrary
 {
     public interface IRoomBookings : IGeneralCollection<IRoomBooking>
     {
+        event delOnRemovedEvent RemovedBooking;
+        void CancelBooking(IRoomBooking booking, BookingState reason);
         bool IsBooked(IRoomBooking item);
         bool IsRoomBooked(IRoom booking, DateTime date);
         IRoomBooking[] HasBookings(IRoom room);

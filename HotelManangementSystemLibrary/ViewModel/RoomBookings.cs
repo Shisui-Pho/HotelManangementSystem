@@ -6,6 +6,9 @@ namespace HotelManangementSystemLibrary
 {
     internal class RoomBookings: GeneralCollection<IRoomBooking>, IRoomBookings
     {
+
+        public event delOnRemovedEvent RemovedBooking;
+
         public RoomBookings():base()
         {
         }//ctor 01     
@@ -67,5 +70,16 @@ namespace HotelManangementSystemLibrary
             //                  .Where(s => s.Room is T)
             //                  .Select(s => s.Room);
         }//GetBookedRooms
+        public new void Remove(IRoomBooking booking)
+        {
+            
+            //base.Remove(booking);
+        }//Remove
+
+        public void CancelBooking(IRoomBooking booking, BookingState reason)
+        {
+            RemovedBooking?.Invoke(booking, new HotelEventArgs(booking.BookingID,reason.ToString()) { IsHandled = false });
+            base.Remove(booking);
+        }//CancelBooking
     }//class
 }//namespace

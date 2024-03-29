@@ -58,6 +58,7 @@
     <Compile Include="Dashboard\CfrmDashboard.Designer.cs">
       <DependentUpon>CfrmDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="FactoryTest.cs" />
     <Compile Include="Input Forms\CdlgCustomRooms.cs">
       <SubType>Form</SubType>

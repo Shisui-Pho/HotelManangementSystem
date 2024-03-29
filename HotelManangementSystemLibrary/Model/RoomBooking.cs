@@ -23,6 +23,12 @@ namespace HotelManangementSystemLibrary
 
         public string BookingID { get; private set; }
 
+        public int DaysStayed {get;set;}
+
+        public decimal AmountPaid => throw new NotImplementedException();
+
+        public bool IsCheckedIn { get; private set; }
+
         public RoomBooking(IGuest guest, IRoom room, DateTime date, int numberOfDays = 1)
         {
             Guest = guest;
@@ -35,7 +41,15 @@ namespace HotelManangementSystemLibrary
             _amount = Room.Price * numberOfDays;
             bookingCount += 50;
             BookingID = bookingCount.ToString();
+            DaysStayed = 0;
+            IsCheckedIn = false;
         }//RoomBooking
+
+        public RoomBooking()
+        {
+
+        }//
+
         internal void SetBookingID(string _id) => BookingID = _id;
 
         public void ChangeBookingDate(DateTime date, int numberOfDays = 1)
@@ -47,7 +61,7 @@ namespace HotelManangementSystemLibrary
         }//ChangeBooking
         public override string ToString()
         {
-            return Room.RoomNumber + "\t" + Guest.Name;
+            return DateBookedFor.ToString("dd MMMM yyyy"); //Room.RoomNumber + "\t" + Guest.Name;
         }
 
         public void ChangeRoom(IRoom room)
@@ -66,5 +80,14 @@ namespace HotelManangementSystemLibrary
         {
             return this.BookingID.CompareTo(((IRoomBooking)obj).BookingID);
         }//CompareTo
+
+        public void CheckIn()
+        {
+            if (IsCheckedIn)
+                return;
+
+            IsCheckedIn = true;
+            DaysStayed++;
+        }//CheckIn
     }//class
 }//namespace

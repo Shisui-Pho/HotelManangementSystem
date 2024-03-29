@@ -9,6 +9,6 @@ namespace HotelManangementSystemLibrary.Factory
         public static IOldBooking PrepareMove(IRoomBooking booking, BookingState state)
             => new OldBooking(booking, state);
         public static IOldBookingRepoistory WareHouse()
-            => new OldBookingsRepository();
+            => OldBookingsRepository.GetRepoistoryInstance();
     }//WareHouseFactory
 }//namespace

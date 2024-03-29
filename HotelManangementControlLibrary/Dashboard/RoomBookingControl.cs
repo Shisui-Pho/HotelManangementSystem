@@ -9,14 +9,12 @@ namespace HotelManangementControlLibrary.Dashboard
     public partial class RoomBookingControl : UserControl
     {
         private readonly delBookRoom funcBookRoom;
-        private readonly delCancelBooking funcCancelBooking;
         private readonly IDatabaseService database;
-        public RoomBookingControl(IDatabaseService database, delBookRoom bookroom_method, delCancelBooking cancelroom_method)
+        public RoomBookingControl(IDatabaseService database, delBookRoom bookroom_method)
         {
             InitializeComponent();
             this.database = database;
             funcBookRoom = bookroom_method;
-            funcCancelBooking = cancelroom_method;
             //Set the display members
             lstRooms.DisplayMember = "RoomNumber";
             RefreshLists();
@@ -25,12 +23,6 @@ namespace HotelManangementControlLibrary.Dashboard
         {
             InitializeComponent();
         }//
-        private void btnCancelBooking_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Trigered");
-            return;
-            funcCancelBooking(null);
-        }//btnCancelBooking_Click
         private void btnBookRoom_Click(object sender, EventArgs e)
         {
             //Book the room
@@ -40,10 +32,11 @@ namespace HotelManangementControlLibrary.Dashboard
                 Messages.ShowErrorMessage("Please select room", "Selection error");
                 return;
             }//end if
-            funcBookRoom((IRoom)lstRooms.Items[i]);//book the room via a delegate method
-
-            //Refresh
-            lstRooms.Items.RemoveAt(i);
+            if (funcBookRoom((IRoom)lstRooms.Items[i],dtBookDate.Value,(int)numBookingLength.Value))
+            {
+                //Refresh
+                RefreshLists();
+            }//book the room via a delegate method
         }//btnBookRoom_Click
         private void RefreshLists(bool isFirstTime = true)
         {
@@ -95,7 +88,7 @@ namespace HotelManangementControlLibrary.Dashboard
             {
                 for (int j = 0; j < bookings[i].NumberOfDaysToStay; j++)
                 {
-                    lstbxAllBookings.Items.Add(bookings[i].DateBookedFor.AddDays(i).ToString("dd  MMMM  yyyy"));
+                    lstbxAllBookings.Items.Add(bookings[i].DateBookedFor.AddDays(j).ToString("dd  MMMM  yyyy"));
                 }//end outer for
             }//end for
         }//AddBooking

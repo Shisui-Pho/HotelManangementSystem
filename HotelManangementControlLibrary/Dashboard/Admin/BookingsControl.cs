@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using HotelManangementSystemLibrary;
-using ComponentFactory.Krypton.Toolkit;
 using HotelManangementControlLibrary.Service;
 using HotelManangementSystemLibrary.Factory;
 using HotelManangementControlLibrary.Utils;
@@ -19,12 +18,12 @@ namespace HotelManangementControlLibrary.Dashboard
         private List<IRoomBooking> lstBookingsPerRoom;
         private IRooms _bookedRooms;
 
-        //Control events
-        public event delOnBookingCancelled BookingCancelledEvent;
-        public BookingsControl(IRoomBookings bookings)
+        private delOnBookingCancelled funcBookingCancelled;
+        public BookingsControl(IRoomBookings bookings, delOnBookingCancelled cancelled)
         {
             InitializeComponent();
             this.bookings = bookings;
+            this.funcBookingCancelled = cancelled;
             SetUpControls();
         }//ctor 01
         public BookingsControl()
@@ -42,15 +41,21 @@ namespace HotelManangementControlLibrary.Dashboard
             cmboTypeOfRooms.Items.Clear();
             cmboTypeOfRooms.Items.AddRange(new string[] { "All", "Single", "Double" });
 
-            lstbxRoomsBooked.Items.Clear();
-            _bookedRooms = RoomFactory.CreateRooms(bookings.GetBookedRooms<IRoom>().ToList().Distinct().ToList());
-            foreach (IRoom room in _bookedRooms)
-                lstbxRoomsBooked.Items.Add(room);
-
+            //Add items
+            RefreshList();
             //Set default selections
             radSelection.Checked = true;
             cmboTypeOfRooms.SelectedIndex = cmboRoomStatus.SelectedIndex = 0;
         }//SetUpControls
+        private void RefreshList(int index = 0)
+        {
+            lstbxRoomsBooked.Items.Clear();
+            _bookedRooms = RoomFactory.CreateRooms(bookings.GetBookedRooms<IRoom>().ToList().Distinct().ToList());
+            foreach (IRoom room in _bookedRooms)
+                lstbxRoomsBooked.Items.Add(room);
+            if (lstbxRoomsBooked.Items.Count > 0)
+                lstbxRoomsBooked.SelectedIndex = index;
+        }//RefreshList
         private void cmboTypeOfRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplyFilter();
@@ -133,11 +138,16 @@ namespace HotelManangementControlLibrary.Dashboard
             }//end if
 
             //Remove the booking
-            //-Remove it first in the lists
-            //-Triger the BookingCancelledEvent event inorder to add the booking to the 
-            BookingCancelledEvent?.Invoke(lstBookingsPerRoom[index]);
-
-            //Do the other stuff
+            //-Business rules will be applied where the method is defined
+            //-Note that the copy and the lstbxDates acts as parrallel arrays
+            if (funcBookingCancelled(lstBookingsPerRoom[index]))
+            {
+                //Remove the items from the list by refresshing it
+                if (index > 0)
+                    RefreshList(index - 1);
+                else
+                    Refresh();
+            }//end if
         }//btnCancelBooking_Click
 
         private void radSelection_CheckedChanged(object sender, EventArgs e)
@@ -145,5 +155,10 @@ namespace HotelManangementControlLibrary.Dashboard
             grpbxSelection.Enabled = radSelection.Checked;
             grpSearching.Enabled = radSearching.Checked;
         }//radSelection_CheckedChanged
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }//btnSearch_Click
     }//class
 }//namespace

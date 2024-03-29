@@ -61,6 +61,7 @@
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.grpSearching = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtGuestName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@
             this.cmboRoomStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmboTypeOfRooms = new System.Windows.Forms.ComboBox();
-            this.btnSearch = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -102,15 +102,15 @@
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel7.Controls.Add(this.kryptonLabel18);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(352, 383);
+            this.panel7.Location = new System.Drawing.Point(352, 407);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(603, 397);
+            this.panel7.Size = new System.Drawing.Size(603, 373);
             this.panel7.TabIndex = 2;
             // 
             // kryptonLabel18
             // 
             this.kryptonLabel18.AutoSize = false;
-            this.kryptonLabel18.Location = new System.Drawing.Point(75, 28);
+            this.kryptonLabel18.Location = new System.Drawing.Point(81, 59);
             this.kryptonLabel18.Name = "kryptonLabel18";
             this.kryptonLabel18.Size = new System.Drawing.Size(468, 246);
             this.kryptonLabel18.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
@@ -142,14 +142,14 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(352, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(603, 383);
+            this.panel5.Size = new System.Drawing.Size(603, 407);
             this.panel5.TabIndex = 1;
             // 
             // btnCancelBooking
             // 
-            this.btnCancelBooking.Location = new System.Drawing.Point(506, 336);
+            this.btnCancelBooking.Location = new System.Drawing.Point(459, 360);
             this.btnCancelBooking.Name = "btnCancelBooking";
-            this.btnCancelBooking.Size = new System.Drawing.Size(90, 39);
+            this.btnCancelBooking.Size = new System.Drawing.Size(137, 39);
             this.btnCancelBooking.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
             this.btnCancelBooking.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
             this.btnCancelBooking.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
@@ -174,7 +174,7 @@
             this.btnCancelBooking.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
             this.btnCancelBooking.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
             this.btnCancelBooking.TabIndex = 30;
-            this.btnCancelBooking.Values.Text = "&Cancel";
+            this.btnCancelBooking.Values.Text = "&Cancel Booking";
             this.btnCancelBooking.Click += new System.EventHandler(this.btnCancelBooking_Click);
             // 
             // lblFee
@@ -303,7 +303,7 @@
             this.plnBookingsContainer.Dock = System.Windows.Forms.DockStyle.Left;
             this.plnBookingsContainer.Location = new System.Drawing.Point(0, 49);
             this.plnBookingsContainer.Name = "plnBookingsContainer";
-            this.plnBookingsContainer.Size = new System.Drawing.Size(200, 330);
+            this.plnBookingsContainer.Size = new System.Drawing.Size(200, 354);
             this.plnBookingsContainer.TabIndex = 2;
             // 
             // lstbxBookingDates
@@ -311,7 +311,7 @@
             this.lstbxBookingDates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstbxBookingDates.Location = new System.Drawing.Point(0, 0);
             this.lstbxBookingDates.Name = "lstbxBookingDates";
-            this.lstbxBookingDates.Size = new System.Drawing.Size(200, 330);
+            this.lstbxBookingDates.Size = new System.Drawing.Size(200, 354);
             this.lstbxBookingDates.TabIndex = 0;
             this.lstbxBookingDates.SelectedIndexChanged += new System.EventHandler(this.lstbxBookingDates_SelectedIndexChanged);
             // 
@@ -350,7 +350,7 @@
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label7.Location = new System.Drawing.Point(201, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(11, 381);
+            this.label7.Size = new System.Drawing.Size(11, 402);
             this.label7.TabIndex = 26;
             // 
             // panel2
@@ -367,9 +367,9 @@
             // 
             this.panel4.Controls.Add(this.lstbxRoomsBooked);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 362);
+            this.panel4.Location = new System.Drawing.Point(0, 374);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(352, 418);
+            this.panel4.Size = new System.Drawing.Size(352, 406);
             this.panel4.TabIndex = 1;
             // 
             // lstbxRoomsBooked
@@ -377,7 +377,7 @@
             this.lstbxRoomsBooked.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstbxRoomsBooked.Location = new System.Drawing.Point(0, 0);
             this.lstbxRoomsBooked.Name = "lstbxRoomsBooked";
-            this.lstbxRoomsBooked.Size = new System.Drawing.Size(352, 418);
+            this.lstbxRoomsBooked.Size = new System.Drawing.Size(352, 406);
             this.lstbxRoomsBooked.TabIndex = 0;
             this.lstbxRoomsBooked.SelectedIndexChanged += new System.EventHandler(this.lstbxRoomBooking_SelectedIndexChanged);
             // 
@@ -391,7 +391,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(352, 362);
+            this.panel3.Size = new System.Drawing.Size(352, 374);
             this.panel3.TabIndex = 0;
             // 
             // groupBox3
@@ -451,10 +451,42 @@
             this.grpSearching.Controls.Add(this.cmboRooms);
             this.grpSearching.Location = new System.Drawing.Point(15, 227);
             this.grpSearching.Name = "grpSearching";
-            this.grpSearching.Size = new System.Drawing.Size(322, 128);
+            this.grpSearching.Size = new System.Drawing.Size(322, 141);
             this.grpSearching.TabIndex = 28;
             this.grpSearching.TabStop = false;
             this.grpSearching.Text = "By Searching";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(240, 90);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(69, 39);
+            this.btnSearch.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
+            this.btnSearch.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnSearch.StateCommon.Border.Rounding = 5;
+            this.btnSearch.StateCommon.Border.Width = 1;
+            this.btnSearch.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.btnSearch.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.btnSearch.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.btnSearch.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.btnSearch.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnSearch.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
+            this.btnSearch.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
+            this.btnSearch.TabIndex = 30;
+            this.btnSearch.Values.Text = "&Search";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtGuestName
             // 
@@ -563,38 +595,6 @@
             this.cmboTypeOfRooms.Size = new System.Drawing.Size(182, 21);
             this.cmboTypeOfRooms.TabIndex = 25;
             this.cmboTypeOfRooms.SelectedIndexChanged += new System.EventHandler(this.cmboTypeOfRooms_SelectedIndexChanged);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(240, 90);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(69, 39);
-            this.btnSearch.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
-            this.btnSearch.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnSearch.StateCommon.Border.Rounding = 5;
-            this.btnSearch.StateCommon.Border.Width = 1;
-            this.btnSearch.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.btnSearch.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.btnSearch.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.btnSearch.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.btnSearch.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.btnSearch.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
-            this.btnSearch.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.btnSearch.TabIndex = 30;
-            this.btnSearch.Values.Text = "&Search";
-            this.btnSearch.Click += new System.EventHandler(this.btnCancelBooking_Click);
             // 
             // BookingsControl
             // 

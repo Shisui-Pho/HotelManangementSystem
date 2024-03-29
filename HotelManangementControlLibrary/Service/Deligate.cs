@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace HotelManangementControlLibrary
 {
+    //Delegate to passed as paremeters between the main form and the controls
     public delegate void delChangeControl();
-    public delegate void delBookRoom(IRoom room);//The user will be the current user
+    public delegate bool delBookRoom(IRoom room,DateTime date,int numberOfDays = 1);//The user will be the current user
     public delegate void delCancelBooking(IRoom room);//The user will be the current user'
     public delegate IRoom delAddNewRoom();
     public delegate IRoom delModifyRoom(IRoom room);
@@ -17,5 +18,5 @@ namespace HotelManangementControlLibrary
     //Event delegates
     public delegate void delOnUpdatePassword(string newpassword);
     public delegate void delOnUpdateContactDetails();
-    public delegate void delOnBookingCancelled(IRoomBooking booking);
+    public delegate bool delOnBookingCancelled(IRoomBooking booking);
 }//namespace
