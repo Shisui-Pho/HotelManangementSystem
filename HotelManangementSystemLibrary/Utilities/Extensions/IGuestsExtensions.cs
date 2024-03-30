@@ -18,7 +18,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
             foreach (IGuest guest in guests)
             {
                 IContactDetails det = guest.ContactDetails;
-                bl.AppendLine(String.Format($"{guest.UserID};{det.CellphoneNumber};{det.EmailAddress};{det.EmergencyNumber}"));
+                bl.AppendLine(String.Format($"{guest.UserID},{det.CellphoneNumber},{det.EmailAddress},{det.EmergencyNumber}"));
             }
             File.WriteAllText(file, bl.ToString());
         }//SaveGuests
@@ -35,7 +35,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
             foreach (string record in records)
             {
-                string[] fields = record.Split(';');
+                string[] fields = record.Split(',');
                 IUser user = users.GetUser(fields[0]);
                 IGuest guest = UsersFactory.CreateGuest(user);
                 guest.SetCellNumber(fields[1]);

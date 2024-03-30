@@ -10,10 +10,10 @@ namespace HotelManangementSystemUI
         public static IDatabaseService CreateDatabase()
         {
             IDatabaseService service = new TextFileDatabase();
-            service.LoadBookings();
-            service.LoadUsers();
-            service.LoadRooms();
-            service.LoadGuests();
+            //service.LoadBookings();
+            //service.LoadUsers();
+            //service.LoadRooms();
+            //service.LoadGuests();
 
 
             AddTestRooms(service);

@@ -65,21 +65,21 @@ namespace HotelManangementSystemLibrary
 
         public void SetEmailAddress(string email)
         {
-            if (!Service.IsEmailCorrect(email))
+            if (!Service.IsEmailCorrect(email) && email != "None")
                 throw new ArgumentException("Email not in the correct format!!");
             ContactDetails.EmailAddress = email;
         }//SetEmailAddress
 
         public void SetCellNumber(string _cellnumber)
         {
-            if(!Service.IsCellphoneNumberCorrect(_cellnumber))
+            if(!Service.IsCellphoneNumberCorrect(_cellnumber) && _cellnumber != "None")
                 throw new ArgumentException("Cellphone number not in the correct format!!");
             ContactDetails.CellphoneNumber = _cellnumber;
         }//SetCellNumber
 
         public void SetEmergencyNumber(string _emergency)
         {
-            if (!Service.IsCellphoneNumberCorrect(_emergency))
+            if (!Service.IsCellphoneNumberCorrect(_emergency) && _emergency != "None")
                 throw new ArgumentException("Cellphone number not in the correct format!!");
             ContactDetails.EmergencyNumber = _emergency;
         }//SetEmergencyNumber

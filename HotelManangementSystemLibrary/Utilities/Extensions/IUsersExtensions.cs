@@ -1,6 +1,5 @@
 ﻿using HotelManangementSystemLibrary.Factory;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -16,7 +15,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 return;
             StringBuilder bl = new StringBuilder();
             foreach (IUser user in users)
-                bl.AppendLine(String.Format($"{user.UserType.ToString()};{user.UserID};{user.UserName};{user.Password};{user.Name};{user.Surname};{user.DOB.ToString("dd/MM/yyyy")}"));
+                bl.AppendLine($"{user.UserType.ToString()},{user.UserID},{user.UserName},{user.Password},{user.Name},{user.Surname},{user.DOB.ToString("dd/MM/yyyy")}");
             File.WriteAllText(file, bl.ToString());
         }//SaveUsers
 
@@ -31,11 +30,11 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
             }
             foreach (string record in records)
             {
-                string[] fields = record.Split(';');
+                string[] fields = record.Split(',');
 
                 TypeOfUser type = (TypeOfUser)Enum.Parse(typeof(TypeOfUser), fields[0]);
-
-                IUser user = UsersFactory.CreateUser(type, fields[4], fields[5], DateTime.Parse(fields[6]), fields[1]);
+                DateTime dt = DateTime.Parse(fields[6]);
+                IUser user = UsersFactory.CreateUser(type, fields[4], fields[5],dt , fields[1]);
                 user.SetUsername(fields[2]);
                 user.SetPassword(fields[3]);
                 users.Add(user);

@@ -14,7 +14,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 return;
             StringBuilder bl = new StringBuilder();
             foreach (IRoom room in rooms)
-                bl.AppendLine(String.Format($"{room.IsSingleRoom};{room.RoomNumber};{room.Price.ToString("0.00")};{room.HasTV}"));
+                bl.AppendLine(String.Format($"{room.IsSingleRoom},{room.RoomNumber},{room.Price.ToString("0.00")},{room.HasTV}"));
             File.WriteAllText(file, bl.ToString());
         }//SaveRooms
         public static IRooms LoadRooms(this IRooms rooms)
@@ -28,7 +28,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
             }
             foreach (string record in records)
             {
-                string[] fields = record.Split(';');
+                string[] fields = record.Split(',');
                 TypeOfRoom _type = (bool.Parse(fields[0]) == true) ? TypeOfRoom.SingleRoom : TypeOfRoom.SharingRoom;
                 IRoom room = RoomFactory.CreateRoom(_type, fields[1]);
                 if (bool.Parse(fields[3]))

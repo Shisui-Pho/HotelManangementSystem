@@ -18,11 +18,10 @@ namespace HotelManangementSystemLibrary.Utilities
             {
                 foreach (T booking in collection)
                 {
-                    bl.Append(string.Format($"{booking.Booking.BookingID};{booking.Booking.Guest.UserID};{booking.Booking.Room.RoomNumber};{booking.Booking.DateBookedFor.ToString("dd/MM/yyyy")}" +
-                        $";{booking.Booking.NumberOfDaysToStay.ToString()};{booking.Booking.IsCheckedIn};{booking.Booking.DaysStayed};{booking.State.ToString()}"));
-                    wr.WriteLine(bl.ToString());
-                    bl.Clear();
+                    bl.AppendLine(string.Format($"{booking.Booking.BookingID},{booking.Booking.Guest.UserID},{booking.Booking.Room.RoomNumber},{booking.Booking.DateBookedFor.ToString("dd/MM/yyyy")}" +
+                        $",{booking.Booking.NumberOfDaysToStay.ToString()},{booking.Booking.IsCheckedIn},{booking.Booking.DaysStayed},{booking.State.ToString()}"));
                 }
+                wr.WriteLine(bl.ToString());
             }
         }
     }//class

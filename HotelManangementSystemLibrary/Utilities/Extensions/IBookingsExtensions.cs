@@ -15,7 +15,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 return;
             StringBuilder bl = new StringBuilder();
             foreach (IRoomBooking booking in bookings)
-                bl.Append(string.Format($"{booking.BookingID};{booking.Guest.UserID};{booking.Room.RoomNumber};{booking.DateBookedFor.ToString("dd/MM/yyyy")};{booking.NumberOfDaysToStay.ToString()}"));
+                bl.AppendLine(string.Format($"{booking.BookingID},{booking.Guest.UserID},{booking.Room.RoomNumber},{booking.DateBookedFor.ToString("dd/MM/yyyy")},{booking.NumberOfDaysToStay.ToString()}"));
             File.WriteAllText(file, bl.ToString());
         }//SaveBooking
 
@@ -32,7 +32,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
             foreach (string record in records)
             {
-                string[] fields = record.Split(';');
+                string[] fields = record.Split(new char[] { ',','\r','\n'}, StringSplitOptions.RemoveEmptyEntries);
                 IRoom room = rooms.FindRoom(fields[2]);
                 IGuest guest = guests.FindGuest(fields[1]);
 

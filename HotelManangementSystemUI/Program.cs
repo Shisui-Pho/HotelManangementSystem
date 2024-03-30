@@ -17,8 +17,8 @@ namespace HotelManangementSystemUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CfrmDashboard());
-            //Application.Run(new Login_Sign_Up());
+            //Application.Run(new CfrmDashboard());
+            Application.Run(new Login_Sign_Up());
         }
     }
 }
