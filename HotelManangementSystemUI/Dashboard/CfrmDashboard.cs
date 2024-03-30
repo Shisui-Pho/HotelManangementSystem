@@ -266,13 +266,6 @@ namespace HotelManangementSystemUI.Dashboard
             _adminRoomsControl.BringToFront();
 
             HandleButtonClicked(((KryptonButton)sender).Text);
-            //_guestRoomBookingsControl.Visible = false;
-            //_guestProfileControl.Visible = false;
-            //_adminRoomsControl.Visible = true;
-
-            //_adminHotelStatics.Visible = false;
-            //_adminGuestControl.Visible = false;
-            //_adminBookingsControl.Visible = false;
             TrackButton(((KryptonButton)sender).Name);
         }//btnManangeRooms_Click
 
@@ -281,14 +274,6 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl.BringToFront();
 
             HandleButtonClicked(((KryptonButton)sender).Text);
-            //_guestRoomBookingsControl.Visible = true;
-            //_adminRoomsControl.Visible = false;
-            //_guestProfileControl.Visible = false;
-
-            //_adminHotelStatics.Visible = false;
-            //_adminGuestControl.Visible = false;
-            //_adminBookingsControl.Visible = false;
-            //_adminOldBookings.Visible = false;
             TrackButton(((KryptonButton)sender).Name);
         }//btnBookRoom_Click
         private void btnManangeGuests_Click(object sender, EventArgs e)
@@ -296,44 +281,18 @@ namespace HotelManangementSystemUI.Dashboard
             _adminGuestControl.BringToFront();
 
             HandleButtonClicked(((KryptonButton)sender).Text);
-            //_guestRoomBookingsControl.Visible = false;
-            //_guestProfileControl.Visible = false;
-            //_adminRoomsControl.Visible = false;
-
-            //_adminHotelStatics.Visible = false;
-            //_adminGuestControl.Visible = true;
-            //_adminBookingsControl.Visible = false;
-            //_adminOldBookings.Visible = false;
             TrackButton(((KryptonButton)sender).Name);
         }//btnManangeGuests_Click
 
         private void btnManangeOldBookings_Click(object sender, EventArgs e)
         {
-            
-            //_adminOldBookings.BringToFront();
-            //_guestRoomBookingsControl.Visible = false;
-            //_guestProfileControl.Visible = false;
-            //_adminRoomsControl.Visible = false;
-
-            //_adminHotelStatics.Visible = false;
-            //_adminGuestControl.Visible = false;
-            //_adminBookingsControl.Visible = false;
-            //_adminOldBookings.Visible = true;
-            //TrackButton(((KryptonButton)sender).Name);
+          
         }//btnManangeOldBookings_Click
         private void btnViewProfile_Click(object sender, EventArgs e)
         {
             _guestProfileControl.BringToFront();
 
             HandleButtonClicked(((KryptonButton)sender).Text);
-            //_guestRoomBookingsControl.Visible = false;
-            //_guestProfileControl.Visible = true;
-            //_adminRoomsControl.Visible = false;
-
-            //_adminHotelStatics.Visible = false;
-            //_adminGuestControl.Visible = false;
-            //_adminBookingsControl.Visible = false;
-            //_adminOldBookings.Visible = false;
             TrackButton(((KryptonButton)sender).Name);
         }//btnViewProfile_Click
         private void btnManangeBookings_Click(object sender, EventArgs e)
@@ -341,28 +300,12 @@ namespace HotelManangementSystemUI.Dashboard
             _adminBookingsControl.BringToFront();
 
             HandleButtonClicked(((KryptonButton)sender).Text);
-            //_guestRoomBookingsControl.Visible = false;
-            //_guestProfileControl.Visible = false;
-            //_adminRoomsControl.Visible = false;
-
-            //_adminHotelStatics.Visible = false;
-            //_adminGuestControl.Visible = false;
-            //_adminBookingsControl.Visible = true;
-            //_adminOldBookings.Visible = false;
             TrackButton(((KryptonButton)sender).Name);
         }//btnManangeBookings_Click
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             _adminHotelStatics.BringToFront();
             HandleButtonClicked(((KryptonButton)sender).Text);
-            //_guestRoomBookingsControl.Visible = false;
-            //_guestProfileControl.Visible = false;
-            //_adminRoomsControl.Visible = false;
-
-            //_adminHotelStatics.Visible = true;
-            //_adminGuestControl.Visible = false;
-            //_adminBookingsControl.Visible = false;
-            //_adminOldBookings.Visible = false;
             TrackButton(((KryptonButton)sender).Name);
         }//btnStatistics_Click
         private void TrackButton(string buttonName)
@@ -393,7 +336,6 @@ namespace HotelManangementSystemUI.Dashboard
                 database.SaveBookings();
                 database.SaveGuets();
                 database.SaveRooms();
-                database.SaveUsers();
             }
         }//CfrmDashboard_FormClosing
 
