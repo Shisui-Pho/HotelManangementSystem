@@ -111,6 +111,8 @@ namespace HotelManangementSystemUI.Dashboard
             {
                 plnContainer.Controls.Add(_guestProfileControl);
                 _guestProfileControl.Visible = false;
+
+                picUser.ImageLocation = @"adminuser.png";
             }
             if(_logged_in_user is IAdministrator)
             {
@@ -122,10 +124,13 @@ namespace HotelManangementSystemUI.Dashboard
                 _adminGuestControl.Visible = false;
                 _adminHotelStatics.Visible = false;
                 _adminRoomsControl.Visible = false;
+
+                //For buttons
+                _guestRoomBookingsControl.btnBookRoom.Enabled = false;
             }
             plnContainer.Controls.Add(_guestRoomBookingsControl);
 
-           
+            lblNameAndSurname.Text = _logged_in_user.Name + "  " + _logged_in_user.Surname;
             
             //plnContainer.Controls.Add(_adminOldBookings);
 

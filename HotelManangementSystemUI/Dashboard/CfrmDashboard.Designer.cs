@@ -45,7 +45,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.btnViewBookings = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSignOut = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.plnHeader = new System.Windows.Forms.Panel();
-            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lblNameAndSurname = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.picUser = new System.Windows.Forms.PictureBox();
             this.plnContainer = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -452,7 +452,7 @@ namespace HotelManangementSystemUI.Dashboard
             // plnHeader
             // 
             this.plnHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.plnHeader.Controls.Add(this.kryptonLabel4);
+            this.plnHeader.Controls.Add(this.lblNameAndSurname);
             this.plnHeader.Controls.Add(this.picUser);
             this.plnHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.plnHeader.Location = new System.Drawing.Point(0, 0);
@@ -460,16 +460,16 @@ namespace HotelManangementSystemUI.Dashboard
             this.plnHeader.Size = new System.Drawing.Size(280, 251);
             this.plnHeader.TabIndex = 0;
             // 
-            // kryptonLabel4
+            // lblNameAndSurname
             // 
-            this.kryptonLabel4.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel4.Location = new System.Drawing.Point(40, 207);
-            this.kryptonLabel4.Name = "kryptonLabel4";
-            this.kryptonLabel4.Size = new System.Drawing.Size(175, 26);
-            this.kryptonLabel4.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonLabel4.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel4.TabIndex = 1;
-            this.kryptonLabel4.Values.Text = "Names and Surname";
+            this.lblNameAndSurname.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.lblNameAndSurname.Location = new System.Drawing.Point(40, 207);
+            this.lblNameAndSurname.Name = "lblNameAndSurname";
+            this.lblNameAndSurname.Size = new System.Drawing.Size(175, 26);
+            this.lblNameAndSurname.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
+            this.lblNameAndSurname.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameAndSurname.TabIndex = 1;
+            this.lblNameAndSurname.Values.Text = "Names and Surname";
             // 
             // picUser
             // 
@@ -517,7 +517,7 @@ namespace HotelManangementSystemUI.Dashboard
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel plnHeader;
         private System.Windows.Forms.PictureBox picUser;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblNameAndSurname;
         public ComponentFactory.Krypton.Toolkit.KryptonButton btnSignOut;
         private System.Windows.Forms.Panel plnContainer;
         private System.Windows.Forms.Panel panel2;
