@@ -132,11 +132,7 @@ namespace HotelManangementSystemUI.Login_SignUp
                 
                 if (!IsDataPossiblyChanged)//if data was not changed
                     return;
-                //Save all data
-                database.SaveBookings();
                 database.SaveUsers();
-                database.SaveRooms();
-                database.SaveGuets();
             });
         }//SaveData
 
