@@ -80,7 +80,7 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
 
         private void btnUpadateContactDetails_Click(object sender, EventArgs e)
         {
-            if(txtEmailAddress.Text.Length > 1)
+            if(txtEmailAddress.Text.Length > 1 && txtEmailAddress.Text != "None")
             {
                 if (Inputs.IsEmailCorrect(txtEmailAddress.Text))
                     _guest.SetEmailAddress(txtEmailAddress.Text);
@@ -90,7 +90,7 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
                     return;
                 }//end else
             }//end if email address
-            if(txtEmergencyNumber.Text.Length > 1)
+            if(txtEmergencyNumber.Text.Length > 1 && txtEmergencyNumber.Text != "None")
             {
                 if (Inputs.IsCellphoneNumberCorrect(txtEmergencyNumber.Text))
                     _guest.SetEmergencyNumber(txtEmergencyNumber.Text);
@@ -100,10 +100,10 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
                     return;
                 }//end else
             }//end if emergency number
-            if (txtCellphoneNumber.Text.Length > 1)
+            if (txtCellphoneNumber.Text.Length > 1 && txtCellphoneNumber.Text != "None")
             {
                 if (Inputs.IsCellphoneNumberCorrect(txtCellphoneNumber.Text))
-                    _guest.SetEmergencyNumber(txtCellphoneNumber.Text);
+                    _guest.SetCellNumber(txtCellphoneNumber.Text);
                 else
                 {
                     Messages.ShowErrorMessage("Cellphone number is not in the correct format.");
