@@ -330,7 +330,8 @@ namespace HotelManangementSystemUI.Dashboard
         private void CfrmDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Unsubscribe to events
-            _guestProfileControl.PasswordChanged -= _guestProfileControl_PasswordChanged;
+            if (_logged_in_user is IGuest)
+                _guestProfileControl.PasswordChanged -= _guestProfileControl_PasswordChanged;
             database.SaveBookings();
             database.SaveGuets();
             database.SaveRooms();
