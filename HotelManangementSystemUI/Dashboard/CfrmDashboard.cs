@@ -42,13 +42,13 @@ namespace HotelManangementSystemUI.Dashboard
             if (_logged_in_user is IAdministrator)
             {
                 _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
+                _adminGuestControl = new GuestsControl(database.Guests);
+                _adminHotelStatics = new HotelStatisticsControl();
+                _adminBookingsControl = new BookingsControl(database.Bookings, BookingCancelledFromAdminBookingsControl);
             }
             else if(_logged_in_user is IGuest)
             {
                 _guestProfileControl = new GuestProfileControl(database.Guests.FindGuest(_logged_in_user));
-                _adminGuestControl = new GuestsControl(database.Guests);
-                _adminHotelStatics = new HotelStatisticsControl();
-                _adminBookingsControl = new BookingsControl(database.Bookings, BookingCancelledFromAdminBookingsControl);
                 //_adminOldBookings = new HistoricalBookingsControl();
             }
 
