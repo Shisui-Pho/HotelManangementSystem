@@ -36,7 +36,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 IRoom room = rooms.FindRoom(fields[2]);
                 IGuest guest = guests.FindGuest(fields[1]);
 
-                IRoomBooking booking = BookingsFactory.CreateBooking(guest, room, DateTime.Parse(fields[3]),int.Parse(fields[4]));
+                IRoomBooking booking = BookingsFactory.CreateBooking(guest, room, DateTime.ParseExact(fields[3], "dd/MM/yyyy", null),int.Parse(fields[4]));
 
                 bookings.Add(booking);
             }//end foreach

@@ -33,7 +33,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 string[] fields = record.Split(',');
 
                 TypeOfUser type = (TypeOfUser)Enum.Parse(typeof(TypeOfUser), fields[0]);
-                DateTime dt = DateTime.Parse(fields[6]);
+                DateTime dt = DateTime.ParseExact(fields[6],"dd/MM/yyyy",null);
                 IUser user = UsersFactory.CreateUser(type, fields[4], fields[5],dt , fields[1]);
                 user.SetUsername(fields[2]);
                 user.SetPassword(fields[3]);
