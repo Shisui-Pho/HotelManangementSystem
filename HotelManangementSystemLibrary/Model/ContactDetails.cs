@@ -17,6 +17,9 @@ namespace HotelManangementSystemLibrary
             CellphoneNumber = _cell;
             EmergencyNumber = _emergency;
         }//ctor
-        public ContactDetails() { }
+        public ContactDetails() 
+        {
+            EmailAddress = CellphoneNumber = EmergencyNumber = "None";
+        }
     }//class
 }//namespace
