@@ -77,7 +77,7 @@ namespace HotelManangementSystemUI.Login_SignUp
             database.Users.Add(newuser);
 
             //Log user in automatically
-            Thread.Sleep(10000);
+            Thread.Sleep(15);
             MessageBox.Show("Logging you in now.");
 
             //Bring the login page upfront
@@ -107,7 +107,9 @@ namespace HotelManangementSystemUI.Login_SignUp
             IsDataPossiblyChanged = true;
             if(window.ShowDialog() == DialogResult.Cancel)
             {
-                MessageBox.Show("You have successfully logged out!!");
+                MessageBox.Show("Logged out!!");
+                _logIn.txtxPassword.Text = "";
+                _logIn.txtxPassword.Focus();
             }//end if
         }//BtnLogIn_Click
         private void SetUpControls()
