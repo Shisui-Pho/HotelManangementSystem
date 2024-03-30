@@ -99,6 +99,7 @@ namespace HotelManangementSystemUI.Login_SignUp
             {
                 MessageBox.Show("Invalid username or password.", "Log in error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _logIn.txtxPassword.Text = "";
+                _logIn.txtxPassword.Focus();
                 return;
             }//end if
             //Successfull

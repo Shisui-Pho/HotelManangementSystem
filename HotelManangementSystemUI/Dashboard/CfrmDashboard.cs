@@ -331,12 +331,9 @@ namespace HotelManangementSystemUI.Dashboard
         {
             //Unsubscribe to events
             _guestProfileControl.PasswordChanged -= _guestProfileControl_PasswordChanged;
-            
-            {
-                database.SaveBookings();
-                database.SaveGuets();
-                database.SaveRooms();
-            }
+            database.SaveBookings();
+            database.SaveGuets();
+            database.SaveRooms();
         }//CfrmDashboard_FormClosing
 
         #endregion Form event handlers and Button clicks
