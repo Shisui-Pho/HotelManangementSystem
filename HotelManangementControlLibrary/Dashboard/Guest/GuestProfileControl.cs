@@ -74,6 +74,8 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
 
             //Update the user password
             _guest.SetPassword(txtxPassword.Text);
+
+            Messages.ShowInformationMessage("Password changed successfully", "Pasword Change");
         }//btnUpdatePassword_Click
 
         private void btnUpadateContactDetails_Click(object sender, EventArgs e)
@@ -108,6 +110,7 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
                     return;
                 }//end ese
             }//end if cellephone number
+            Messages.ShowInformationMessage("Contact details has been updated succsessfully", "Update Complete");
         }//btnUpadateContactDetails_Click
 
         private void btnCancelBooking_Click(object sender, EventArgs e)
