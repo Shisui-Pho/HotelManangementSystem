@@ -31,6 +31,7 @@ namespace HotelManangementControlLibrary.Login_SignUp
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            IsSignInHandled = false;
             if(!txtName.Text.IsValidInput()
                || !txtSurname.Text.IsValidInput()
                || !txtUsername.Text.IsValidInput()
