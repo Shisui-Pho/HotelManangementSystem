@@ -6,12 +6,15 @@ namespace HotelManangementSystemLibrary
 {
     internal class Guests : GeneralCollection<IGuest>, IGuests
     {
+        public IGuest CurrentGuest { get; private set; }
+
         public Guests() : base() { }//ctor 01
         public Guests(IGuest[] guests) : base(guests) { }//ctor 02
         public Guests(List<IGuest> guests) : base(guests) { }//ctor 03
         public IGuest FindGuest(string guestId)
         {
-            return base._collection.FirstOrDefault(g => g.UserID == guestId);
+            CurrentGuest = base._collection.FirstOrDefault(g => g.UserID == guestId);
+            return CurrentGuest;
         }//FindGuest
         private bool Exists(IGuest guest)
         {
@@ -24,14 +27,16 @@ namespace HotelManangementSystemLibrary
                 throw new System.ArgumentException($"Cannot retrieve profile of {user.UserType.ToString()}");
             
             int i = base._collection.FindIndex(gs => gs.UserID == user.UserID);
+            CurrentGuest = base._collection[i];
             //If the guest exists
             if (i >= 0)
-                return base._collection[i];
+                return CurrentGuest;
             //if guest does not exist
             //-Create a new guest profile
             IGuest guest = UsersFactory.CreateGuest(user);
             Add(guest);
-            return guest;
+            CurrentGuest = guest;
+            return CurrentGuest;
         }//FindGuest
     }//class
 }//namespace
