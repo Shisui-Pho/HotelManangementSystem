@@ -25,7 +25,7 @@ namespace HotelManangementSystemLibrary
 
         public int DaysStayed {get;set;}
 
-        public decimal AmountPaid => throw new NotImplementedException();
+        public decimal AmountPaid { get; private set; }
 
         public bool IsCheckedIn { get; private set; }
 
