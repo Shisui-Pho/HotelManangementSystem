@@ -44,11 +44,11 @@ namespace HotelManangementSystemUI.Dashboard
                 _adminRoomsControl = new RoomsControl(database.Rooms, UpdatingRoomFromAdminRoomManangementControl, CreatingNewRoomFromAdminRoomManangementControl);
                 _adminGuestControl = new GuestsControl(database.Guests);
                 _adminHotelStatics = new HotelStatisticsControl();
-                _adminBookingsControl = new BookingsControl(database.Bookings, BookingCancelledFromAdminBookingsControl);
+                _adminBookingsControl = new BookingsControl(database.Bookings, CancelBookingDelFunction);
             }
             else if(_logged_in_user is IGuest)
             {
-                _guestProfileControl = new GuestProfileControl(database.Guests.FindGuest(_logged_in_user));
+                _guestProfileControl = new GuestProfileControl(database.Guests.FindGuest(_logged_in_user), CancelBookingDelFunction);
                 //_adminOldBookings = new HistoricalBookingsControl();
             }
 
@@ -67,7 +67,7 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl = new RoomBookingControl(database, RoomBookingFromRoomBookingControl);//use ctor 01
             _adminRoomsControl = new RoomsControl
                     (database.Rooms, UpdatingRoomFromAdminRoomManangementControl, CreatingNewRoomFromAdminRoomManangementControl);
-            _guestProfileControl = new GuestProfileControl(database.Guests[0],BookingCancelledFromGuestProfile);
+            _guestProfileControl = new GuestProfileControl(database.Guests[0],CancelBookingDelFunction);
 
             //To modify
             
@@ -218,33 +218,23 @@ namespace HotelManangementSystemUI.Dashboard
             }
             //For now
         }//BookRoom
-        private bool BookingCancelledFromGuestProfile(IRoomBooking roomBooking)
+        private bool CancelBookingDelFunction(IRoomBooking roomBooking)
         {
             //Apply some bussiness rules here
             //TO DO
-            CdlgCancelBookingGuest cancel = new CdlgCancelBookingGuest(roomBooking);
+            CdlgCancelBookingGuest cancel = new CdlgCancelBookingGuest(roomBooking,_logged_in_user);
             if(cancel.ShowDialog() == DialogResult.OK || cancel.IsBookingCancelled)
             {
-                //-Cancel the booking
-                database.Bookings.CancelBooking(roomBooking, CancellationReason.None);
 
+                //-Cancel the booking
+                if (cancel.Reason == CancellationReason.Other || cancel.Reason == CancellationReason.Requirements_Not_Met)
+                    database.Bookings.CancelBooking(roomBooking, cancel.Other);
+                else
+                    database.Bookings.CancelBooking(roomBooking, cancel.Reason);
                 return true;
             }//
             return false;
             
-        }//BookingCancelledFromGuestProfile
-        private bool BookingCancelledFromAdminBookingsControl(IRoomBooking roomBooking)
-        {
-            //Apply some bussiness rules here
-            //-Also need to get the cancellation reason
-            //TO DO
-
-
-            //-Cancel the booking
-            database.Bookings.CancelBooking(roomBooking, CancellationReason.None);
-
-            //For now
-            return true;
         }//BookingCancelledFromGuestProfile
         private void Bookings_ItemRemovedEvent(object sender, HotelEventArgs args)
         {
