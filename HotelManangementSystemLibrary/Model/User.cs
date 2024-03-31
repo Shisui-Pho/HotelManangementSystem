@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace HotelManangementSystemLibrary
 {
     internal abstract class User : Person, IUser
@@ -50,9 +47,9 @@ namespace HotelManangementSystemLibrary
             return this.UserID.CompareTo(((IUser)obj).UserID);
         }//CompareTo
     }//class
-
     internal class Guest : User, IGuest
     {
+        public IUSerAccount Account { get; private set; }
         public IContactDetails ContactDetails { get;private set; }
         private static int _count = 0;
         public Guest(string _name, string _surname, DateTime _dob) : base(_name, _surname, _dob)
@@ -61,6 +58,7 @@ namespace HotelManangementSystemLibrary
             UserType = TypeOfUser.Guest;
             UserID = $"GU-895485685{_count}";
             ContactDetails = new ContactDetails();
+            Account = new UserAccount();
         }//ctor 01
 
         public void SetEmailAddress(string email)
