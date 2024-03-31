@@ -4,12 +4,15 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public enum BookingState
+    public enum CancellationReason
     {
         Default = 0,
-        Canceld,
+        None,
         Ended,
         Missed,
-        Evicted
+        Evicted,
+        Cannot_Make_It,
+        Requirements_Not_Met,
+        Other
     }
 }

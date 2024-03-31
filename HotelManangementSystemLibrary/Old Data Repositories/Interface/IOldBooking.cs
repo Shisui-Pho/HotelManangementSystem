@@ -3,6 +3,6 @@
     public interface IOldBooking
     {
         IRoomBooking Booking { get; }
-        BookingState State { get; }
+        CancellationReason State { get; }
     }//
 }//namespace

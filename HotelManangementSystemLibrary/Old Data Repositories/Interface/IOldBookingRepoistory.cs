@@ -5,6 +5,6 @@ namespace HotelManangementSystemLibrary
     {
         IEnumerator<IOldBooking> GetBookingsOf(IGuest guest);
         IEnumerator<IOldBooking> GetBookingsOf(IRoom room);
-        IEnumerator<IOldBooking> GetBookingsOf(BookingState state);
+        IEnumerator<IOldBooking> GetBookingsOf(CancellationReason state);
     }//class
 }//namespace

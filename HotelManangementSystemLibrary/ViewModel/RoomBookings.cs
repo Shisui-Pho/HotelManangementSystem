@@ -36,7 +36,11 @@ namespace HotelManangementSystemLibrary
         void IGeneralCollection<IRoomBooking>.Add(IRoomBooking item)
         { 
             if (FindIndex(item) >= 0)
-                throw new ArgumentException("Room has already been booked for that date.");
+            {
+                //For temp
+                item.ChangeBookingDate(item.DateBookedFor.AddDays(5), item.NumberOfDaysToStay);
+            }
+                //throw new ArgumentException("Room has already been booked for that date.");
             base._collection.Add(item);
         }//ICollectionHotel<IRoomBooking>.Add
         private int FindIndex(IRoomBooking booking)
@@ -76,7 +80,7 @@ namespace HotelManangementSystemLibrary
             //base.Remove(booking);
         }//Remove
 
-        public void CancelBooking(IRoomBooking booking, BookingState reason)
+        public void CancelBooking(IRoomBooking booking, CancellationReason reason)
         {
             RemovedBooking?.Invoke(booking, new HotelEventArgs(booking.BookingID,reason.ToString()) { IsHandled = false });
             base.Remove(booking);

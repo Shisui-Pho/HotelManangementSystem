@@ -35,7 +35,7 @@ namespace HotelManangementSystemLibrary
             }//end foreach
         }//GetBookingsOf
 
-        public IEnumerator<IOldBooking> GetBookingsOf(BookingState state)
+        public IEnumerator<IOldBooking> GetBookingsOf(CancellationReason state)
         {
             foreach (IOldBooking booking in base._collection)
             {
