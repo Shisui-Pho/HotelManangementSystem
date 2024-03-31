@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HotelManangementSystemUI.Input_Forms
 {
-    public partial class CdlgCancelBooking : Form
+    public partial class CdlgCancelBookingGuest : Form
     {
-        public CdlgCancelBooking()
+        public CdlgCancelBookingGuest()
         {
             InitializeComponent();
         }

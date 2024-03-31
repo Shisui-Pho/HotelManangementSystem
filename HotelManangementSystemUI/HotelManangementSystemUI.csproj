@@ -60,11 +60,11 @@
     </Compile>
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="FactoryTest.cs" />
-    <Compile Include="Input Forms\CdlgCancelBooking.cs">
+    <Compile Include="Input Forms\CdlgCancelBookingGuest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Input Forms\CdlgCancelBooking.Designer.cs">
-      <DependentUpon>CdlgCancelBooking.cs</DependentUpon>
+    <Compile Include="Input Forms\CdlgCancelBookingGuest.Designer.cs">
+      <DependentUpon>CdlgCancelBookingGuest.cs</DependentUpon>
     </Compile>
     <Compile Include="Input Forms\CdlgConfirmUpdateBooking.cs">
       <SubType>Form</SubType>
@@ -89,8 +89,8 @@
     <EmbeddedResource Include="Dashboard\CfrmDashboard.resx">
       <DependentUpon>CfrmDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Input Forms\CdlgCancelBooking.resx">
-      <DependentUpon>CdlgCancelBooking.cs</DependentUpon>
+    <EmbeddedResource Include="Input Forms\CdlgCancelBookingGuest.resx">
+      <DependentUpon>CdlgCancelBookingGuest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Input Forms\CdlgConfirmUpdateBooking.resx">
       <DependentUpon>CdlgConfirmUpdateBooking.cs</DependentUpon>
