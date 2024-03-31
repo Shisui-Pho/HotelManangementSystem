@@ -94,6 +94,12 @@
     <Compile Include="Dashboard\Admin\StaffControl.Designer.cs">
       <DependentUpon>StaffControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\Guest\GuestBookingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Guest\GuestBookingsControl.Designer.cs">
+      <DependentUpon>GuestBookingsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\Guest\GuestProfileControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Admin\StaffControl.resx">
       <DependentUpon>StaffControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Guest\GuestBookingsControl.resx">
+      <DependentUpon>GuestBookingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Guest\GuestProfileControl.resx">
       <DependentUpon>GuestProfileControl.cs</DependentUpon>

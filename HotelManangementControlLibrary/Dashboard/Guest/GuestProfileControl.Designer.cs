@@ -710,7 +710,7 @@
             // kryptonLabel18
             // 
             this.kryptonLabel18.AutoSize = false;
-            this.kryptonLabel18.Location = new System.Drawing.Point(475, 345);
+            this.kryptonLabel18.Location = new System.Drawing.Point(477, 336);
             this.kryptonLabel18.Name = "kryptonLabel18";
             this.kryptonLabel18.Size = new System.Drawing.Size(468, 421);
             this.kryptonLabel18.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
