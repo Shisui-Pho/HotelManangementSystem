@@ -25,11 +25,10 @@ namespace HotelManangementSystemUI.Dashboard
         private readonly RoomBookingControl _guestRoomBookingsControl;
         private readonly RoomsControl _adminRoomsControl;
         private readonly GuestProfileControl _guestProfileControl;
-
-        //To modify
         private readonly BookingsControl _adminBookingsControl;
         private readonly GuestsControl _adminGuestControl;
         private readonly HotelStatisticsControl _adminHotelStatics;
+        private readonly GuestBookingsControl _guestBookingsControl;
         //private readonly HistoricalBookingsControl _adminOldBookings;
         #endregion Datamembers
 
@@ -45,18 +44,18 @@ namespace HotelManangementSystemUI.Dashboard
                 _adminGuestControl = new GuestsControl(database.Guests);
                 _adminHotelStatics = new HotelStatisticsControl();
                 _adminBookingsControl = new BookingsControl(database.Bookings, CancelBookingDelFunction);
+                //_adminOldBookings = new HistoricalBookingsControl();
             }
             else if(_logged_in_user is IGuest)
             {
-                _guestProfileControl = new GuestProfileControl(database.Guests.FindGuest(_logged_in_user), CancelBookingDelFunction);
-                //_adminOldBookings = new HistoricalBookingsControl();
+                _guestProfileControl = new GuestProfileControl(database.Guests.FindGuest(_logged_in_user));
+                _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
             }
 
             _guestRoomBookingsControl = new RoomBookingControl(database, RoomBookingFromRoomBookingControl);//use ctor 01
             
             database.Bookings.RemovedBooking += Bookings_ItemRemovedEvent;
-            //Setting custom events
-           
+            LinkUnlinkedButtons();
         }//ctor 01
         //Testing
         public CfrmDashboard()
@@ -67,8 +66,8 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl = new RoomBookingControl(database, RoomBookingFromRoomBookingControl);//use ctor 01
             _adminRoomsControl = new RoomsControl
                     (database.Rooms, UpdatingRoomFromAdminRoomManangementControl, CreatingNewRoomFromAdminRoomManangementControl);
-            _guestProfileControl = new GuestProfileControl(database.Guests[0],CancelBookingDelFunction);
-
+            _guestProfileControl = new GuestProfileControl(database.Guests[0]);
+            _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
             //To modify
             
             LinkUnlinkedButtons();
@@ -95,7 +94,7 @@ namespace HotelManangementSystemUI.Dashboard
                 //For the GuestProfile Control
                 //-Add the current booking to the profile
                 foreach (var item in database.Bookings.GetBookingsOf(_logged_in_user.UserID))
-                    _guestProfileControl.AddBookingToProfile(item);
+                    _guestBookingsControl.AddBookingToProfile(item);
                 //- Register to the Password change event from the GuestControl
                 _guestProfileControl.PasswordChanged += _guestProfileControl_PasswordChanged;
             }               
@@ -109,9 +108,10 @@ namespace HotelManangementSystemUI.Dashboard
             if(_logged_in_user is IGuest)
             {
                 plnContainer.Controls.Add(_guestProfileControl);
+                plnContainer.Controls.Add(_guestBookingsControl);
                 _guestProfileControl.Visible = false;
 
-                picUser.ImageLocation = @"adminuser.png";
+                picUser.Image = Properties.Resources.generaluser;
             }
             if(_logged_in_user is IAdministrator)
             {
@@ -126,6 +126,8 @@ namespace HotelManangementSystemUI.Dashboard
 
                 //For buttons
                 _guestRoomBookingsControl.btnBookRoom.Enabled = false;
+
+                picUser.Image = Properties.Resources.adminuser;
             }
             plnContainer.Controls.Add(_guestRoomBookingsControl);
 
@@ -206,7 +208,7 @@ namespace HotelManangementSystemUI.Dashboard
                 if(newBooking.ShowDialog() == DialogResult.OK)
                 {
                     database.Bookings.Add(newBooking.RoomBooking);
-                    _guestProfileControl.AddBookingToProfile(newBooking.RoomBooking);
+                    _guestBookingsControl.AddBookingToProfile(newBooking.RoomBooking);
                     return true;
                 }
                 return false;                
@@ -311,6 +313,12 @@ namespace HotelManangementSystemUI.Dashboard
             HandleButtonClicked(((KryptonButton)sender).Text);
             TrackButton(((KryptonButton)sender).Name);
         }//btnStatistics_Click
+        private void btnViewBookings_Click(object sender, EventArgs e)
+        {
+            _guestBookingsControl.BringToFront();
+            HandleButtonClicked(((KryptonButton)sender).Text);
+            TrackButton(((KryptonButton)sender).Name);
+        }//btnViewBookings_Click
         private void TrackButton(string buttonName)
         {
            
@@ -327,6 +335,7 @@ namespace HotelManangementSystemUI.Dashboard
             if(_logged_in_user is IGuest)
             {
                 _guestProfileControl.Visible = text == btnViewProfile.Text;
+                _guestBookingsControl.Visible = text == btnViewBookings.Text;
             }
             _guestRoomBookingsControl.Visible = text == btnBookRoom.Text;
         }//HandleButtonClicked
@@ -341,5 +350,6 @@ namespace HotelManangementSystemUI.Dashboard
         }//CfrmDashboard_FormClosing
 
         #endregion Form event handlers and Button clicks
+
     }//class
 }//namespace

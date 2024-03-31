@@ -11,6 +11,9 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
         public GuestBookingsControl(delOnBookingCancelled cancelled)
         {
             InitializeComponent();
+            BookingCancelled = cancelled;
+            //Clear the listBox
+            lstbxBookings.Items.Clear();
         }//ctor 
         public void AddBookingToProfile(IRoomBooking booking)
         {

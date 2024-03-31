@@ -170,7 +170,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.btnManangeOldBookings.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
             this.btnManangeOldBookings.TabIndex = 4;
             this.btnManangeOldBookings.Tag = "ControlButton";
-            this.btnManangeOldBookings.Values.Text = "View Bookings";
+            this.btnManangeOldBookings.Values.Text = "View old Bookings";
             this.btnManangeOldBookings.Click += new System.EventHandler(this.btnManangeOldBookings_Click);
             // 
             // btnStaff
@@ -418,6 +418,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.btnViewBookings.TabIndex = 4;
             this.btnViewBookings.Tag = "ControlButton";
             this.btnViewBookings.Values.Text = "View Bookings";
+            this.btnViewBookings.Click += new System.EventHandler(this.btnViewBookings_Click);
             // 
             // btnSignOut
             // 
