@@ -167,7 +167,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Input Forms\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HotelManangementSystemLibrary\HotelManangementSystemLibrary.csproj">
       <Project>{90bb8bd5-6c10-49e9-8a3d-edddaf17908d}</Project>
