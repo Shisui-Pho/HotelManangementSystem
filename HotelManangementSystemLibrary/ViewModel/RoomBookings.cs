@@ -87,7 +87,7 @@ namespace HotelManangementSystemLibrary
         }//CancelBooking        
         public void CancelBooking(IRoomBooking booking, string reason)
         {
-            RemovedBooking?.Invoke(booking, new HotelEventArgs(booking.BookingID,reason.ToString()) { IsHandled = false });
+            RemovedBooking?.Invoke(booking, new HotelEventArgs(booking.BookingID,reason) { IsHandled = false });
             base.Remove(booking);
         }//CancelBooking
     }//class
