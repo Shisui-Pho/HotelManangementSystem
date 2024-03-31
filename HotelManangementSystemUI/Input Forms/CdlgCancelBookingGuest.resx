@@ -117,4 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>PLEASE NOTE:
+ 
+1. Bookings cancelled in 48hours before the moving in date will be charged 10% of the total booking amount.
+
+2. Booking cancelled after that will be charged fully without any dicount</value>
+  </data>
 </root>

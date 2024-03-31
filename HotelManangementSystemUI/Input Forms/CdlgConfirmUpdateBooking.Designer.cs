@@ -284,6 +284,7 @@
             this.Controls.Add(this.plnBooking);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "CdlgConfirmUpdateBooking";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CdlgConfirmUpdateBooking";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
