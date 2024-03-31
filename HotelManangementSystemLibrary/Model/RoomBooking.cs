@@ -3,26 +3,18 @@ namespace HotelManangementSystemLibrary
 {
     internal class RoomBooking : IRoomBooking
     {
-        //Data member
-        private decimal _amount;
         private static int maxDays = 10;
         private static int bookingCount = 500;
-        public static double RefundRate = 10d;
         //Properties
         public string BookingID { get; private set; }
         public IGuest Guest { get; private set; }
-
         public IRoom Room { get; private set; }
-
         public DateTime DateBookedFor { get; private set; }
-
         public bool IsCheckedIn { get; private set; }
         public int DaysStayed { get; set; }
         public int NumberOfDaysToStay { get; private set; }
 
-        public decimal BookingCost { get; private set; }
-        public decimal AmoutToPay { get; private set; }
-        public decimal AmountPaid { get; private set; }
+        public IBookingFee BookingFee { get; private set; }
 
         public RoomBooking(IGuest guest, IRoom room, DateTime date, int numberOfDays = 1)
         {
@@ -38,18 +30,8 @@ namespace HotelManangementSystemLibrary
 
             bookingCount += 50;
             BookingID = bookingCount.ToString();
-            //for amount
-            _amount = Room.Price * numberOfDays;
-            AmountPaid = 0;
-            AmoutToPay = _amount;
-            BookingCost = _amount;
+            BookingFee = new BookingFee(date, Room.Price * numberOfDays);
         }//RoomBooking
-
-        public RoomBooking()
-        {
-
-        }//
-
         internal void SetBookingID(string _id) => BookingID = _id;
 
         public void ChangeBookingDate(DateTime date, int numberOfDays = 1)
@@ -89,47 +71,5 @@ namespace HotelManangementSystemLibrary
             IsCheckedIn = true;
             DaysStayed++;
         }//CheckIn
-        
-        public bool PayForBooking(decimal amount, out decimal change)
-        {
-            change = 0;
-            //if the amount is less thank the acceptable 
-            if (amount < 0)
-                return false;
-            if (amount >= AmoutToPay)
-            {
-                change = amount - AmoutToPay;
-                AmoutToPay = 0m;
-                AmountPaid = BookingCost;
-            }
-            else
-            {
-                AmoutToPay -= amount;
-                AmountPaid += amount;
-            }
-                
-            return true;
-        }//PayForBooking
-
-        public decimal GetRefundAmount()
-        {
-            if(DateTime.Now.AddDays(-2) <= DateBookedFor)
-                return 0m;
-
-            decimal amount = AmountPaid- GetCancellationFee();
-
-            if (amount <= 0)
-                return 0m;
-
-            return amount;
-        }//GetRefundAmount
-
-        public decimal GetCancellationFee()
-        {
-            if (DateTime.Now.AddDays(-2) <= DateBookedFor)
-                return BookingCost;
-
-            return BookingCost * (decimal)(BookingCost / 100);
-        }//GetCancellationFee
     }//class
 }//namespace
