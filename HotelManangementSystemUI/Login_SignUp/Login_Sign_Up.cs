@@ -105,12 +105,14 @@ namespace HotelManangementSystemUI.Login_SignUp
             //Successfull
             CfrmDashboard window = new CfrmDashboard(database, _logged_in_user);
             IsDataPossiblyChanged = true;
+            this.Hide();
             if(window.ShowDialog() == DialogResult.Cancel)
             {
                 MessageBox.Show("Logged out!!");
                 _logIn.txtxPassword.Text = "";
                 _logIn.txtxPassword.Focus();
             }//end if
+            this.Show();
         }//BtnLogIn_Click
         private void SetUpControls()
         {
