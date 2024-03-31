@@ -73,7 +73,7 @@ namespace HotelManangementSystemUI.Dashboard
             //To modify
             
             LinkUnlinkedButtons();
-        }//ctir testing
+        }//ctor testing
 
         #endregion Constructors
 
@@ -201,10 +201,16 @@ namespace HotelManangementSystemUI.Dashboard
             //-TO DO
             try
             {
-                var booking = BookingsFactory.CreateBooking(database.Guests[0], room, date, numberOfDays);
-                database.Bookings.Add(booking);
-                _guestProfileControl.AddBookingToProfile(booking);
-                return true;
+                //var booking = BookingsFactory.CreateBooking(database.Guests[0], room, date, numberOfDays);
+                CdlgConfirmUpdateBooking newBooking = new CdlgConfirmUpdateBooking
+                    (database.Guests.FindGuest(_logged_in_user.UserID), room, date, numberOfDays);
+                if(newBooking.ShowDialog() == DialogResult.OK)
+                {
+                    database.Bookings.Add(newBooking.RoomBooking);
+                    _guestProfileControl.AddBookingToProfile(newBooking.RoomBooking);
+                    return true;
+                }
+                return false;                
             }
             catch(Exception ex)
             {
