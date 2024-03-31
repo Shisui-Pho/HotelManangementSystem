@@ -15,8 +15,8 @@ namespace HotelManangementSystemUI.Input_Forms
             InitializeComponent();
             //Set up cotrols
             lblRoomNumber.Text = booking.Room.RoomNumber + ((booking.Room.IsSingleRoom) ? "(Single room)" : "(Double room)");
-            lblAmountPaid.Text = booking.AmountPaid.ToString("C2");
-            lblBookingPrice.Text = booking.AmoutToPay.ToString("C2");
+            lblAmountPaid.Text = booking.BookingFee.AmountPaid.ToString("C2");
+            lblBookingPrice.Text = booking.BookingFee.AmoutToPay.ToString("C2");
             lblCancellingAmount.Text = "R0,00";
             lblDuration.Text = booking.NumberOfDaysToStay.ToString();
             lblTimeSpent.Text = booking.DaysStayed.ToString();

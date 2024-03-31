@@ -123,7 +123,7 @@ namespace HotelManangementControlLibrary.Dashboard
             lblGuestSurname.Text = booking.Guest.Surname;
             lblTypeOfRoom.Text = (booking.Room.IsSingleRoom) ? "Single room" : "Double room";
             lblBookedDate.Text = booking.DateBookedFor.ToString("dd MMMM yyyy");
-            lblFee.Text = booking.AmoutToPay.ToString("C2");
+            lblFee.Text = booking.BookingFee.AmoutToPay.ToString("C2");
             int days = booking.NumberOfDaysToStay;
             lblDuration.Text = (days > 1) ? days.ToString() + " days" : days.ToString() + " day";
         }//lstbxBookingDates_SelectedIndexChanged

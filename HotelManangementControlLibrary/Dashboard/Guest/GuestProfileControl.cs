@@ -147,7 +147,7 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
 
             lblDuration.Text = booking.NumberOfDaysToStay.ToString();
             lblRoomNumber.Text = booking.Room.RoomNumber;
-            lblAmountToPay.Text = booking.AmoutToPay.ToString("C2");
+            lblAmountToPay.Text = booking.BookingFee.AmoutToPay.ToString("C2");
             lblRoomType.Text = (booking.Room is ISingleRoom) ? "Single Room" : "Double Room";
         }//lstbxBookings_SelectedIndexChanged
     }//class

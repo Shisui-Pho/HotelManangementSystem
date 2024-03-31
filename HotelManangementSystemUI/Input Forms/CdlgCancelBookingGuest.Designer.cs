@@ -53,6 +53,8 @@
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnConfirm = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lblRefundAmount = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +81,7 @@
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.lblBookingPrice);
+            this.panel4.Controls.Add(this.lblRefundAmount);
             this.panel4.Controls.Add(this.lblCancellingAmount);
             this.panel4.Controls.Add(this.lblAmountPaid);
             this.panel4.Controls.Add(this.lblTimeSpent);
@@ -86,6 +89,7 @@
             this.panel4.Controls.Add(this.lblRoomNumber);
             this.panel4.Controls.Add(this.lblDuration);
             this.panel4.Controls.Add(this.kryptonLabel8);
+            this.panel4.Controls.Add(this.kryptonLabel9);
             this.panel4.Controls.Add(this.kryptonLabel3);
             this.panel4.Controls.Add(this.kryptonLabel5);
             this.panel4.Controls.Add(this.kryptonLabel6);
@@ -122,7 +126,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(15, 264);
+            this.label1.Location = new System.Drawing.Point(15, 255);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(514, 167);
@@ -150,7 +154,7 @@
             // 
             // lblBookingPrice
             // 
-            this.lblBookingPrice.Location = new System.Drawing.Point(343, 447);
+            this.lblBookingPrice.Location = new System.Drawing.Point(349, 420);
             this.lblBookingPrice.Margin = new System.Windows.Forms.Padding(4);
             this.lblBookingPrice.Name = "lblBookingPrice";
             this.lblBookingPrice.Size = new System.Drawing.Size(60, 26);
@@ -161,7 +165,7 @@
             // 
             // lblCancellingAmount
             // 
-            this.lblCancellingAmount.Location = new System.Drawing.Point(343, 562);
+            this.lblCancellingAmount.Location = new System.Drawing.Point(349, 505);
             this.lblCancellingAmount.Margin = new System.Windows.Forms.Padding(4);
             this.lblCancellingAmount.Name = "lblCancellingAmount";
             this.lblCancellingAmount.Size = new System.Drawing.Size(60, 26);
@@ -172,7 +176,7 @@
             // 
             // lblAmountPaid
             // 
-            this.lblAmountPaid.Location = new System.Drawing.Point(343, 502);
+            this.lblAmountPaid.Location = new System.Drawing.Point(349, 463);
             this.lblAmountPaid.Margin = new System.Windows.Forms.Padding(4);
             this.lblAmountPaid.Name = "lblAmountPaid";
             this.lblAmountPaid.Size = new System.Drawing.Size(60, 26);
@@ -238,7 +242,7 @@
             // 
             // kryptonLabel3
             // 
-            this.kryptonLabel3.Location = new System.Drawing.Point(69, 562);
+            this.kryptonLabel3.Location = new System.Drawing.Point(75, 505);
             this.kryptonLabel3.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(170, 26);
@@ -249,7 +253,7 @@
             // 
             // kryptonLabel5
             // 
-            this.kryptonLabel5.Location = new System.Drawing.Point(69, 502);
+            this.kryptonLabel5.Location = new System.Drawing.Point(75, 463);
             this.kryptonLabel5.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel5.Name = "kryptonLabel5";
             this.kryptonLabel5.Size = new System.Drawing.Size(117, 26);
@@ -271,7 +275,7 @@
             // 
             // kryptonLabel2
             // 
-            this.kryptonLabel2.Location = new System.Drawing.Point(67, 447);
+            this.kryptonLabel2.Location = new System.Drawing.Point(73, 420);
             this.kryptonLabel2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(124, 26);
@@ -381,6 +385,28 @@
             this.btnCancel.Values.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // kryptonLabel9
+            // 
+            this.kryptonLabel9.Location = new System.Drawing.Point(75, 557);
+            this.kryptonLabel9.Margin = new System.Windows.Forms.Padding(4);
+            this.kryptonLabel9.Name = "kryptonLabel9";
+            this.kryptonLabel9.Size = new System.Drawing.Size(109, 26);
+            this.kryptonLabel9.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.kryptonLabel9.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel9.TabIndex = 8;
+            this.kryptonLabel9.Values.Text = "Your refund";
+            // 
+            // lblRefundAmount
+            // 
+            this.lblRefundAmount.Location = new System.Drawing.Point(349, 557);
+            this.lblRefundAmount.Margin = new System.Windows.Forms.Padding(4);
+            this.lblRefundAmount.Name = "lblRefundAmount";
+            this.lblRefundAmount.Size = new System.Drawing.Size(60, 26);
+            this.lblRefundAmount.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblRefundAmount.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefundAmount.TabIndex = 8;
+            this.lblRefundAmount.Values.Text = "R0,00";
+            // 
             // CdlgCancelBookingGuest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -426,5 +452,7 @@
         private System.Windows.Forms.ComboBox cmboCancellationReason;
         private System.Windows.Forms.Label label2;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblRefundAmount;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
     }
 }
