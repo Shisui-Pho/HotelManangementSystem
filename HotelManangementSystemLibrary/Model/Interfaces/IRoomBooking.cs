@@ -15,8 +15,12 @@ namespace HotelManangementSystemLibrary
         decimal AmountPaid { get; }
         bool IsCheckedIn { get; }
         decimal AmoutToPay { get; }
+        decimal BookingCost { get; }
         void ChangeBookingDate(DateTime date, int numberOfDays = 1);
         void ChangeRoom(IRoom room);
         void CheckIn();
+        bool PayForBooking(decimal amount,out decimal change);
+        decimal GetRefundAmount();
+        decimal GetCancellationFee();
     }//IRoomBooking
 }//namespace
