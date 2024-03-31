@@ -41,7 +41,7 @@ namespace HotelManangementSystemUI.Dashboard
             this._logged_in_user = _logged_in_user;
             if (_logged_in_user is IAdministrator)
             {
-                _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
+                _adminRoomsControl = new RoomsControl(database.Rooms, UpdatingRoomFromAdminRoomManangementControl, CreatingNewRoomFromAdminRoomManangementControl);
                 _adminGuestControl = new GuestsControl(database.Guests);
                 _adminHotelStatics = new HotelStatisticsControl();
                 _adminBookingsControl = new BookingsControl(database.Bookings, BookingCancelledFromAdminBookingsControl);
@@ -52,9 +52,7 @@ namespace HotelManangementSystemUI.Dashboard
                 //_adminOldBookings = new HistoricalBookingsControl();
             }
 
-            _guestRoomBookingsControl = new RoomBookingControl(database, BookRoom);//use ctor 01
-            
-            
+            _guestRoomBookingsControl = new RoomBookingControl(database, RoomBookingFromRoomBookingControl);//use ctor 01
             
             database.Bookings.RemovedBooking += Bookings_ItemRemovedEvent;
             //Setting custom events
@@ -66,8 +64,9 @@ namespace HotelManangementSystemUI.Dashboard
             InitializeComponent();
             database = FactoryTest.CreateDatabase();
             this._logged_in_user = database.Guests[0];
-            _guestRoomBookingsControl = new RoomBookingControl(database, BookRoom);//use ctor 01
-            _adminRoomsControl = new RoomsControl(database.Rooms, ModifyRoom, NewRoom);
+            _guestRoomBookingsControl = new RoomBookingControl(database, RoomBookingFromRoomBookingControl);//use ctor 01
+            _adminRoomsControl = new RoomsControl
+                    (database.Rooms, UpdatingRoomFromAdminRoomManangementControl, CreatingNewRoomFromAdminRoomManangementControl);
             _guestProfileControl = new GuestProfileControl(database.Guests[0],BookingCancelledFromGuestProfile);
 
             //To modify
@@ -150,7 +149,7 @@ namespace HotelManangementSystemUI.Dashboard
         #endregion Helper Methods
 
         #region Delegate Functions
-        private IRoom NewRoom()
+        private IRoom CreatingNewRoomFromAdminRoomManangementControl()
         {
             CdlgCustomRooms newroom = new CdlgCustomRooms();
             if(newroom.ShowDialog() == DialogResult.OK)
@@ -160,7 +159,7 @@ namespace HotelManangementSystemUI.Dashboard
             }
             return default;
         }//NewRoom
-        private IRoom ModifyRoom(IRoom oldroom)
+        private IRoom UpdatingRoomFromAdminRoomManangementControl(IRoom oldroom)
         {
             CdlgCustomRooms newroom = new CdlgCustomRooms(oldroom);
             if (newroom.ShowDialog() == DialogResult.Cancel)
@@ -194,7 +193,7 @@ namespace HotelManangementSystemUI.Dashboard
                 database.Bookings.Add(booking);
             }//end foreach
         }//DoBookings
-        private bool BookRoom(IRoom room,DateTime date, int numberOfDays = 1)
+        private bool RoomBookingFromRoomBookingControl(IRoom room,DateTime date, int numberOfDays = 1)
         {
             //Create the booking
             //- Need to apply some bussiness ruls here...
@@ -223,13 +222,16 @@ namespace HotelManangementSystemUI.Dashboard
         {
             //Apply some bussiness rules here
             //TO DO
+            CdlgCancelBookingGuest cancel = new CdlgCancelBookingGuest(roomBooking);
+            if(cancel.ShowDialog() == DialogResult.OK || cancel.IsBookingCancelled)
+            {
+                //-Cancel the booking
+                database.Bookings.CancelBooking(roomBooking, CancellationReason.None);
 
-
-            //-Cancel the booking
-            database.Bookings.CancelBooking(roomBooking, BookingState.Canceld);
-
-            //For now
-            return true;
+                return true;
+            }//
+            return false;
+            
         }//BookingCancelledFromGuestProfile
         private bool BookingCancelledFromAdminBookingsControl(IRoomBooking roomBooking)
         {
@@ -239,7 +241,7 @@ namespace HotelManangementSystemUI.Dashboard
 
 
             //-Cancel the booking
-            database.Bookings.CancelBooking(roomBooking, BookingState.Canceld);
+            database.Bookings.CancelBooking(roomBooking, CancellationReason.None);
 
             //For now
             return true;
@@ -247,7 +249,7 @@ namespace HotelManangementSystemUI.Dashboard
         private void Bookings_ItemRemovedEvent(object sender, HotelEventArgs args)
         {
             IRoomBooking roombooking = (IRoomBooking)sender;
-            IOldBooking old = WareHouseFactory.PrepareMove(roombooking, (BookingState)Enum.Parse(typeof(BookingState), args.Description));
+            IOldBooking old = WareHouseFactory.PrepareMove(roombooking, (CancellationReason)Enum.Parse(typeof(CancellationReason), args.Description));
             oldBookingRepoistory.Add(old);
             args.IsHandled = true;
         }//Bookings_ItemRemovedEvent
