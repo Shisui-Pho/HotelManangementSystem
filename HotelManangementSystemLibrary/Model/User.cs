@@ -28,7 +28,7 @@ namespace HotelManangementSystemLibrary
             //Do some data validation here
             Password = password;
         }//SetPassword
-        internal void SetIDReadFromTheDatabase(string _userID) => UserID = _userID;
+        internal void SetIdForExistingUser(string _userID) => UserID = _userID;
 
         public bool SignIn(string _username, string _password)
         {

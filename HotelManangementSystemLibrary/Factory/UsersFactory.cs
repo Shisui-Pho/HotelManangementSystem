@@ -28,7 +28,7 @@ namespace HotelManangementSystemLibrary.Factory
             Guest gs =  new Guest(user.Name, user.Surname, user.DOB);
             gs.SetPassword(user.Password);
             gs.SetUsername(user.UserName);
-            gs.SetIDReadFromTheDatabase(user.UserID);
+            gs.SetIdForExistingUser(user.UserID);
             return gs;
         }//CreateGuest
         internal static IUser CreateUser(TypeOfUser type, string _name, string _surname, DateTime dob,string userID)
@@ -37,12 +37,12 @@ namespace HotelManangementSystemLibrary.Factory
             {
                 case TypeOfUser.Admin:
                     Administrator admin = new Administrator(_name, _surname, dob);
-                    admin.SetIDReadFromTheDatabase(userID);
+                    admin.SetIdForExistingUser(userID);
                     return admin;
 
                 case TypeOfUser.Guest:
                     Guest guest = new Guest(_name, _surname, dob);
-                    guest.SetIDReadFromTheDatabase(userID);
+                    guest.SetIdForExistingUser(userID);
                     return guest;
 
                 default:
