@@ -8,6 +8,7 @@ namespace HotelManangementSystemLibrary
     {
         event delOnRemovedEvent RemovedBooking;
         void CancelBooking(IRoomBooking booking, CancellationReason reason);
+        void CancelBooking(IRoomBooking booking, string reason);
         bool IsBooked(IRoomBooking item);
         bool IsRoomBooked(IRoom booking, DateTime date);
         IRoomBooking[] HasBookings(IRoom room);
