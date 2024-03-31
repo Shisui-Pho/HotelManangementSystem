@@ -463,12 +463,15 @@ namespace HotelManangementSystemUI.Dashboard
             // 
             // lblNameAndSurname
             // 
+            this.lblNameAndSurname.AutoSize = false;
             this.lblNameAndSurname.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.lblNameAndSurname.Location = new System.Drawing.Point(40, 207);
+            this.lblNameAndSurname.Location = new System.Drawing.Point(40, 194);
             this.lblNameAndSurname.Name = "lblNameAndSurname";
-            this.lblNameAndSurname.Size = new System.Drawing.Size(175, 26);
+            this.lblNameAndSurname.Size = new System.Drawing.Size(175, 39);
             this.lblNameAndSurname.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
             this.lblNameAndSurname.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameAndSurname.StateCommon.ShortText.TextH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Center;
+            this.lblNameAndSurname.StateCommon.ShortText.TextV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Center;
             this.lblNameAndSurname.TabIndex = 1;
             this.lblNameAndSurname.Values.Text = "Names and Surname";
             // 
@@ -507,7 +510,6 @@ namespace HotelManangementSystemUI.Dashboard
             this.plnAdminPanel.ResumeLayout(false);
             this.plnGuestPanel.ResumeLayout(false);
             this.plnHeader.ResumeLayout(false);
-            this.plnHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
             this.ResumeLayout(false);
 
