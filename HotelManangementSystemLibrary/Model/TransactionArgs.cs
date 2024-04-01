@@ -18,5 +18,9 @@ namespace HotelManangementSystemLibrary
             Cancelled = false;
             date = DateTime.Now;
         }//ctor 01
+        public override string ToString()
+        {
+            return date.ToString("dd/MMMM/yyyy HH:mm:ss").PadRight(23) + Amount.ToString("C2").PadRight(10) + TypeOfTransaction; 
+        }//ToString()
     }//class
 }//namespace

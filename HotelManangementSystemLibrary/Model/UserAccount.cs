@@ -32,7 +32,7 @@ namespace HotelManangementSystemLibrary
         public decimal PayForBooking()
         {
             decimal temp = CurrentBalance;
-            TransactionArgs args = new TransactionArgs("Payed for booking", temp);
+            TransactionArgs args = new TransactionArgs("Payed for booking", (-1) *temp);
             OnTransactionEvent?.Invoke(args);
             if (!args.Cancelled)
             {
@@ -53,7 +53,7 @@ namespace HotelManangementSystemLibrary
             if (amount > CurrentBalance)
                 return 0m;
 
-            TransactionArgs args = new TransactionArgs("Payed booking", amount);
+            TransactionArgs args = new TransactionArgs("Payed booking", (-1) * amount);
             OnTransactionEvent?.Invoke(args);
             if (!args.Cancelled)
             {
@@ -70,7 +70,7 @@ namespace HotelManangementSystemLibrary
             if (amount > CurrentBalance)
                 return false;
 
-            TransactionArgs args = new TransactionArgs("Withdraw amount", amount);
+            TransactionArgs args = new TransactionArgs("Withdraw amount", (-1) * amount);
             OnTransactionEvent?.Invoke(args);
             if (!args.Cancelled)
             {
