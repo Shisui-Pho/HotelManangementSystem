@@ -1,10 +1,12 @@
 ﻿using System;
 namespace HotelManangementSystemLibrary
 {
+    public delegate void delOnTrasnaction(TransactionArgs transaction);
     internal class UserAccount : IUSerAccount
     {
         public decimal CurrentBalance { get; private set; }
-
+        public decimal AmountOwing { get; private set; }
+        public event delOnTrasnaction OnTransactionEvent;
         public UserAccount(decimal initialAamount = 0m)
         {
             CurrentBalance = initialAamount;
@@ -13,8 +15,14 @@ namespace HotelManangementSystemLibrary
         {
             if (amount < 0)
                 return false;
-            CurrentBalance += amount;
-            return true;
+            TransactionArgs args = new TransactionArgs("Deposited", amount);
+            OnTransactionEvent?.Invoke(args);
+            if(!args.Cancelled)
+            {
+                CurrentBalance += amount;
+                return true;
+            }
+            return false;
         }//Deposit amount
 
         /// <summary>
@@ -24,8 +32,14 @@ namespace HotelManangementSystemLibrary
         public decimal PayForBooking()
         {
             decimal temp = CurrentBalance;
-            CurrentBalance = 0m;
-            return temp;
+            TransactionArgs args = new TransactionArgs("Payed for booking", temp);
+            OnTransactionEvent?.Invoke(args);
+            if (!args.Cancelled)
+            {
+                CurrentBalance = 0m;
+                return temp;
+            }
+            return 0;
         }//PayForBooking
         /// <summary>
         /// 
@@ -38,8 +52,15 @@ namespace HotelManangementSystemLibrary
                 return 0m;
             if (amount > CurrentBalance)
                 return 0m;
-            CurrentBalance -= amount;
-            return amount;
+
+            TransactionArgs args = new TransactionArgs("Payed booking", amount);
+            OnTransactionEvent?.Invoke(args);
+            if (!args.Cancelled)
+            {
+                CurrentBalance -= amount;
+                return amount;
+            }
+            return 0m;
         }//PayForBooking
 
         public bool WithdrawAmount(decimal amount)
@@ -48,8 +69,26 @@ namespace HotelManangementSystemLibrary
                 return false;
             if (amount > CurrentBalance)
                 return false;
-            CurrentBalance -= amount; 
-            return true;
+
+            TransactionArgs args = new TransactionArgs("Withdraw amount", amount);
+            OnTransactionEvent?.Invoke(args);
+            if (!args.Cancelled)
+            {
+                CurrentBalance -= amount;
+                return true;
+            }
+            return false;           
         }//WithdrawAmount
+        public void AddDept(decimal amount, string reason)
+        {
+            if (amount < 0)
+                return;
+            TransactionArgs args = new TransactionArgs(reason, amount);
+            OnTransactionEvent?.Invoke(args);
+            if (!args.Cancelled)
+            {
+                AmountOwing += amount;
+            }
+        }//decimal void
     }//class
 }//namespace
