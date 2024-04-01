@@ -77,7 +77,7 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             //Extract the text string
             //No guest found
             string textString = lstbxGuests.Items[index].ToString();
-            if (textString == "No guest found")
+            if (textString == "No guest found" || textString == "No one found")
                 return;
             string userId = textString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0];
             
