@@ -8,6 +8,8 @@ namespace HotelManangementSystemLibrary
     {
          //To Add Guest Card
         IContactDetails ContactDetails { get; }
+        IUSerAccount Account { get; }
+
         void SetEmailAddress(string email);
         void SetCellNumber(string _cellnumber);
         void SetEmergencyNumber(string _emergency);
