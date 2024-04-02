@@ -75,9 +75,9 @@
         {
             if (amount <= 0)
                 return;
-            //TransactionArgs args = new TransactionArgs("Reversed", (-1)*amount, BalanceAffected.DeptBalance);
-            AmountOwing -= amount;
-            //OnTransactionEvent?.Invoke(args);
+            TransactionArgs args = new TransactionArgs("Reversed", (-1)*amount, BalanceAffected.DeptBalance);
+            //AmountOwing -= amount;
+            OnTransactionEvent?.Invoke(args);
             DepositAmount(amount);
         }//ReverseAmount
         public void CancelBooking(IBookingFees bookingFees)
@@ -85,8 +85,14 @@
             //For now to am going to keep it simple.
             //-This will however change as time goes by.
             //decimal amountPaid = bookingFee.AmountPaid;
-            ReverseAmount(bookingFees.GetRefundAmount());
-            TransactionArgs args = new TransactionArgs("Cancelled Booking", (-1)*bookingFees.GetCancellationFee(), BalanceAffected.DeptBalance);
+            decimal mCancel = bookingFees.GetCancellationFee();
+            decimal mRefund = bookingFees.GetRefundAmount();
+            TransactionArgs args = new TransactionArgs("Booking cancelled", (-1)* bookingFees.AmoutToPay, BalanceAffected.DeptBalance);
+            AmountOwing -= bookingFees.AmoutToPay;
+            OnTransactionEvent?.Invoke(args);
+            ReverseAmount(mRefund);
+            AmountOwing += mCancel;
+            args = new TransactionArgs("Cancelation fee", bookingFees.GetCancellationFee(), BalanceAffected.DeptBalance);
             OnTransactionEvent?.Invoke(args);
         }//CancelBooking
     }//class
