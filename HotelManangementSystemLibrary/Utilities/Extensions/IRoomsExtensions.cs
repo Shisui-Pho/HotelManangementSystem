@@ -14,7 +14,12 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 return;
             StringBuilder bl = new StringBuilder();
             foreach (IRoom room in rooms)
-                bl.AppendLine(String.Format($"{room.IsSingleRoom},{room.RoomNumber},{room.Price.ToString("0.00")},{room.HasTV}"));
+            {
+                string sAmount = room.Price.ToString("0.00");
+                if (sAmount.IndexOf(',') >= 0)
+                    sAmount = sAmount.Replace(',', '.');
+                bl.AppendLine(String.Format($"{room.IsSingleRoom},{room.RoomNumber},{sAmount},{room.HasTV}"));
+            }
             File.WriteAllText(file, bl.ToString());
         }//SaveRooms
         public static IRooms LoadRooms(this IRooms rooms)

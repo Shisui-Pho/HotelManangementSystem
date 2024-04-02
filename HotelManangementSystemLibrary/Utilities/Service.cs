@@ -52,9 +52,9 @@ namespace HotelManangementSystemLibrary
         {
             char dec = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
             if (dec == ',' && _amount.IndexOf('.') >= 0)
-                _amount.Replace('.', dec);
+                _amount = _amount.Replace('.', dec);
             else if (dec == '.' && _amount.IndexOf(',') >= 0)
-                _amount.Replace(',', dec);
+                _amount = _amount.Replace(',', dec);
             return decimal.Parse(_amount);
         }//GetValueOfMoney
     }//class
