@@ -1,14 +1,14 @@
 ﻿using System;
 namespace HotelManangementSystemLibrary
 {
-    internal class BookingFee : IBookingFee
+    internal class BookingFees : IBookingFees
     {
         public static double RefundRate = 10d;
         private DateTime _bookingDate;
         public decimal BookingCost { get; private set; }
         public decimal AmoutToPay { get; private set; }
         public decimal AmountPaid { get; private set; }
-        public BookingFee(DateTime bookingdate, decimal bookingAmount)
+        public BookingFees(DateTime bookingdate, decimal bookingAmount)
         {
             this._bookingDate = bookingdate;
             BookingCost = bookingAmount;

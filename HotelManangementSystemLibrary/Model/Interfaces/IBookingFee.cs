@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IBookingFee
+    public interface IBookingFees
     {
         decimal AmountPaid { get; }
         decimal AmoutToPay { get; }

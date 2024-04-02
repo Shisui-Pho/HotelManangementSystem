@@ -14,7 +14,7 @@ namespace HotelManangementSystemLibrary
         public int DaysStayed { get; set; }
         public int NumberOfDaysToStay { get; private set; }
 
-        public IBookingFee BookingFee { get; private set; }
+        public IBookingFees BookingFee { get; private set; }
 
         public RoomBooking(IGuest guest, IRoom room, DateTime date, int numberOfDays = 1)
         {
@@ -30,7 +30,7 @@ namespace HotelManangementSystemLibrary
 
             bookingCount += 50;
             BookingID = bookingCount.ToString();
-            BookingFee = new BookingFee(date, Room.Price * numberOfDays);
+            BookingFee = new BookingFees(date, Room.Price * numberOfDays);
         }//RoomBooking
         internal void SetBookingID(string _id) => BookingID = _id;
 
