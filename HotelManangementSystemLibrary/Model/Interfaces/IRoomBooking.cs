@@ -10,7 +10,7 @@ namespace HotelManangementSystemLibrary
         IGuest Guest { get; }
         IRoom Room { get; }
         DateTime DateBookedFor { get; }
-        IBookingFee BookingFee { get; }
+        IBookingFees BookingFee { get; }
         int NumberOfDaysToStay { get; }
         int DaysStayed { get; set; }
         bool IsCheckedIn { get; }
