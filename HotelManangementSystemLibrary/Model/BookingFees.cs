@@ -48,10 +48,11 @@ namespace HotelManangementSystemLibrary
 
         public decimal GetCancellationFee()
         {
-            if (DateTime.Now.AddDays(-2) <= _bookingDate)
+            DateTime maxDate = _bookingDate.AddDays(-2);
+            if (DateTime.Now >= maxDate)
                 return BookingCost;
 
-            return BookingCost * (decimal)(BookingCost / 100);
+            return BookingCost * (decimal)(RefundRate / 100);
         }//GetCancellationFee
     }//class
 }//namespace
