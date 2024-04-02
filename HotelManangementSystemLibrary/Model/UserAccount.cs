@@ -1,5 +1,4 @@
-﻿using System;
-namespace HotelManangementSystemLibrary
+﻿namespace HotelManangementSystemLibrary
 {
     public delegate void delOnTrasnaction(TransactionArgs transaction);
     internal class UserAccount : IUSerAccount
@@ -15,14 +14,10 @@ namespace HotelManangementSystemLibrary
         {
             if (amount < 0)
                 return false;
-            TransactionArgs args = new TransactionArgs("Deposited", amount);
+            TransactionArgs args = new TransactionArgs("Deposited", amount, BalanceAffected.CurrentBalance);
+            CurrentBalance += amount;
             OnTransactionEvent?.Invoke(args);
-            if(!args.Cancelled)
-            {
-                CurrentBalance += amount;
-                return true;
-            }
-            return false;
+            return true;
         }//Deposit amount
 
         /// <summary>
@@ -32,14 +27,10 @@ namespace HotelManangementSystemLibrary
         public decimal PayForBooking()
         {
             decimal temp = CurrentBalance;
-            TransactionArgs args = new TransactionArgs("Payed for booking", (-1) *temp);
+            TransactionArgs args = new TransactionArgs("Payed for booking", (-1) *temp, BalanceAffected.CurrentBalance);
+            CurrentBalance = 0m;
             OnTransactionEvent?.Invoke(args);
-            if (!args.Cancelled)
-            {
-                CurrentBalance = 0m;
-                return temp;
-            }
-            return 0;
+            return temp;
         }//PayForBooking
         /// <summary>
         /// 
@@ -50,17 +41,14 @@ namespace HotelManangementSystemLibrary
         {
             if (amount < 0)
                 return 0m;
-            if (amount > CurrentBalance)
+            if (amount > CurrentBalance || amount > AmountOwing)
                 return 0m;
 
-            TransactionArgs args = new TransactionArgs("Payed booking", (-1) * amount);
+            TransactionArgs args = new TransactionArgs("Payed booking", (-1) * amount, BalanceAffected.CurrentBalance);
+            CurrentBalance -= amount;
+            AmountOwing -= amount;
             OnTransactionEvent?.Invoke(args);
-            if (!args.Cancelled)
-            {
-                CurrentBalance -= amount;
-                return amount;
-            }
-            return 0m;
+            return amount;
         }//PayForBooking
 
         public bool WithdrawAmount(decimal amount)
@@ -70,35 +58,27 @@ namespace HotelManangementSystemLibrary
             if (amount > CurrentBalance)
                 return false;
 
-            TransactionArgs args = new TransactionArgs("Withdraw amount", (-1) * amount);
+            TransactionArgs args = new TransactionArgs("Withdraw amount", (-1) * amount, BalanceAffected.CurrentBalance);
+            CurrentBalance -= amount;
             OnTransactionEvent?.Invoke(args);
-            if (!args.Cancelled)
-            {
-                CurrentBalance -= amount;
-                return true;
-            }
-            return false;           
+            return true;      
         }//WithdrawAmount
         public void AddDept(decimal amount, string reason)
         {
             if (amount < 0)
                 return;
-            TransactionArgs args = new TransactionArgs(reason, amount);
+            TransactionArgs args = new TransactionArgs(reason, amount, BalanceAffected.DeptBalance);
+            AmountOwing += amount;
             OnTransactionEvent?.Invoke(args);
-            if (!args.Cancelled)
-            {
-                AmountOwing += amount;
-            }
         }//decimal void
         private void ReverseAmount(decimal amount)
         {
-            TransactionArgs args = new TransactionArgs("Reversed", amount);
-            OnTransactionEvent?.Invoke(args);
-            if (!args.Cancelled)
-            {
-                AmountOwing -= amount;
-                CurrentBalance += amount;
-            }
+            if (amount <= 0)
+                return;
+            //TransactionArgs args = new TransactionArgs("Reversed", (-1)*amount, BalanceAffected.DeptBalance);
+            AmountOwing -= amount;
+            //OnTransactionEvent?.Invoke(args);
+            DepositAmount(amount);
         }//ReverseAmount
         public void CancelBooking(IBookingFees bookingFees)
         {
@@ -106,7 +86,7 @@ namespace HotelManangementSystemLibrary
             //-This will however change as time goes by.
             //decimal amountPaid = bookingFee.AmountPaid;
             ReverseAmount(bookingFees.GetRefundAmount());
-            TransactionArgs args = new TransactionArgs("Cancelled Booking", (-1)*bookingFees.GetCancellationFee());
+            TransactionArgs args = new TransactionArgs("Cancelled Booking", (-1)*bookingFees.GetCancellationFee(), BalanceAffected.DeptBalance);
             OnTransactionEvent?.Invoke(args);
         }//CancelBooking
     }//class

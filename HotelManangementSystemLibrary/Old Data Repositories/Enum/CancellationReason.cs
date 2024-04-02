@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HotelManangementSystemLibrary
+﻿namespace HotelManangementSystemLibrary
 {
     public enum CancellationReason
     {
@@ -13,6 +9,7 @@ namespace HotelManangementSystemLibrary
         Evicted,
         Cannot_Make_It,
         Requirements_Not_Met,
+        Rescheduled,
         Other
     }
 }
