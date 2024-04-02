@@ -17,7 +17,20 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
             _guest = guest;
             //Set up controls
             SetControls();
+            guest.Account.OnTransactionEvent += Account_OnTransactionEvent;
+            lstTransactions.Items.Clear();
+            lblAmountToPay.Text = guest.Account.AmountOwing.ToString("C2");
+            lblAvailableAmount.Text = guest.Account.CurrentBalance.ToString("C2");
         }//ctor main
+
+        private void Account_OnTransactionEvent(TransactionArgs transaction)
+        {
+            //Need to add this to the list of transactions
+            lstTransactions.Items.Add(transaction);
+            lblAmountToPay.Text = _guest.Account.AmountOwing.ToString("C2");
+            lblAvailableAmount.Text = _guest.Account.CurrentBalance.ToString("C2");
+        }//Account_OnTransactionEvent
+
         public GuestProfileControl() 
         {
             InitializeComponent();
@@ -96,5 +109,20 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
             }//end if cellephone number
             Messages.ShowInformationMessage("Contact details has been updated succsessfully", "Update Complete");
         }//btnUpadateContactDetails_Click
+
+        private void btnDeposite_Click(object sender, EventArgs e)
+        {
+
+        }//btnDeposite_Click
+
+        private void btnWithdraw_Click(object sender, EventArgs e)
+        {
+
+        }//btnWithdraw_Click
+
+        private void btnPayDept_Click(object sender, EventArgs e)
+        {
+
+        }//btnPayDept_Click
     }//class
 }//namespace
