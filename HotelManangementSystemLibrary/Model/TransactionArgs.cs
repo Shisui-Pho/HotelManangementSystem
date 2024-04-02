@@ -20,7 +20,8 @@ namespace HotelManangementSystemLibrary
         }//ctor 01
         public override string ToString()
         {
-            return date.ToString("dd/MMMM/yyyy HH:mm:ss").PadRight(23) + Amount.ToString("C2").PadRight(10) + TypeOfTransaction; 
+            string sAmount = (Amount > 0) ? "+" + Amount.ToString("C2") : Amount.ToString("C2");
+            return Date.ToString("dd/MMMM/yyyy HH:mm:ss").PadRight(25) + sAmount.PadRight(20) + TypeOfTransaction; 
         }//ToString()
     }//class
 }//namespace
