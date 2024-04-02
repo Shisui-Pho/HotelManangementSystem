@@ -90,5 +90,24 @@ namespace HotelManangementSystemLibrary
                 AmountOwing += amount;
             }
         }//decimal void
+        private void ReverseAmount(decimal amount)
+        {
+            TransactionArgs args = new TransactionArgs("Reversed", amount);
+            OnTransactionEvent?.Invoke(args);
+            if (!args.Cancelled)
+            {
+                AmountOwing -= amount;
+                CurrentBalance += amount;
+            }
+        }//ReverseAmount
+        public void CancelBooking(IBookingFees bookingFees)
+        {
+            //For now to am going to keep it simple.
+            //-This will however change as time goes by.
+            //decimal amountPaid = bookingFee.AmountPaid;
+            ReverseAmount(bookingFees.GetRefundAmount());
+            TransactionArgs args = new TransactionArgs("Cancelled Booking", (-1)*bookingFees.GetCancellationFee());
+            OnTransactionEvent?.Invoke(args);
+        }//CancelBooking
     }//class
 }//namespace
