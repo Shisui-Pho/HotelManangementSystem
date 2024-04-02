@@ -15,6 +15,7 @@ namespace HotelManangementSystemUI.Dashboard
 {
     public partial class CfrmDashboard : Form
     {
+
         #region Datamembers
         //Database datamembers
         private readonly IDatabaseService database;
@@ -259,13 +260,13 @@ namespace HotelManangementSystemUI.Dashboard
              await LoadAllBookings();
             //Do some set ups
             AddControls();
-        }//CfrmDashboard_Shown
+        }//CfrmDashboard_Shown       
         private void btnSignOut_Click(object sender, EventArgs e)
         {
             //plnAdminPanel.Visible = !plnAdminPanel.Visible;
             this.Close();
         }//btnSignOut_Click
-
+                                      
         private void btnManangeRooms_Click(object sender, EventArgs e)
         {
             _adminRoomsControl.BringToFront();

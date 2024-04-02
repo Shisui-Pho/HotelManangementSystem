@@ -11,5 +11,6 @@
         decimal PayForBooking();
         decimal PayForBooking(decimal amount);
         bool WithdrawAmount(decimal amount);
+        void CancelBooking(IBookingFees bookingFee);
     }//IUserAccount
 }//namespace

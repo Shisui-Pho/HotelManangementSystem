@@ -40,7 +40,8 @@ namespace HotelManangementSystemLibrary
                 //For temp
                 item.ChangeBookingDate(item.DateBookedFor.AddDays(5), item.NumberOfDaysToStay);
             }
-                //throw new ArgumentException("Room has already been booked for that date.");
+            //throw new ArgumentException("Room has already been booked for that date.");
+            item.Guest.Account.AddDept(item.BookingFee.BookingCost, "Booked room");
             base._collection.Add(item);
         }//ICollectionHotel<IRoomBooking>.Add
         private int FindIndex(IRoomBooking booking)
@@ -83,11 +84,13 @@ namespace HotelManangementSystemLibrary
         public void CancelBooking(IRoomBooking booking, CancellationReason reason)
         {
             RemovedBooking?.Invoke(booking, new HotelEventArgs(booking.BookingID,reason.ToString()) { IsHandled = false });
+            booking.Guest.Account.CancelBooking(booking.BookingFee);
             base.Remove(booking);
         }//CancelBooking        
         public void CancelBooking(IRoomBooking booking, string reason)
         {
             RemovedBooking?.Invoke(booking, new HotelEventArgs(booking.BookingID,reason) { IsHandled = false });
+            booking.Guest.Account.CancelBooking(booking.BookingFee);
             base.Remove(booking);
         }//CancelBooking
     }//class
