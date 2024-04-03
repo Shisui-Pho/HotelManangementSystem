@@ -21,14 +21,19 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
             lstTransactions.Items.Clear();
             lblAmountToPay.Text = guest.Account.AmountOwing.ToString("C2");
             lblAvailableAmount.Text = guest.Account.CurrentBalance.ToString("C2");
+            guest.Account.BalanceChanged += Account_BalanceChanged;
         }//ctor main
+
+        private void Account_BalanceChanged(decimal newBalance, decimal newAmountOwing)
+        {
+            lblAmountToPay.Text = newAmountOwing.ToString("C2");
+            lblAvailableAmount.Text = newBalance.ToString("C2");
+        }//Account_BalanceChanged
 
         private void Account_OnTransactionEvent(TransactionArgs transaction)
         {
             //Need to add this to the list of transactions
             lstTransactions.Items.Add(transaction);
-            lblAmountToPay.Text = _guest.Account.AmountOwing.ToString("C2");
-            lblAvailableAmount.Text = _guest.Account.CurrentBalance.ToString("C2");
         }//Account_OnTransactionEvent
 
         public GuestProfileControl() 
@@ -112,7 +117,7 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
 
         private void btnDeposite_Click(object sender, EventArgs e)
         {
-
+            _guest.Account.DepositAmount(2000);
         }//btnDeposite_Click
 
         private void btnWithdraw_Click(object sender, EventArgs e)
@@ -122,7 +127,7 @@ namespace HotelManangementControlLibrary.Dashboard.Guest
 
         private void btnPayDept_Click(object sender, EventArgs e)
         {
-
+            _guest.Account.PayForBooking(100);
         }//btnPayDept_Click
     }//class
 }//namespace

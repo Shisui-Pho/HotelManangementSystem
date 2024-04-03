@@ -103,19 +103,19 @@
             // 
             // lstTransactions
             // 
-            this.lstTransactions.Location = new System.Drawing.Point(12, 136);
+            this.lstTransactions.Location = new System.Drawing.Point(5, 134);
             this.lstTransactions.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.lstTransactions.Name = "lstTransactions";
-            this.lstTransactions.Size = new System.Drawing.Size(461, 346);
+            this.lstTransactions.Size = new System.Drawing.Size(473, 346);
             this.lstTransactions.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstTransactions.TabIndex = 19;
             // 
             // groupBox2
             // 
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 47);
+            this.groupBox2.Location = new System.Drawing.Point(6, 41);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(461, 83);
+            this.groupBox2.Size = new System.Drawing.Size(472, 83);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter transactions";
