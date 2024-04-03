@@ -18,6 +18,8 @@ namespace HotelManangementSystemLibrary.Utilities
             {
                 foreach (T booking in collection)
                 {
+                    if (booking == null)
+                        continue;
                     string state = (booking.State == null) ? booking.StateString : booking.State.ToString();
                     bl.AppendLine(string.Format($"{booking.Booking.BookingID},{booking.Booking.Guest.UserID},{booking.Booking.Room.RoomNumber},{booking.Booking.DateBookedFor.ToString("dd/MM/yyyy")}" +
                         $",{booking.Booking.NumberOfDaysToStay.ToString()},{booking.Booking.IsCheckedIn},{booking.Booking.DaysStayed},{state}"));
