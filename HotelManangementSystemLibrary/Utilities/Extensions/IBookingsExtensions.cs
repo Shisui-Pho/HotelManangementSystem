@@ -21,6 +21,9 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
         public static IRoomBookings LoadBookings(this IRoomBookings bookings,IGuests guests, IRooms rooms)
         {
+            //Somehow this is executed twice due to async call
+            if (bookings != null)
+                return bookings;
             bookings = BookingsFactory.CreateBookings();
 
             string[] records = Service.CheckFilesExistAndLoadTextData(file);
@@ -43,7 +46,5 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
             return bookings;
         }//LoadBookings
-
-
     }//class
 }//namespace
