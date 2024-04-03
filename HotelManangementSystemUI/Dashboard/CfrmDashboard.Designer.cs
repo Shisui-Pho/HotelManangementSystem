@@ -465,9 +465,9 @@ namespace HotelManangementSystemUI.Dashboard
             // 
             this.lblNameAndSurname.AutoSize = false;
             this.lblNameAndSurname.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.lblNameAndSurname.Location = new System.Drawing.Point(40, 194);
+            this.lblNameAndSurname.Location = new System.Drawing.Point(2, 194);
             this.lblNameAndSurname.Name = "lblNameAndSurname";
-            this.lblNameAndSurname.Size = new System.Drawing.Size(175, 39);
+            this.lblNameAndSurname.Size = new System.Drawing.Size(274, 39);
             this.lblNameAndSurname.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
             this.lblNameAndSurname.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameAndSurname.StateCommon.ShortText.TextH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Center;
