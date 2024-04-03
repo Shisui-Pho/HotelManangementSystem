@@ -61,7 +61,8 @@ namespace HotelManangementSystemLibrary.DatabaseService
                 LoadRooms();
             if (_guests is null)
                 LoadGuests();
-            _bookings = _bookings.LoadBookings(_guests, _rooms);
+            if(_bookings is null)
+                _bookings = _bookings.LoadBookings(_guests, _rooms);
             return _bookings;
         }//LoadBookings
 
@@ -73,14 +74,16 @@ namespace HotelManangementSystemLibrary.DatabaseService
 
         public IUsers LoadUsers()
         {
-            _users = _users.LoadUsers();
+            if(_users is null)
+                _users = _users.LoadUsers();
             return _users;
         }//LoadUsers
         public IGuests LoadGuests()
         {
             if (_users is null)
                 LoadUsers();
-            _guests = _guests.LoadGuests(_users);
+            if(_guests is null)
+                _guests = _guests.LoadGuests(_users);
             return _guests;
         }//LoadGuests
         public void SaveBookings()
