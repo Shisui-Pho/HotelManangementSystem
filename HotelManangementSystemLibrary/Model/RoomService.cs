@@ -33,7 +33,7 @@ namespace HotelManangementSystemLibrary
 
         public void AddTicket(string _description)
         {
-            Ticket ticket = new Ticket(_tickets.Count + 1, _description);
+            Ticket ticket = new Ticket(_tickets.Count + 1, _description,this.Personel.UserID);
             _tickets.Add(ticket);
         }//SetDescription
 

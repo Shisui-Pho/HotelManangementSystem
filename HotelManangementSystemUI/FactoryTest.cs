@@ -10,10 +10,10 @@ namespace HotelManangementSystemUI
         public static IDatabaseService CreateDatabase()
         {
             IDatabaseService service = new TextFileDatabase();
-            //service.LoadBookings();
-            //service.LoadUsers();
-            //service.LoadRooms();
-            //service.LoadGuests();
+            service.LoadBookings();
+            service.LoadUsers();
+            service.LoadRooms();
+            service.LoadGuests();
 
 
             AddTestRooms(service);
@@ -83,7 +83,7 @@ namespace HotelManangementSystemUI
         {
             IUser us = ser.Users.GetUser("GU-8954856851");
             IGuest gs = ser.Guests.FindGuest(us);
-            IRoomBooking booking = BookingsFactory.CreateBooking(gs, ser.Rooms.FindRoom("Room 01"), DateTime.Now);
+            IRoomBooking booking = BookingsFactory.CreateBooking(gs, ser.Rooms.FindRoom("Room 01"), DateTime.Now.AddDays(5));
             ser.Bookings.Add(booking);
 
             us = ser.Users.GetUser("GU-8954856852");
@@ -95,6 +95,7 @@ namespace HotelManangementSystemUI
             gs = ser.Guests.FindGuest(us);
             booking = BookingsFactory.CreateBooking(gs, ser.Rooms.FindRoom("Room 02"), DateTime.Now.AddDays(5), 3);
             ser.Bookings.Add(booking);
+            ser.SaveUsers();
         }
     }
 }
