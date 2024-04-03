@@ -242,7 +242,15 @@ namespace HotelManangementSystemUI.Dashboard
         private void Bookings_ItemRemovedEvent(object sender, HotelEventArgs args)
         {
             IRoomBooking roombooking = (IRoomBooking)sender;
-            IOldBooking old = WareHouseFactory.PrepareMove(roombooking, (CancellationReason)Enum.Parse(typeof(CancellationReason), args.Description));
+            IOldBooking old = null;
+            try
+            {
+                old = WareHouseFactory.PrepareMove(roombooking, (CancellationReason)Enum.Parse(typeof(CancellationReason), args.Description));
+            }
+            catch
+            {
+                WareHouseFactory.PrepareMove(roombooking, args.Description);
+            }
             oldBookingRepoistory.Add(old);
             args.IsHandled = true;
         }//Bookings_ItemRemovedEvent
