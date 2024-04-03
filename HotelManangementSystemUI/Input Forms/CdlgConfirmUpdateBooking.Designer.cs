@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblRoom = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lblRoomPrice = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lblAmountToPay = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -54,7 +54,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.lblRoom);
             this.panel1.Controls.Add(this.lblRoomPrice);
-            this.panel1.Controls.Add(this.kryptonLabel4);
+            this.panel1.Controls.Add(this.lblAmountToPay);
             this.panel1.Controls.Add(this.kryptonLabel2);
             this.panel1.Controls.Add(this.kryptonLabel5);
             this.panel1.Controls.Add(this.kryptonLabel1);
@@ -83,15 +83,15 @@
             this.lblRoomPrice.TabIndex = 10;
             this.lblRoomPrice.Values.Text = "R0,00";
             // 
-            // kryptonLabel4
+            // lblAmountToPay
             // 
-            this.kryptonLabel4.Location = new System.Drawing.Point(199, 135);
-            this.kryptonLabel4.Name = "kryptonLabel4";
-            this.kryptonLabel4.Size = new System.Drawing.Size(60, 26);
-            this.kryptonLabel4.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel4.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel4.TabIndex = 10;
-            this.kryptonLabel4.Values.Text = "R0,00";
+            this.lblAmountToPay.Location = new System.Drawing.Point(199, 135);
+            this.lblAmountToPay.Name = "lblAmountToPay";
+            this.lblAmountToPay.Size = new System.Drawing.Size(60, 26);
+            this.lblAmountToPay.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblAmountToPay.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmountToPay.TabIndex = 10;
+            this.lblAmountToPay.Values.Text = "R0,00";
             // 
             // kryptonLabel2
             // 
@@ -221,6 +221,11 @@
             0,
             0,
             0});
+            this.numBookingLength.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numBookingLength.Name = "numBookingLength";
             this.numBookingLength.Size = new System.Drawing.Size(174, 20);
             this.numBookingLength.TabIndex = 12;
@@ -229,6 +234,7 @@
             0,
             0,
             0});
+            this.numBookingLength.ValueChanged += new System.EventHandler(this.numBookingLength_ValueChanged);
             // 
             // label1
             // 
@@ -301,7 +307,7 @@
         private System.Windows.Forms.Panel panel1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblRoom;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblRoomPrice;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblAmountToPay;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;

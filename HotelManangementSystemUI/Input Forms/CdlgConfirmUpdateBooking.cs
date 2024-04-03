@@ -14,11 +14,11 @@ namespace HotelManangementSystemUI.Input_Forms
         public CdlgConfirmUpdateBooking(IGuest guest, IRoom room, DateTime dt, int days)
         {
             InitializeComponent();
+            this.guest = guest;
+            this.room = room;
             numBookingLength.Value = days;
             dtBookDate.Value = dt;
             lblRoom.Text = room.RoomNumber + "(" + ((room.IsSingleRoom) ? "Single room)" : "Double room)");
-            this.guest = guest;
-            this.room = room;
         }//ctor 01
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -30,5 +30,10 @@ namespace HotelManangementSystemUI.Input_Forms
         {
 
         }//btnCancel_Click
+
+        private void numBookingLength_ValueChanged(object sender, EventArgs e)
+        {
+            lblAmountToPay.Text = (numBookingLength.Value * room.Price).ToString("C2");
+        }//numBookingLength_ValueChanged
     }//class
 }//namespace
