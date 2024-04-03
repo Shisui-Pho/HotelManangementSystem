@@ -16,12 +16,13 @@ namespace HotelManangementSystemUI.Input_Forms
             //Set up cotrols
             lblRoomNumber.Text = booking.Room.RoomNumber + ((booking.Room.IsSingleRoom) ? "(Single room)" : "(Double room)");
             lblAmountPaid.Text = booking.BookingFee.AmountPaid.ToString("C2");
-            lblBookingPrice.Text = booking.BookingFee.AmoutToPay.ToString("C2");
-            lblCancellingAmount.Text = "R0,00";
+            lblBookingPrice.Text = booking.BookingFee.BookingCost.ToString("C2");
+            lblCancellingAmount.Text = booking.BookingFee.GetCancellationFee().ToString("C2");
+            lblRefundAmount.Text = booking.BookingFee.GetRefundAmount().ToString("C2");
             lblDuration.Text = booking.NumberOfDaysToStay.ToString();
             lblTimeSpent.Text = booking.DaysStayed.ToString();
             IsBookingCancelled = false;
-            btnConfirm.Enabled = false;
+            //btnConfirm.Enabled = false;
             cmboCancellationReason.Items.Clear();
             if(_logged_in_user is IAdministrator)
             {
@@ -62,12 +63,12 @@ namespace HotelManangementSystemUI.Input_Forms
             if (cmboCancellationReason.Text == "Other" || cmboCancellationReason.Text == "Requirements Not Met")
             {
                 rtxtOther.Visible = true;
-                btnConfirm.Enabled = false;
+                btnConfirm.Visible = false;
             }
             else
             {
                 rtxtOther.Visible = false;
-                btnConfirm.Enabled = true;
+                btnConfirm.Visible = true;
                 rtxtOther.Text = "Please specify";
             }
         }//cmboCancellationReason_SelectedIndexChanged
@@ -75,7 +76,7 @@ namespace HotelManangementSystemUI.Input_Forms
         private void rtxtOther_TextChanged(object sender, EventArgs e)
         {
             if (rtxtOther.Text.Length > 5 && rtxtOther.Text != "Please specify")
-                btnConfirm.Enabled = true;
+                btnConfirm.Visible = true;
         }//rtxtOther_TextChanged
 
         private void rtxtOther_Click(object sender, EventArgs e)
