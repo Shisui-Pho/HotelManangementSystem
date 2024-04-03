@@ -21,6 +21,8 @@ namespace HotelManangementSystemLibrary
             //if the amount is less thank the acceptable 
             if (amount < 0)
                 return false;
+
+            //Business rules applied
             if (amount >= AmoutToPay)
             {
                 change = amount - AmoutToPay;
@@ -38,20 +40,26 @@ namespace HotelManangementSystemLibrary
 
         public decimal GetRefundAmount()
         {
+            //Get the refund amount after deducting the cancelation fee
             decimal amount = AmountPaid - GetCancellationFee();
 
+            //If the user must pay the full amount/hasn't paid more that the cancelation fee
             if (amount <= 0)
                 return 0m;
 
+            //Return the refund
             return amount;
         }//GetRefundAmount
 
         public decimal GetCancellationFee()
         {
             DateTime maxDate = _bookingDate.AddDays(-2);
+            //If the user decides to cancel in less than 48hours before the booked date
+            //-The pay the full amount for cancellation fee
             if (DateTime.Now >= maxDate)
                 return BookingCost;
 
+            //Return the cancelation fee, in this case it is 10%
             return BookingCost * (decimal)(RefundRate / 100);
         }//GetCancellationFee
     }//class
