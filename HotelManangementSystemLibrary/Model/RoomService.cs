@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public class RoomService : IRoomService
+    internal class RoomService : IRoomService
     {
         //data member
         private List<Ticket> _tickets;
