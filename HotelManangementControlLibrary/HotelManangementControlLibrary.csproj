@@ -113,6 +113,12 @@
       <DependentUpon>RoomBookingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Input Forms\CdlgPayBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input Forms\CdlgPayBooking.Designer.cs">
+      <DependentUpon>CdlgPayBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login_SignUp\LogInControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     <EmbeddedResource Include="Dashboard\RoomBookingControl.resx">
       <DependentUpon>RoomBookingControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Input Forms\CdlgPayBooking.resx">
+      <DependentUpon>CdlgPayBooking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login_SignUp\LogInControl.resx">
       <DependentUpon>LogInControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,9 +185,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Input Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\HotelManangementSystemLibrary\HotelManangementSystemLibrary.csproj">
       <Project>{90bb8bd5-6c10-49e9-8a3d-edddaf17908d}</Project>
