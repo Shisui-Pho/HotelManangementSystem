@@ -6,7 +6,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
     public static class IHotelCollections
     {
         public static void SaveData<T>(this IGeneralCollection<T> data,string file) 
-            where T : IHotelModel
+            where T : IHotelModel<T>
         {
             StringBuilder bl = new StringBuilder();
             foreach (T item in data)

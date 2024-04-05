@@ -29,6 +29,8 @@ namespace HotelManangementSystemLibrary
         public RoomService(IRoom room, IServicePersonel personel)
         {
             _tickets = new List<Ticket>();
+            Room = room;
+            Personel = personel;
         }//ctor 01
 
         public void AddTicket(string _description)
@@ -44,5 +46,9 @@ namespace HotelManangementSystemLibrary
                 yield return ticket;
             }//end foreach
         }//GetEnumerator
+        public void ChangeServicePersonel(IServicePersonel personel)
+        {
+            this.Personel = personel;
+        }//ChangeServicePersonel
     }//clas
 }//namespcae

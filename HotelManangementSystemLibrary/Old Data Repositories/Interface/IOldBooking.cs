@@ -1,6 +1,8 @@
-﻿namespace HotelManangementSystemLibrary
+﻿using System;
+
+namespace HotelManangementSystemLibrary
 {
-    public interface IOldBooking
+    public interface IOldBooking : IComparable, IEquatable<IOldBooking>
     {
         IRoomBooking Booking { get; }
         CancellationReason? State { get; }

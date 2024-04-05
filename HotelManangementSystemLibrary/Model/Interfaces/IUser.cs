@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IUser : IPerson, IHotelModel
+    public interface IUser : IPerson, IEquatable<IUser>,IHotelModel<IUser>
     {
         string UserName { get; }
         string Password { get; }

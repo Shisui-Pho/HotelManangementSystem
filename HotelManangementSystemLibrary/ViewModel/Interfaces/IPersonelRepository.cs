@@ -4,8 +4,8 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IHotelModel<T> : IComparable, IEquatable<T>
+    public interface IPersonelRepository : IGeneralCollection<IServicePersonel>
     {
-        string ToCSVFormat();
+
     }//class
 }//namespace

@@ -95,6 +95,11 @@ namespace HotelManangementSystemLibrary
         {
             return obj.GetHashCode();
         }
+
+        public bool Equals(IRoom other)
+        {
+            return this.RoomNumber == other.RoomNumber;
+        }
     }//class
     internal class SingleRoom : Room , ISingleRoom
     {
@@ -105,6 +110,10 @@ namespace HotelManangementSystemLibrary
 
             Price = _singleRoomStandardValue + (hasTv ? _entertainments : 0); 
         }//ctor
+        public bool Equals(ISingleRoom other)
+        {
+            return base.Equals(other);
+        }
     }//Singleroom
 
     internal class DoubleRoom : Room , IDoubleRoom
@@ -116,5 +125,10 @@ namespace HotelManangementSystemLibrary
 
             Price = _doubleRoomStandardValue + (hasTv ? _entertainments : 0);
         }//ctor
+
+        public bool Equals(IDoubleRoom other)
+        {
+            return base.Equals(other);
+        }
     }//DoubleRoom
 }//namespace

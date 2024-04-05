@@ -6,7 +6,7 @@ namespace HotelManangementControlLibrary.Service
     internal static class Filter
     {
 
-        public static void FilterTypesOfRooms<T>(KryptonListBox lstbxRooms, IRooms _rooms) where T : IHotelModel
+        public static void FilterTypesOfRooms<T>(KryptonListBox lstbxRooms, IRooms _rooms) where T : IHotelModel<T>
         {
             lstbxRooms.Items.Clear();
             foreach (var item in _rooms)

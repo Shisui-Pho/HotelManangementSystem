@@ -17,5 +17,10 @@ namespace HotelManangementSystemLibrary
                 throw new UnauthorizedAccessException("Not enough access rights");
             Role = newrole;
         }//UpdateRole
+
+        public bool Equals(IServicePersonel other)
+        {
+            return base.Equals(other);
+        }//
     }//class
 }//namespace

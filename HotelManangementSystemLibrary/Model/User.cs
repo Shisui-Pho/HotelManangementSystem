@@ -46,6 +46,11 @@ namespace HotelManangementSystemLibrary
         {
             return this.UserID.CompareTo(((IUser)obj).UserID);
         }//CompareTo
+
+        public bool Equals(IUser other)
+        {
+            return other.UserID == this.UserID;
+        }//
     }//class
     internal class Guest : User, IGuest
     {
@@ -91,6 +96,11 @@ namespace HotelManangementSystemLibrary
         {
             return $"{this.UserID.PadRight(15)} {this.Name.PadRight(15)} {this.Surname}";
         }//ToString
+
+        public bool Equals(IGuest other)
+        {
+            return base.Equals(other);
+        }
     }//class
     internal class Administrator : User, IAdministrator
     {

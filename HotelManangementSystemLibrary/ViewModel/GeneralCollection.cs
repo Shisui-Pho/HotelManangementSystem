@@ -5,6 +5,7 @@ using System.Text;
 namespace HotelManangementSystemLibrary
 {
     internal abstract class GeneralCollection<T> : IGeneralCollection<T>
+        where T : IComparable, IEquatable<T>
     {
         //Protected variable made available to the uderlying classes
         protected List<T> _collection;
@@ -69,12 +70,11 @@ namespace HotelManangementSystemLibrary
         public void Update(T old, T _new)
         {
             int i = _collection.IndexOf(old);
-            if (i < 0)
-                throw new ArgumentException("Item was not found.");
+            //if (i < 0)
+            //    throw new ArgumentException("Item was not found.");
             _collection[i] = _new;
             UpdatedEvent?.Invoke(old, _new, new HotelEventArgs("", "") { IsHandled = false });
         }//Update
-
         public void ClearAllData()
         {
             _collection = new List<T>();

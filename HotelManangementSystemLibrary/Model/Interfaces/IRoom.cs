@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IRoom : IHotelModel, IEqualityComparer<IRoom>
+    public interface IRoom : IHotelModel<IRoom>, IEqualityComparer<IRoom>
     {
         string RoomNumber { get; }
         bool HasTV { get; }
@@ -18,10 +18,10 @@ namespace HotelManangementSystemLibrary
         void UpdateTelephoneNumber(string _number);
         void HideUnhideRoom();
     }//IRoom
-    public interface ISingleRoom : IRoom
+    public interface ISingleRoom : IRoom, IHotelModel<ISingleRoom>
     { 
     }//ISingleRoom
-    public interface IDoubleRoom : IRoom
+    public interface IDoubleRoom : IRoom, IHotelModel<IDoubleRoom>
     {
 
     }//IDoubleRoom

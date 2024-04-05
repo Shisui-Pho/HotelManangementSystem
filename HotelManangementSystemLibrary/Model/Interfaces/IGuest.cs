@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IGuest : IUser
+    public interface IGuest : IUser, IHotelModel<IGuest>
     {
          //To Add Guest Card
         IContactDetails ContactDetails { get; }

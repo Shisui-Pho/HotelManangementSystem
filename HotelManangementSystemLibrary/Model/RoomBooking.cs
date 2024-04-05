@@ -9,6 +9,7 @@ namespace HotelManangementSystemLibrary
         public string BookingID { get; private set; }
         public IGuest Guest { get; private set; }
         public IRoom Room { get; private set; }
+        public IRoomService RoomService { get; private set; }
         public DateTime DateBookedFor { get; private set; }
         public bool IsCheckedIn { get; private set; }
         public int DaysStayed { get; set; }
@@ -71,5 +72,19 @@ namespace HotelManangementSystemLibrary
             IsCheckedIn = true;
             DaysStayed++;
         }//CheckIn
+        public bool AssignServicePersonel(IServicePersonel personel)
+        {
+            if (RoomService != null)
+                return false;
+
+            IRoomService Service = new RoomService(this.Room, personel);
+            this.RoomService = Service;
+            return true;
+        }//AddRemoService
+
+        public bool Equals(IRoomBooking other)
+        {
+            return this.BookingID == other.BookingID;
+        }
     }//class
 }//namespace

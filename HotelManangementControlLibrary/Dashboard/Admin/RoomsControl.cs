@@ -145,7 +145,7 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             if (cmboRoomStatus.SelectedIndex == 2)
                 FilterStatusOfRooms(false);
         }//ApplyStatusFilter
-        private void FilterTypesOfRooms<T>() where T : IHotelModel
+        private void FilterTypesOfRooms<T>() where T : IHotelModel<T>
         {
             lstbxRooms.Items.Clear();
             foreach (var item in _rooms)

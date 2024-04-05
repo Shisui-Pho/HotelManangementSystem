@@ -13,5 +13,6 @@ namespace HotelManangementSystemLibrary
         Ticket? this[int index] { get; }
         void AddTicket(string _description);
         IEnumerator<Ticket> GetEnumerator();
+        void ChangeServicePersonel(IServicePersonel personel);
     }//interface
 }//namespace

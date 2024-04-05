@@ -5,7 +5,7 @@ namespace HotelManangementSystemLibrary
     internal static class IDGenerator
     {
         public static string GenerateID<T>(IGeneralCollection<T> collection)
-            where T : IHotelModel
+            where T : IHotelModel<T>
         { 
             T elem1 = collection[0];
             if (elem1 is IAdministrator)
