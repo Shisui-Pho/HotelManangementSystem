@@ -91,44 +91,9 @@ namespace HotelManangementSystemLibrary
             return x.RoomNumber == y.RoomNumber;
         }
 
-        public int GetHashCode(IRoom obj)
-        {
-            return obj.GetHashCode();
-        }
-
         public bool Equals(IRoom other)
         {
             return this.RoomNumber == other.RoomNumber;
         }
     }//class
-    internal class SingleRoom : Room , ISingleRoom
-    {
-        public SingleRoom(string _roomNumber, bool hasTv = false): base(_roomNumber)
-        {
-            HasTV = hasTv;
-            IsSingleRoom = true;
-
-            Price = _singleRoomStandardValue + (hasTv ? _entertainments : 0); 
-        }//ctor
-        public bool Equals(ISingleRoom other)
-        {
-            return base.Equals(other);
-        }
-    }//Singleroom
-
-    internal class DoubleRoom : Room , IDoubleRoom
-    {
-        public DoubleRoom(string _roomNumber, bool hasTv = false) : base(_roomNumber)
-        {
-            HasTV = hasTv;
-            IsSingleRoom = false;
-
-            Price = _doubleRoomStandardValue + (hasTv ? _entertainments : 0);
-        }//ctor
-
-        public bool Equals(IDoubleRoom other)
-        {
-            return base.Equals(other);
-        }
-    }//DoubleRoom
 }//namespace
