@@ -82,9 +82,9 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
                 return;
             }//end if
             IRoom room = (IRoom)lstbxRooms.Items[i];
-            if (Messages.AskYesOrNot($"You are about to {btnHideRoom.Text} {room.RoomNumber}.\nDou you wish to continue with this operation.", "Hide room")
-                 == DialogResult.No)
-                return;
+            //if (Messages.AskYesOrNot($"You are about to {btnHideRoom.Text} {room.RoomNumber}.\nDou you wish to continue with this operation.", "Hide room")
+            //     == DialogResult.No)
+            //    return;
             _rooms[room.RoomNumber].HideUnhideRoom();
             ApplyFilter();
         }//btnHideRoom_Click
@@ -121,9 +121,9 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             IRoom room = (IRoom)lstbxRooms.SelectedItem;
             if (room == null)
                 return;
-
+            picRoom.Image = room.IsRoomHidden ? Properties.Resources.single : Properties.Resources._double; 
             //Perfom some operations
-            btnHideRoom.Text = (room.IsRoomHidden) ? "Unhide Room" : "Hide Room";
+            //btnHideRoom.Text = (room.IsRoomHidden) ? "Unhide Room" : "Hide Room";
 
         }//lstbxRooms_SelectedIndexChanged
         #region Filter

@@ -8,7 +8,7 @@ namespace HotelManangementSystemLibrary
         where T : IComparable, IEquatable<T>
     {
         //Protected variable made available to the uderlying classes
-        protected List<T> _collection;
+        protected readonly List<T> _collection;
         //private data members
         private bool isSorted = false;
 
@@ -69,15 +69,22 @@ namespace HotelManangementSystemLibrary
 
         public void Update(T old, T _new)
         {
-            int i = _collection.IndexOf(old);
-            //if (i < 0)
-            //    throw new ArgumentException("Item was not found.");
+            int i = IndexOf(old);
+            if (i < 0)
+                throw new ArgumentException("Item was not found.");
             _collection[i] = _new;
             UpdatedEvent?.Invoke(old, _new, new HotelEventArgs("", "") { IsHandled = false });
         }//Update
         public void ClearAllData()
         {
-            _collection = new List<T>();
+            //_collection = new List<T>();
         }//ClearAllData
+        protected int IndexOf(T item)
+        {
+            for (int i = 0; i < _collection.Count; i++)
+                if (_collection[i].Equals(item))
+                    return i;
+            return -1;
+        }
     }////class
 }//namespace
