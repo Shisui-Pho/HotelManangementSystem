@@ -88,9 +88,7 @@ namespace HotelManangementSystemLibrary
 
         public string ToCSVFormat()
         {
-            string sAmount = this.Price.ToString("0.00");
-            if (sAmount.IndexOf(',') >= 0)
-                sAmount = sAmount.Replace(',', '.');
+            string sAmount = Service.ToStringMoney(this.Price);
             return String.Format($"{this.IsSingleRoom},{this.RoomNumber},{sAmount},{this.HasTV}");
         }//ToCSVFormat
 

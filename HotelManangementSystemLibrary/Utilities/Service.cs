@@ -57,5 +57,12 @@ namespace HotelManangementSystemLibrary
                 _amount = _amount.Replace(',', dec);
             return decimal.Parse(_amount);
         }//GetValueOfMoney
+        public static string ToStringMoney(decimal amount)
+        {
+            string sAmount = amount.ToString("0.00");
+            if (sAmount.IndexOf(',') >= 0)
+                sAmount = sAmount.Replace(',', '.');
+            return sAmount;
+        }//ToStringMoney
     }//class
 }//namespace
