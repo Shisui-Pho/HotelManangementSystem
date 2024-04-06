@@ -27,7 +27,21 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             AddNewRoomFunc = add;
             lstbxRooms.DisplayMember = "RoomNumber";
             RefreshListBoxAndComboBoxes();
+            SubScribeToEvents();
         }//ctor 01
+        private void SubScribeToEvents()
+        {
+            foreach (IRoom item in _rooms)
+            {
+                item.OnPriceChangedEvent += Item_OnPriceChangedEvent;
+            }
+        }
+
+        private void Item_OnPriceChangedEvent(IRoom room)
+        {
+            lblRoomPrice.Text = room.Price.ToString("C2");
+        }//Item_OnPriceChangedEvent
+
         private void RefreshListBoxAndComboBoxes()
         {
             cmboRoomStatus.Items.Clear();
@@ -85,7 +99,7 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             //if (Messages.AskYesOrNot($"You are about to {btnHideRoom.Text} {room.RoomNumber}.\nDou you wish to continue with this operation.", "Hide room")
             //     == DialogResult.No)
             //    return;
-            _rooms[room.RoomNumber].HideUnhideRoom();
+            _rooms[room.RoomNumber].MaintenanceSwitch();
             ApplyFilter();
         }//btnHideRoom_Click
 
@@ -121,10 +135,16 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             IRoom room = (IRoom)lstbxRooms.SelectedItem;
             if (room == null)
                 return;
-            picRoom.Image = room.IsRoomHidden ? Properties.Resources.single : Properties.Resources._double; 
+            picRoom.Image = room.IsRoomUnderMaintenance ? Properties.Resources.single : Properties.Resources._double;
             //Perfom some operations
-            //btnHideRoom.Text = (room.IsRoomHidden) ? "Unhide Room" : "Hide Room";
-
+            lblIsMaintenance.Text = room.IsRoomUnderMaintenance.ToString();
+            lblRoomNumber.Text = room.RoomNumber;
+            lblRoomPrice.Text = room.Price.ToString("C2");
+            lstbxFeatures.Items.Clear();
+            foreach (IFeature item in room.RoomFeatures.GetRoomFeatures())
+            {
+                lstbxFeatures.Items.Add(item);
+            }
         }//lstbxRooms_SelectedIndexChanged
         #region Filter
         private void ApplyFilter()
@@ -161,7 +181,7 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             ListBox lstBox = new ListBox();
             foreach (var item in lstbxRooms.Items)
             {
-                if (hidden == ((IRoom)item).IsRoomHidden)
+                if (hidden == ((IRoom)item).IsRoomUnderMaintenance)
                     lstBox.Items.Add((IRoom)item);
             }//end foreach
 
@@ -169,5 +189,32 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             lstbxRooms.Items.AddRange(lstBox.Items);
         }//FilterStatusOfRooms
         #endregion Filter
+
+        private void lstbxFeatures_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IFeature feature = (IFeature)lstbxFeatures.SelectedItem;
+            if (feature is null)
+                return;
+            lblFeatureName.Text = feature.FeatureName;
+            lblFeaturePrice.Text = feature.Price.ToString("C2");
+            txtFeatureDescription.Text = feature.Description;
+        }//lstbxFeatures_SelectedIndexChanged
+
+        private void btnAddFeature_Click(object sender, EventArgs e)
+        {
+            //A feature will be added
+        }//btnAddFeature_Click
+
+        private void btnRemoveFeature_Click(object sender, EventArgs e)
+        {
+            //A feature will be removed
+            IFeature f = (IFeature)lstbxFeatures.SelectedItem;
+            if (f is null)
+                return;
+
+            string featureID = f.FeatureID;
+            IRoom room = (IRoom)lstbxRooms.SelectedItem;
+            room.RoomFeatures.RemoveFeature(featureID);
+        }//btnRemoveFeature_Click
     }//class
 }//namespace
