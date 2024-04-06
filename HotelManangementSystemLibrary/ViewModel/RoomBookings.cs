@@ -41,7 +41,8 @@ namespace HotelManangementSystemLibrary
                 item.ChangeBookingDate(item.DateBookedFor.AddDays(5), item.NumberOfDaysToStay);
             }
             //throw new ArgumentException("Room has already been booked for that date.");
-            item.Guest.Account.AddDept(item.BookingFee.BookingCost, "Booked room");
+            if (item.BookingFee.AmountPaid <= 0)
+                item.Guest.Account.AddDept(item.BookingFee.BookingCost, "Booked room");
             base._collection.Add(item);
         }//ICollectionHotel<IRoomBooking>.Add
         private int FindIndex(IRoomBooking booking)
