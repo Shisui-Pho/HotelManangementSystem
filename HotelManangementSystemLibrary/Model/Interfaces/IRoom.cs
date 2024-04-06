@@ -11,12 +11,18 @@ namespace HotelManangementSystemLibrary
         bool IsSingleRoom { get; }
         decimal Price { get; set; }
         string TelephoneNumber { get; }
-        bool IsRoomHidden { get; }
+        bool IsRoomUnderMaintenance { get; }
+        RoomFeatures RoomFeatures { get; }
+        event delOnPriceChanged OnPriceChangedEvent;
         void ChangeRoomNumber(string _newRoomNumber);
         void AddTV();
         void RemoveTV();
         void UpdateTelephoneNumber(string _number);
-        void HideUnhideRoom();
+        /// <summary>
+        /// This will switch the maintenance status of the room,
+        ///     if it was false, it will be turned true, otheriwse false.
+        /// </summary>
+        void MaintenanceSwitch();
     }//IRoom
     public interface ISingleRoom : IRoom, IHotelModel<ISingleRoom>
     { 

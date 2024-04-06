@@ -22,7 +22,7 @@ namespace HotelManangementControlLibrary.Service
             ListBox lstBox = new ListBox();
             foreach (var item in lstbxRooms.Items)
             {
-                if (hidden == ((IRoom)item).IsRoomHidden)
+                if (hidden == ((IRoom)item).IsRoomUnderMaintenance)
                     lstBox.Items.Add((IRoom)item);
             }//end foreach
 
