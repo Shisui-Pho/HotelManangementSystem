@@ -14,5 +14,6 @@ namespace HotelManangementSystemLibrary
         void SetCellNumber(string _cellnumber);
         void SetEmergencyNumber(string _emergency);
         void SetContactDetails(IContactDetails details);
+        string ToGuestCSVFormat();
     }//IGuest
 }//namespace

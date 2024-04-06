@@ -37,7 +37,7 @@ namespace HotelManangementSystemLibrary
         }//SetEmergencyNumber
 
         public void SetContactDetails(IContactDetails details) => ContactDetails = details;
-        public new string ToCSVFormat()
+        public string ToGuestCSVFormat()
         {
             string balance = Service.ToStringMoney(this.Account.CurrentBalance);
             string amountToPay = Service.ToStringMoney(this.Account.AmountOwing);
