@@ -31,6 +31,16 @@ namespace HotelManangementSystemLibrary.Factory
             gs.SetIdForExistingUser(user.UserID);
             return gs;
         }//CreateGuest
+        internal static IGuest CreateGuest(IUser user, decimal amountToPay, decimal balance)
+        {
+            Guest gs = new Guest(user.Name, user.Surname, user.DOB);
+            gs.SetPassword(user.Password);
+            gs.SetUsername(user.UserName);
+            gs.SetIdForExistingUser(user.UserID);
+            gs.Account.AddDept(amountToPay, "Current Dept");
+            gs.Account.DepositAmount(balance, "Current Balance");
+            return gs;
+        }//CreateGuest
         internal static IUser CreateUser(TypeOfUser type, string _name, string _surname, DateTime dob,string userID)
         {
             switch (type)

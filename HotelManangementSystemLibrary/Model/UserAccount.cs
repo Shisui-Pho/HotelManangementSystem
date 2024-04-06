@@ -23,6 +23,16 @@
             BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
             return true;
         }//Deposit amount
+        public bool DepositAmount(decimal amount, string sMsg)
+        {
+            if (amount < 0)
+                return false;
+            TransactionArgs args = new TransactionArgs(sMsg, amount, BalanceAffected.CurrentBalance);
+            CurrentBalance += amount;
+            OnTransactionEvent?.Invoke(args);
+            BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
+            return true;
+        }//Deposit amount
 
         /// <summary>
         /// 

@@ -9,6 +9,7 @@
         event delOnTrasnaction OnTransactionEvent;
         void AddDept(decimal amount, string reason);
         bool DepositAmount(decimal amount);
+        bool DepositAmount(decimal amount, string sMsg);
         decimal PayAllDepts();
         decimal PayForBooking(decimal amount);
         bool WithdrawAmount(decimal amount);
