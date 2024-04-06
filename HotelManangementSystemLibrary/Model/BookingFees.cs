@@ -15,6 +15,13 @@ namespace HotelManangementSystemLibrary
             AmoutToPay = bookingAmount;
             AmountPaid = 0m;
         }
+        internal BookingFees(DateTime date, decimal cost, decimal amountoPay, decimal amountPaid)
+        {
+            this._bookingDate = date;
+            this.BookingCost = cost;
+            this.AmountPaid = amountPaid;
+            this.AmoutToPay = amountoPay;
+        }
         public bool PayForBooking(decimal amount, out decimal change)
         {
             change = 0;
