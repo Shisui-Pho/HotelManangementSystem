@@ -36,7 +36,10 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
             {
                 string[] fields = record.Split(',');
                 IUser user = users.GetUser(fields[0]);
-                IGuest guest = UsersFactory.CreateGuest(user);
+
+                decimal mBalance = Service.GetValueOfMoney(fields[4]);
+                decimal mDept = Service.GetValueOfMoney(fields[5]);
+                IGuest guest = UsersFactory.CreateGuest(user, mBalance,mDept);
                 guest.SetCellNumber(fields[1]);
                 guest.SetEmailAddress(fields[2]);
                 guest.SetEmergencyNumber(fields[3]);

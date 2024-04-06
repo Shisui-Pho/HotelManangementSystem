@@ -39,12 +39,24 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 IRoom room = rooms.FindRoom(fields[2]);
                 IGuest guest = guests.FindGuest(fields[1]);
 
-                IRoomBooking booking = BookingsFactory.CreateBooking(guest, room, DateTime.ParseExact(fields[3], "dd/MM/yyyy", null),int.Parse(fields[4]));
+                DateTime date = DateTime.ParseExact(fields[3], "dd/MM/yyyy", null);
+                decimal mAmountToPay = Service.GetValueOfMoney(fields[5]);
+                decimal mAmountPaid = Service.GetValueOfMoney(fields[6]);
+                decimal mCost = Service.GetValueOfMoney(fields[7]);
 
-                bookings.Add(booking);
+
+                IBookingFees fees = new BookingFees(date, mCost, mAmountToPay, mAmountPaid);
+
+                IRoomBooking booking = BookingsFactory.CreateBookingWithFees(guest, room, date, fees,int.Parse(fields[4]));
+
+                bookings.AddExisting(booking);
             }//end foreach
 
             return bookings;
         }//LoadBookings
+        public static void AddExisting(this IRoomBookings bookings, IRoomBooking book)
+        {
+            bookings.Add(book);
+        }
     }//class
 }//namespace
