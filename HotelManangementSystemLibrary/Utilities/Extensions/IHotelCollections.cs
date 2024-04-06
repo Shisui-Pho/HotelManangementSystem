@@ -11,7 +11,6 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
             StringBuilder bl = new StringBuilder();
             foreach (T item in data)
                 bl.AppendLine(item.ToCSVFormat());
-
             File.WriteAllText(file, bl.ToString());
         }//SaveData
     }//class
