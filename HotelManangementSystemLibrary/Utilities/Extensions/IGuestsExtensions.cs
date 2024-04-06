@@ -17,8 +17,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
             StringBuilder bl = new StringBuilder();
             foreach (IGuest guest in guests)
             {
-                IContactDetails det = guest.ContactDetails;
-                bl.AppendLine(String.Format($"{guest.UserID},{det.CellphoneNumber},{det.EmailAddress},{det.EmergencyNumber}"));
+                bl.AppendLine(((IHotelModel<IGuest>)guest).ToCSVFormat());
             }
             File.WriteAllText(file, bl.ToString());
         }//SaveGuests

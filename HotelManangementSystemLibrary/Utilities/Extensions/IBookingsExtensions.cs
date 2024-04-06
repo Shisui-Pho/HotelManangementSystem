@@ -15,7 +15,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 return;
             StringBuilder bl = new StringBuilder();
             foreach (IRoomBooking booking in bookings)
-                bl.AppendLine(string.Format($"{booking.BookingID},{booking.Guest.UserID},{booking.Room.RoomNumber},{booking.DateBookedFor.ToString("dd/MM/yyyy")},{booking.NumberOfDaysToStay.ToString()}"));
+                bl.AppendLine(booking.ToCSVFormat());
             File.WriteAllText(file, bl.ToString());
         }//SaveBooking
 

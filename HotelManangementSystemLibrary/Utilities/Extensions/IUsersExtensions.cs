@@ -15,7 +15,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 return;
             StringBuilder bl = new StringBuilder();
             foreach (IUser user in users)
-                bl.AppendLine($"{user.UserType.ToString()},{user.UserID},{user.UserName},{user.Password},{user.Name},{user.Surname},{user.DOB.ToString("dd/MM/yyyy")}");
+                bl.AppendLine(user.ToCSVFormat());
             File.WriteAllText(file, bl.ToString());
         }//SaveUsers
 

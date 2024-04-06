@@ -39,7 +39,7 @@ namespace HotelManangementSystemLibrary
 
         public string ToCSVFormat()
         {
-            return String.Format($"{UserType.ToString()};{UserID};{UserName};{Password};{Name};{Surname};{DOB.ToString("dd/MM/yyyy")}");
+            return $"{this.UserType.ToString()},{this.UserID},{this.UserName},{this.Password},{this.Name},{this.Surname},{this.DOB.ToString("dd/MM/yyyy")}";
         }//ToCSVFormat
 
         public int CompareTo(object obj)
@@ -90,7 +90,7 @@ namespace HotelManangementSystemLibrary
         public void SetContactDetails(IContactDetails details) => ContactDetails = details;
         public new string ToCSVFormat()
         {
-            return String.Format($"{UserID};{ContactDetails.CellphoneNumber};{ContactDetails.EmailAddress};{ContactDetails.EmergencyNumber}");
+            return String.Format($"{this.UserID},{this.ContactDetails.CellphoneNumber},{this.ContactDetails.EmailAddress},{this.ContactDetails.EmergencyNumber}");
         }//ToCSVFormat
         public override string ToString()
         {

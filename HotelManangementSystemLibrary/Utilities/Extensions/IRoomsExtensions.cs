@@ -15,10 +15,8 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
             StringBuilder bl = new StringBuilder();
             foreach (IRoom room in rooms)
             {
-                string sAmount = room.Price.ToString("0.00");
-                if (sAmount.IndexOf(',') >= 0)
-                    sAmount = sAmount.Replace(',', '.');
-                bl.AppendLine(String.Format($"{room.IsSingleRoom},{room.RoomNumber},{sAmount},{room.HasTV}"));
+
+                bl.AppendLine(room.ToCSVFormat());
             }
             File.WriteAllText(file, bl.ToString());
         }//SaveRooms

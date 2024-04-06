@@ -56,7 +56,7 @@ namespace HotelManangementSystemLibrary
 
         public string ToCSVFormat()
         {
-            return string.Format($"{BookingID};{Guest.UserID};{Room.RoomNumber};{DateBookedFor.ToString("dd/MM/yyyy")};{NumberOfDaysToStay.ToString()}");
+            return string.Format($"{this.BookingID},{this.Guest.UserID},{this.Room.RoomNumber},{this.DateBookedFor.ToString("dd/MM/yyyy")},{this.NumberOfDaysToStay.ToString()}");
         }//ToCSVFormat
 
         public int CompareTo(object obj)
