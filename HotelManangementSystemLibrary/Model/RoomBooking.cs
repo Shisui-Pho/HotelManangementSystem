@@ -34,7 +34,7 @@ namespace HotelManangementSystemLibrary
             BookingFee = new BookingFees(date, Room.Price * numberOfDays);
         }//RoomBooking
         internal void SetBookingID(string _id) => BookingID = _id;
-
+        internal void SetBookingFees(IBookingFees fees) => this.BookingFee = fees;
         public void ChangeBookingDate(DateTime date, int numberOfDays = 1)
         {
             if (numberOfDays > maxDays)
@@ -42,28 +42,12 @@ namespace HotelManangementSystemLibrary
             DateBookedFor = date;
             NumberOfDaysToStay = numberOfDays;
         }//ChangeBooking
-        public override string ToString()
-        {
-            return DateBookedFor.ToString("dd MMMM yyyy"); //Room.RoomNumber + "\t" + Guest.Name;
-        }
-
         public void ChangeRoom(IRoom room)
         {
             if (room is null)
                 return;
             Room = room;
         }//ChangeRoom
-
-        public string ToCSVFormat()
-        {
-            return string.Format($"{this.BookingID},{this.Guest.UserID},{this.Room.RoomNumber},{this.DateBookedFor.ToString("dd/MM/yyyy")},{this.NumberOfDaysToStay.ToString()}");
-        }//ToCSVFormat
-
-        public int CompareTo(object obj)
-        {
-            return this.BookingID.CompareTo(((IRoomBooking)obj).BookingID);
-        }//CompareTo
-
         public void CheckIn()
         {
             if (IsCheckedIn)
@@ -81,10 +65,24 @@ namespace HotelManangementSystemLibrary
             this.RoomService = Service;
             return true;
         }//AddRemoService
-
-        public bool Equals(IRoomBooking other)
+        public string ToCSVFormat()
         {
-            return this.BookingID == other.BookingID;
+            string sAmounttoPay = Service.ToStringMoney(this.BookingFee.AmoutToPay);
+            string sAmountPayed = Service.ToStringMoney(this.BookingFee.AmountPaid);
+            string sBookingCost = Service.ToStringMoney(this.BookingFee.BookingCost);
+            string serviceID = (RoomService == null) ? "None" : RoomService.Personel.UserID;
+
+            return string.Format($"{this.BookingID},{this.Guest.UserID},{this.Room.RoomNumber}," +
+                $"{this.DateBookedFor.ToString("dd/MM/yyyy")},{this.NumberOfDaysToStay.ToString()}," +
+                $"{sAmounttoPay},{sAmountPayed},{sBookingCost}, {serviceID}");
+        }//ToCSVFormat
+        public override string ToString()
+        {
+            return DateBookedFor.ToString("dd MMMM yyyy");
         }
+        public int CompareTo(object obj) =>
+            this.BookingID.CompareTo(((IRoomBooking)obj).BookingID);
+        public bool Equals(IRoomBooking other) =>
+            this.BookingID == other.BookingID;
     }//class
 }//namespace
