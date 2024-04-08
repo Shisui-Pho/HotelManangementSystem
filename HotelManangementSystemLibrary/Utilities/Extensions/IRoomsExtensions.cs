@@ -37,6 +37,20 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 if (bool.Parse(fields[3]))
                     room.AddTV();
                 room.Price = Service.GetValueOfMoney(fields[2]);
+                
+                string featurestring = fields[4];
+                featurestring = featurestring.Remove(0, 1);
+                featurestring = featurestring.Remove(featurestring.Length - 1);
+
+                IFeatures ft = Features.GetFeaturesInstance();
+
+                string[] fID = featurestring.Split(' ');
+                foreach (var item in fID)
+                {
+                    IFeature f = ft.GetFeature(item);
+                    if(f != null)
+                        room.RoomFeatures.AddFeature(f);
+                }
                 rooms.Add(room);
             }//end foreach
             return rooms;
