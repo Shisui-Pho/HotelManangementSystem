@@ -9,6 +9,7 @@ namespace HotelManangementSystemLibrary
     {
         private List<IFeature> features;
         internal event delOnFeaturesModified OnFeaturesModified;
+        public RoomFeatures() => features = new List<IFeature>();
         public IEnumerable<Feature> GetRoomFeatures()
         {
             foreach (Feature item in features)
@@ -31,5 +32,17 @@ namespace HotelManangementSystemLibrary
             features.Remove(temp);
             OnFeaturesModified?.Invoke(temp, false);
         }//
+        public override string ToString()
+        {
+            string s = "{";
+            foreach (var item in features)
+            {
+                s += item.FeatureID + " ";
+            }
+            if(s.Length > 1)
+                s = s.Remove(s.Length - 1);
+            s += "}";
+            return s;
+        }//ToString
     }//class
 }//namespace

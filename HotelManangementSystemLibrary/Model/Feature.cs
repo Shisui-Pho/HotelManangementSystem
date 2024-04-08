@@ -19,7 +19,7 @@ namespace HotelManangementSystemLibrary
             Price = price;
             count++;
         }//Room features
-
+        internal void SetID(string id) => FeatureID = id;
         public string ToCSVFormat()
         {
             return FeatureID + "," + FeatureName + "," + Description + "," + Price.ToString("0.00");

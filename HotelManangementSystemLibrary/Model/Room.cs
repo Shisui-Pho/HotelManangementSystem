@@ -5,9 +5,8 @@ namespace HotelManangementSystemLibrary
     internal abstract class Room : IRoom
     {
         //Data members        
-        protected static decimal _doubleRoomStandardValue = 400m;
-        protected static decimal _singleRoomStandardValue = 550m;
-        protected static decimal _entertainments = 50m;
+        protected static decimal _doubleRoomStandardValue = 800m;
+        protected static decimal _singleRoomStandardValue = 1200m;
 
         public event delOnPriceChanged OnPriceChangedEvent;
 
@@ -53,14 +52,14 @@ namespace HotelManangementSystemLibrary
             if (HasTV)
                 return;
             HasTV = true;
-            Price += _entertainments;
+            //Price += _entertainments;
         }//AddTV
         public void RemoveTV()
         {
             if (!HasTV)
                 return;
             HasTV = false;
-            Price -= _entertainments;
+            //Price -= _entertainments;
         }//RemoveTV
 
         public void SetPrice(decimal amount)
@@ -89,7 +88,7 @@ namespace HotelManangementSystemLibrary
         public string ToCSVFormat()
         {
             string sAmount = Service.ToStringMoney(this.Price);
-            return String.Format($"{this.IsSingleRoom},{this.RoomNumber},{sAmount},{this.HasTV}");
+            return $"{this.IsSingleRoom},{this.RoomNumber},{sAmount},{this.HasTV},{RoomFeatures.ToString()}";
         }//ToCSVFormat
 
         public int CompareTo(object obj)

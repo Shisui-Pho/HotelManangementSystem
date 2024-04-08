@@ -26,15 +26,25 @@ namespace HotelManangementSystemUI
         }
         private static void AddTestRooms(IDatabaseService ser)
         {
+            IFeatures fetures = Features.GetFeaturesInstance();
             IRoom room = RoomFactory.CreateRoom(TypeOfRoom.SingleRoom, "Room 01");
             room.AddTV();
             ser.Rooms.Add(room);
+            room.RoomFeatures.AddFeature(fetures[0]);
+            room.RoomFeatures.AddFeature(fetures[2]);
+            room.RoomFeatures.AddFeature(fetures[3]);
 
             room = RoomFactory.CreateRoom(TypeOfRoom.SharingRoom, "Room 02");
             ser.Rooms.Add(room);
+            room.RoomFeatures.AddFeature(fetures[0]);
+            room.RoomFeatures.AddFeature(fetures[2]);
+            room.RoomFeatures.AddFeature(fetures[3]);
 
             room = RoomFactory.CreateRoom(TypeOfRoom.SingleRoom, "Room 03");
             ser.Rooms.Add(room);
+            room.RoomFeatures.AddFeature(fetures[0]);
+            room.RoomFeatures.AddFeature(fetures[2]);
+            room.RoomFeatures.AddFeature(fetures[3]);
 
             room = RoomFactory.CreateRoom(TypeOfRoom.SharingRoom, "Room 04");
             ser.Rooms.Add(room);
