@@ -14,7 +14,7 @@ namespace HotelManangementSystemLibrary
         void Add(T item);
         void Remove(T item);
         void Update(T old, T _new);
-        void BatchSort();
+        void Sort();
         IEnumerator<T> GetEnumerator();
     }//interface
 }//namespace

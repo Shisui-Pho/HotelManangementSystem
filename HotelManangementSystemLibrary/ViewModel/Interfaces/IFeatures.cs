@@ -1,7 +1,11 @@
-﻿namespace HotelManangementSystemLibrary
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HotelManangementSystemLibrary
 {
-    internal class IFeatures : GeneralCollection<IFeature>, IGeneralCollection<IFeature>
+    public interface IFeatures : IGeneralCollection<IFeature>, IDisposable
     {
-        
-    }//interface
-}//
+        IFeature GetFeature(string id);
+    }
+}
