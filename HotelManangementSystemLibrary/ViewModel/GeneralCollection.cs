@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    internal abstract class GeneralCollection<T> : IGeneralCollection<T>
+    public abstract class GeneralCollection<T> : IGeneralCollection<T>
         where T : IComparable, IEquatable<T>
     {
         //Protected variable made available to the uderlying classes
@@ -45,7 +45,7 @@ namespace HotelManangementSystemLibrary
             _collection.Add(item);
         }//Add
 
-        public void BatchSort()
+        public void Sort()
         {
             if (!isSorted)
             {
