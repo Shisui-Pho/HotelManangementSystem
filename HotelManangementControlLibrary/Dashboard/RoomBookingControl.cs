@@ -10,22 +10,37 @@ namespace HotelManangementControlLibrary.Dashboard
 {
     public partial class RoomBookingControl : UserControl
     {
+        //function to handle booking of a room
         private readonly delBookRoom funcBookRoom;
-        private readonly IDatabaseService database;
+
+        //injected through the contructor
+        private readonly IRooms _rooms;
+        private readonly IRoomBookings _bookings;
+
+        //field to hold the selected room
         private IRoom selectedRoom;
+
         public RoomBookingControl(IDatabaseService database, delBookRoom bookroom_method)
         {
             InitializeComponent();
-            this.database = database;
+            //this.database = database;
             funcBookRoom = bookroom_method;
             //Set the display members
             lstRooms.DisplayMember = "RoomNumber";
             RefreshLists();
         }//ctor 01
-        public RoomBookingControl()
+        public RoomBookingControl(IRoomBookings bookings, IRooms rooms, delBookRoom bookroom_method)
         {
             InitializeComponent();
-        }//
+            funcBookRoom = bookroom_method;
+
+            //Set the display members
+            lstRooms.DisplayMember = "RoomNumber";
+            RefreshLists();
+
+            this._rooms = rooms;
+            this._bookings = bookings;
+        }//ctor 02
         private void btnBookRoom_Click(object sender, EventArgs e)
         {
             //Book the room
@@ -46,7 +61,7 @@ namespace HotelManangementControlLibrary.Dashboard
             {
                 //Start with the rooms first
                 lstRooms.Items.Clear();
-                foreach (IRoom room in database.Rooms)
+                foreach (IRoom room in _rooms)
                 {
                     if(!room.IsRoomUnderMaintenance)
                         lstRooms.Items.Add(room);
@@ -57,7 +72,7 @@ namespace HotelManangementControlLibrary.Dashboard
                 //Filter rooms booked
                 foreach (var room in lstRooms.Items)
                 {
-                    if (database.Bookings.IsRoomBooked((IRoom)room, dtNotBookedOn.Value))
+                    if (_bookings.IsRoomBooked((IRoom)room, dtNotBookedOn.Value))
                         lstRooms.Items.Remove((IRoom)room);
                 }//end for each
             }//end if
@@ -75,7 +90,7 @@ namespace HotelManangementControlLibrary.Dashboard
             else
                 picRoom.Image = Properties.Resources._double;
             //Add room bookings
-            AddBookings(database.Bookings.HasBookings(selectedRoom));
+            AddBookings(_bookings.HasBookings(selectedRoom));
         }//lstRooms_SelectedIndexChanged
         private void AddBookings(IRoomBooking[] bookings)
         {
@@ -108,7 +123,7 @@ namespace HotelManangementControlLibrary.Dashboard
             where T : IRoom
         {
             lstRooms.Items.Clear();
-            foreach (T room in database.Rooms.GetRoomFilter<T>())
+            foreach (T room in _rooms.GetRoomFilter<T>())
             {
                 if(!room.IsRoomUnderMaintenance)
                     lstRooms.Items.Add(room);
