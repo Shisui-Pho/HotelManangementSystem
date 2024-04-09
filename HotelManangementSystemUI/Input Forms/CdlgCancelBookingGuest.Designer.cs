@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CdlgCancelBookingGuest));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.rtxtOther = new System.Windows.Forms.RichTextBox();
             this.cmboCancellationReason = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnConfirm = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +103,17 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(535, 740);
             this.panel4.TabIndex = 26;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(232, 634);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 25);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "*";
             // 
             // rtxtOther
             // 
@@ -410,17 +421,6 @@
             this.btnCancel.TabIndex = 22;
             this.btnCancel.Values.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(232, 634);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 25);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "*";
             // 
             // CdlgCancelBookingGuest
             // 

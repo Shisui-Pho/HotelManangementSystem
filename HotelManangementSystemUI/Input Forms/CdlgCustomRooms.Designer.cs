@@ -31,18 +31,24 @@
             this.btnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radSingle = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
             this.radDouble = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.txtRoomNumber = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.radSingle = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.pln = new System.Windows.Forms.Panel();
+            this.txtRoomNumber = new System.Windows.Forms.TextBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.lblStandardPrice = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.picRoom = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            this.pln.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picRoom)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
             this.btnAdd.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAdd.Location = new System.Drawing.Point(12, 210);
+            this.btnAdd.Location = new System.Drawing.Point(7, 355);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(188, 47);
             this.btnAdd.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
@@ -75,7 +81,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(229, 210);
+            this.btnCancel.Location = new System.Drawing.Point(221, 355);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(167, 47);
             this.btnCancel.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
@@ -106,50 +112,37 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pln);
             this.groupBox1.Controls.Add(this.radDouble);
             this.groupBox1.Controls.Add(this.radSingle);
             this.groupBox1.Location = new System.Drawing.Point(12, 71);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(210, 51);
+            this.groupBox1.Size = new System.Drawing.Size(371, 207);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Room Type";
             // 
-            // radSingle
-            // 
-            this.radSingle.Location = new System.Drawing.Point(7, 20);
-            this.radSingle.Name = "radSingle";
-            this.radSingle.Size = new System.Drawing.Size(92, 20);
-            this.radSingle.TabIndex = 0;
-            this.radSingle.Values.Text = "Single Room";
-            // 
             // radDouble
             // 
-            this.radDouble.Location = new System.Drawing.Point(105, 19);
+            this.radDouble.AutoSize = false;
+            this.radDouble.Location = new System.Drawing.Point(13, 79);
             this.radDouble.Name = "radDouble";
-            this.radDouble.Size = new System.Drawing.Size(98, 20);
+            this.radDouble.Size = new System.Drawing.Size(116, 50);
+            this.radDouble.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDouble.TabIndex = 0;
             this.radDouble.Values.Text = "Double Room";
+            this.radDouble.Click += new System.EventHandler(this.radDouble_Click);
             // 
-            // txtRoomNumber
+            // radSingle
             // 
-            this.txtRoomNumber.Location = new System.Drawing.Point(147, 17);
-            this.txtRoomNumber.Multiline = true;
-            this.txtRoomNumber.Name = "txtRoomNumber";
-            this.txtRoomNumber.Size = new System.Drawing.Size(207, 33);
-            this.txtRoomNumber.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txtRoomNumber.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
-            this.txtRoomNumber.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
-            this.txtRoomNumber.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.txtRoomNumber.StateCommon.Border.Rounding = 2;
-            this.txtRoomNumber.StateCommon.Border.Width = 1;
-            this.txtRoomNumber.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtRoomNumber.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRoomNumber.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5);
-            this.txtRoomNumber.TabIndex = 17;
-            this.txtRoomNumber.Text = "room number here";
+            this.radSingle.AutoSize = false;
+            this.radSingle.Location = new System.Drawing.Point(13, 19);
+            this.radSingle.Name = "radSingle";
+            this.radSingle.Size = new System.Drawing.Size(110, 50);
+            this.radSingle.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radSingle.TabIndex = 0;
+            this.radSingle.Values.Text = "Single Room";
+            this.radSingle.Click += new System.EventHandler(this.radDouble_Click);
             // 
             // kryptonLabel7
             // 
@@ -161,24 +154,68 @@
             this.kryptonLabel7.TabIndex = 18;
             this.kryptonLabel7.Values.Text = "Room Number";
             // 
+            // pln
+            // 
+            this.pln.Controls.Add(this.picRoom);
+            this.pln.Location = new System.Drawing.Point(179, 19);
+            this.pln.Name = "pln";
+            this.pln.Size = new System.Drawing.Size(180, 180);
+            this.pln.TabIndex = 1;
+            // 
+            // txtRoomNumber
+            // 
+            this.txtRoomNumber.Location = new System.Drawing.Point(128, 27);
+            this.txtRoomNumber.Multiline = true;
+            this.txtRoomNumber.Name = "txtRoomNumber";
+            this.txtRoomNumber.Size = new System.Drawing.Size(243, 28);
+            this.txtRoomNumber.TabIndex = 20;
+            // 
             // kryptonLabel1
             // 
-            this.kryptonLabel1.AutoSize = false;
-            this.kryptonLabel1.Location = new System.Drawing.Point(75, 128);
+            this.kryptonLabel1.Location = new System.Drawing.Point(14, 307);
             this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(264, 68);
-            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel1.StateCommon.ShortText.TextH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Center;
-            this.kryptonLabel1.TabIndex = 19;
-            this.kryptonLabel1.Values.Text = "More things to be added";
+            this.kryptonLabel1.Size = new System.Drawing.Size(108, 22);
+            this.kryptonLabel1.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel1.TabIndex = 18;
+            this.kryptonLabel1.Values.Text = "Standard Price";
+            // 
+            // lblStandardPrice
+            // 
+            this.lblStandardPrice.Location = new System.Drawing.Point(221, 307);
+            this.lblStandardPrice.Name = "lblStandardPrice";
+            this.lblStandardPrice.Size = new System.Drawing.Size(52, 22);
+            this.lblStandardPrice.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblStandardPrice.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStandardPrice.TabIndex = 18;
+            this.lblStandardPrice.Values.Text = "R0,00";
+            // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(-2, 281);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(399, 6);
+            this.label1.TabIndex = 21;
+            // 
+            // picRoom
+            // 
+            this.picRoom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picRoom.Location = new System.Drawing.Point(0, 0);
+            this.picRoom.Name = "picRoom";
+            this.picRoom.Size = new System.Drawing.Size(180, 180);
+            this.picRoom.TabIndex = 0;
+            this.picRoom.TabStop = false;
             // 
             // CdlgCustomRooms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 272);
-            this.Controls.Add(this.kryptonLabel1);
+            this.ClientSize = new System.Drawing.Size(395, 409);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRoomNumber);
+            this.Controls.Add(this.lblStandardPrice);
+            this.Controls.Add(this.kryptonLabel1);
             this.Controls.Add(this.kryptonLabel7);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAdd);
@@ -188,7 +225,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modify Rooms";
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.pln.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picRoom)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,8 +239,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonRadioButton radDouble;
         private ComponentFactory.Krypton.Toolkit.KryptonRadioButton radSingle;
-        public ComponentFactory.Krypton.Toolkit.KryptonTextBox txtRoomNumber;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
+        private System.Windows.Forms.Panel pln;
+        private System.Windows.Forms.TextBox txtRoomNumber;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblStandardPrice;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox picRoom;
     }
 }

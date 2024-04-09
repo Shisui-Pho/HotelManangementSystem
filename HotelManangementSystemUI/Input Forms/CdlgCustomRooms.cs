@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ComponentFactory.Krypton.Toolkit;
 namespace HotelManangementSystemUI.Input_Forms
 {
     public partial class CdlgCustomRooms : Form
@@ -34,5 +34,22 @@ namespace HotelManangementSystemUI.Input_Forms
             //Set the room property
             Room = room;
         }//btnAdd_Click
+
+        private void radDouble_Click(object sender, EventArgs e)
+        {
+            KryptonRadioButton clicked = (KryptonRadioButton)sender;
+
+            if (clicked == radSingle)
+            {
+                picRoom.Image = Properties.Resources.single;
+                lblStandardPrice.Text = Standard.SingleRoomPrice.ToString("C2");
+            }
+            else
+            {
+                picRoom.Image = Properties.Resources._double;
+                lblStandardPrice.Text = Standard.DoubleRoomPrice.ToString("C2");
+            }
+                
+        }//radDouble_Click
     }//class
 }//namespace
