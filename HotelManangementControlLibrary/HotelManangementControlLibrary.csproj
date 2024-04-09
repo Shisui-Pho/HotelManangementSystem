@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custome Message Box Form\CdlgDisplayRoomInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custome Message Box Form\CdlgDisplayRoomInfo.Designer.cs">
+      <DependentUpon>CdlgDisplayRoomInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\Admin\BookingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,6 +119,18 @@
       <DependentUpon>RoomBookingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Input Forms\CdlgAddRoomFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input Forms\CdlgAddRoomFeature.Designer.cs">
+      <DependentUpon>CdlgAddRoomFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Input Forms\CdlgNewFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input Forms\CdlgNewFeature.Designer.cs">
+      <DependentUpon>CdlgNewFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="Input Forms\CdlgPayBooking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +162,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Custome Message Box Form\CdlgDisplayRoomInfo.resx">
+      <DependentUpon>CdlgDisplayRoomInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Admin\BookingsControl.resx">
       <DependentUpon>BookingsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\RoomBookingControl.resx">
       <DependentUpon>RoomBookingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input Forms\CdlgAddRoomFeature.resx">
+      <DependentUpon>CdlgAddRoomFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input Forms\CdlgNewFeature.resx">
+      <DependentUpon>CdlgNewFeature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Input Forms\CdlgPayBooking.resx">
       <DependentUpon>CdlgPayBooking.cs</DependentUpon>
