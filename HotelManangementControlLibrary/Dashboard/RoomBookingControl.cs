@@ -4,12 +4,15 @@ using System.Windows.Forms;
 using HotelManangementControlLibrary.Service;
 using HotelManangementSystemLibrary;
 using ComponentFactory.Krypton.Toolkit;
+using HotelManangementControlLibrary.Custome_Message_Box_Form;
+
 namespace HotelManangementControlLibrary.Dashboard
 {
     public partial class RoomBookingControl : UserControl
     {
         private readonly delBookRoom funcBookRoom;
         private readonly IDatabaseService database;
+        private IRoom selectedRoom;
         public RoomBookingControl(IDatabaseService database, delBookRoom bookroom_method)
         {
             InitializeComponent();
@@ -26,13 +29,12 @@ namespace HotelManangementControlLibrary.Dashboard
         private void btnBookRoom_Click(object sender, EventArgs e)
         {
             //Book the room
-            int i = lstRooms.SelectedIndex;
-            if (i < 0)
+            if (selectedRoom is null)
             {
                 Messages.ShowErrorMessage("Please select room", "Selection error");
                 return;
             }//end if
-            if (funcBookRoom((IRoom)lstRooms.Items[i],dtBookDate.Value,(int)numBookingLength.Value))
+            if (funcBookRoom(selectedRoom,dtBookDate.Value,(int)numBookingLength.Value))
             {
                 //Refresh
                 RefreshLists();
@@ -64,16 +66,16 @@ namespace HotelManangementControlLibrary.Dashboard
         }//RefreshLists
         private void lstRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IRoom room = (IRoom)lstRooms.SelectedItem;
-            lblRoomNumber.Text = room.RoomNumber;
-            lblTypeOfRoom.Text = (room.IsSingleRoom) ? TypeOfRoom.SingleRoom.ToString() : TypeOfRoom.SharingRoom.ToString();
-            lblRoomPrice.Text = room.Price.ToString("C2");
-            if (room is ISingleRoom)
-                picRoom.ImageLocation = @"images/single.jpg";
+            selectedRoom = (IRoom)lstRooms.SelectedItem;
+            lblRoomNumber.Text = selectedRoom.RoomNumber;
+            lblTypeOfRoom.Text = (selectedRoom.IsSingleRoom) ? TypeOfRoom.SingleRoom.ToString() : TypeOfRoom.SharingRoom.ToString();
+            lblRoomPrice.Text = selectedRoom.Price.ToString("C2");
+            if (selectedRoom is ISingleRoom)
+                picRoom.Image = Properties.Resources.single;
             else
-                picRoom.ImageLocation = @"images/double.jpeg";
+                picRoom.Image = Properties.Resources._double;
             //Add room bookings
-            AddBookings(database.Bookings.HasBookings(room));
+            AddBookings(database.Bookings.HasBookings(selectedRoom));
         }//lstRooms_SelectedIndexChanged
         private void AddBookings(IRoomBooking[] bookings)
         {
@@ -117,5 +119,19 @@ namespace HotelManangementControlLibrary.Dashboard
         {
             RefreshLists(false);
         }//dtNotBookedOn_ValueChanged
+
+        private void btnMoreInfo_Click(object sender, EventArgs e)
+        {
+            if(selectedRoom is null)
+            {
+                Messages.ShowErrorMessage("Please select a room");
+                return;
+            }
+            CdlgDisplayRoomInfo messageBox = new CdlgDisplayRoomInfo(selectedRoom);
+            
+            //Display the custom message box
+            messageBox.ShowDialog();
+
+        }//btnMoreInfo_Click
     }//class
 }//namespcae

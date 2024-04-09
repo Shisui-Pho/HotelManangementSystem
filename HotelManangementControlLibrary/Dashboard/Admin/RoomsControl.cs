@@ -3,6 +3,8 @@ using HotelManangementSystemLibrary;
 using System;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
+using HotelManangementControlLibrary.Input_Forms;
+
 namespace HotelManangementControlLibrary.Dashboard.Admin
 {
     public partial class RoomsControl : UserControl
@@ -10,6 +12,7 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
         //Functions
         private readonly delModifyRoom ModifyRoomFunc;
         private readonly delAddNewRoom AddNewRoomFunc;
+        private IRoom selectedRoom;
 
         //datamember
         private readonly IRooms _rooms;
@@ -18,6 +21,8 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             InitializeComponent();
             ModifyRoomFunc = mod;
             AddNewRoomFunc = add;
+            btnAddFeature.Visible = false;
+            btnRemoveFeature.Visible = false;
         }//ctor 01
         public RoomsControl(IRooms rooms, delModifyRoom mod, delAddNewRoom add)
         {
@@ -84,6 +89,7 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             lstbxRooms.Items.Remove(oldRoom);
             lstbxRooms.Items.Insert(index,modifiedRoom);
             lstbxRooms.SelectedIndex = index;
+            selectedRoom = (IRoom)lstbxRooms.Items[index];
         }//btnModifyRoom_Click
 
         private void btnHideRoom_Click(object sender, EventArgs e)
@@ -132,19 +138,23 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
         }//cmboRoomStatus_SelectedIndexChanged
         private void lstbxRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IRoom room = (IRoom)lstbxRooms.SelectedItem;
-            if (room == null)
+            selectedRoom = (IRoom)lstbxRooms.SelectedItem;
+            if (selectedRoom == null)
                 return;
-            picRoom.Image = room.IsRoomUnderMaintenance ? Properties.Resources.single : Properties.Resources._double;
+            picRoom.Image = selectedRoom.IsSingleRoom ? Properties.Resources.single : Properties.Resources._double;
             //Perfom some operations
-            lblIsMaintenance.Text = room.IsRoomUnderMaintenance.ToString();
-            lblRoomNumber.Text = room.RoomNumber;
-            lblRoomPrice.Text = room.Price.ToString("C2");
+            lblTypeOfRoom.Text = selectedRoom.IsSingleRoom ? "Single room" : "Double room";
+            lblIsMaintenance.Text = selectedRoom.IsRoomUnderMaintenance.ToString();
+            lblRoomNumber.Text = selectedRoom.RoomNumber;
+            lblRoomPrice.Text = selectedRoom.Price.ToString("C2");
             lstbxFeatures.Items.Clear();
-            foreach (IFeature item in room.RoomFeatures.GetRoomFeatures())
+            foreach (IFeature item in selectedRoom.RoomFeatures.GetRoomFeatures())
             {
                 lstbxFeatures.Items.Add(item);
             }
+            btnAddFeature.Visible = true;
+            btnRemoveFeature.Visible = true;
+            
         }//lstbxRooms_SelectedIndexChanged
         #region Filter
         private void ApplyFilter()
@@ -203,6 +213,23 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
         private void btnAddFeature_Click(object sender, EventArgs e)
         {
             //A feature will be added
+            CdlgAddRoomFeature roomFeature = new CdlgAddRoomFeature(selectedRoom.RoomNumber);
+
+            if(roomFeature.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    IFeature fet = roomFeature.Feature;
+                    selectedRoom.RoomFeatures.AddFeature(fet);
+                    Messages.ShowInformationMessage($"The following feature has been added to the room.\n" +
+                       $"Feature name : {fet.FeatureName}" +
+                       $"\nFeature Price : {fet.Price.ToString("C2")}", "Feature Added");
+                }
+                catch(Exception ex)
+                {
+                    Messages.ShowErrorMessage(ex.Message);
+                }
+            }//end if
         }//btnAddFeature_Click
 
         private void btnRemoveFeature_Click(object sender, EventArgs e)
@@ -211,10 +238,17 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
             IFeature f = (IFeature)lstbxFeatures.SelectedItem;
             if (f is null)
                 return;
-
+            //Confirm first
+            if (Messages.AskYesOrNot($"The following feature will be removeed from the room as  well as prices" +
+                                    $"\nFeature name : {f.FeatureName}" +
+                                    $"\nFeature Price : {f.Price.ToString("C2")}"
+                                    , "Confirmation") == DialogResult.No)
+                return;
+            // Else remove the feature from the room.
             string featureID = f.FeatureID;
             IRoom room = (IRoom)lstbxRooms.SelectedItem;
             room.RoomFeatures.RemoveFeature(featureID);
+            lstbxRooms.SelectedItem = selectedRoom;
         }//btnRemoveFeature_Click
     }//class
 }//namespace
