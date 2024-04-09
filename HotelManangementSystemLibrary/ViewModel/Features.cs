@@ -11,6 +11,10 @@ namespace HotelManangementSystemLibrary
         {
             LoadFeatures();
         }
+        ~Features()
+        {
+            Dispose();
+        }
         //For now i will load the features here
         private void LoadFeatures()
         {
