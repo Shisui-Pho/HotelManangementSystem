@@ -4,9 +4,9 @@ namespace HotelManangementSystemLibrary
     public delegate void delOnPriceChanged(IRoom room);
     internal abstract class Room : IRoom
     {
-        //Data members        
-        protected static decimal _doubleRoomStandardValue = 800m;
-        protected static decimal _singleRoomStandardValue = 1200m;
+        ////Data members        
+        //protected static decimal _doubleRoomStandardValue = 800m;
+        //protected static decimal _singleRoomStandardValue = 1200m;
 
         public event delOnPriceChanged OnPriceChangedEvent;
 
@@ -61,20 +61,6 @@ namespace HotelManangementSystemLibrary
             HasTV = false;
             //Price -= _entertainments;
         }//RemoveTV
-
-        public void SetPrice(decimal amount)
-        {
-            if (IsSingleRoom)
-            {
-                if (amount < _singleRoomStandardValue)
-                    Price = _singleRoomStandardValue;
-            }
-            else
-            {
-                if (amount < _doubleRoomStandardValue)
-                    Price = _doubleRoomStandardValue;
-            }
-        }//SetPrice
         public void UpdateTelephoneNumber(string _number)
         {
             if (Service.IsCellphoneNumberCorrect(_number))

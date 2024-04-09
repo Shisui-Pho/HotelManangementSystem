@@ -7,7 +7,7 @@
             HasTV = hasTv;
             IsSingleRoom = false;
 
-            Price = _doubleRoomStandardValue;
+            Price = Standard.DoubleRoomPrice;
         }//ctor
 
         public bool Equals(IDoubleRoom other)
