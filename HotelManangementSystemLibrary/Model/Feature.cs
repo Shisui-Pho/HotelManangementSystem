@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HotelManangementSystemLibrary
+﻿namespace HotelManangementSystemLibrary
 {
     public class Feature : IFeature 
     {
@@ -34,5 +30,9 @@ namespace HotelManangementSystemLibrary
         {
             return other.FeatureID == this.FeatureID;
         }//Equals
+        public override string ToString()
+        {
+            return FeatureName;
+        }//ToString()
     }//end class
 }//
