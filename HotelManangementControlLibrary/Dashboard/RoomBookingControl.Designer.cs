@@ -40,7 +40,7 @@ namespace HotelManangementControlLibrary.Dashboard
             this.lblRoomPrice = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnMoreInfo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonLabel10 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lblTypeOfRoom = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -130,7 +130,7 @@ namespace HotelManangementControlLibrary.Dashboard
             this.panel4.Controls.Add(this.lblRoomPrice);
             this.panel4.Controls.Add(this.kryptonLabel11);
             this.panel4.Controls.Add(this.kryptonLabel4);
-            this.panel4.Controls.Add(this.kryptonButton2);
+            this.panel4.Controls.Add(this.btnMoreInfo);
             this.panel4.Controls.Add(this.kryptonLabel10);
             this.panel4.Controls.Add(this.kryptonLabel8);
             this.panel4.Controls.Add(this.lblTypeOfRoom);
@@ -209,36 +209,37 @@ namespace HotelManangementControlLibrary.Dashboard
             this.kryptonLabel4.TabIndex = 8;
             this.kryptonLabel4.Values.Text = "Price/night";
             // 
-            // kryptonButton2
+            // btnMoreInfo
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(243, 159);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(77, 31);
-            this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
-            this.kryptonButton2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnMoreInfo.Location = new System.Drawing.Point(243, 159);
+            this.btnMoreInfo.Name = "btnMoreInfo";
+            this.btnMoreInfo.Size = new System.Drawing.Size(77, 31);
+            this.btnMoreInfo.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StateCommon.Border.Color2 = System.Drawing.Color.MediumAquamarine;
+            this.btnMoreInfo.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton2.StateCommon.Border.Rounding = 5;
-            this.kryptonButton2.StateCommon.Border.Width = 1;
-            this.kryptonButton2.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonButton2.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton2.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonButton2.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.kryptonButton2.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
-            this.kryptonButton2.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
-            this.kryptonButton2.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
-            this.kryptonButton2.TabIndex = 9;
-            this.kryptonButton2.Values.Text = "More";
+            this.btnMoreInfo.StateCommon.Border.Rounding = 5;
+            this.btnMoreInfo.StateCommon.Border.Width = 1;
+            this.btnMoreInfo.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.btnMoreInfo.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.btnMoreInfo.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoreInfo.StateDisabled.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StateDisabled.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.btnMoreInfo.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.btnMoreInfo.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
+            this.btnMoreInfo.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.WhiteSmoke;
+            this.btnMoreInfo.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.WhiteSmoke;
+            this.btnMoreInfo.TabIndex = 9;
+            this.btnMoreInfo.Values.Text = "More";
+            this.btnMoreInfo.Click += new System.EventHandler(this.btnMoreInfo_Click);
             // 
             // kryptonLabel10
             // 
@@ -643,7 +644,7 @@ namespace HotelManangementControlLibrary.Dashboard
         private System.Windows.Forms.PictureBox picRoom;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblRoomPrice;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
-        public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        public ComponentFactory.Krypton.Toolkit.KryptonButton btnMoreInfo;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblTypeOfRoom;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblRoomNumber;
