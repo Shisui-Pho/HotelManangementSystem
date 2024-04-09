@@ -22,6 +22,11 @@ namespace HotelManangementSystemUI.Dashboard
         private readonly IUser _logged_in_user;
         private readonly IOldBookingRepoistory oldBookingRepoistory = WareHouseFactory.WareHouse();
 
+        private readonly GuestProfile _guestProfile;
+        private readonly IRooms _rooms;
+
+
+
         //Controls
         private readonly RoomBookingControl _guestRoomBookingsControl;
         private readonly RoomsControl _adminRoomsControl;
@@ -53,11 +58,22 @@ namespace HotelManangementSystemUI.Dashboard
                 _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
             }
 
-            _guestRoomBookingsControl = new RoomBookingControl(database, RoomBookingFromRoomBookingControl);//use ctor 01
+            _guestRoomBookingsControl = new RoomBookingControl(database.Bookings,database.Rooms, RoomBookingFromRoomBookingControl);//use ctor 01
             
             database.Bookings.RemovedBooking += Bookings_ItemRemovedEvent;
             LinkUnlinkedButtons();
         }//ctor 01
+        public CfrmDashboard(IGuest profile,IRoomBookings bookings ,IRooms rooms)
+        {
+            this._logged_in_user = profile;
+            this._rooms = rooms;
+
+
+            //For guests
+            _guestProfileControl = new GuestProfileControl(profile);
+            _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
+            _guestRoomBookingsControl = new RoomBookingControl(bookings ,rooms,RoomBookingFromRoomBookingControl);//use ctor 01
+        }//
         //Testing
         public CfrmDashboard()
         {
