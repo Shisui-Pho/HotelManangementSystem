@@ -103,7 +103,15 @@ namespace HotelManangementSystemUI.Login_SignUp
                 return;
             }//end if
             //Successfull
-            CfrmDashboard window = new CfrmDashboard(database, _logged_in_user);
+            CfrmDashboard window = default;
+            if (_logged_in_user is IAdministrator)
+                window = new CfrmDashboard(database, _logged_in_user);
+            else if(_logged_in_user is IGuest)
+            {
+                IGuest guest = database.Guests.FindGuest(_logged_in_user.UserID);
+                window = new CfrmDashboard(guest, database.Bookings, database.Rooms);
+            }
+                
             IsDataPossiblyChanged = true;
             this.Hide();
             if(window.ShowDialog() == DialogResult.Cancel)
