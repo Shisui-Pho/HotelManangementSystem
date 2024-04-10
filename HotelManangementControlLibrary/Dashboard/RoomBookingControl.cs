@@ -36,10 +36,10 @@ namespace HotelManangementControlLibrary.Dashboard
 
             //Set the display members
             lstRooms.DisplayMember = "RoomNumber";
-            RefreshLists();
 
             this._rooms = rooms;
             this._bookings = bookings;
+            RefreshLists();
         }//ctor 02
         private void btnBookRoom_Click(object sender, EventArgs e)
         {
