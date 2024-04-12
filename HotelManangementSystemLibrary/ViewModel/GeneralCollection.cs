@@ -39,7 +39,7 @@ namespace HotelManangementSystemLibrary
             _collection = new List<T>();
             _collection.AddRange(data);
         }//end ctor
-        public void Add(T item)
+        public virtual void Add(T item)
         {
             ItemAddedEvent?.Invoke(new HotelEventArgs("", "") { IsHandled = false });
             _collection.Add(item);
@@ -61,13 +61,13 @@ namespace HotelManangementSystemLibrary
                 yield return item;
             }//end foreach
         }//GetEnumerator
-        public void Remove(T item)
+        public virtual void Remove(T item)
         {
             _collection.Remove(item);
             ItemRemovedEvent?.Invoke(item, new HotelEventArgs("","") { IsHandled = false });
         }//Remove
 
-        public void Update(T old, T _new)
+        public virtual void Update(T old, T _new)
         {
             int i = IndexOf(old);
             if (i < 0)
