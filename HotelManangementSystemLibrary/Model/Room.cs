@@ -9,6 +9,7 @@ namespace HotelManangementSystemLibrary
         //protected static decimal _singleRoomStandardValue = 1200m;
 
         public event delOnPriceChanged OnPriceChangedEvent;
+        public event delOnPropertyChanged PropertyChangedEvent;
 
         //Properties
         public string RoomNumber { get; private set; }
@@ -45,6 +46,7 @@ namespace HotelManangementSystemLibrary
         public void ChangeRoomNumber(string _newRoomNumber)
         {
             RoomNumber = _newRoomNumber;
+            PropertyChangedEvent?.Invoke(this.RoomNumber, "RoomNumber", _newRoomNumber);
         }//ChangeRoomNumber
 
         public void AddTV()
@@ -65,6 +67,7 @@ namespace HotelManangementSystemLibrary
         {
             if (Service.IsCellphoneNumberCorrect(_number))
                 TelephoneNumber = _number;
+            PropertyChangedEvent.Invoke(this.RoomNumber, "TelephoneNumber", _number);
         }//UpdateTelephoneNumber
         public override string ToString()
         {
@@ -88,6 +91,7 @@ namespace HotelManangementSystemLibrary
                 IsRoomUnderMaintenance = false;
             else
                 IsRoomUnderMaintenance = true;
+            PropertyChangedEvent?.Invoke(this.RoomNumber, "IsRoomUnderMaintenance", IsRoomUnderMaintenance.ToString());
         }//HideUnhideRoom
         public bool Equals(IRoom other)
         {

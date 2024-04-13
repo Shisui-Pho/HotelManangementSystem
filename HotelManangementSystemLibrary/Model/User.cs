@@ -15,15 +15,19 @@ namespace HotelManangementSystemLibrary
         {
         }//
 
+        public event delOnPropertyChanged PropertyChangedEvent;
+
         public void SetUsername(string username)
         {
             //Do some data validation here
             UserName = username;
+            PropertyChangedEvent?.Invoke(this.UserID, "UserName", UserName);
         }//SetUsername
         public void SetPassword(string password)
         {
             //Do some data validation here
             Password = password;
+            PropertyChangedEvent?.Invoke(this.UserID, "UserPassword", Password);
         }//SetPassword
         internal void SetIdForExistingUser(string _userID) => UserID = _userID;
 
@@ -52,8 +56,9 @@ namespace HotelManangementSystemLibrary
             return other.UserID == this.UserID;
         }//
     }//class
-    internal class Administrator : User, IAdministrator
+    internal class Administrator : User, IAdministrator, IUser
     {
+        
         public AccessRights Rights { get; private set; }
         public Administrator(string _name, string _surname, DateTime _dob) : base(_name, _surname, _dob)
         {
@@ -67,6 +72,7 @@ namespace HotelManangementSystemLibrary
             if (admin.Rights != AccessRights.Universal)
                 throw new ArgumentException("Unauthorized access");
             Rights = _rights;
+
         }//ChangeAccessRights
     }//Administrator
 }//namespace

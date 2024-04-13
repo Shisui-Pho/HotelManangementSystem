@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IRoomService
+    public interface IRoomService : IHotelModel<IRoomService>
     {
         string ServiceID { get; }
         IRoom Room { get; }

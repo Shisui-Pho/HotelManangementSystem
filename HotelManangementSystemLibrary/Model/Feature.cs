@@ -3,6 +3,9 @@
     public class Feature : IFeature 
     {
         private static int count = 1;
+
+        public event delOnPropertyChanged PropertyChangedEvent;
+
         public string FeatureID { get; private set; }
         public string FeatureName { get; private set; }
         public string Description { get; private set; }

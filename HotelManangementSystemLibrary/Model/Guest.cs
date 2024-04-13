@@ -6,6 +6,9 @@ namespace HotelManangementSystemLibrary
         public IUSerAccount Account { get; private set; }
         public IContactDetails ContactDetails { get;private set; }
         private static int _count = 0;
+
+        public new event delOnPropertyChanged PropertyChangedEvent;
+
         public Guest(string _name, string _surname, DateTime _dob) : base(_name, _surname, _dob)
         {
             _count++;
@@ -20,6 +23,7 @@ namespace HotelManangementSystemLibrary
             if (!Service.IsEmailCorrect(email) && email != "None")
                 throw new ArgumentException("Email not in the correct format!!");
             ContactDetails.EmailAddress = email;
+            PropertyChangedEvent?.Invoke(this.UserID, "EmailAddress", email);
         }//SetEmailAddress
 
         public void SetCellNumber(string _cellnumber)

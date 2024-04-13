@@ -5,6 +5,9 @@ namespace HotelManangementSystemLibrary
     {
         private static int maxDays = 10;
         private static int bookingCount = 500;
+
+        public event delOnPropertyChanged PropertyChangedEvent;
+
         //Properties
         public string BookingID { get; private set; }
         public IGuest Guest { get; private set; }
@@ -40,13 +43,18 @@ namespace HotelManangementSystemLibrary
             if (numberOfDays > maxDays)
                 numberOfDays = maxDays;
             DateBookedFor = date;
+            int tempDays = NumberOfDaysToStay;
             NumberOfDaysToStay = numberOfDays;
+            PropertyChangedEvent?.Invoke(this.BookingID, "BookedDate", date.ToString("dd/MM/yyyy"));
+            if(tempDays != NumberOfDaysToStay)
+                PropertyChangedEvent?.Invoke(this.BookingID, "Duration", NumberOfDaysToStay.ToString());
         }//ChangeBooking
         public void ChangeRoom(IRoom room)
         {
             if (room is null)
                 return;
             Room = room;
+            PropertyChangedEvent?.Invoke(this.BookingID, "RoomNumber", Room.RoomNumber);
         }//ChangeRoom
         public void CheckIn()
         {
@@ -63,6 +71,7 @@ namespace HotelManangementSystemLibrary
 
             IRoomService Service = new RoomService(this.Room, personel);
             this.RoomService = Service;
+            PropertyChangedEvent?.Invoke(this.BookingID, "ServiceID", Service.ServiceID);
             return true;
         }//AddRemoService
         public string ToCSVFormat()

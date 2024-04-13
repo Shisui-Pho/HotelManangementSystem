@@ -8,6 +8,9 @@ namespace HotelManangementSystemLibrary
     {
         //data member
         private List<Ticket> _tickets;
+
+        public event delOnPropertyChanged PropertyChangedEvent;
+
         public string ServiceID { get; private set; }
 
         public IRoom Room { get; private set; }
@@ -37,6 +40,7 @@ namespace HotelManangementSystemLibrary
         {
             Ticket ticket = new Ticket(_tickets.Count + 1, _description,this.Personel.UserID);
             _tickets.Add(ticket);
+            //PropertyChangedEvent?.Invoke(this.ServiceID, "TicketID", ticket.TicketID.ToString());
         }//SetDescription
 
         public IEnumerator<Ticket> GetEnumerator()
@@ -49,6 +53,22 @@ namespace HotelManangementSystemLibrary
         public void ChangeServicePersonel(IServicePersonel personel)
         {
             this.Personel = personel;
+            PropertyChangedEvent?.Invoke(this.ServiceID, "PersonelID", this.Personel.UserID.ToString());
         }//ChangeServicePersonel
+
+        public string ToCSVFormat()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Equals(IRoomService other)
+        {
+            throw new NotImplementedException();
+        }
     }//clas
 }//namespcae
