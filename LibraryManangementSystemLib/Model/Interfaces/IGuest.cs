@@ -10,6 +10,7 @@ namespace HotelManangementSystemLibrary
         IContactDetails ContactDetails { get; }
         IUSerAccount Account { get; }
         event delOnPropertyChanged GuestPropertyChangedEvent;
+        event delBalanceChanged BalanceChangedEvent;
         void SetEmailAddress(string email);
         void SetCellNumber(string _cellnumber);
         void SetEmergencyNumber(string _emergency);

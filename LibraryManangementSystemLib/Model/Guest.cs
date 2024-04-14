@@ -7,6 +7,7 @@ namespace HotelManangementSystemLibrary
         public IContactDetails ContactDetails { get;private set; }
         private static int _count = 0;
         public event delOnPropertyChanged GuestPropertyChangedEvent;
+        public event delBalanceChanged BalanceChangedEvent;
 
         public Guest(string _name, string _surname, DateTime _dob) : base(_name, _surname, _dob)
         {
@@ -15,7 +16,14 @@ namespace HotelManangementSystemLibrary
             UserID = $"GU-895485685{_count}";
             ContactDetails = new ContactDetails();
             Account = new UserAccount();
+            Account.BalanceChanged += Account_BalanceChanged;
         }//ctor 01
+
+        private void Account_BalanceChanged(decimal newBalance, decimal newAmountOwing)
+        {
+            BalanceChangedEventArgs args = new BalanceChangedEventArgs(newBalance, newAmountOwing, this.UserID);
+            BalanceChangedEvent?.Invoke(args);
+        }//Account_BalanceChanged
 
         public void SetEmailAddress(string email)
         {

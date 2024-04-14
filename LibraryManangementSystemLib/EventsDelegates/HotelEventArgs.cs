@@ -14,7 +14,7 @@ namespace HotelManangementSystemLibrary
     internal delegate void delOnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args);
     public delegate void delOnTrasnaction(TransactionArgs transaction);
     public delegate void delOnBalanceChanged(decimal newBalance, decimal newAmountOwing);
-
+    public delegate void delBalanceChanged(BalanceChangedEventArgs args);
 
 
     public class HotelEventArgs : EventArgs
@@ -32,12 +32,12 @@ namespace HotelManangementSystemLibrary
     {
         public string RoomNumber { get; set; }
     }
-    internal class BalanceChangedEvenArgs : EventArgs
+    public class BalanceChangedEventArgs : EventArgs
     {
         public decimal CurrentBalance { get; private set; }
         public decimal AmountOwing { get; private set; }
         public string AccountUserID { get; private set; }
-        public BalanceChangedEvenArgs(decimal current,decimal amountowing, string userid)
+        public BalanceChangedEventArgs(decimal current,decimal amountowing, string userid)
         {
             this.CurrentBalance = current;
             this.AmountOwing = amountowing;

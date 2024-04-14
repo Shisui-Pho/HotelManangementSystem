@@ -63,36 +63,40 @@ namespace HotelManangementSystemLibrary
             //Establish the databse connection here
             if (!isLoading)
             {
-                try 
-                { 
-                    con.Open();
-                    string sql = "qr_CreateGuest";
-                    OleDbCommand cmd = new OleDbCommand(sql, con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    //([@GuestID], [@CellNumber], [@Email], [@Emergency], [@Owing], [@Balance]);
-                    cmd.Parameters.AddWithValue("@GuestID", item.UserID);
-                    cmd.Parameters.AddWithValue("@CellNumber", item.ContactDetails.CellphoneNumber);
-                    cmd.Parameters.AddWithValue("@Email", item.ContactDetails.EmailAddress);
-                    cmd.Parameters.AddWithValue("@Emergency", item.ContactDetails.EmergencyNumber);
-                    cmd.Parameters.AddWithValue("@Owing", item.Account.AmountOwing);
-                    cmd.Parameters.AddWithValue("@Balance", item.Account.CurrentBalance);
-                    cmd.ExecuteNonQuery();
-                    //Execute.NoneQuery(con, cmd);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    con.Close();
-                }
+                PushToDataBase(item);
             }//
             //-Subscribe to the PropertyChanged event
             item.GuestPropertyChangedEvent += Item_PropertyChangedEvent;
+            item.BalanceChangedEvent += Item_BalanceChangedEvent;
             base.Add(item);
         }//Add
-
+        private void PushToDataBase(IGuest newguest)
+        {
+            try
+            {
+                con.Open();
+                string sql = "qr_CreateGuest";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //([@GuestID], [@CellNumber], [@Email], [@Emergency], [@Owing], [@Balance]);
+                cmd.Parameters.AddWithValue("@GuestID", newguest.UserID);
+                cmd.Parameters.AddWithValue("@CellNumber", newguest.ContactDetails.CellphoneNumber);
+                cmd.Parameters.AddWithValue("@Email", newguest.ContactDetails.EmailAddress);
+                cmd.Parameters.AddWithValue("@Emergency", newguest.ContactDetails.EmergencyNumber);
+                cmd.Parameters.AddWithValue("@Owing", newguest.Account.AmountOwing);
+                cmd.Parameters.AddWithValue("@Balance", newguest.Account.CurrentBalance);
+                cmd.ExecuteNonQuery();
+                //Execute.NoneQuery(con, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }//PushToDataBase
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
             try 
@@ -112,5 +116,27 @@ namespace HotelManangementSystemLibrary
                 con.Close();
             }
         }//Item_PropertyChangedEvent
+        private async void Item_BalanceChangedEvent(BalanceChangedEventArgs args)
+        {
+            try
+            {
+                await con.OpenAsync();
+                string sql = "qr_UpdateBalance";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AmountOwing", args.AmountOwing);
+                cmd.Parameters.AddWithValue("@Balance", args.CurrentBalance);
+                cmd.Parameters.AddWithValue("@ID", args.AccountUserID);
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }//end catch
+            finally
+            {
+                con.Close();
+            }//end finally
+        }//Item_BalanceChangedEvent
     }//class
 }//namespace
