@@ -7,7 +7,7 @@ using HotelManangementSystemLibrary;
 using HotelManangementSystemLibrary.DatabaseService;
 using HotelManangementSystemLibrary.Factory;
 using HotelManangementSystemUI.Dashboard;
-
+using System.IO;
 namespace HotelManangementSystemUI.Login_SignUp
 {
     public partial class Login_Sign_Up : Form
@@ -17,12 +17,17 @@ namespace HotelManangementSystemUI.Login_SignUp
         private readonly SignInControl _signIn;
         private readonly LogInControl _logIn;
         private readonly IDatabaseService database;
+        string connectionString;
         public Login_Sign_Up()
         {
             InitializeComponent();
             _signIn = new SignInControl(LoginLablePressed);
             _logIn = new LogInControl(SignInLablePressed);
-            database = new TextFileDatabase();
+
+            //For now am going to hardcode this
+            string dir = Directory.GetCurrentDirectory();
+            connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dir + "\\HotelManangementSystem.accdb;";
+            database = new AccessDatabase(connectionString);
         }//ctor main
         private async void Login_Sign_Up_Shown(object sender, System.EventArgs e)
         {
@@ -35,7 +40,7 @@ namespace HotelManangementSystemUI.Login_SignUp
         }//Login_Sign_Up_Shown
         private async Task LoadUsersAsync()
         {
-            await Task.Run(()=> database.LoadUsers());
+            await Task.Run(()=> { database.LoadUsers();Features.GetFeaturesInstance(connectionString); });
         }//LoadUsersAsync
         private void LoginLablePressed()
         {
