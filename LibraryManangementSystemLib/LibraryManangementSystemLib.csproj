@@ -105,7 +105,7 @@
     <Compile Include="Utilities\IDGenerator.cs" />
     <Compile Include="Utilities\IOldBookingsRepository.cs" />
     <Compile Include="Utilities\Service.cs" />
-    <Compile Include="ViewModel\EventsDelegates\HotelEventArgs.cs" />
+    <Compile Include="EventsDelegates\HotelEventArgs.cs" />
     <Compile Include="ViewModel\Features.cs" />
     <Compile Include="ViewModel\GeneralCollection.cs" />
     <Compile Include="ViewModel\Guests.cs" />
