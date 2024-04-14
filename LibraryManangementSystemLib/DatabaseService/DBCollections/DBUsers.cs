@@ -107,7 +107,7 @@ namespace HotelManangementSystemLibrary
             //Establish the database connection here
             try { 
                 con.Open();
-                string sql = "UPDATE tbl_User SET " + field + " = " + newVal + " WHERE UserID = " + id;
+                string sql = "UPDATE tbl_User SET " + field + " = '" + newVal + "' WHERE UserID = '" + id + "'";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
             }

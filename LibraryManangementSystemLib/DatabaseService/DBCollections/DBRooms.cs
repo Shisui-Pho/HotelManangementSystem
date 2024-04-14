@@ -121,7 +121,7 @@ namespace HotelManangementSystemLibrary
             try 
             { 
                 con.Open();
-                string sql = "UPDATE tbl_Room SET " + field + " = " + newVal + " WHERE RoomNumber = " + id;
+                string sql = "UPDATE tbl_Room SET " + field + " = '" + newVal + "' WHERE RoomNumber = '" + id + "'";
 
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
@@ -140,7 +140,7 @@ namespace HotelManangementSystemLibrary
         {
             try { 
             //Establish the database connection here
-                string sql = "DELETE FROM tbl_Room WHERE RoomNumber = " + item.RoomNumber;
+                string sql = "DELETE FROM tbl_Room WHERE RoomNumber = '" + item.RoomNumber + "'";
                 con.Open();
 
                 OleDbCommand cmd = new OleDbCommand(sql, con);
@@ -156,12 +156,5 @@ namespace HotelManangementSystemLibrary
             }
             base.Remove(item);
         }//Remove
-
-        public override void Update(IRoom old, IRoom _new)
-        {
-            //Establish the database connection here
-
-            base.Update(old, _new);
-        }//Update
     }//class
 }//namespace

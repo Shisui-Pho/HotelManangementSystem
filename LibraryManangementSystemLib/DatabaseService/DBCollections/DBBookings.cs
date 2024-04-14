@@ -139,7 +139,7 @@ namespace HotelManangementSystemLibrary
             try
             {
                 con.Open();
-                string sql = "UPDATE tbl_Booking SET " + field + " = " + newVal + " WHERE ID = " + id;
+                string sql = "UPDATE tbl_Booking SET " + field + " = '" + newVal + "' WHERE ID = '" + id +"'";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
             }//end using

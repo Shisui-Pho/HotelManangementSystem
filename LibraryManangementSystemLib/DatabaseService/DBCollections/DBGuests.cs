@@ -99,7 +99,7 @@ namespace HotelManangementSystemLibrary
             { 
                 con.Open();
 
-                string sql = "UPDATE tbl_Guest SET " + field + " = " + newVal + " WHERE GuestID = " + id;
+                string sql = "UPDATE tbl_Guest SET " + field + " = '" + newVal + "' WHERE GuestID = '" + id + "'";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
             }
