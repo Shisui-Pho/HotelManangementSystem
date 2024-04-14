@@ -18,5 +18,6 @@ namespace HotelManangementSystemLibrary.DatabaseService
         IRooms LoadRooms();
         IUsers LoadUsers();
         IGuests LoadGuests();
+        void LoadEntireDatabaseAsync();
     }//interface
 }//namespace

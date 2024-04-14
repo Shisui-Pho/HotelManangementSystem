@@ -21,13 +21,13 @@ namespace HotelManangementSystemLibrary
         {
             //Do some data validation here
             UserName = username;
-            PropertyChangedEvent?.Invoke(this.UserID, "UserName", UserName);
+            PropertyChangedEvent?.Invoke(this.UserID, "User_Name", UserName);
         }//SetUsername
         public void SetPassword(string password)
         {
             //Do some data validation here
             Password = password;
-            PropertyChangedEvent?.Invoke(this.UserID, "UserPassword", Password);
+            PropertyChangedEvent?.Invoke(this.UserID, "User_Password", Password);
         }//SetPassword
         internal void SetIdForExistingUser(string _userID) => UserID = _userID;
 

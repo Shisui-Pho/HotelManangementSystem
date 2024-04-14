@@ -47,7 +47,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
                 IBookingFees fees = new BookingFees(date, mCost, mAmountToPay, mAmountPaid);
 
-                IRoomBooking booking = BookingsFactory.CreateBookingWithFees(guest, room, date, fees,int.Parse(fields[4]));
+                IRoomBooking booking = BookingsFactory.CreateBookingWithFees(fields[0],guest, room, date, fees,int.Parse(fields[4]));
 
                 bookings.AddExisting(booking);
             }//end foreach

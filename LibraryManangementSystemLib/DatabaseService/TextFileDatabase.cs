@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HotelManangementSystemLibrary.DatabaseService
 {
@@ -105,5 +106,21 @@ namespace HotelManangementSystemLibrary.DatabaseService
         {
             _guests.SaveGuests();
         }//SaveGuets
+
+        public async void LoadEntireDatabaseAsync()
+        {
+            await Task.Run(() =>
+            {
+                LoadUsers();
+                LoadRooms();                
+                LoadGuests();
+                LoadBookings();
+            });
+        }//LoadEntireDatabaseAsync
+
+        public void LoadGuestProfileAsync()
+        {
+            throw new NotImplementedException();
+        }//LoadGuestProfileAsync
     }//class
 }//namespace

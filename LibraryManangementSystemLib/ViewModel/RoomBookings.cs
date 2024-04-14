@@ -76,19 +76,13 @@ namespace HotelManangementSystemLibrary
             //                  .Where(s => s.Room is T)
             //                  .Select(s => s.Room);
         }//GetBookedRooms
-        public new void Remove(IRoomBooking booking)
-        {
-            
-            //base.Remove(booking);
-        }//Remove
-
-        public void CancelBooking(IRoomBooking booking, CancellationReason reason)
+        public virtual void CancelBooking(IRoomBooking booking, CancellationReason reason)
         {
             RemovedBooking?.Invoke(booking, new HotelEventArgs(booking.BookingID,reason.ToString()) { IsHandled = false });
             booking.Guest.Account.CancelBooking(booking.BookingFee);
             base.Remove(booking);
         }//CancelBooking        
-        public void CancelBooking(IRoomBooking booking, string reason)
+        public virtual void CancelBooking(IRoomBooking booking, string reason)
         {
             RemovedBooking?.Invoke(booking, new HotelEventArgs(booking.BookingID,reason) { IsHandled = false });
             booking.Guest.Account.CancelBooking(booking.BookingFee);

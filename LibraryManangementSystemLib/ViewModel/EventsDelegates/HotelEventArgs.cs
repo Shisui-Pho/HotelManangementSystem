@@ -19,4 +19,8 @@ namespace HotelManangementSystemLibrary
             Description = description;
         }//HotelEventArgs
     }//class
+    public class FeatureEventArgs : EventArgs
+    {
+        public string RoomNumber { get; set; }
+    }
 }//namespace

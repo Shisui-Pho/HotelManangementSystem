@@ -36,6 +36,22 @@ namespace HotelManangementSystemLibrary
             BookingID = bookingCount.ToString();
             BookingFee = new BookingFees(date, Room.Price * numberOfDays);
         }//RoomBooking
+        internal RoomBooking(string id,IGuest guest, IRoom room, DateTime date, int numberOfDays = 1)
+        {
+            Guest = guest;
+            Room = room;
+            //Make sure guest cannot book for a past date
+            if (DateTime.UtcNow > date)
+                throw new ArgumentException("Cannot book on this date!.");
+            DateBookedFor = date;
+            NumberOfDaysToStay = numberOfDays;
+            DaysStayed = 0;
+            IsCheckedIn = false;
+
+            bookingCount += 50;
+            BookingID = id;
+            BookingFee = new BookingFees(date, Room.Price * numberOfDays);
+        }//RoomBooking
         internal void SetBookingID(string _id) => BookingID = _id;
         internal void SetBookingFees(IBookingFees fees) => this.BookingFee = fees;
         public void ChangeBookingDate(DateTime date, int numberOfDays = 1)
@@ -45,7 +61,7 @@ namespace HotelManangementSystemLibrary
             DateBookedFor = date;
             int tempDays = NumberOfDaysToStay;
             NumberOfDaysToStay = numberOfDays;
-            PropertyChangedEvent?.Invoke(this.BookingID, "BookedDate", date.ToString("dd/MM/yyyy"));
+            PropertyChangedEvent?.Invoke(this.BookingID, "DateBookedFor", date.ToString("dd/MM/yyyy"));
             if(tempDays != NumberOfDaysToStay)
                 PropertyChangedEvent?.Invoke(this.BookingID, "Duration", NumberOfDaysToStay.ToString());
         }//ChangeBooking

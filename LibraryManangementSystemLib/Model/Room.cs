@@ -2,6 +2,7 @@
 namespace HotelManangementSystemLibrary
 {
     public delegate void delOnPriceChanged(IRoom room);
+    internal delegate void delOnFeatureRemoved(string roomNumber, string FeatureID);
     internal abstract class Room : IRoom
     {
         ////Data members        
@@ -10,7 +11,7 @@ namespace HotelManangementSystemLibrary
 
         public event delOnPriceChanged OnPriceChangedEvent;
         public event delOnPropertyChanged PropertyChangedEvent;
-
+        internal event delOnFeatureRemoved FeatureRemoved;
         //Properties
         public string RoomNumber { get; private set; }
 
@@ -33,13 +34,13 @@ namespace HotelManangementSystemLibrary
             RoomFeatures.OnFeaturesModified += RoomFeatures_OnFeaturesModified;
         }//ctor
 
-        private void RoomFeatures_OnFeaturesModified(IFeature feature, bool isAdded)
+        private void RoomFeatures_OnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args)
         {
+            args.RoomNumber = this.RoomNumber;
             if (isAdded)
                 Price += feature.Price;
             else
                 Price -= feature.Price;
-
             OnPriceChangedEvent?.Invoke(this);
         }//RoomFeatures_OnFeaturesModified
 

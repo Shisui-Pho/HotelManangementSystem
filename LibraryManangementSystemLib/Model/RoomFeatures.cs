@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace HotelManangementSystemLibrary
 {
-    internal delegate void delOnFeaturesModified(IFeature feature, bool isAdded);
+    internal delegate void delOnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args);
     public class RoomFeatures
     {
         private List<IFeature> features;
@@ -22,7 +22,7 @@ namespace HotelManangementSystemLibrary
             if (features.IndexOf(feature) >= 0)
                 throw new ArgumentException("The feature has already been implemented");
             features.Add(feature);
-            OnFeaturesModified?.Invoke(feature, true); ;
+            OnFeaturesModified?.Invoke(feature, true, new FeatureEventArgs()); ;
         }
         public void RemoveFeature(string featureid)
         {
@@ -30,7 +30,7 @@ namespace HotelManangementSystemLibrary
             if (temp == null)
                 throw new ArgumentException("The feature ID was not found in this room");
             features.Remove(temp);
-            OnFeaturesModified?.Invoke(temp, false);
+            OnFeaturesModified?.Invoke(temp, false, new FeatureEventArgs());
         }//
         public override string ToString()
         {
