@@ -89,7 +89,7 @@ namespace HotelManangementSystemLibrary
                 }
             }//
             //-Subscribe to the PropertyChanged event
-            item.PropertyChangedEvent += Item_PropertyChangedEvent;
+            item.GuestPropertyChangedEvent += Item_PropertyChangedEvent;
             base.Add(item);
         }//Add
 

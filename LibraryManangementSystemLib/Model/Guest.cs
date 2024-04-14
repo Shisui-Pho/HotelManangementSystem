@@ -6,8 +6,7 @@ namespace HotelManangementSystemLibrary
         public IUSerAccount Account { get; private set; }
         public IContactDetails ContactDetails { get;private set; }
         private static int _count = 0;
-
-        public new event delOnPropertyChanged PropertyChangedEvent;
+        public event delOnPropertyChanged GuestPropertyChangedEvent;
 
         public Guest(string _name, string _surname, DateTime _dob) : base(_name, _surname, _dob)
         {
@@ -22,22 +21,30 @@ namespace HotelManangementSystemLibrary
         {
             if (!Service.IsEmailCorrect(email) && email != "None")
                 throw new ArgumentException("Email not in the correct format!!");
+            if (email == this.ContactDetails.EmailAddress)
+                return;
             ContactDetails.EmailAddress = email;
-            PropertyChangedEvent?.Invoke(this.UserID, "EmailAddress", email);
+            GuestPropertyChangedEvent?.Invoke(this.UserID, "Email_Address", email);
         }//SetEmailAddress
 
         public void SetCellNumber(string _cellnumber)
         {
             if(!Service.IsCellphoneNumberCorrect(_cellnumber) && _cellnumber != "None")
                 throw new ArgumentException("Cellphone number not in the correct format!!");
+            if (this.ContactDetails.CellphoneNumber == _cellnumber)
+                return;
             ContactDetails.CellphoneNumber = _cellnumber;
+            GuestPropertyChangedEvent?.Invoke(this.UserID, "CellphoneNumber", _cellnumber);
         }//SetCellNumber
 
         public void SetEmergencyNumber(string _emergency)
         {
             if (!Service.IsCellphoneNumberCorrect(_emergency) && _emergency != "None")
                 throw new ArgumentException("Cellphone number not in the correct format!!");
+            if (this.ContactDetails.EmergencyNumber == _emergency)
+                return;            
             ContactDetails.EmergencyNumber = _emergency;
+            GuestPropertyChangedEvent?.Invoke(this.UserID, "Emergency_PhoneNumber", _emergency);
         }//SetEmergencyNumber
 
         public void SetContactDetails(IContactDetails details) => ContactDetails = details;

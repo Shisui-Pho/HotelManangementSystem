@@ -9,7 +9,7 @@ namespace HotelManangementSystemLibrary
          //To Add Guest Card
         IContactDetails ContactDetails { get; }
         IUSerAccount Account { get; }
-        new event delOnPropertyChanged PropertyChangedEvent;
+        event delOnPropertyChanged GuestPropertyChangedEvent;
         void SetEmailAddress(string email);
         void SetCellNumber(string _cellnumber);
         void SetEmergencyNumber(string _emergency);
