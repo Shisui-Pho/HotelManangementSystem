@@ -33,7 +33,7 @@ namespace HotelManangementSystemLibrary.Factory
         }//CreateGuest
         internal static IGuest CreateGuest(IUser user, decimal amountToPay, decimal balance)
         {
-            Guest gs = new Guest(user.Name, user.Surname, user.DOB);
+            Guest gs = (Guest)user; //new Guest(user.Name, user.Surname, user.DOB);
             gs.SetPassword(user.Password);
             gs.SetUsername(user.UserName);
             gs.SetIdForExistingUser(user.UserID);
