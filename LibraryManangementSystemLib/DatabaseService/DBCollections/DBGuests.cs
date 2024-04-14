@@ -6,23 +6,27 @@ namespace HotelManangementSystemLibrary
 {
     internal class DBGuests : Guests , IGuests
     {
-        private readonly string connectionString;
+        private readonly OleDbConnection con;
         private bool isLoading = true;
         private readonly IUsers _users;
         public DBGuests(string connectionString, IUsers users) : base()
         {
-            this.connectionString = connectionString;
+            con = new OleDbConnection(connectionString);
             _users = users;
             LoadData();
         }//ctor main
+        ~DBGuests()
+        {
+            con.Dispose();
+        }
         private void LoadData()
         {
-            using (OleDbConnection con = new OleDbConnection(this.connectionString))
-            {
+            try 
+            { 
                 con.Open();
                 string query = "SELECT * FROM tbl_Guest";
                 OleDbCommand cmd = new OleDbCommand(query, con);
-                OleDbDataReader rd = Execute.GetReader(con, cmd);
+                OleDbDataReader rd = cmd.ExecuteReader();
                 if (rd == default)
                     throw new ArgumentException("Data not loaded");
                 while (rd.Read())
@@ -44,6 +48,14 @@ namespace HotelManangementSystemLibrary
                     this.Add(guest);
                 }//Create objects here
             }//end using
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
             isLoading = false;
         }//LoadData
 
@@ -52,8 +64,8 @@ namespace HotelManangementSystemLibrary
             //Establish the databse connection here
             if (!isLoading)
             {
-                using(OleDbConnection con = new OleDbConnection(connectionString))
-                {
+                try 
+                { 
                     con.Open();
                     string sql = "qr_CreateGuest";
                     OleDbCommand cmd = new OleDbCommand(sql, con);
@@ -65,9 +77,17 @@ namespace HotelManangementSystemLibrary
                     cmd.Parameters.AddWithValue("@Emergency", item.ContactDetails.EmergencyNumber);
                     cmd.Parameters.AddWithValue("@Owing", item.Account.AmountOwing);
                     cmd.Parameters.AddWithValue("@Balance", item.Account.CurrentBalance);
-
-                    Execute.NoneQuery(con, cmd);
-                }//end using 
+                    cmd.ExecuteNonQuery();
+                    //Execute.NoneQuery(con, cmd);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
+                }
             }//
             //-Subscribe to the PropertyChanged event
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
@@ -76,13 +96,21 @@ namespace HotelManangementSystemLibrary
 
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
-            using(OleDbConnection con = new OleDbConnection(connectionString))
-            {
+            try 
+            { 
                 con.Open();
 
                 string sql = "UPDATE tbl_Guest SET " + field + " = " + newVal + " WHERE GuestID = " + id;
                 OleDbCommand cmd = new OleDbCommand(sql, con);
-                Execute.NoneQuery(con, cmd);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
             }
         }//Item_PropertyChangedEvent
     }//class

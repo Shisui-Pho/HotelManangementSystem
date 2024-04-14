@@ -8,28 +8,32 @@ namespace HotelManangementSystemLibrary
     internal class DBUsers : Users, IUsers
     {
         private bool isLoading = true;
-        private readonly string connectionString;
+        private readonly OleDbConnection con;
         public DBUsers(string connectionstring) : base()
         {
-            this.connectionString = connectionstring;
+            con = new OleDbConnection(connectionstring);
             LoadData();
         }//ctor main
+        ~DBUsers()
+        {
+            con.Dispose();
+        }
         private void LoadData()
         {
-            using (OleDbConnection con = new OleDbConnection(this.connectionString))
-            {
+            try { 
                 con.Open();
                 string query = "qr_LoadUsers";
                 OleDbCommand cmd = new OleDbCommand(query, con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                OleDbDataReader rd = Execute.GetReader(con, cmd);
+                OleDbDataReader rd = cmd.ExecuteReader();
 
                 if (rd == default)
                     throw new ArgumentException("Data not loaded");
                 while (rd.Read())
                 {
                     TypeOfUser type = (rd["UserType"].ToString() == "Admnin") ? TypeOfUser.Admin : TypeOfUser.Guest;
-                    DateTime dob = DateTime.Parse(rd["DOB"].ToString());
+                    string dateString = rd["DOB"].ToString();
+                    DateTime dob = DateTime.Parse(dateString);
                     string name = rd["Name"].ToString();
                     string surname = rd["Surname"].ToString();
                     string username = rd["User_Name"].ToString();
@@ -42,6 +46,14 @@ namespace HotelManangementSystemLibrary
                     this.Add(user);
                 }//Create objects here
             }//end using
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
             isLoading = false;
         }//LoadData
         public override void Add(IUser item)
@@ -49,8 +61,8 @@ namespace HotelManangementSystemLibrary
             //Establish the databse connection here
             if (!isLoading)
             {
-                using(OleDbConnection con = new OleDbConnection(connectionString))
-                {
+                try 
+                { 
                     //First make the person
                     con.Open();
                     string sql = "qr_CreatePerson";
@@ -61,10 +73,10 @@ namespace HotelManangementSystemLibrary
                     cmd.Parameters.AddWithValue("@Surname", item.Surname);
                     cmd.Parameters.AddWithValue("@dob", item.DOB);
 
-                    Execute.NoneQuery(con, cmd);
+                    cmd.ExecuteNonQuery();
 
                     //For the user table
-                    con.Open();
+                    //con.Open();
                     sql = "qr_CreateUser";
                     cmd = new OleDbCommand(sql, con);
                     //([@UserId], [@UserName], [@UserPassword], [@UserType]);
@@ -74,7 +86,15 @@ namespace HotelManangementSystemLibrary
                     string type = (item is IAdministrator) ? "Admin" : "Guest";
                     cmd.Parameters.AddWithValue("@UserType", type);
 
-                    Execute.NoneQuery(con, cmd);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
             //-Subscibe to the Property changed event 
@@ -86,12 +106,19 @@ namespace HotelManangementSystemLibrary
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
             //Establish the database connection here
-            using(OleDbConnection con = new OleDbConnection(connectionString))
-            {
+            try { 
                 con.Open();
                 string sql = "UPDATE tbl_User SET " + field + " = " + newVal + " WHERE UserID = " + id;
                 OleDbCommand cmd = new OleDbCommand(sql, con);
-                Execute.NoneQuery(con, cmd);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
             }
         }//Item_PropertyChangedEvent
         public override void Remove(IUser item)

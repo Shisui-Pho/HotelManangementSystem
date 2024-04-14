@@ -7,20 +7,24 @@ namespace HotelManangementSystemLibrary
     internal class DBRooms : Rooms, IRooms
     {
         private bool isLoading = true;
-        private readonly string connectionString;
+        private readonly OleDbConnection con;
         public DBRooms(string connectionstring) : base()
         {
-            this.connectionString = connectionstring;
+            con = new OleDbConnection(connectionstring);
             LoadData();
         }//ctor main
+        ~DBRooms()
+        {
+            con.Dispose();
+        }
         private void LoadData()
         {
-            using (OleDbConnection con = new OleDbConnection(this.connectionString))
-            {
+            try 
+            { 
                 string query = "SELECT * FROM tbl_Room";
                 OleDbCommand cmd = new OleDbCommand(query, con);
                 con.Open();
-                OleDbDataReader rd = Execute.GetReader(con, cmd);
+                OleDbDataReader rd = cmd.ExecuteReader();
                 if (rd == default)
                     throw new ArgumentException("Data not loaded");
                 while (rd.Read())
@@ -33,11 +37,11 @@ namespace HotelManangementSystemLibrary
                     
                     //For loading room features
                     query = "qr_GetRoomFeatures";
-                    con.Open();
+                    //con.Open();
                     cmd = new OleDbCommand(query, con);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@RoomNumber", roomNumber);
-                    OleDbDataReader rd2 = Execute.GetReader(con, cmd);
+                    OleDbDataReader rd2 = cmd.ExecuteReader();
                     while (rd2.Read())
                     {
                         string fname = rd2["F_Name"].ToString();
@@ -49,6 +53,14 @@ namespace HotelManangementSystemLibrary
                     this.Add(room);
                 }//Create objects here
             }//end using
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
             isLoading = false;
         }//LoadData
         public override void Add(IRoom item)
@@ -56,8 +68,8 @@ namespace HotelManangementSystemLibrary
             //Establish database connection here
             if (!isLoading)
             {
-                using(OleDbConnection con = new OleDbConnection(connectionString))
-                {
+                try 
+                { 
                     con.Open();
                     string sql = "qr_CreateRoom";
 
@@ -66,8 +78,16 @@ namespace HotelManangementSystemLibrary
                     cmd.Parameters.AddWithValue("@RoomNumber", item.RoomNumber);
                     cmd.Parameters.AddWithValue("@RoomPrice", item.Price);
                     cmd.Parameters.AddWithValue("@IsSingle", item.IsSingleRoom);
-                    Execute.NoneQuery(con,cmd);
+                    cmd.ExecuteNonQuery();
                 }//end using
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
+                }
             }//END IF
             //-Subscribe to the PropertyChangedEvent
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
@@ -77,8 +97,7 @@ namespace HotelManangementSystemLibrary
 
         private void RoomFeatures_OnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args)
         {
-            using (OleDbConnection con = new OleDbConnection(connectionString))
-            {
+            try { 
                 con.Open();
                 string sql;
                 if (!isAdded)
@@ -86,33 +105,56 @@ namespace HotelManangementSystemLibrary
                 else
                     sql = "INSERT INTO tbl_RoomFeature(FeatureID,RoomNumber) VALUES ("+feature.FeatureID+","+args.RoomNumber+")";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
-                Execute.NoneQuery(con, cmd);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
             }
         }//RoomFeatures_OnFeaturesModified
 
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
-            using(OleDbConnection con = new OleDbConnection(connectionString))
-            {
+            try 
+            { 
                 con.Open();
                 string sql = "UPDATE tbl_Room SET " + field + " = " + newVal + " WHERE RoomNumber = " + id;
 
                 OleDbCommand cmd = new OleDbCommand(sql, con);
-                Execute.NoneQuery(con, cmd);
+                cmd.ExecuteNonQuery();
             }//end using
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
         }//Item_PropertyChangedEvent
 
         public override void Remove(IRoom item)
         {
+            try { 
             //Establish the database connection here
-            using(OleDbConnection con = new OleDbConnection(connectionString))
-            {
                 string sql = "DELETE FROM tbl_Room WHERE RoomNumber = " + item.RoomNumber;
                 con.Open();
 
                 OleDbCommand cmd = new OleDbCommand(sql, con);
-                Execute.NoneQuery(con,cmd);
+                cmd.ExecuteNonQuery();
             }//end using
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
             base.Remove(item);
         }//Remove
 

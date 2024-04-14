@@ -14,11 +14,13 @@ namespace HotelManangementSystemLibrary
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return -1;
+                con.Close();
+                throw;
+                //return -1;
             }
             finally
             {
-                con.Close();
+                
             }
         }//Scalar
         public static OleDbDataReader GetReader(OleDbConnection con, OleDbCommand cmd)
@@ -30,11 +32,13 @@ namespace HotelManangementSystemLibrary
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return default;
+                con.Close();
+                throw;
+                //return default;
             }
             finally
             {
-                con.Close();
+                
             }
         }
         public static int NoneQuery(OleDbConnection con, OleDbCommand cmd)
@@ -46,11 +50,13 @@ namespace HotelManangementSystemLibrary
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return -1;
+                con.Close();
+                throw;
+                //return -1;
             }
             finally
             {
-                con.Close();
+                
             }
         }
     }//class

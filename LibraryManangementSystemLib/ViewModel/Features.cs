@@ -1,4 +1,5 @@
 ﻿using HotelManangementSystemLibrary.Utilities.Extensions;
+using System;
 using System.Data.OleDb;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,26 +25,7 @@ namespace HotelManangementSystemLibrary
             {
                 if (features != null)
                     return;
-                await Task.Run(() =>
-                {
-                    using (OleDbConnection con = new OleDbConnection(connectionString))
-                    {
-                        con.Open();
-                        string sql = "SELECT * FROM tbl_Feature";
-                        OleDbCommand cmd = new OleDbCommand(sql, con);
-
-                        OleDbDataReader rd = Execute.GetReader(con, cmd);
-
-                        while (rd.Read())
-                        {
-                            string fname = rd["F_Name"].ToString();
-                            string dsc = rd["F_Description"].ToString();
-                            decimal price = decimal.Parse(rd["Price"].ToString());
-                            Feature fet = new Feature(fname, dsc, price);
-                            base.Add(fet);
-                        }
-                    }//
-                });
+                await LoadAcces();
                 return;
             }//
             string[] data =  Service.CheckFilesExistAndLoadTextData("Features.csv");
@@ -58,6 +40,41 @@ namespace HotelManangementSystemLibrary
                 base._collection.Add(fet);
             }//
         }//LoadFeatures
+        private async Task LoadAcces()
+        {
+            await Task.Run(() =>
+            {
+                using (OleDbConnection con = new OleDbConnection(connectionString))
+                {
+                    try
+                    {
+                        con.Open();
+                        string sql = "SELECT * FROM tbl_Feature";
+                        OleDbCommand cmd = new OleDbCommand(sql, con);
+
+                        OleDbDataReader rd = cmd.ExecuteReader();
+
+                        while (rd.Read())
+                        {
+                            string fname = rd["F_Name"].ToString();
+                            string dsc = rd["F_Description"].ToString();
+                            decimal price = decimal.Parse(rd["F_Price"].ToString());
+                            Feature fet = new Feature(fname, dsc, price);
+                            base.Add(fet);
+                        }
+                    }//
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+            });
+        }//LoadAccess
         public static IFeatures GetFeaturesInstance(string _connection = "")
         {
             connectionString = _connection;

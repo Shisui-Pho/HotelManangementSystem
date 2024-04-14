@@ -5,26 +5,30 @@ namespace HotelManangementSystemLibrary
 {
     internal class DBBookings : RoomBookings ,IRoomBookings
     {
-        private string connectionString;
         private readonly IGuests _guests;
         private readonly IRooms _rooms;
         private bool isLoading = true;
+        private readonly OleDbConnection con;
         public DBBookings(string connectionstring, IGuests guests, IRooms rooms) : base()
         {
-            this.connectionString = connectionstring;
             _guests = guests;
             _rooms = rooms;
             base.RemovedBooking += DBBookings_RemovedBooking;
             LoadData();
+            con = new OleDbConnection(connectionstring);
         }//ctor main
+        ~DBBookings()
+        {
+            con.Dispose();
+        }
         private void LoadData()
         {
-            using(OleDbConnection con = new OleDbConnection(this.connectionString))
+            try
             {
                 con.Open();
                 string query = "SELECT * FROM tbl_Booking";
                 OleDbCommand cmd = new OleDbCommand(query, con);
-                OleDbDataReader rd = Execute.GetReader(con, cmd);
+                OleDbDataReader rd = cmd.ExecuteReader();
                 if (rd == default)
                     throw new ArgumentException("Data not loaded");
                 while (rd.Read())
@@ -39,10 +43,11 @@ namespace HotelManangementSystemLibrary
                     decimal amountPayed = decimal.Parse(rd["AmountPaid"].ToString());
                     decimal amountToPay = decimal.Parse(rd["AmountToPay"].ToString());
                     decimal cost = decimal.Parse(rd["BookingCost"].ToString());
-                    
+
                     //Get remaining prop
                     int duration = int.Parse(rd["Duration"].ToString());
-                    DateTime dt = DateTime.Parse(rd["DateBookedFor"].ToString());
+                    string dateString = rd["DateBookedFor"].ToString();
+                    DateTime dt = DateTime.Parse(dateString);
 
                     //Find the guest and rooms
                     IRoom room = this._rooms.FindRoom(roomNumber);
@@ -52,24 +57,40 @@ namespace HotelManangementSystemLibrary
                     IBookingFees fee = new BookingFees(dt, cost, amountToPay, amountPayed);
 
                     //Create the booking
-                    IRoomBooking booking = BookingsFactory.CreateBookingWithFees(Id,guest, room, dt, fee,duration);
-                    
+                    IRoomBooking booking = BookingsFactory.CreateBookingWithFees(Id, guest, room, dt, fee, duration);
+
                     //Add it to the collection
                     this.Add(booking);
                 }//Create objects here
-            }//end using
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
             isLoading = false;
         }//LoadData
         private void DBBookings_RemovedBooking(object sender, HotelEventArgs args)
         {
             //Establish a database connection here
-            using(OleDbConnection con = new OleDbConnection(connectionString))
-            {
+            try 
+            { 
                 con.Open();
 
                 string sql = "DELETE FROM tbl_Booking WHERE ID = " + args.Name;
                 OleDbCommand cmd = new OleDbCommand(sql, con);
-                Execute.NoneQuery(con, cmd);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
             }
         }//DBBookings_RemovedBooking
         public override void Add(IRoomBooking item)
@@ -77,7 +98,7 @@ namespace HotelManangementSystemLibrary
             //Establish database connection here
             if (!isLoading)
             {
-                using(OleDbConnection con = new OleDbConnection(connectionString))
+                try 
                 {
                     con.Open();
                     //VALUES ([@GuestID], [@RoomNumber], [@BookingDate], [@Duration], [@Cost], [@Paid], [@ToPay], [@ServiceID]);
@@ -91,9 +112,17 @@ namespace HotelManangementSystemLibrary
                     cmd.Parameters.AddWithValue("@Paid", item.BookingFee.AmountPaid);
                     cmd.Parameters.AddWithValue("@ToPay", item.BookingFee.AmoutToPay);
                     cmd.Parameters.AddWithValue("@ServiceID", "None");
-
-                    Execute.NoneQuery(con, cmd);
-                }//end using
+                    cmd.ExecuteNonQuery();
+                    //Execute.NoneQuery(con, cmd);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
             //Subscibe to the OnPropertyChanged event
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
@@ -104,13 +133,21 @@ namespace HotelManangementSystemLibrary
 
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
-            using(OleDbConnection con = new OleDbConnection(connectionString))
+            try
             {
                 con.Open();
                 string sql = "UPDATE tbl_Booking SET " + field + " = " + newVal + " WHERE ID = " + id;
                 OleDbCommand cmd = new OleDbCommand(sql, con);
-                Execute.NoneQuery(con, cmd);
+                cmd.ExecuteNonQuery();
             }//end using
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
         }//Item_PropertyChangedEvent
     }//class
 }//namespace
