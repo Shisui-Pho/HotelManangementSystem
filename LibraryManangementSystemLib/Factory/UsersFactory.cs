@@ -25,7 +25,7 @@ namespace HotelManangementSystemLibrary.Factory
         }
         public static IGuest CreateGuest(IUser user)
         {
-            Guest gs =  new Guest(user.Name, user.Surname, user.DOB);
+            Guest gs = (Guest)user;  //new Guest(user.Name, user.Surname, user.DOB);
             gs.SetPassword(user.Password);
             gs.SetUsername(user.UserName);
             gs.SetIdForExistingUser(user.UserID);
