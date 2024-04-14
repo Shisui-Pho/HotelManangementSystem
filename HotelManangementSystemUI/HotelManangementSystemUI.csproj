@@ -111,6 +111,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,9 +132,9 @@
       <Project>{381bb8be-5f4b-4915-a4d9-5c96a0bc568c}</Project>
       <Name>HotelManangementControlLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HotelManangementSystemLibrary\HotelManangementSystemLibrary.csproj">
-      <Project>{90bb8bd5-6c10-49e9-8a3d-edddaf17908d}</Project>
-      <Name>HotelManangementSystemLibrary</Name>
+    <ProjectReference Include="..\LibraryManangementSystemLib\LibraryManangementSystemLib.csproj">
+      <Project>{26d4ead9-bcd2-450d-a614-e65125b74496}</Project>
+      <Name>LibraryManangementSystemLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIServiceLibraru\UIServiceLibrary.csproj">
       <Project>{f97029db-2270-4da7-b71a-7d90eff67d2d}</Project>
