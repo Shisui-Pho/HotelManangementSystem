@@ -11,13 +11,12 @@ namespace HotelManangementSystemLibrary
         public DBRooms(string connectionstring) : base()
         {
             con = new OleDbConnection(connectionstring);
-            LoadData();
         }//ctor main
         ~DBRooms()
         {
             con.Dispose();
         }
-        private void LoadData()
+        internal void LoadData()
         {
             try 
             { 

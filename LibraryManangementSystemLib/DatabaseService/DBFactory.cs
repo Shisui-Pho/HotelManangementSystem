@@ -4,19 +4,27 @@
     {
         public static IGuests CreateAndLoadDBGuests(string connectionString, IUsers users)
         {
-            return new DBGuests(connectionString,users);
+            DBGuests gg = new DBGuests(connectionString, users);
+            gg.LoadData();
+            return gg;
         }
         public static IUsers CreateAndLoadDBUsers(string connectionString)
         {
-            return new DBUsers(connectionString);
+            DBUsers us = new DBUsers(connectionString);
+            us.LoadData();
+            return us;
         }
         public static IRoomBookings CreateAndLoadDBRoomBookings(string connectionString, IGuests guests,IRooms rooms)
         {
-            return new DBBookings(connectionString, guests,rooms);
+            DBBookings bo = new DBBookings(connectionString, guests, rooms);
+            bo.LoadData();
+            return bo;
         }
         public static IRooms CreateAndLoadDBRooms(string connectionString)
         {
-            return new DBRooms(connectionString);
+            DBRooms ro = new DBRooms(connectionString);
+            ro.LoadData();
+            return ro;
         }
     }//class
 }//namespace

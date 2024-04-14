@@ -1,10 +1,12 @@
 ﻿using HotelManangementSystemLibrary.Factory;
 using System;
 using System.Data.OleDb;
+using System.Data;
 namespace HotelManangementSystemLibrary
 {
     internal class DBBookings : RoomBookings ,IRoomBookings
     {
+       // private static int Count = 0;
         private readonly IGuests _guests;
         private readonly IRooms _rooms;
         private bool isLoading = true;
@@ -14,14 +16,14 @@ namespace HotelManangementSystemLibrary
             _guests = guests;
             _rooms = rooms;
             base.RemovedBooking += DBBookings_RemovedBooking;
-            LoadData();
             con = new OleDbConnection(connectionstring);
+            
         }//ctor main
         ~DBBookings()
         {
             con.Dispose();
         }
-        private void LoadData()
+        internal void LoadData()
         {
             try
             {
@@ -104,9 +106,10 @@ namespace HotelManangementSystemLibrary
                     //VALUES ([@GuestID], [@RoomNumber], [@BookingDate], [@Duration], [@Cost], [@Paid], [@ToPay], [@ServiceID]);
                     string sql = "qr_CreateBooking";
                     OleDbCommand cmd = new OleDbCommand(sql, con);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@GuestID", item.Guest.UserID);
                     cmd.Parameters.AddWithValue("@RoomNumber", item.Room.RoomNumber);
-                    cmd.Parameters.AddWithValue("@BookingDate", item.DateBookedFor);
+                    cmd.Parameters.AddWithValue("@BookingDate", item.DateBookedFor.ToString("dd/MM/yyyy"));
                     cmd.Parameters.AddWithValue("@Duration", item.NumberOfDaysToStay);
                     cmd.Parameters.AddWithValue("@Cost", item.BookingFee.BookingCost);
                     cmd.Parameters.AddWithValue("@Paid", item.BookingFee.AmountPaid);

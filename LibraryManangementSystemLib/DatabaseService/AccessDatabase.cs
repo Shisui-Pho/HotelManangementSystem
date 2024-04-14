@@ -34,8 +34,8 @@ namespace HotelManangementSystemLibrary.DatabaseService
             {
                 users = DBFactory.CreateAndLoadDBUsers(this.connectionString);
                 rooms = DBFactory.CreateAndLoadDBRooms(this.connectionString);
-                guests = DBFactory.CreateAndLoadDBGuests(this.connectionString,users);
-                bookings = DBFactory.CreateAndLoadDBRoomBookings(this.connectionString,guests,rooms);
+                guests = DBFactory.CreateAndLoadDBGuests(this.connectionString, users);
+                bookings = DBFactory.CreateAndLoadDBRoomBookings(this.connectionString, guests, rooms);
             });//
         }//LoadEntireDatabaseAsync
 

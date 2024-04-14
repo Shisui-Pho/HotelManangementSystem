@@ -12,13 +12,12 @@ namespace HotelManangementSystemLibrary
         public DBUsers(string connectionstring) : base()
         {
             con = new OleDbConnection(connectionstring);
-            LoadData();
         }//ctor main
         ~DBUsers()
         {
             con.Dispose();
         }
-        private void LoadData()
+        internal void LoadData()
         {
             try { 
                 con.Open();

@@ -13,13 +13,12 @@ namespace HotelManangementSystemLibrary
         {
             con = new OleDbConnection(connectionString);
             _users = users;
-            LoadData();
         }//ctor main
         ~DBGuests()
         {
             con.Dispose();
         }
-        private void LoadData()
+        internal void LoadData()
         {
             try 
             { 
