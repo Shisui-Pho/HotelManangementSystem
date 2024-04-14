@@ -1,8 +1,6 @@
 ﻿using System;
 namespace HotelManangementSystemLibrary
 {
-    public delegate void delOnPriceChanged(IRoom room);
-    internal delegate void delOnFeatureRemoved(string roomNumber, string FeatureID);
     internal abstract class Room : IRoom
     {
         ////Data members        

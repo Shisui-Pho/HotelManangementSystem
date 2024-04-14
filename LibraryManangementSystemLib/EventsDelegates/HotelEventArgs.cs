@@ -8,6 +8,15 @@ namespace HotelManangementSystemLibrary
     public delegate void delOnRemovedEvent(object sender, HotelEventArgs args);
     public delegate void delOnUpdatedEvent(object old, object @new, HotelEventArgs args);
     public delegate void delOnAddedEvent(HotelEventArgs args);
+    public delegate void delOnPropertyChanged(string id, string field, string newVal);
+    public delegate void delOnPriceChanged(IRoom room);
+    internal delegate void delOnFeatureRemoved(string roomNumber, string FeatureID);
+    internal delegate void delOnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args);
+    public delegate void delOnTrasnaction(TransactionArgs transaction);
+    public delegate void delOnBalanceChanged(decimal newBalance, decimal newAmountOwing);
+
+
+
     public class HotelEventArgs : EventArgs
     {
         public bool IsHandled { get; set; }

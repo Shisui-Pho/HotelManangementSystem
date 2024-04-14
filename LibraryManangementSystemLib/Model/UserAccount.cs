@@ -1,7 +1,5 @@
 ﻿namespace HotelManangementSystemLibrary
-{
-    public delegate void delOnTrasnaction(TransactionArgs transaction);
-    public delegate void delOnBalanceChanged(decimal newBalance, decimal newAmountOwing);
+{ 
     internal class UserAccount : IUSerAccount
     {
         public decimal CurrentBalance { get; private set; }

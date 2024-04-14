@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace HotelManangementSystemLibrary
 {
-    internal delegate void delOnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args);
     public class RoomFeatures
     {
         private List<IFeature> features;
