@@ -23,11 +23,11 @@ namespace HotelManangementSystemLibrary
             try 
             { 
                 con.Open();
-                string query = "SELECT * FROM tbl_Guest";
+                string query = "qr_LoadGuests";
                 OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.CommandType = CommandType.StoredProcedure;
                 OleDbDataReader rd = cmd.ExecuteReader();
-                if (rd == default)
-                    throw new ArgumentException("Data not loaded");
+
                 while (rd.Read())
                 {
                     string id = rd["GuestID"].ToString();
