@@ -64,7 +64,7 @@ namespace HotelManangementSystemLibrary
                     IGuest guest = this._guests.FindGuest(guestID);
 
                     //Create the booking fees
-                    IBookingFees fee = new BookingFees(dt, cost, amountToPay, amountPayed);
+                    IBookingFees fee = BookingsFactory.CreateBookingFee(dt, cost, amountToPay, amountPayed);
 
                     //Create the booking
                     IRoomBooking booking = BookingsFactory.CreateBookingWithFees(Id, guest, room, dt, fee, duration);

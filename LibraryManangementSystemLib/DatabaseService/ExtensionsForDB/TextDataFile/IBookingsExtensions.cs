@@ -45,7 +45,7 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 decimal mCost = Service.GetValueOfMoney(fields[7]);
 
 
-                IBookingFees fees = new BookingFees(date, mCost, mAmountToPay, mAmountPaid);
+                IBookingFees fees = BookingsFactory.CreateBookingFee(date, mCost, mAmountToPay, mAmountPaid);
 
                 IRoomBooking booking = BookingsFactory.CreateBookingWithFees(fields[0],guest, room, date, fees,int.Parse(fields[4]));
 

@@ -14,46 +14,31 @@ namespace HotelManangementSystemLibrary
         public IRoom Room { get; private set; }
         public IRoomService RoomService { get; private set; }
         public DateTime DateBookedFor { get; private set; }
-        public bool IsCheckedIn { get; private set; }
-        public int DaysStayed { get; set; }
+        public bool IsCheckedIn { get; private set; } = false;
+        public int DaysStayed { get; set; } = 0;
         public int NumberOfDaysToStay { get; private set; }
-
         public IBookingFees BookingFee { get; private set; }
-
-        public RoomBooking(IGuest guest, IRoom room, DateTime date, int numberOfDays = 1)
+        public RoomBooking(IGuest guest, IRoom room, DateTime date, IBookingFees fees, int length = 1)
         {
-            Guest = guest;
-            Room = room;
-            //Make sure guest cannot book for a past date
-            if (DateTime.UtcNow > date)
-                throw new ArgumentException("Cannot book on this date!.");
-            DateBookedFor = date;
-            NumberOfDaysToStay = numberOfDays;
-            DaysStayed = 0;
-            IsCheckedIn = false;
+            //Check if the bookings is valid first
+            //-Cannot book on the date befor today
+            if (DateTime.Now > date)
+                throw new ArgumentException("Cannot book on this date");
 
+            //Passed/Injected through the contructor
+            this.Guest = guest;
+            this.Room = room;
+            this.BookingFee = fees;
+            this.NumberOfDaysToStay = length;
             bookingCount += 50;
-            BookingID = bookingCount.ToString();
-            BookingFee = new BookingFees(date, Room.Price * numberOfDays);
-        }//RoomBooking
-        internal RoomBooking(string id,IGuest guest, IRoom room, DateTime date, int numberOfDays = 1)
+            this.BookingID = bookingCount.ToString();
+        }//ctor 01
+        internal RoomBooking(string id,IGuest guest, IRoom room, DateTime date,IBookingFees fees, int length = 1) 
+            : this(guest,room,date,fees,length)
         {
-            Guest = guest;
-            Room = room;
-            //Make sure guest cannot book for a past date
-            if (DateTime.UtcNow > date)
-                throw new ArgumentException("Cannot book on this date!.");
-            DateBookedFor = date;
-            NumberOfDaysToStay = numberOfDays;
-            DaysStayed = 0;
-            IsCheckedIn = false;
-
-            bookingCount += 50;
             BookingID = id;
-            BookingFee = new BookingFees(date, Room.Price * numberOfDays);
         }//RoomBooking
         internal void SetBookingID(string _id) => BookingID = _id;
-        internal void SetBookingFees(IBookingFees fees) => this.BookingFee = fees;
         public void ChangeBookingDate(DateTime date, int numberOfDays = 1)
         {
             if (numberOfDays > maxDays)
