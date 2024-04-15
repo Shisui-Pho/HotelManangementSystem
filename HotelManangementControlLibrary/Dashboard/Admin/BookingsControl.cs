@@ -5,7 +5,9 @@ using System.Windows.Forms;
 using HotelManangementSystemLibrary;
 using HotelManangementControlLibrary.Service;
 using HotelManangementSystemLibrary.Factory;
-using HotelManangementControlLibrary.Utils;
+using UIServiceLibrary;
+using UIServiceLibrary.Extensions;
+
 namespace HotelManangementControlLibrary.Dashboard
 {
     public partial class BookingsControl : UserControl

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelManangementControlLibrary
+namespace UIServiceLibrary
 {
     //Delegate to passed as paremeters between the main form and the controls
     public delegate void delChangeControl();

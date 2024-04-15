@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using HotelManangementControlLibrary.Input_Forms;
 using HotelManangementControlLibrary.Service;
 using HotelManangementSystemLibrary;
+using UIServiceLibrary;
 
 namespace HotelManangementControlLibrary.Dashboard.Guest
 {

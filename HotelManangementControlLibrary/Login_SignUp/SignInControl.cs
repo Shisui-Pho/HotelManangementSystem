@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using UIServiceLibrary;
 using UIServiceLibrary.Evaluations;
 namespace HotelManangementControlLibrary.Login_SignUp
 {

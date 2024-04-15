@@ -1,9 +1,9 @@
 ﻿using HotelManangementSystemLibrary;
 using System.Collections.Generic;
 
-namespace HotelManangementControlLibrary.Utils
+namespace UIServiceLibrary.Extensions
 {
-    public static class Extensions
+    public static class IEnumarableCollections
     {
         public static IEnumerable<IRoomBooking> FindBookings(this IRoomBookings bookings,IRoom room)
         {
@@ -31,5 +31,13 @@ namespace HotelManangementControlLibrary.Utils
                     yield return guest;
             }
         }//GetGuests
+        public static IEnumerable<IRoomBooking> GetBookingsOf(this IRoomBookings bookings, string userid)
+        {
+            foreach (var item in bookings)
+            {
+                if (item.Guest.UserID == userid)
+                    yield return item;
+            }
+        }//GetBookingsOf
     }//class
 }//namespace

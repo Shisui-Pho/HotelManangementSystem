@@ -2,8 +2,8 @@
 using HotelManangementSystemLibrary;
 using System;
 using System.Windows.Forms;
-using ComponentFactory.Krypton.Toolkit;
 using HotelManangementControlLibrary.Input_Forms;
+using UIServiceLibrary;
 
 namespace HotelManangementControlLibrary.Dashboard.Admin
 {

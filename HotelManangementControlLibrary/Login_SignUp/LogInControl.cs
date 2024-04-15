@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
+using UIServiceLibrary;
+
 namespace HotelManangementControlLibrary.Login_SignUp
 {
     public partial class LogInControl : UserControl

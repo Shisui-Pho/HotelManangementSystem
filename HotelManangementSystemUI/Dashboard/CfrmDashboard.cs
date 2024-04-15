@@ -9,8 +9,7 @@ using HotelManangementSystemLibrary.DatabaseService;
 using HotelManangementSystemUI.Input_Forms;
 using HotelManangementControlLibrary.Dashboard.Guest;
 using HotelManangementSystemLibrary.Factory;
-using HotelManangementSystemUI.Extensions;
-
+using UIServiceLibrary.Extensions;
 namespace HotelManangementSystemUI.Dashboard
 {
     public partial class CfrmDashboard : Form

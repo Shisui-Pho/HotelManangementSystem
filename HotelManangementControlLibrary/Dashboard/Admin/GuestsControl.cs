@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using HotelManangementSystemLibrary;
-using HotelManangementControlLibrary.Utils;
-
+using UIServiceLibrary.Extensions;
 namespace HotelManangementControlLibrary.Dashboard.Admin
 {
     public partial class GuestsControl : UserControl

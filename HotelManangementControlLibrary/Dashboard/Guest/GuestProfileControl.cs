@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using HotelManangementSystemLibrary;
 using UIServiceLibrary.Evaluations;
 using HotelManangementControlLibrary.Service;
+using UIServiceLibrary;
+
 namespace HotelManangementControlLibrary.Dashboard.Guest
 {
     public partial class GuestProfileControl : UserControl

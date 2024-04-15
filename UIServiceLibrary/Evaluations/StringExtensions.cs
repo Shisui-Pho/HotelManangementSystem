@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UIServiceLibrary.Evaluations
 {
-    public static class Extensions
+    public static class StringExtensions
     {
         private static readonly string[] unwantedValues =
             { "PASSWORD", "USERNAME","NAMES","SURNAME","EMAIL","PHONE NUMBER"};

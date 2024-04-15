@@ -5,6 +5,7 @@ using HotelManangementControlLibrary.Service;
 using HotelManangementSystemLibrary;
 using ComponentFactory.Krypton.Toolkit;
 using HotelManangementControlLibrary.Custome_Message_Box_Form;
+using UIServiceLibrary;
 
 namespace HotelManangementControlLibrary.Dashboard
 {
