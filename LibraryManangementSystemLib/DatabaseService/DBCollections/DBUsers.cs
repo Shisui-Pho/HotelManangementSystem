@@ -60,10 +60,12 @@ namespace HotelManangementSystemLibrary
             //Establish the databse connection here
             if (!isLoading)
             {
+                OleDbTransaction trans = null;
                 try 
                 { 
                     //First make the person
                     con.Open();
+                    trans = con.BeginTransaction();
                     string sql = "qr_CreatePerson";
                     OleDbCommand cmd = new OleDbCommand(sql, con);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -75,7 +77,6 @@ namespace HotelManangementSystemLibrary
                     cmd.ExecuteNonQuery();
 
                     //For the user table
-                    //con.Open();
                     sql = "qr_CreateUser";
                     cmd = new OleDbCommand(sql, con);
                     //([@UserId], [@UserName], [@UserPassword], [@UserType]);
@@ -84,16 +85,21 @@ namespace HotelManangementSystemLibrary
                     cmd.Parameters.AddWithValue("@UserPassword", item.Password);
                     string type = (item is IAdministrator) ? "Admin" : "Guest";
                     cmd.Parameters.AddWithValue("@UserType", type);
-
                     cmd.ExecuteNonQuery();
+
+                    trans.Commit();
                 }
                 catch (Exception ex)
                 {
+                    if(trans != null)
+                        trans.Rollback();
                     throw ex;
                 }
                 finally
                 {
                     con.Close();
+                    if (trans != null)
+                        trans.Dispose();
                 }
             }
             //-Subscibe to the Property changed event 

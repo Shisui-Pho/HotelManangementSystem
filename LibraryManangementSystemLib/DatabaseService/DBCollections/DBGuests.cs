@@ -46,15 +46,17 @@ namespace HotelManangementSystemLibrary
 
                     this.Add(guest);
                 }//Create objects here
-            }//end using
+            }//end try
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//end catch
             finally
             {
                 con.Close();
-            }
+            }//end finaly
+
+            //Turn off our flag for loading
             isLoading = false;
         }//LoadData
 
@@ -63,63 +65,88 @@ namespace HotelManangementSystemLibrary
             //Establish the databse connection here
             if (!isLoading)
             {
-                PushToDataBase(item);
+                if (!PushToDataBase(item))
+                    return;
             }//
             //-Subscribe to the PropertyChanged event
             item.GuestPropertyChangedEvent += Item_PropertyChangedEvent;
             item.BalanceChangedEvent += Item_BalanceChangedEvent;
             base.Add(item);
         }//Add
-        private void PushToDataBase(IGuest newguest)
+        private bool PushToDataBase(IGuest newguest)
         {
+            //To note 
+            //-The user has already been created at this point at has a valid user id
+            //-All we do is extend the user to create a guest and account using the same user ID
+            
+            //If the unexpected we can always rollback the transaction and notify the user
+            OleDbTransaction trans = null;
             try
             {
                 con.Open();
+                trans = con.BeginTransaction();
                 string sql = "qr_CreateGuest";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                //([@GuestID], [@CellNumber], [@Email], [@Emergency], [@Owing], [@Balance]);
                 cmd.Parameters.AddWithValue("@GuestID", newguest.UserID);
                 cmd.Parameters.AddWithValue("@CellNumber", newguest.ContactDetails.CellphoneNumber);
                 cmd.Parameters.AddWithValue("@Email", newguest.ContactDetails.EmailAddress);
                 cmd.Parameters.AddWithValue("@Emergency", newguest.ContactDetails.EmergencyNumber);
+                cmd.ExecuteNonQuery();
+
+
+                //Create the guest account if the guest was created successfully
+                sql = "qr_CreateAccount";
+                cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@GuestID", newguest.UserID);
                 cmd.Parameters.AddWithValue("@Owing", newguest.Account.AmountOwing);
                 cmd.Parameters.AddWithValue("@Balance", newguest.Account.CurrentBalance);
-                cmd.ExecuteNonQuery();
-                //Execute.NoneQuery(con, cmd);
-            }
+
+                //Save the changes if everthing was successful
+                trans.Commit();
+                return true;
+            }//end try
             catch (Exception ex)
             {
+                //If an error occured at any stage, rollback 
+                //-Since there are only two statement, then if the first query fails nothing will be done
+                //- if query 2 fails,the first query will be rolled back 
+                if (trans != null)
+                    trans.Rollback();
                 throw ex;
-            }
+            }//end catch
             finally
             {
                 con.Close();
-            }
+                if(trans != null)
+                    trans.Dispose();
+            }//end finally
         }//PushToDataBase
-        private void Item_PropertyChangedEvent(string id, string field, string newVal)
+        private async void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
             try 
             { 
-                con.Open();
-
+                //Open the connection async to prevent connection delays from the UI
+                await con.OpenAsync();
                 string sql = "UPDATE tbl_Guest SET " + field + " = '" + newVal + "' WHERE GuestID = '" + id + "'";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
-            }
+            }//end try
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//end catch
             finally
             {
                 con.Close();
-            }
+            }//end finally
         }//Item_PropertyChangedEvent
         private async void Item_BalanceChangedEvent(BalanceChangedEventArgs args)
         {
             try
             {
+                //Open the connection async to prevent connection delays from the UI
                 await con.OpenAsync();
                 string sql = "qr_UpdateBalance";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
