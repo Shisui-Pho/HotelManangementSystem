@@ -9,7 +9,6 @@ namespace HotelManangementSystemLibrary
 
         public event delOnPriceChanged OnPriceChangedEvent;
         public event delOnPropertyChanged PropertyChangedEvent;
-        internal event delOnFeatureRemoved FeatureRemoved;
         //Properties
         public string RoomNumber { get; private set; }
 
