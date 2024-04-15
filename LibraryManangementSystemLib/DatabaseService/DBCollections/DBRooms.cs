@@ -20,9 +20,10 @@ namespace HotelManangementSystemLibrary
         {
             try 
             { 
-                string query = "SELECT * FROM tbl_Room";
-                OleDbCommand cmd = new OleDbCommand(query, con);
                 con.Open();
+                string query = "qr_LoadRooms";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.CommandType = CommandType.StoredProcedure;
                 OleDbDataReader rd = cmd.ExecuteReader();
                 if (rd == default)
                     throw new ArgumentException("Data not loaded");
@@ -36,9 +37,8 @@ namespace HotelManangementSystemLibrary
                     
                     //For loading room features
                     query = "qr_GetRoomFeatures";
-                    //con.Open();
                     cmd = new OleDbCommand(query, con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@RoomNumber", roomNumber);
                     OleDbDataReader rd2 = cmd.ExecuteReader();
                     while (rd2.Read())
@@ -55,11 +55,11 @@ namespace HotelManangementSystemLibrary
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//end catch
             finally
             {
                 con.Close();
-            }
+            }//end finally
             isLoading = false;
         }//LoadData
         public override void Add(IRoom item)
@@ -69,24 +69,28 @@ namespace HotelManangementSystemLibrary
             {
                 try 
                 { 
+                    //Open the connection
                     con.Open();
                     string sql = "qr_CreateRoom";
 
                     OleDbCommand cmd = new OleDbCommand(sql, con);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    //Pass the parameters
                     cmd.Parameters.AddWithValue("@RoomNumber", item.RoomNumber);
                     cmd.Parameters.AddWithValue("@RoomPrice", item.Price);
                     cmd.Parameters.AddWithValue("@IsSingle", item.IsSingleRoom);
+
+                    //Execute the query
                     cmd.ExecuteNonQuery();
-                }//end using
+                }//end try
                 catch (Exception ex)
                 {
                     throw ex;
-                }
+                }//end catch
                 finally
                 {
                     con.Close();
-                }
+                }//end finaly
             }//END IF
             //-Subscribe to the PropertyChangedEvent
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
@@ -96,24 +100,32 @@ namespace HotelManangementSystemLibrary
 
         private void RoomFeatures_OnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args)
         {
-            try { 
+            //This will be executed everytime we remove or add a new feature to a room 
+            try 
+            { 
                 con.Open();
                 string sql;
-                if (!isAdded)
-                    sql = "DELETE FROM tbl_RoomFeature WHERE FeatureID = " + feature.FeatureID + " AND RoomNumber = " + args.RoomNumber; 
-                else
-                    sql = "INSERT INTO tbl_RoomFeature(FeatureID,RoomNumber) VALUES ("+feature.FeatureID+","+args.RoomNumber+")";
+
+                //Check which operation is being made
+                if (!isAdded)//IF delete
+                    sql = "qr_RemoveFeature"; 
+                else//If insert
+                    sql = "qr_AddRoomFeature";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //Pass the parameters
+                cmd.Parameters.AddWithValue("@FeatureID", feature.FeatureID);
+                cmd.Parameters.AddWithValue("@RoomNumber", args.RoomNumber);
                 cmd.ExecuteNonQuery();
-            }
+            }//end try
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//end catch
             finally
             {
                 con.Close();
-            }
+            }//end finally
         }//RoomFeatures_OnFeaturesModified
 
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
@@ -121,39 +133,49 @@ namespace HotelManangementSystemLibrary
             try 
             { 
                 con.Open();
+                //Build the sql query to be executed
                 string sql = "UPDATE tbl_Room SET " + field + " = '" + newVal + "' WHERE RoomNumber = '" + id + "'";
 
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
-            }//end using
+            }//end try
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//end catch 
             finally
             {
                 con.Close();
-            }
+            }//end finally
         }//Item_PropertyChangedEvent
 
         public override void Remove(IRoom item)
         {
-            try { 
-            //Establish the database connection here
-                string sql = "DELETE FROM tbl_Room WHERE RoomNumber = '" + item.RoomNumber + "'";
+            try 
+            { 
+                //Open connection
                 con.Open();
 
+                //Detele the room first
+                string sql = "DELETE FROM tbl_Room WHERE RoomNumber = '" + item.RoomNumber + "'";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
-            }//end using
+
+                //Remove all the features associated this the room number
+                sql = "DELETE FROM tblRoomFeature WHERE RoomNumber = '" + item.RoomNumber + "'";
+                cmd = new OleDbCommand(sql, con);
+                cmd.ExecuteNonQuery();
+            }//end try
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//catch
             finally
             {
                 con.Close();
-            }
+            }//finally
+
+            //Remove from the collection
             base.Remove(item);
         }//Remove
     }//class
