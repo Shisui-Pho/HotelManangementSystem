@@ -136,10 +136,6 @@
       <Project>{26d4ead9-bcd2-450d-a614-e65125b74496}</Project>
       <Name>LibraryManangementSystemLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UIServiceLibraru\UIServiceLibrary.csproj">
-      <Project>{f97029db-2270-4da7-b71a-7d90eff67d2d}</Project>
-      <Name>UIServiceLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
