@@ -67,37 +67,43 @@ namespace HotelManangementSystemLibrary
             //Establish database connection here
             if (!isLoading)
             {
-                try 
-                { 
-                    //Open the connection
-                    con.Open();
-                    string sql = "qr_CreateRoom";
-
-                    OleDbCommand cmd = new OleDbCommand(sql, con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    //Pass the parameters
-                    cmd.Parameters.AddWithValue("@RoomNumber", item.RoomNumber);
-                    cmd.Parameters.AddWithValue("@RoomPrice", item.Price);
-                    cmd.Parameters.AddWithValue("@IsSingle", item.IsSingleRoom);
-
-                    //Execute the query
-                    cmd.ExecuteNonQuery();
-                }//end try
-                catch (Exception ex)
-                {
-                    throw ex;
-                }//end catch
-                finally
-                {
-                    con.Close();
-                }//end finaly
+                if (!PushToDatabase(item))
+                    return;
             }//END IF
             //-Subscribe to the PropertyChangedEvent
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
             item.RoomFeatures.OnFeaturesModified += RoomFeatures_OnFeaturesModified;
             base.Add(item);
         }//Add
+        private bool PushToDatabase(IRoom room)
+        {
+            try
+            {
+                //Open the connection
+                con.Open();
+                string sql = "qr_CreateRoom";
 
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //Pass the parameters
+                cmd.Parameters.AddWithValue("@RoomNumber", room.RoomNumber);
+                cmd.Parameters.AddWithValue("@RoomPrice", room.Price);
+                cmd.Parameters.AddWithValue("@IsSingle", room.IsSingleRoom);
+
+                //Execute the query
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }//end try
+            catch (Exception ex)
+            {
+                throw ex;
+            }//end catch
+            finally
+            {
+                con.Close();
+            }//end finaly
+        }
         private void RoomFeatures_OnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args)
         {
             //This will be executed everytime we remove or add a new feature to a room 

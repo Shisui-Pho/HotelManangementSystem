@@ -2,6 +2,8 @@
 using System;
 using System.Data.OleDb;
 using System.Data;
+using System.Threading.Tasks;
+
 namespace HotelManangementSystemLibrary
 {
     internal class DBBookings : RoomBookings ,IRoomBookings
@@ -70,68 +72,43 @@ namespace HotelManangementSystemLibrary
                     //Add it to the collection
                     this.Add(booking);
                 }//Create objects here
-            }
+            }//try
             catch(Exception ex)
             {
                 throw ex;
-            }
+            }//catch
             finally
             {
                 con.Close();
-            }
+            }//finally
             isLoading = false;
         }//LoadData
-        private void DBBookings_RemovedBooking(object sender, HotelEventArgs args)
+        private async void DBBookings_RemovedBooking(object sender, HotelEventArgs args)
         {
-            //Establish a database connection here
             try 
             { 
-                con.Open();
+                await con.OpenAsync();
 
                 string sql = "DELETE FROM tbl_Booking WHERE ID = " + args.Name;
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
-            }
+            }//try
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//catch
             finally
             {
                 con.Close();
-            }
+            }//finally
         }//DBBookings_RemovedBooking
-        public override void Add(IRoomBooking item)
+        public async override void Add(IRoomBooking item)
         {
             //Establish database connection here
             if (!isLoading)
             {
-                try 
-                {
-                    con.Open();
-                    //VALUES ([@GuestID], [@RoomNumber], [@BookingDate], [@Duration], [@Cost], [@Paid], [@ToPay], [@ServiceID]);
-                    string sql = "qr_CreateBooking";
-                    OleDbCommand cmd = new OleDbCommand(sql, con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@GuestID", item.Guest.UserID);
-                    cmd.Parameters.AddWithValue("@RoomNumber", item.Room.RoomNumber);
-                    cmd.Parameters.AddWithValue("@BookingDate", item.DateBookedFor.ToString("dd/MM/yyyy"));
-                    cmd.Parameters.AddWithValue("@Duration", item.NumberOfDaysToStay);
-                    cmd.Parameters.AddWithValue("@Cost", item.BookingFee.BookingCost);
-                    cmd.Parameters.AddWithValue("@Paid", item.BookingFee.AmountPaid);
-                    cmd.Parameters.AddWithValue("@ToPay", item.BookingFee.AmoutToPay);
-                    cmd.Parameters.AddWithValue("@ServiceID", "None");
-                    cmd.ExecuteNonQuery();
-                    //Execute.NoneQuery(con, cmd);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    con.Close();
-                }
+                if (! await PushToDatabase(item))
+                    return;
             }
             //Subscibe to the OnPropertyChanged event
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
@@ -139,24 +116,60 @@ namespace HotelManangementSystemLibrary
             //Add to the base class
             base.Add(item);
         }//Add
-
-        private void Item_PropertyChangedEvent(string id, string field, string newVal)
+        private async Task<bool> PushToDatabase(IRoomBooking booking)
         {
             try
             {
-                con.Open();
-                string sql = "UPDATE tbl_Booking SET " + field + " = '" + newVal + "' WHERE ID = '" + id +"'";
+                //Oppen the connection asyncroniously
+                await con.OpenAsync();
+                
+                string sql = "qr_CreateBooking";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //Pass parameters
+                cmd.Parameters.AddWithValue("@GuestID", booking.Guest.UserID);
+                cmd.Parameters.AddWithValue("@RoomNumber", booking.Room.RoomNumber);
+                cmd.Parameters.AddWithValue("@BookingDate", booking.DateBookedFor.ToString("dd/MM/yyyy"));
+                cmd.Parameters.AddWithValue("@Duration", booking.NumberOfDaysToStay);
+                cmd.Parameters.AddWithValue("@Cost", booking.BookingFee.BookingCost);
+                cmd.Parameters.AddWithValue("@Paid", booking.BookingFee.AmountPaid);
+                cmd.Parameters.AddWithValue("@ToPay", booking.BookingFee.AmoutToPay);
+                cmd.Parameters.AddWithValue("@ServiceID", "None");
+
+                //Execute
                 cmd.ExecuteNonQuery();
-            }//end using
+                
+                return true;
+            }//try
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//catch
             finally
             {
                 con.Close();
-            }
+            }//finally
+        }//PushToDatabase 
+        private async void Item_PropertyChangedEvent(string id, string field, string newVal)
+        {
+            try
+            {
+                //Open an async connection
+                await con.OpenAsync();
+
+                //Build the required sql based on the field changed
+                string sql = "UPDATE tbl_Booking SET " + field + " = '" + newVal + "' WHERE ID = '" + id +"'";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.ExecuteNonQuery();
+            }//try
+            catch (Exception ex)
+            {
+                throw ex;
+            }//catch
+            finally
+            {
+                con.Close();
+            }//finally
         }//Item_PropertyChangedEvent
     }//class
 }//namespace
