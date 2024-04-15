@@ -19,17 +19,20 @@ namespace HotelManangementSystemLibrary
         }
         internal void LoadData()
         {
-            try { 
+            try 
+            { 
+                //Open the connection
                 con.Open();
                 string query = "qr_LoadUsers";
                 OleDbCommand cmd = new OleDbCommand(query, con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
+                //Load the users
                 OleDbDataReader rd = cmd.ExecuteReader();
 
-                if (rd == default)
-                    throw new ArgumentException("Data not loaded");
                 while (rd.Read())
                 {
+                    //Determin the type of user first
                     TypeOfUser type = (rd["UserType"].ToString() == "Admnin") ? TypeOfUser.Admin : TypeOfUser.Guest;
                     string dateString = rd["DOB"].ToString();
                     DateTime dob = DateTime.Parse(dateString);
@@ -38,21 +41,27 @@ namespace HotelManangementSystemLibrary
                     string username = rd["User_Name"].ToString();
                     string password = rd["User_Password"].ToString();
                     string userId = rd["ID"].ToString();
+
+                    //Create the user
                     IUser user = UsersFactory.CreateUser(type, name, surname, dob, userId);
+                    
+                    //Set the password
                     user.SetPassword(password);
                     user.SetUsername(username);
 
+                    //Add the user to the collection
                     this.Add(user);
                 }//Create objects here
-            }//end using
+            }//end try
             catch (Exception ex)
             {
                 throw ex;
-            }
+            }//end catch
             finally
             {
                 con.Close();
-            }
+            }//end finally
+
             isLoading = false;
         }//LoadData
         public override void Add(IUser item)
@@ -60,54 +69,70 @@ namespace HotelManangementSystemLibrary
             //Establish the databse connection here
             if (!isLoading)
             {
-                OleDbTransaction trans = null;
-                try 
-                { 
-                    //First make the person
-                    con.Open();
-                    trans = con.BeginTransaction();
-                    string sql = "qr_CreatePerson";
-                    OleDbCommand cmd = new OleDbCommand(sql, con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ID", item.UserID);
-                    cmd.Parameters.AddWithValue("@Name", item.Name);
-                    cmd.Parameters.AddWithValue("@Surname", item.Surname);
-                    cmd.Parameters.AddWithValue("@dob", item.DOB);
-
-                    cmd.ExecuteNonQuery();
-
-                    //For the user table
-                    sql = "qr_CreateUser";
-                    cmd = new OleDbCommand(sql, con);
-                    //([@UserId], [@UserName], [@UserPassword], [@UserType]);
-                    cmd.Parameters.AddWithValue("@UserId", item.UserID);
-                    cmd.Parameters.AddWithValue("@UserName", item.UserName);
-                    cmd.Parameters.AddWithValue("@UserPassword", item.Password);
-                    string type = (item is IAdministrator) ? "Admin" : "Guest";
-                    cmd.Parameters.AddWithValue("@UserType", type);
-                    cmd.ExecuteNonQuery();
-
-                    trans.Commit();
-                }
-                catch (Exception ex)
-                {
-                    if(trans != null)
-                        trans.Rollback();
-                    throw ex;
-                }
-                finally
-                {
-                    con.Close();
-                    if (trans != null)
-                        trans.Dispose();
-                }
+                if (!PushToDatabse(item))
+                    return;
             }
             //-Subscibe to the Property changed event 
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
 
             base.Add(item);
         }//Add
+        private bool PushToDatabse(IUser user)
+        {
+            //If the unexpected we can always rollback the transaction and notify the user
+            OleDbTransaction trans = null;
+            try
+            {
 
+                con.Open();
+                //First create the person
+
+                //Start a transaction since we have multiple statements
+                trans = con.BeginTransaction();
+                string sql = "qr_CreatePerson";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+
+                //Pass the required parameters
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID", user.UserID);
+                cmd.Parameters.AddWithValue("@Name", user.Name);
+                cmd.Parameters.AddWithValue("@Surname", user.Surname);
+                cmd.Parameters.AddWithValue("@dob", user.DOB);
+
+                //Execute the first operation
+                cmd.ExecuteNonQuery();
+
+                //For the user table
+                sql = "qr_CreateUser";
+                cmd = new OleDbCommand(sql, con);
+                cmd.Parameters.AddWithValue("@UserId", user.UserID);
+                cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                cmd.Parameters.AddWithValue("@UserPassword", user.Password);
+                string type = (user is IAdministrator) ? "Admin" : "Guest";
+                cmd.Parameters.AddWithValue("@UserType", type);
+                cmd.ExecuteNonQuery();
+
+                //Save the changes if everthing was successful
+                trans.Commit();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //If an error occured at any stage, rollback 
+                //-Since there are only two statement, then if the first query fails nothing will be done
+                //- if query 2 fails,the first query will be rolled back 
+                if (trans != null)
+                    trans.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+                if (trans != null)
+                    trans.Dispose();
+            }
+        }
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
             //Establish the database connection here

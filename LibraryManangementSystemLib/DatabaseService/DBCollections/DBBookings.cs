@@ -6,15 +6,20 @@ namespace HotelManangementSystemLibrary
 {
     internal class DBBookings : RoomBookings ,IRoomBookings
     {
-       // private static int Count = 0;
+        //Collections needed for loading the bookings
+        //-They are going to be injected through the constructor
         private readonly IGuests _guests;
         private readonly IRooms _rooms;
+
         private bool isLoading = true;
         private readonly OleDbConnection con;
         public DBBookings(string connectionstring, IGuests guests, IRooms rooms) : base()
         {
             _guests = guests;
             _rooms = rooms;
+
+            //Invoke the booking removed from the base collection
+            //-We will user the event handler to move the booking to the old bookings table in our database
             base.RemovedBooking += DBBookings_RemovedBooking;
             con = new OleDbConnection(connectionstring);
             

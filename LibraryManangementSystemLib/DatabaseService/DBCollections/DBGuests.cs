@@ -6,6 +6,7 @@ namespace HotelManangementSystemLibrary
 {
     internal class DBGuests : Guests , IGuests
     {
+        //Datamembers
         private readonly OleDbConnection con;
         private bool isLoading = true;
         private readonly IUsers _users;
@@ -17,27 +18,35 @@ namespace HotelManangementSystemLibrary
         ~DBGuests()
         {
             con.Dispose();
-        }
+        }//destructor
         internal void LoadData()
         {
             try 
             { 
+                //Open connection
                 con.Open();
+
+                //
                 string query = "qr_LoadGuests";
                 OleDbCommand cmd = new OleDbCommand(query, con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
+                //Get the data
                 OleDbDataReader rd = cmd.ExecuteReader();
 
                 while (rd.Read())
                 {
+                    //Extract the fields per record
                     string id = rd["GuestID"].ToString();
                     string cellphoneNumber = rd["CellphoneNumber"].ToString();
                     string email = rd["Email_Address"].ToString();
                     string emegencyNo = rd["Emergency_PhoneNumber"].ToString();
 
+                    //Conversions
                     decimal owing = decimal.Parse(rd["Amount_Owing"].ToString());
                     decimal balance = decimal.Parse(rd["Balance"].ToString());
 
+                    //Get the user profile from users collection
                     IUser user = this._users.GetUser(id);
                     IGuest guest = UsersFactory.CreateGuest(user, owing,balance);
                     guest.SetCellNumber(cellphoneNumber);
@@ -68,9 +77,13 @@ namespace HotelManangementSystemLibrary
                 if (!PushToDataBase(item))
                     return;
             }//
-            //-Subscribe to the PropertyChanged event
+
+            //-Subscribe to the PropertyChanged event and Balance changed
+            //-This two events handlers will do the updates to the database
             item.GuestPropertyChangedEvent += Item_PropertyChangedEvent;
             item.BalanceChangedEvent += Item_BalanceChangedEvent;
+
+            //Add the guest to the local collection
             base.Add(item);
         }//Add
         private bool PushToDataBase(IGuest newguest)
@@ -83,15 +96,24 @@ namespace HotelManangementSystemLibrary
             OleDbTransaction trans = null;
             try
             {
+                //Oppen connection
                 con.Open();
+
+                //Start a transaction since we have multiple statements
                 trans = con.BeginTransaction();
+
+                //Procedure name
                 string sql = "qr_CreateGuest";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
+                //Add parameters
                 cmd.Parameters.AddWithValue("@GuestID", newguest.UserID);
                 cmd.Parameters.AddWithValue("@CellNumber", newguest.ContactDetails.CellphoneNumber);
                 cmd.Parameters.AddWithValue("@Email", newguest.ContactDetails.EmailAddress);
                 cmd.Parameters.AddWithValue("@Emergency", newguest.ContactDetails.EmergencyNumber);
+                
+                //Execute
                 cmd.ExecuteNonQuery();
 
 
@@ -99,9 +121,14 @@ namespace HotelManangementSystemLibrary
                 sql = "qr_CreateAccount";
                 cmd = new OleDbCommand(sql, con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
+                //Add Parameters
                 cmd.Parameters.AddWithValue("@GuestID", newguest.UserID);
                 cmd.Parameters.AddWithValue("@Owing", newguest.Account.AmountOwing);
                 cmd.Parameters.AddWithValue("@Balance", newguest.Account.CurrentBalance);
+
+                //Execute
+                cmd.ExecuteNonQuery();
 
                 //Save the changes if everthing was successful
                 trans.Commit();
@@ -151,9 +178,13 @@ namespace HotelManangementSystemLibrary
                 string sql = "qr_UpdateBalance";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
+                //Pass the parameters
                 cmd.Parameters.AddWithValue("@AmountOwing", args.AmountOwing);
                 cmd.Parameters.AddWithValue("@Balance", args.CurrentBalance);
                 cmd.Parameters.AddWithValue("@ID", args.AccountUserID);
+
+                //Execute asyncroneously
                 await cmd.ExecuteNonQueryAsync();
             }
             catch (Exception ex)
