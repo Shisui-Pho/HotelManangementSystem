@@ -15,7 +15,7 @@ namespace HotelManangementSystemLibrary
     public delegate void delOnTrasnaction(TransactionArgs transaction);
     public delegate void delOnBalanceChanged(decimal newBalance, decimal newAmountOwing);
     public delegate void delBalanceChanged(BalanceChangedEventArgs args);
-
+    public delegate void delOnBookingFeesChanged(BookingFeesChangedEventArgs args);
 
     public class HotelEventArgs : EventArgs
     {
@@ -44,4 +44,16 @@ namespace HotelManangementSystemLibrary
             this.AccountUserID = userid;
         }//ctor 01
     }//BalanceChangedEvenArgs
+    public class BookingFeesChangedEventArgs : EventArgs
+    {
+        public decimal AmountPaid { get; private set; }
+        public decimal AmountToPay { get; private set; }
+        public string BookingID { get; internal set; }
+        public BookingFeesChangedEventArgs(decimal paid,decimal topay,string id)
+        {
+            this.AmountPaid = paid;
+            this.AmountToPay = topay;
+            this.BookingID = id;
+        }//ctor 
+    }//ctor 01
 }//namespace

@@ -5,6 +5,9 @@ namespace HotelManangementSystemLibrary
     {
         public static double RefundRate = 10d;
         private DateTime _bookingDate;
+
+        public event delOnBookingFeesChanged BookingFeesChanged;
+
         public decimal BookingCost { get; private set; }
         public decimal AmoutToPay { get; private set; }
         public decimal AmountPaid { get; private set; }

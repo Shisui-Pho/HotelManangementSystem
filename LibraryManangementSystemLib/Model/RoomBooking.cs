@@ -32,7 +32,14 @@ namespace HotelManangementSystemLibrary
             this.NumberOfDaysToStay = length;
             bookingCount += 50;
             this.BookingID = bookingCount.ToString();
+            fees.BookingFeesChanged += Fees_BookingFeesChanged;
         }//ctor 01
+
+        private void Fees_BookingFeesChanged(BookingFeesChangedEventArgs args)
+        {
+            args.BookingID = this.BookingID;
+        }//Fees_BookingFeesChanged
+
         internal RoomBooking(string id,IGuest guest, IRoom room, DateTime date,IBookingFees fees, int length = 1) 
             : this(guest,room,date,fees,length)
         {
