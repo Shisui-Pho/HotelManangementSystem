@@ -33,7 +33,7 @@ namespace HotelManangementSystemLibrary
                 while (rd.Read())
                 {
                     //Determin the type of user first
-                    TypeOfUser type = (rd["UserType"].ToString() == "Admnin") ? TypeOfUser.Admin : TypeOfUser.Guest;
+                    TypeOfUser type = (rd["UserType"].ToString() == "Admin") ? TypeOfUser.Admin : TypeOfUser.Guest;
                     string dateString = rd["DOB"].ToString();
                     DateTime dob = DateTime.Parse(dateString);
                     string name = rd["Name"].ToString();
