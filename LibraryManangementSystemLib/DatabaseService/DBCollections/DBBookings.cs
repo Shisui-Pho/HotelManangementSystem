@@ -118,11 +118,12 @@ namespace HotelManangementSystemLibrary
         }//Add
         private async Task<bool> PushToDatabase(IRoomBooking booking)
         {
+            OleDbTransaction trans = null;
             try
             {
                 //Oppen the connection asyncroniously
                 await con.OpenAsync();
-                
+                trans = con.BeginTransaction();
                 string sql = "qr_CreateBooking";
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -131,18 +132,25 @@ namespace HotelManangementSystemLibrary
                 cmd.Parameters.AddWithValue("@RoomNumber", booking.Room.RoomNumber);
                 cmd.Parameters.AddWithValue("@BookingDate", booking.DateBookedFor.ToString("dd/MM/yyyy"));
                 cmd.Parameters.AddWithValue("@Duration", booking.NumberOfDaysToStay);
+                cmd.Parameters.AddWithValue("@ServiceID", 0);
+
+                //Execute first query
+                cmd.ExecuteNonQuery();
+
+                sql = "qr_CreateBookingFee";
+                cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Cost", booking.BookingFee.BookingCost);
                 cmd.Parameters.AddWithValue("@Paid", booking.BookingFee.AmountPaid);
                 cmd.Parameters.AddWithValue("@ToPay", booking.BookingFee.AmoutToPay);
-                cmd.Parameters.AddWithValue("@ServiceID", "None");
 
-                //Execute
-                cmd.ExecuteNonQuery();
-                
+                trans.Commit();
                 return true;
             }//try
             catch (Exception ex)
             {
+                if (trans != null)
+                    trans.Rollback();
                 throw ex;
             }//catch
             finally

@@ -122,7 +122,7 @@ namespace HotelManangementSystemLibrary
                 //Pass the parameters
                 cmd.Parameters.AddWithValue("@FeatureID", feature.FeatureID);
                 cmd.Parameters.AddWithValue("@RoomNumber", args.RoomNumber);
-                cmd.ExecuteNonQuery();
+                int count = cmd.ExecuteNonQuery();
             }//end try
             catch (Exception ex)
             {
