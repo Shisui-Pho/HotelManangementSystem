@@ -79,6 +79,7 @@
     <Compile Include="Model\Interfaces\IHotelModel.cs" />
     <Compile Include="Model\Interfaces\IPerson.cs" />
     <Compile Include="Model\Interfaces\IRoom.cs" />
+    <Compile Include="Model\Interfaces\IRoomBookedDate.cs" />
     <Compile Include="Model\Interfaces\IRoomBooking.cs" />
     <Compile Include="Model\Interfaces\IRoomService.cs" />
     <Compile Include="Model\Interfaces\IServicePersonel.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Model\Interfaces\IUSerAccount.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Room.cs" />
+    <Compile Include="Model\RoomBookedDates.cs" />
     <Compile Include="Model\RoomBooking.cs" />
     <Compile Include="Model\RoomFeatures.cs" />
     <Compile Include="Model\RoomService.cs" />
