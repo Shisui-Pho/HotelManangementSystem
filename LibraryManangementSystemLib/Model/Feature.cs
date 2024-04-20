@@ -28,11 +28,6 @@
         {
             return this.FeatureID.CompareTo(((IFeature)obj).FeatureID);
         }//CompareTo
-
-        public bool Equals(IFeature other)
-        {
-            return other.FeatureID == this.FeatureID;
-        }//Equals
         public override string ToString()
         {
             return FeatureName;

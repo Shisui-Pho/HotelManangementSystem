@@ -8,9 +8,5 @@
             IsSingleRoom = true;
             Price = Standard.SingleRoomPrice;
         }//ctor
-        public bool Equals(ISingleRoom other)
-        {
-            return base.Equals(other);
-        }
     }//Singleroom
 }//namespace

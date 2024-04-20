@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelManangementSystemLibrary
 {
-    public interface IHotelModel<T> : IComparable, IEquatable<T>
+    public interface IHotelModel<T> : IComparable
     {
         event delOnPropertyChanged PropertyChangedEvent;
         string ToCSVFormat();

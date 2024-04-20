@@ -5,7 +5,7 @@ using System.Text;
 namespace HotelManangementSystemLibrary
 {
     public abstract class GeneralCollection<T> : IGeneralCollection<T>
-        where T : IComparable, IEquatable<T>
+        where T : IComparable
     {
         //Protected variable made available to the uderlying classes
         protected readonly List<T> _collection;

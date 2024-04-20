@@ -65,10 +65,5 @@ namespace HotelManangementSystemLibrary
         {
             throw new NotImplementedException();
         }
-
-        public bool Equals(IRoomService other)
-        {
-            throw new NotImplementedException();
-        }
     }//clas
 }//namespcae

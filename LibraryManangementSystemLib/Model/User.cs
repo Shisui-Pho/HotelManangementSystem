@@ -50,11 +50,6 @@ namespace HotelManangementSystemLibrary
         {
             return this.UserID.CompareTo(((IUser)obj).UserID);
         }//CompareTo
-
-        public bool Equals(IUser other)
-        {
-            return other.UserID == this.UserID;
-        }//
     }//class
     internal class Administrator : User, IAdministrator, IUser
     {
@@ -72,7 +67,6 @@ namespace HotelManangementSystemLibrary
             if (admin.Rights != AccessRights.Universal)
                 throw new ArgumentException("Unauthorized access");
             Rights = _rights;
-
         }//ChangeAccessRights
     }//Administrator
 }//namespace

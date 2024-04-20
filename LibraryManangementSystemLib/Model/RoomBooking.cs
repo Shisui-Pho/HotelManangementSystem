@@ -99,7 +99,5 @@ namespace HotelManangementSystemLibrary
         }
         public int CompareTo(object obj) =>
             this.BookingID.CompareTo(((IRoomBooking)obj).BookingID);
-        public bool Equals(IRoomBooking other) =>
-            this.BookingID == other.BookingID;
     }//class
 }//namespace

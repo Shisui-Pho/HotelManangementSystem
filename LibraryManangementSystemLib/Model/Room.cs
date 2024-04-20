@@ -72,9 +72,5 @@ namespace HotelManangementSystemLibrary
                 IsRoomUnderMaintenance = true;
             PropertyChangedEvent?.Invoke(this.RoomNumber, "IsRoomUnderMaintenance", IsRoomUnderMaintenance.ToString());
         }//HideUnhideRoom
-        public bool Equals(IRoom other)
-        {
-            return this.RoomNumber == other.RoomNumber;
-        }
     }//class
 }//namespace
