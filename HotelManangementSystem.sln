@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManangementSystemLib", "LibraryManangementSystemLib\LibraryManangementSystemLib.csproj", "{26D4EAD9-BCD2-450D-A614-E65125B74496}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManangementSystemLibrary", "LibraryManangementSystemLib\HotelManangementSystemLibrary.csproj", "{26D4EAD9-BCD2-450D-A614-E65125B74496}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UIServiceLibrary", "UIServiceLibrary\UIServiceLibrary.csproj", "{63D2F792-56A5-4A3C-8BED-7101B9D04D8A}"
 EndProject

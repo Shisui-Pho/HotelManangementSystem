@@ -131,9 +131,9 @@
       <Project>{381bb8be-5f4b-4915-a4d9-5c96a0bc568c}</Project>
       <Name>HotelManangementControlLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LibraryManangementSystemLib\LibraryManangementSystemLib.csproj">
+    <ProjectReference Include="..\LibraryManangementSystemLib\HotelManangementSystemLibrary.csproj">
       <Project>{26d4ead9-bcd2-450d-a614-e65125b74496}</Project>
-      <Name>LibraryManangementSystemLib</Name>
+      <Name>HotelManangementSystemLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIServiceLibrary\UIServiceLibrary.csproj">
       <Project>{63d2f792-56a5-4a3c-8bed-7101b9d04d8a}</Project>

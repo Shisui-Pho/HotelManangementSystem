@@ -26,7 +26,7 @@ namespace HotelManangementSystemUI.Login_SignUp
 
             //For now am going to hardcode this
             string dir = Directory.GetCurrentDirectory();
-            connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dir + "\\HotelManangementSystem.mdb;";
+            connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dir + "\\HotelManangementSystem.accdb;";
             database = new AccessDatabase(connectionString);
         }//ctor main
         private async void Login_Sign_Up_Shown(object sender, System.EventArgs e)

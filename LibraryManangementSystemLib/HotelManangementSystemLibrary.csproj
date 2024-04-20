@@ -81,6 +81,7 @@
     <Compile Include="Model\Interfaces\IRoom.cs" />
     <Compile Include="Model\Interfaces\IRoomBookedDate.cs" />
     <Compile Include="Model\Interfaces\IRoomBooking.cs" />
+    <Compile Include="Model\Interfaces\IRoomFeatures.cs" />
     <Compile Include="Model\Interfaces\IRoomService.cs" />
     <Compile Include="Model\Interfaces\IServicePersonel.cs" />
     <Compile Include="Model\Interfaces\IUser.cs" />
