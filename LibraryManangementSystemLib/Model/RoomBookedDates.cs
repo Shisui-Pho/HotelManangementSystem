@@ -8,6 +8,9 @@ namespace HotelManangementSystemLibrary
         private readonly List<DateTime> BookedDates;
 
         public string RoomNumber { get; internal set; }
+
+        public bool HasBookings => BookedDates.Count > 0;
+
         public RoomBookedDates()
         {
             BookedDates = new List<DateTime>();

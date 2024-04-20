@@ -107,6 +107,9 @@ namespace HotelManangementSystemLibrary
             //Establish database connection here
             if (!isLoading)
             {
+                //First check if the room can be booked on that specified amount of time/duration
+                if (!item.Room.BookedDates.AddBookingDate(item.DateBookedFor, item.NumberOfDaysToStay))
+                    return;
                 if (! await PushToDatabase(item))
                     return;
             }

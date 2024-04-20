@@ -16,21 +16,11 @@ namespace HotelManangementControlLibrary.Dashboard
 
         //injected through the contructor
         private readonly IRooms _rooms;
-        private readonly IRoomBookings _bookings;
 
         //field to hold the selected room
         private IRoom selectedRoom;
 
-        public RoomBookingControl(IDatabaseService database, delBookRoom bookroom_method)
-        {
-            InitializeComponent();
-            //this.database = database;
-            funcBookRoom = bookroom_method;
-            //Set the display members
-            lstRooms.DisplayMember = "RoomNumber";
-            RefreshLists();
-        }//ctor 01
-        public RoomBookingControl(IRoomBookings bookings, IRooms rooms, delBookRoom bookroom_method)
+        public RoomBookingControl(IRooms rooms,delBookRoom bookroom_method)
         {
             InitializeComponent();
             funcBookRoom = bookroom_method;
@@ -39,9 +29,7 @@ namespace HotelManangementControlLibrary.Dashboard
             lstRooms.DisplayMember = "RoomNumber";
 
             this._rooms = rooms;
-            this._bookings = bookings;
-            RefreshLists();
-        }//ctor 02
+        }//ctor main
         private void btnBookRoom_Click(object sender, EventArgs e)
         {
             //Book the room
@@ -70,12 +58,12 @@ namespace HotelManangementControlLibrary.Dashboard
             }//end if
             else
             {
-                //Filter rooms booked
-                foreach (var room in lstRooms.Items)
-                {
-                    if (_bookings.IsRoomBooked((IRoom)room, dtNotBookedOn.Value))
-                        lstRooms.Items.Remove((IRoom)room);
-                }//end for each
+                ////Filter rooms booked
+                //foreach (var room in lstRooms.Items)
+                //{
+                //    if (_bookings.IsRoomBooked((IRoom)room, dtNotBookedOn.Value))
+                //        lstRooms.Items.Remove((IRoom)room);
+                //}//end for each
             }//end if
             if (lstRooms.Items.Count > 0)
                 lstRooms.SelectedIndex = 0;
@@ -91,24 +79,18 @@ namespace HotelManangementControlLibrary.Dashboard
             else
                 picRoom.Image = Properties.Resources._double;
             //Add room bookings
-            AddBookings(_bookings.HasBookings(selectedRoom));
+            AddBookings();
         }//lstRooms_SelectedIndexChanged
-        private void AddBookings(IRoomBooking[] bookings)
+        private void AddBookings()
         {
             lstbxAllBookings.Items.Clear();
-            if (bookings.Length <= 0)
+            if (!selectedRoom.BookedDates.HasBookings)
             {
                 lstbxAllBookings.Items.Add("Room has not been booked");
                 return;
             }//end if
-
-            for (int i = 0; i < bookings.Length; i++)
-            {
-                for (int j = 0; j < bookings[i].NumberOfDaysToStay; j++)
-                {
-                    lstbxAllBookings.Items.Add(bookings[i].DateBookedFor.AddDays(j).ToString("dd  MMMM  yyyy"));
-                }//end outer for
-            }//end for
+            foreach (DateTime date in selectedRoom.BookedDates)
+                lstbxAllBookings.Items.Add(date.ToString("dd MMMM yyyy"));
         }//AddBooking
         private void radDoubleRoom_Click(object sender, EventArgs e)
         {

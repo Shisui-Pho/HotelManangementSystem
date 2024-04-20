@@ -8,7 +8,7 @@ namespace HotelManangementSystemLibrary
 {
     public interface IRoomBookedDate : IEnumerable<DateTime>
     {
-        string RoomNumber { get; }
+        bool HasBookings { get; }
         bool AddBookingDate(DateTime date, int duration);
         bool ChangeBookingDate(DateTime olddate, int oldduration, DateTime newdate, int newduaration);
         bool RemoveBookings(DateTime date, int duration);

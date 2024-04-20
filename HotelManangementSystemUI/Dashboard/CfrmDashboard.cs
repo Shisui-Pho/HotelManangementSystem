@@ -23,7 +23,7 @@ namespace HotelManangementSystemUI.Dashboard
 
         private readonly IGuest _guestProfile;
         private readonly IRooms _rooms;
-        private readonly IRoomBookings _bookings;
+        private readonly IRoomBookings _guestSpecificBookings;
 
 
         //Controls
@@ -53,7 +53,7 @@ namespace HotelManangementSystemUI.Dashboard
                 _adminBookingsControl = new BookingsControl(database.Bookings, CancelBookingDelFunction);
                 //_adminOldBookings = new HistoricalBookingsControl();
             }
-            _guestRoomBookingsControl = new RoomBookingControl(database.Bookings,database.Rooms, RoomBookingFromRoomBookingControl);//use ctor 01
+            _guestRoomBookingsControl = new RoomBookingControl(database.Rooms, RoomBookingFromRoomBookingControl);//use ctor 01
             
             database.Bookings.RemovedBooking += Bookings_ItemRemovedEvent;
             LinkUnlinkedButtons();
@@ -65,12 +65,12 @@ namespace HotelManangementSystemUI.Dashboard
             InitializeComponent();
             this._logged_in_user = profile;
             this._rooms = rooms;
-            this._bookings = bookings;
+            this._guestSpecificBookings = bookings;
             this._guestProfile = profile;
             //For guests
             _guestProfileControl = new GuestProfileControl(profile);
             _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
-            _guestRoomBookingsControl = new RoomBookingControl(bookings ,rooms,RoomBookingFromRoomBookingControl);//use ctor 01
+            _guestRoomBookingsControl = new RoomBookingControl(rooms,RoomBookingFromRoomBookingControl);//use ctor 01
         }//
         //Testing
         public CfrmDashboard()
@@ -78,7 +78,7 @@ namespace HotelManangementSystemUI.Dashboard
             InitializeComponent();
             database = FactoryTest.CreateDatabase();
             this._logged_in_user = database.Guests[0];
-            _guestRoomBookingsControl = new RoomBookingControl(database, RoomBookingFromRoomBookingControl);//use ctor 01
+            _guestRoomBookingsControl = new RoomBookingControl(database.Rooms, RoomBookingFromRoomBookingControl);//use ctor 01
             _adminRoomsControl = new RoomsControl
                     (database.Rooms, UpdatingRoomFromAdminRoomManangementControl, CreatingNewRoomFromAdminRoomManangementControl);
             _guestProfileControl = new GuestProfileControl(database.Guests[0]);
@@ -108,11 +108,11 @@ namespace HotelManangementSystemUI.Dashboard
             {
                 //For the GuestProfile Control
                 //-Add the current booking to the profile
-                foreach (var item in _bookings.GetBookingsOf(_logged_in_user.UserID))
+                foreach (var item in _guestSpecificBookings.GetBookingsOf(_logged_in_user.UserID))
                     _guestBookingsControl.AddBookingToProfile(item);
                 //- Register to the Password change event from the GuestControl
                 _guestProfileControl.PasswordChanged += _guestProfileControl_PasswordChanged;
-                _bookings.RemovedBooking += Bookings_ItemRemovedEvent;
+                _guestSpecificBookings.RemovedBooking += Bookings_ItemRemovedEvent;
             }
             if (_logged_in_user is IAdministrator)
                 database.Bookings.RemovedBooking += Bookings_ItemRemovedEvent;
@@ -225,7 +225,7 @@ namespace HotelManangementSystemUI.Dashboard
                     (_guestProfile, room, date, numberOfDays);
                 if(newBooking.ShowDialog() == DialogResult.OK)
                 {
-                    _bookings.Add(newBooking.RoomBooking);
+                    _guestSpecificBookings.Add(newBooking.RoomBooking);
                     _guestBookingsControl.AddBookingToProfile(newBooking.RoomBooking);
                     return true;
                 }
@@ -248,9 +248,9 @@ namespace HotelManangementSystemUI.Dashboard
 
                 //-Cancel the booking
                 if (cancel.Reason == CancellationReason.Other || cancel.Reason == CancellationReason.Requirements_Not_Met)
-                    _bookings.CancelBooking(roomBooking, cancel.Other);
+                    _guestSpecificBookings.CancelBooking(roomBooking, cancel.Other);
                 else
-                    _bookings.CancelBooking(roomBooking, cancel.Reason);
+                    _guestSpecificBookings.CancelBooking(roomBooking, cancel.Reason);
                 return true;
             }//
             return false;
