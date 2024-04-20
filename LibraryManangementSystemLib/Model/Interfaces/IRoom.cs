@@ -11,9 +11,9 @@ namespace HotelManangementSystemLibrary
         decimal Price { get; set; }
         string TelephoneNumber { get; }
         bool IsRoomUnderMaintenance { get; }
-        RoomFeatures RoomFeatures { get; }
+        IRoomFeatures RoomFeatures { get; }
         event delOnPriceChanged OnPriceChangedEvent;
-        IRoomBookedDate BookedDate { get; }
+        IRoomBookedDate BookedDates { get; }
         void ChangeRoomNumber(string _newRoomNumber);
         void UpdateTelephoneNumber(string _number);
         /// <summary>

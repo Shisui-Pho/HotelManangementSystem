@@ -2,7 +2,8 @@
 {
     internal class DoubleRoom : Room , IDoubleRoom
     {
-        public DoubleRoom(string _roomNumber) : base(_roomNumber)
+        public DoubleRoom(string _roomNumber, IRoomFeatures features, IRoomBookedDate bookedDates) 
+            : base(_roomNumber,features,bookedDates)
         {
             IsSingleRoom = false;
 

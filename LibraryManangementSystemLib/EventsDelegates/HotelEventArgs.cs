@@ -11,7 +11,7 @@ namespace HotelManangementSystemLibrary
     public delegate void delOnPropertyChanged(string id, string field, string newVal);
     public delegate void delOnPriceChanged(IRoom room);
     internal delegate void delOnFeatureRemoved(string roomNumber, string FeatureID);
-    internal delegate void delOnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args);
+    public delegate void delOnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args);
     public delegate void delOnTrasnaction(TransactionArgs transaction);
     public delegate void delOnBalanceChanged(decimal newBalance, decimal newAmountOwing);
     public delegate void delBalanceChanged(BalanceChangedEventArgs args);

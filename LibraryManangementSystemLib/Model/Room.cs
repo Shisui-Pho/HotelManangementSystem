@@ -15,14 +15,15 @@ namespace HotelManangementSystemLibrary
 
         public bool IsRoomUnderMaintenance { get; private set; } = false;
 
-        public RoomFeatures RoomFeatures { get; }
+        public IRoomFeatures RoomFeatures { get; }
 
-        public IRoomBookedDate BookedDate { get; private set; }
+        public IRoomBookedDate BookedDates { get; private set; }
 
-        public Room(string _roomNumber)
+        public Room(string _roomNumber, IRoomFeatures features, IRoomBookedDate bookedDates)
         {
             RoomNumber = _roomNumber;
-            RoomFeatures = new RoomFeatures();
+            RoomFeatures = features;
+            this.BookedDates = bookedDates;
             RoomFeatures.OnFeaturesModified += RoomFeatures_OnFeaturesModified;
         }//ctor
 

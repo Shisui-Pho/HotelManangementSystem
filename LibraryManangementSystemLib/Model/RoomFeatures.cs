@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace HotelManangementSystemLibrary
 {
-    public class RoomFeatures
+    public class RoomFeatures : IRoomFeatures
     {
         private List<IFeature> features;
-        internal event delOnFeaturesModified OnFeaturesModified;
+        public event delOnFeaturesModified OnFeaturesModified;
         public RoomFeatures() => features = new List<IFeature>();
         public IEnumerable<Feature> GetRoomFeatures()
         {
