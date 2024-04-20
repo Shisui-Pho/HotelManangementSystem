@@ -19,15 +19,15 @@ namespace HotelManangementSystemLibrary.Factory
                     throw new NotImplementedException();
             }//end switch
         }//CreateRoom 
-        internal static IRoom CreateRoom(TypeOfRoom type, string _roomNumber, IRoomFeatures fet, IRoomBookedDate dates)
+        internal static IRoom CreateRoom(TypeOfRoom type, string _roomNumber,IRoomBookedDate dates)
         {
             switch (type)
             {
                 case TypeOfRoom.SingleRoom:
-                    return new SingleRoom(_roomNumber, fet, dates);
+                    return new SingleRoom(_roomNumber, CreateRoomFeatures(), dates);
 
                 case TypeOfRoom.SharingRoom:
-                    return new DoubleRoom(_roomNumber, fet, dates);
+                    return new DoubleRoom(_roomNumber, CreateRoomFeatures(), dates);
                 default:
                     throw new NotImplementedException();
             }//end switch

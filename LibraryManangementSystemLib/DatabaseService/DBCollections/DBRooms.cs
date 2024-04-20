@@ -21,34 +21,48 @@ namespace HotelManangementSystemLibrary
             try 
             { 
                 con.Open();
-                string query = "qr_LoadRooms";
-                OleDbCommand cmd = new OleDbCommand(query, con);
+                string sql = "qr_LoadRooms";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                OleDbDataReader rd = cmd.ExecuteReader();
-                if (rd == default)
+                OleDbDataReader rdRooms = cmd.ExecuteReader();
+                if (rdRooms == default)
                     throw new ArgumentException("Data not loaded");
-                while (rd.Read())
+                while (rdRooms.Read())
                 {
                     //For loading the room
-                    string roomNumber = rd["RoomNumber"].ToString();
-                    bool isSingleRoom = bool.Parse(rd["IsSingleRoom"].ToString());
-                    IRoom room = RoomFactory.CreateRoom(isSingleRoom? TypeOfRoom.SingleRoom : TypeOfRoom.SharingRoom,roomNumber);
-                    
-                    
-                    //For loading room features
-                    query = "qr_GetRoomFeatures";
-                    cmd = new OleDbCommand(query, con);
+                    string roomNumber = rdRooms["RoomNumber"].ToString();
+                    bool isSingleRoom = bool.Parse(rdRooms["IsSingleRoom"].ToString());
+
+                    //Load Room Booked Dates
+                    sql = "qr_BookedRoomDates";
+                    cmd = new OleDbCommand(sql, con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@RoomNumber", roomNumber);
-                    OleDbDataReader rd2 = cmd.ExecuteReader();
-                    while (rd2.Read())
+                    OleDbDataReader rdBookedDates = cmd.ExecuteReader();
+                    IRoomBookedDate bookedDates = RoomFactory.CreateRoomBookedDates();
+                    while (rdBookedDates.Read())
                     {
-                        string fname = rd2["F_Name"].ToString();
-                        string dsc = rd2["F_Description"].ToString();
-                        decimal price = decimal.Parse(rd2["F_Price"].ToString());
+                        DateTime date = DateTime.Parse(rdBookedDates["DateBookedFor"].ToString());
+                        int duration = int.Parse(rdBookedDates["Duration"].ToString());
+                        bookedDates.AddBookingDate(date, duration);
+                    }//end bookings
+
+                    IRoom room = RoomFactory.CreateRoom(isSingleRoom? TypeOfRoom.SingleRoom : TypeOfRoom.SharingRoom,roomNumber,bookedDates);
+
+                    //For loading room features
+                    sql = "qr_GetRoomFeatures";
+                    cmd = new OleDbCommand(sql, con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@RoomNumber", roomNumber);
+                    OleDbDataReader rdFeatures = cmd.ExecuteReader();
+                    while (rdFeatures.Read())
+                    {
+                        string fname = rdFeatures["F_Name"].ToString();
+                        string dsc = rdFeatures["F_Description"].ToString();
+                        decimal price = decimal.Parse(rdFeatures["F_Price"].ToString());
                         Feature ft = new Feature(fname, dsc, price);
                         room.RoomFeatures.AddFeature(ft);
-                    }
+                    }//end loadding 
                     this.Add(room);
                 }//Create objects here
             }//end using

@@ -6,10 +6,13 @@ namespace HotelManangementSystemLibrary
     internal class RoomBookedDates : IRoomBookedDate
     {
         private readonly List<DateTime> BookedDates;
+
+        public string RoomNumber { get; internal set; }
         public RoomBookedDates()
         {
             BookedDates = new List<DateTime>();
         }//ctor main
+
         public bool AddBookingDate(DateTime date, int duration)
         {
             if (BookedDates.Contains(date))
