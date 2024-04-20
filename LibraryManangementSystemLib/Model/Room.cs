@@ -3,17 +3,10 @@ namespace HotelManangementSystemLibrary
 {
     internal abstract class Room : IRoom
     {
-        ////Data members        
-        //protected static decimal _doubleRoomStandardValue = 800m;
-        //protected static decimal _singleRoomStandardValue = 1200m;
-
         public event delOnPriceChanged OnPriceChangedEvent;
         public event delOnPropertyChanged PropertyChangedEvent;
         //Properties
         public string RoomNumber { get; private set; }
-
-        public bool HasTV { get; protected set; } = false;
-
         public bool IsSingleRoom { get; protected set; }
 
         public decimal Price { get; set; }
@@ -23,6 +16,8 @@ namespace HotelManangementSystemLibrary
         public bool IsRoomUnderMaintenance { get; private set; } = false;
 
         public RoomFeatures RoomFeatures { get; }
+
+        public IRoomBookedDate BookedDate { get; private set; }
 
         public Room(string _roomNumber)
         {
@@ -46,21 +41,6 @@ namespace HotelManangementSystemLibrary
             RoomNumber = _newRoomNumber;
             PropertyChangedEvent?.Invoke(this.RoomNumber, "RoomNumber", _newRoomNumber);
         }//ChangeRoomNumber
-
-        public void AddTV()
-        {
-            if (HasTV)
-                return;
-            HasTV = true;
-            //Price += _entertainments;
-        }//AddTV
-        public void RemoveTV()
-        {
-            if (!HasTV)
-                return;
-            HasTV = false;
-            //Price -= _entertainments;
-        }//RemoveTV
         public void UpdateTelephoneNumber(string _number)
         {
             if (Service.IsCellphoneNumberCorrect(_number))
@@ -69,13 +49,13 @@ namespace HotelManangementSystemLibrary
         }//UpdateTelephoneNumber
         public override string ToString()
         {
-            return String.Format($"{IsSingleRoom};{RoomNumber};{Price.ToString("0.00")};{HasTV};{IsRoomUnderMaintenance}");
+            return String.Format($"{IsSingleRoom};{RoomNumber};{Price.ToString("0.00")};{IsRoomUnderMaintenance}");
         }//ToString
 
         public string ToCSVFormat()
         {
             string sAmount = Service.ToStringMoney(this.Price);
-            return $"{this.IsSingleRoom},{this.RoomNumber},{sAmount},{this.HasTV},{RoomFeatures.ToString()}";
+            return $"{this.IsSingleRoom},{this.RoomNumber},{sAmount},{RoomFeatures.ToString()}";
         }//ToCSVFormat
 
         public int CompareTo(object obj)

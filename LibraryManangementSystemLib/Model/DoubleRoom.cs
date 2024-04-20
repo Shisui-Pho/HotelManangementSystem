@@ -2,9 +2,8 @@
 {
     internal class DoubleRoom : Room , IDoubleRoom
     {
-        public DoubleRoom(string _roomNumber, bool hasTv = false) : base(_roomNumber)
+        public DoubleRoom(string _roomNumber) : base(_roomNumber)
         {
-            HasTV = hasTv;
             IsSingleRoom = false;
 
             Price = Standard.DoubleRoomPrice;

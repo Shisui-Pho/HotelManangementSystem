@@ -28,7 +28,6 @@ namespace HotelManangementSystemUI
         {
             IFeatures fetures = Features.GetFeaturesInstance();
             IRoom room = RoomFactory.CreateRoom(TypeOfRoom.SingleRoom, "Room 01");
-            room.AddTV();
             ser.Rooms.Add(room);
             room.RoomFeatures.AddFeature(fetures[0]);
             room.RoomFeatures.AddFeature(fetures[2]);

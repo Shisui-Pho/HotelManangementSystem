@@ -2,9 +2,8 @@
 {
     internal class SingleRoom : Room , ISingleRoom
     {
-        public SingleRoom(string _roomNumber, bool hasTv = false): base(_roomNumber)
+        public SingleRoom(string _roomNumber): base(_roomNumber)
         {
-            HasTV = hasTv;
             IsSingleRoom = true;
             Price = Standard.SingleRoomPrice;
         }//ctor

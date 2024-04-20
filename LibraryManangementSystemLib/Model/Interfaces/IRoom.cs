@@ -7,16 +7,14 @@ namespace HotelManangementSystemLibrary
     public interface IRoom : IHotelModel<IRoom>
     {
         string RoomNumber { get; }
-        bool HasTV { get; }
         bool IsSingleRoom { get; }
         decimal Price { get; set; }
         string TelephoneNumber { get; }
         bool IsRoomUnderMaintenance { get; }
         RoomFeatures RoomFeatures { get; }
         event delOnPriceChanged OnPriceChangedEvent;
+        IRoomBookedDate BookedDate { get; }
         void ChangeRoomNumber(string _newRoomNumber);
-        void AddTV();
-        void RemoveTV();
         void UpdateTelephoneNumber(string _number);
         /// <summary>
         /// This will switch the maintenance status of the room,

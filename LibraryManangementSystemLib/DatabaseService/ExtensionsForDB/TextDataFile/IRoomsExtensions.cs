@@ -34,8 +34,6 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
                 string[] fields = record.Split(',');
                 TypeOfRoom _type = (bool.Parse(fields[0]) == true) ? TypeOfRoom.SingleRoom : TypeOfRoom.SharingRoom;
                 IRoom room = RoomFactory.CreateRoom(_type, fields[1]);
-                if (bool.Parse(fields[3]))
-                    room.AddTV();
                 room.Price = Service.GetValueOfMoney(fields[2]);
                 
                 string featurestring = fields[4];
