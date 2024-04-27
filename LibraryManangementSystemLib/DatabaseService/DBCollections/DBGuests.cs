@@ -2,6 +2,8 @@
 using System;
 using System.Data.OleDb;
 using System.Data;
+using System.Runtime.ExceptionServices;
+
 namespace HotelManangementSystemLibrary
 {
     internal class DBGuests : Guests , IGuests
@@ -19,12 +21,17 @@ namespace HotelManangementSystemLibrary
         {
             con.Dispose();
         }//destructor
-        internal void LoadData()
+        //[HandleProcessCorruptedStateExceptionsAttribute]
+        internal async void LoadData()
         {
-            try 
+            //Handle's it nicely
+            //netsh winsock reset
+            if (base._collection.Count > 0)
+                return;
+            try
             { 
                 //Open connection
-                con.Open();
+                await con.OpenAsync();
 
                 //
                 string query = "qr_LoadGuests";

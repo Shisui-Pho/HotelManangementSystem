@@ -1,4 +1,5 @@
-﻿using HotelManangementSystemLibrary;
+﻿using HotelManangementControlLibrary.Service;
+using HotelManangementSystemLibrary;
 using HotelManangementSystemLibrary.Factory;
 using System;
 using System.Windows.Forms;
@@ -23,7 +24,15 @@ namespace HotelManangementSystemUI.Input_Forms
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            RoomBooking = BookingsFactory.CreateBooking(guest, room, dtBookDate.Value, (int)numBookingLength.Value);
+            try
+            {
+                RoomBooking = BookingsFactory.CreateBooking(guest, room, dtBookDate.Value, (int)numBookingLength.Value);
+            }
+            catch(Exception ex)
+            {
+                Messages.ShowErrorMessage(ex.Message);
+                this.DialogResult = DialogResult.Cancel;
+            }
         }//btnConfirm_Click
 
         private void btnCancel_Click(object sender, EventArgs e)

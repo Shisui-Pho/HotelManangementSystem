@@ -29,6 +29,8 @@ namespace HotelManangementControlLibrary.Dashboard
             lstRooms.DisplayMember = "RoomNumber";
 
             this._rooms = rooms;
+
+            RefreshLists();
         }//ctor main
         private void btnBookRoom_Click(object sender, EventArgs e)
         {
@@ -38,6 +40,7 @@ namespace HotelManangementControlLibrary.Dashboard
                 Messages.ShowErrorMessage("Please select room", "Selection error");
                 return;
             }//end if
+            var a = dtBookDate.Value;
             if (funcBookRoom(selectedRoom,dtBookDate.Value,(int)numBookingLength.Value))
             {
                 //Refresh

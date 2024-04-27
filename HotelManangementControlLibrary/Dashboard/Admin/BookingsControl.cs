@@ -12,8 +12,8 @@ namespace HotelManangementControlLibrary.Dashboard
 {
     public partial class BookingsControl : UserControl
     {
-        //Will be injected on the contructor
-        private readonly IRoomBookings bookings;
+        //Will be injected on a method
+        private IRoomBookings bookings;
 
         //private datamember
         //-This will hold the copy of the room bookings per room
@@ -21,17 +21,21 @@ namespace HotelManangementControlLibrary.Dashboard
         private IRooms _bookedRooms;
 
         private delOnBookingCancelled funcBookingCancelled;
-        public BookingsControl(IRoomBookings bookings, delOnBookingCancelled cancelled)
+        public BookingsControl(delOnBookingCancelled cancelled)
         {
             InitializeComponent();
-            this.bookings = bookings;
             this.funcBookingCancelled = cancelled;
-            SetUpControls();
+            //SetUpControls();
         }//ctor 01
         public BookingsControl()
         {
             InitializeComponent();
         }//ctor 01
+        public void AddBookings(IRoomBookings bookings)
+        {
+            this.bookings = bookings;
+            SetUpControls();
+        }//AddBookings
         private void SetUpControls()
         {
             //Display members
@@ -52,7 +56,7 @@ namespace HotelManangementControlLibrary.Dashboard
         private void RefreshList(int index = 0)
         {
             lstbxRoomsBooked.Items.Clear();
-            _bookedRooms = RoomFactory.CreateRooms(bookings.GetBookedRooms<IRoom>().ToList().Distinct().ToList());
+            _bookedRooms = bookings.GetBookedRooms();
             foreach (IRoom room in _bookedRooms)
                 lstbxRoomsBooked.Items.Add(room);
             if (lstbxRoomsBooked.Items.Count > 0)

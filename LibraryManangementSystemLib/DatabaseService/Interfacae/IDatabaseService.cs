@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HotelManangementSystemLibrary.DatabaseService
 {
@@ -15,6 +16,7 @@ namespace HotelManangementSystemLibrary.DatabaseService
         void SaveUsers();
         void SaveGuets();
         IRoomBookings LoadBookings();
+        Task<IRoomBookings> LoadBookingsAsync(IUser user);
         IRooms LoadRooms();
         IUsers LoadUsers();
         IGuests LoadGuests();

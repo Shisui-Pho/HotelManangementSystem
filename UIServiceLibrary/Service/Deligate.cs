@@ -13,7 +13,7 @@ namespace UIServiceLibrary
     public delegate void delCancelBooking(IRoom room);//The user will be the current user'
     public delegate IRoom delAddNewRoom();
     public delegate IRoom delModifyRoom(IRoom room);
-
+    public delegate Task<IRoomBookings> delLoadBookings(IUser user);
 
     //Event delegates
     public delegate void delOnUpdatePassword(string newpassword);

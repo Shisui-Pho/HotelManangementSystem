@@ -117,10 +117,9 @@ namespace HotelManangementSystemLibrary.DatabaseService
                 LoadBookings();
             });
         }//LoadEntireDatabaseAsync
-
-        public void LoadGuestProfileAsync()
+        public Task<IRoomBookings> LoadBookingsAsync(IUser user)
         {
             throw new NotImplementedException();
-        }//LoadGuestProfileAsync
+        }
     }//class
 }//namespace

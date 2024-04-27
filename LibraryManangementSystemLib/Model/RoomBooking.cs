@@ -33,6 +33,7 @@ namespace HotelManangementSystemLibrary
             bookingCount += 50;
             this.BookingID = bookingCount.ToString();
             fees.BookingFeesChanged += Fees_BookingFeesChanged;
+            this.DateBookedFor = date;
         }//ctor 01
 
         private void Fees_BookingFeesChanged(BookingFeesChangedEventArgs args)

@@ -17,7 +17,7 @@ namespace HotelManangementSystemUI.Login_SignUp
         private readonly SignInControl _signIn;
         private readonly LogInControl _logIn;
         private readonly IDatabaseService database;
-        string connectionString;
+        private string connectionString;
         public Login_Sign_Up()
         {
             InitializeComponent();
@@ -36,11 +36,24 @@ namespace HotelManangementSystemUI.Login_SignUp
             _signIn.Visible = false;
             _logIn.Visible = true;
             _logIn.BringToFront();
-            await LoadUsersAsync();
+            await LoadRooms();//Load this while user attempts to sign in
         }//Login_Sign_Up_Shown
+        private async Task LoadRooms()
+        {
+            await Task.Run(() =>
+            {
+                Features.GetFeaturesInstance(connectionString);//This will force the database to load the features
+                database.LoadRooms();
+                //database.LoadGuests();
+            });
+        }//LoadRooms
         private async Task LoadUsersAsync()
         {
-            await Task.Run(()=> { database.LoadUsers();Features.GetFeaturesInstance(connectionString); });
+            //Load the users and rooms for now
+            await Task.Run(()=> 
+            { 
+                database.LoadUsers();
+            });
         }//LoadUsersAsync
         private void LoginLablePressed()
         {
@@ -55,45 +68,14 @@ namespace HotelManangementSystemUI.Login_SignUp
             _signIn.BringToFront();
         }//SignInLablePressed
 
-        private void Login_Sign_Up_Load(object sender, System.EventArgs e)
+        private async void Login_Sign_Up_Load(object sender, System.EventArgs e)
         {
             SetUpControls();
+            await LoadUsersAsync();
         }//Login_Sign_Up_Load
         private void BtnSignIn_Click(object sender, System.EventArgs e)
         {
-            if (_signIn.IsSignInHandled)//If the registration was not completed
-                return;
-            //Before adding check if the username is already there
-            if (database.Users.UsernameExists(_signIn.txtUsername.Text))
-            {
-                MessageBox.Show("Username already exists.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }//ens if
-            //Extract the data
-            string name = _signIn.txtName.Text;
-            string surname = _signIn.txtSurname.Text;
-            string username = _signIn.txtUsername.Text;
-            string password = _signIn.txtxPassword.Text;
-            DateTime dob = _signIn.dtDOB.Value;
-            IGuest newuser = UsersFactory.CreateGuest(name, surname, dob);
-            newuser.SetUsername(username);
-            newuser.SetPassword(password);
-           //Add the user to the database
-            database.Users.Add(newuser);
 
-            //Log user in automatically
-            Thread.Sleep(15);
-            MessageBox.Show("Logging you in now.");
-
-            //Bring the login page upfront
-            LoginLablePressed();
-
-            //Set the details
-            _logIn.txtUsername.Text = newuser.UserName;
-            _logIn.txtxPassword.Text = newuser.Password;
-
-            //Triger the btnLogin event without any validation
-            BtnLogIn_Click(null, null);//no need to send data in the params
         }//BtnSignIn_Click
 
         private void BtnLogIn_Click(object sender, EventArgs e)
@@ -114,7 +96,7 @@ namespace HotelManangementSystemUI.Login_SignUp
             else if(_logged_in_user is IGuest)
             {
                 IGuest guest = database.Guests.FindGuest(_logged_in_user.UserID);
-                window = new CfrmDashboard(guest, database.Bookings, database.Rooms);
+                window = new CfrmDashboard(guest,database.Rooms, LoadBookings);
             }
                 
             IsDataPossiblyChanged = true;
@@ -158,5 +140,9 @@ namespace HotelManangementSystemUI.Login_SignUp
         {
             this.Close();
         }//btnClose_Click
+        private async Task<IRoomBookings> LoadBookings(IUser user)
+        {
+            return await database.LoadBookingsAsync(user);
+        }
     }//class
 }//namespace

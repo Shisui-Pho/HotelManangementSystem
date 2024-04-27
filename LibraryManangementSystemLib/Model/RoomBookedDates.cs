@@ -24,8 +24,8 @@ namespace HotelManangementSystemLibrary
             while(count <= duration)
             {
                 DateTime nextdate = date.AddDays(count);
-                if (BookedDates.Contains(nextdate))
-                    throw new ArgumentException($"Room has been booked for {nextdate.ToShortDateString()}.");
+                if (BookedDates.FindIndex(d => d.Day == nextdate.Day && d.Year == nextdate.Year && d.Month == nextdate.Month) >= 0)
+                    throw new ArgumentException($"Room has been booked for the date :  {nextdate.ToShortDateString()}.");
                 BookedDates.Add(nextdate);
                 count++;
             }//end while

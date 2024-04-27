@@ -10,6 +10,8 @@ using HotelManangementSystemUI.Input_Forms;
 using HotelManangementControlLibrary.Dashboard.Guest;
 using HotelManangementSystemLibrary.Factory;
 using UIServiceLibrary.Extensions;
+using UIServiceLibrary;
+
 namespace HotelManangementSystemUI.Dashboard
 {
     public partial class CfrmDashboard : Form
@@ -23,8 +25,8 @@ namespace HotelManangementSystemUI.Dashboard
 
         private readonly IGuest _guestProfile;
         private readonly IRooms _rooms;
-        private readonly IRoomBookings _guestSpecificBookings;
-
+        private IRoomBookings _guestSpecificBookings;
+        private readonly delLoadBookings LoadBookingsFunc;
 
         //Controls
         private readonly RoomBookingControl _guestRoomBookingsControl;
@@ -50,28 +52,26 @@ namespace HotelManangementSystemUI.Dashboard
                 _adminRoomsControl = new RoomsControl(database.Rooms, UpdatingRoomFromAdminRoomManangementControl, CreatingNewRoomFromAdminRoomManangementControl);
                 _adminGuestControl = new GuestsControl(database.Guests);
                 _adminHotelStatics = new HotelStatisticsControl();
-                _adminBookingsControl = new BookingsControl(database.Bookings, CancelBookingDelFunction);
+                _adminBookingsControl = new BookingsControl(CancelBookingDelFunction);
                 //_adminOldBookings = new HistoricalBookingsControl();
             }
             _guestRoomBookingsControl = new RoomBookingControl(database.Rooms, RoomBookingFromRoomBookingControl);//use ctor 01
-            
-            database.Bookings.RemovedBooking += Bookings_ItemRemovedEvent;
             LinkUnlinkedButtons();
         }//ctor 01
 
         //Guest Contructor
-        public CfrmDashboard(IGuest profile,IRoomBookings bookings ,IRooms rooms)
+        public CfrmDashboard(IGuest profile,IRooms rooms, delLoadBookings LoadBookingsFunc)
         {
             InitializeComponent();
             this._logged_in_user = profile;
             this._rooms = rooms;
-            this._guestSpecificBookings = bookings;
             this._guestProfile = profile;
+            this.LoadBookingsFunc = LoadBookingsFunc;
             //For guests
             _guestProfileControl = new GuestProfileControl(profile);
             _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
             _guestRoomBookingsControl = new RoomBookingControl(rooms,RoomBookingFromRoomBookingControl);//use ctor 01
-        }//
+        }//ctor 01
         //Testing
         public CfrmDashboard()
         {
@@ -94,13 +94,20 @@ namespace HotelManangementSystemUI.Dashboard
         private async Task LoadAllBookings()
         {
             //This will load all the other Properties
-            await Task.Run(() => database.LoadBookings());
-
             if (_logged_in_user.UserType == TypeOfUser.Admin)
+            {
                 //Also need to load warehouse data for admin purposes
+                await database.LoadBookingsAsync(_logged_in_user);
+                database.Bookings.RemovedBooking += Bookings_ItemRemovedEvent;
+                _adminBookingsControl.AddBookings(database.Bookings);
                 plnAdminPanel.Visible = true;
+            }
             if (_logged_in_user.UserType == TypeOfUser.Guest)
+            {
+                this._guestSpecificBookings = await LoadBookingsFunc(_logged_in_user);
                 plnGuestPanel.Visible = true;
+            }
+            PrepareControls();
         }//LoadGuest
         private void PrepareControls()
         {
@@ -108,7 +115,7 @@ namespace HotelManangementSystemUI.Dashboard
             {
                 //For the GuestProfile Control
                 //-Add the current booking to the profile
-                foreach (var item in _guestSpecificBookings.GetBookingsOf(_logged_in_user.UserID))
+                foreach (var item in _guestSpecificBookings)//_guestSpecificBookings.GetBookingsOf(_logged_in_user.UserID))
                     _guestBookingsControl.AddBookingToProfile(item);
                 //- Register to the Password change event from the GuestControl
                 _guestProfileControl.PasswordChanged += _guestProfileControl_PasswordChanged;
@@ -157,7 +164,7 @@ namespace HotelManangementSystemUI.Dashboard
             _guestRoomBookingsControl.Visible = true;
             _guestRoomBookingsControl.BackColor = System.Drawing.Color.Transparent;
 
-            PrepareControls();
+            //PrepareControls();
         }//AddControls
         private void LinkUnlinkedButtons()
         {
@@ -225,7 +232,8 @@ namespace HotelManangementSystemUI.Dashboard
                     (_guestProfile, room, date, numberOfDays);
                 if(newBooking.ShowDialog() == DialogResult.OK)
                 {
-                    _guestSpecificBookings.Add(newBooking.RoomBooking);
+                    IRoomBooking booking = newBooking.RoomBooking;
+                    _guestSpecificBookings.Add(booking);
                     _guestBookingsControl.AddBookingToProfile(newBooking.RoomBooking);
                     return true;
                 }
@@ -282,8 +290,7 @@ namespace HotelManangementSystemUI.Dashboard
         private async void CfrmDashboard_Shown(object sender, EventArgs e)
         {
             //Load Data after form has been loaded
-            if(_logged_in_user is IAdministrator)
-                await LoadAllBookings();
+            await LoadAllBookings();
             //Do some set ups
             AddControls();
         }//CfrmDashboard_Shown       

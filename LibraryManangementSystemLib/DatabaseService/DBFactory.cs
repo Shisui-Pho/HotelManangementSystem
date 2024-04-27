@@ -1,4 +1,6 @@
-﻿namespace HotelManangementSystemLibrary.DatabaseService
+﻿using System.Threading.Tasks;
+
+namespace HotelManangementSystemLibrary.DatabaseService
 {
     internal static class DBFactory
     {
@@ -14,10 +16,10 @@
             us.LoadData();
             return us;
         }
-        public static IRoomBookings CreateAndLoadDBRoomBookings(string connectionString, IGuests guests,IRooms rooms)
+        public static async Task<IRoomBookings> CreateAndLoadDBRoomBookings(string connectionString, IGuests guests,IRooms rooms, IUser user)
         {
-            DBBookings bo = new DBBookings(connectionString, guests, rooms);
-            bo.LoadData();
+            DBBookings bo = new DBBookings(connectionString, guests, rooms,user);
+            await bo.LoadData();
             return bo;
         }
         public static IRooms CreateAndLoadDBRooms(string connectionString)

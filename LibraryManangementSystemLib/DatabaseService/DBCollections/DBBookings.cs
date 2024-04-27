@@ -12,14 +12,14 @@ namespace HotelManangementSystemLibrary
         //-They are going to be injected through the constructor
         private readonly IGuests _guests;
         private readonly IRooms _rooms;
-
+        private readonly IUser _user;
         private bool isLoading = true;
         private readonly OleDbConnection con;
-        public DBBookings(string connectionstring, IGuests guests, IRooms rooms) : base()
+        public DBBookings(string connectionstring, IGuests guests, IRooms rooms, IUser user) : base()
         {
             _guests = guests;
             _rooms = rooms;
-
+            _user = user;
             //Invoke the booking removed from the base collection
             //-We will user the event handler to move the booking to the old bookings table in our database
             base.RemovedBooking += DBBookings_RemovedBooking;
@@ -30,23 +30,31 @@ namespace HotelManangementSystemLibrary
         {
             con.Dispose();
         }
-        internal void LoadData()
+        internal async Task LoadData()
         {
             try
             {
-                con.Open();
-                string query = "qr_LoadBookings";
-                OleDbCommand cmd = new OleDbCommand(query, con);
+                await con.OpenAsync();
+                OleDbCommand cmd = new OleDbCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
+                if (_user is IAdministrator)//Load all bookings
+                {
+                    cmd.CommandText = "qr_LoadBookings";
+                }//end if admin
+                else if (_user is IGuest)//Load guest specific bookings
+                {
+                    cmd.CommandText = "qr_GuestBookings";
+                    cmd.Parameters.AddWithValue("@Id", _user.UserID);
+                }//end if guest profile
+                cmd.Connection = con;
+                //cmd.CommandType = CommandType.StoredProcedure;
                 OleDbDataReader rd = cmd.ExecuteReader();
-                if (rd == default)
-                    throw new ArgumentException("Data not loaded");
-                while (rd.Read())
+
+                while (await rd.ReadAsync())
                 {
                     //Extract the properties
                     string Id = rd["ID"].ToString();
                     string roomNumber = rd["RoomNumber"].ToString();
-                    string guestID = rd["GuestID"].ToString();
                     string serviceID = rd["ServiceID"].ToString();
 
                     //Get amounts and convert
@@ -61,8 +69,15 @@ namespace HotelManangementSystemLibrary
 
                     //Find the guest and rooms
                     IRoom room = this._rooms.FindRoom(roomNumber);
-                    IGuest guest = this._guests.FindGuest(guestID);
-
+                    IGuest guest = default; //this._guests.FindGuest(guestID);
+                    if (_user is IAdministrator)
+                    {
+                        string guestID = rd["GuestID"].ToString();
+                        guest = this._guests.FindGuest(guestID);
+                    }
+                    else
+                        guest = this._guests.CurrentGuest;
+                        
                     //Create the booking fees
                     IBookingFees fee = BookingsFactory.CreateBookingFee(dt, cost, amountToPay, amountPayed);
 
@@ -107,11 +122,18 @@ namespace HotelManangementSystemLibrary
             //Establish database connection here
             if (!isLoading)
             {
-                //First check if the room can be booked on that specified amount of time/duration
-                if (!item.Room.BookedDates.AddBookingDate(item.DateBookedFor, item.NumberOfDaysToStay))
-                    return;
-                if (! await PushToDatabase(item))
-                    return;
+                try
+                {
+                    //First check if the room can be booked on that specified amount of time/duration
+                    if (!item.Room.BookedDates.AddBookingDate(item.DateBookedFor, item.NumberOfDaysToStay))
+                        return;
+                    if (!await PushToDatabase(item))
+                        return;
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
             }
             //Subscibe to the OnPropertyChanged event
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
@@ -128,7 +150,7 @@ namespace HotelManangementSystemLibrary
                 await con.OpenAsync();
                 trans = con.BeginTransaction();
                 string sql = "qr_CreateBooking";
-                OleDbCommand cmd = new OleDbCommand(sql, con);
+                OleDbCommand cmd = new OleDbCommand(sql, con, trans);
                 cmd.CommandType = CommandType.StoredProcedure;
                 //Pass parameters
                 cmd.Parameters.AddWithValue("@GuestID", booking.Guest.UserID);
@@ -141,12 +163,12 @@ namespace HotelManangementSystemLibrary
                 cmd.ExecuteNonQuery();
 
                 sql = "qr_CreateBookingFee";
-                cmd = new OleDbCommand(sql, con);
+                cmd = new OleDbCommand(sql, con, trans);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Cost", booking.BookingFee.BookingCost);
                 cmd.Parameters.AddWithValue("@Paid", booking.BookingFee.AmountPaid);
                 cmd.Parameters.AddWithValue("@ToPay", booking.BookingFee.AmoutToPay);
-
+                cmd.ExecuteNonQuery();
                 trans.Commit();
                 return true;
             }//try

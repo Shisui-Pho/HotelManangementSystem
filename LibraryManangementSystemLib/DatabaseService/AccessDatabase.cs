@@ -24,7 +24,7 @@ namespace HotelManangementSystemLibrary.DatabaseService
         public AccessDatabase(string connectionString)
         {
             this.connectionString = connectionString;
-            LoadEntireDatabaseAsync();
+            //LoadEntireDatabaseAsync();
         }//AccessDatabase
         public async void LoadEntireDatabaseAsync()
         {
@@ -35,30 +35,34 @@ namespace HotelManangementSystemLibrary.DatabaseService
                 users = DBFactory.CreateAndLoadDBUsers(this.connectionString);
                 rooms = DBFactory.CreateAndLoadDBRooms(this.connectionString);
                 guests = DBFactory.CreateAndLoadDBGuests(this.connectionString, users);
-                bookings = DBFactory.CreateAndLoadDBRoomBookings(this.connectionString, guests, rooms);
             });//
+            bookings = await DBFactory.CreateAndLoadDBRoomBookings(this.connectionString, guests, rooms, default);
         }//LoadEntireDatabaseAsync
 
         #region Loading
-        public IRoomBookings LoadBookings()
-        {
-            return bookings;
-        }//LoadBookings
         public IGuests LoadGuests()
         {
+            guests = DBFactory.CreateAndLoadDBGuests(this.connectionString, users);
             return guests;
         }//LoadGuests
 
         public IRooms LoadRooms()
         {
+            rooms = DBFactory.CreateAndLoadDBRooms(this.connectionString);
             return rooms;
         }//LoadRooms
         //private 
 
         public IUsers LoadUsers()
         {
+            users = DBFactory.CreateAndLoadDBUsers(this.connectionString);
             return users;
         }//LoadUsers
+        public async Task<IRoomBookings> LoadBookingsAsync(IUser user)
+        {
+            bookings = await DBFactory.CreateAndLoadDBRoomBookings(this.connectionString, guests, rooms,user);
+            return bookings;
+        }//LoadBookings
         #endregion Loading
 
         #region Saving not implemented since the changes will be push to the database autometically
@@ -81,6 +85,11 @@ namespace HotelManangementSystemLibrary.DatabaseService
         {
             //Do nothing since all processes/changes(updates delations, insertion) will be pushed to the database autometically
         }//SaveUser
+
+        public IRoomBookings LoadBookings()
+        {
+            return bookings;
+        }
         #endregion Saving
     }//class
 }//namespace

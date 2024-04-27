@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "UIServiceLibrary": {
+      "commandName": "Project",
+      "sqlDebugging": false,
+      "nativeDebugging": false
+    }
+  }
+}
