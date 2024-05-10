@@ -104,8 +104,11 @@ namespace HotelManangementSystemLibrary
             { 
                 await con.OpenAsync();
 
-                string sql = "DELETE FROM tbl_Booking WHERE ID = " + args.Name;
+                string sql = "UPDATE tbl_Booking SET IsCancelled = TRUE WHERE ID = " + args.Name;
                 OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.ExecuteNonQuery();
+                sql = "INSERT INTO tbl_CancelledBooking(BookingId,CancellationReason) VALUES(" + args.Name + ",\"" + args.Description + "\")";
+                cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
             }//try
             catch (Exception ex)
