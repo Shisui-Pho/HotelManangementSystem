@@ -70,7 +70,7 @@ namespace HotelManangementSystemUI.Dashboard
             //For guests
             _guestProfileControl = new GuestProfileControl(profile);
             _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
-            _guestRoomBookingsControl = new RoomBookingControl(rooms,RoomBookingFromRoomBookingControl);//use ctor 01
+            _guestRoomBookingsControl = new RoomBookingControl(_rooms,RoomBookingFromRoomBookingControl);//use ctor 01
         }//ctor 01
         //Testing
         public CfrmDashboard()
@@ -235,6 +235,7 @@ namespace HotelManangementSystemUI.Dashboard
                     IRoomBooking booking = newBooking.RoomBooking;
                     _guestSpecificBookings.Add(booking);
                     _guestBookingsControl.AddBookingToProfile(newBooking.RoomBooking);
+
                     return true;
                 }
                 return false;                
@@ -259,8 +260,11 @@ namespace HotelManangementSystemUI.Dashboard
                     _guestSpecificBookings.CancelBooking(roomBooking, cancel.Other);
                 else
                     _guestSpecificBookings.CancelBooking(roomBooking, cancel.Reason);
+
+                //Remove the bookind dates
+                roomBooking.Room.BookedDates.RemoveBookings(roomBooking.DateBookedFor, roomBooking.NumberOfDaysToStay - roomBooking.DaysStayed);
                 return true;
-            }//
+            }//end if
             return false;
             
         }//BookingCancelledFromGuestProfile
