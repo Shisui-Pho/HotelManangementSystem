@@ -44,7 +44,7 @@ namespace HotelManangementSystemUI.Login_SignUp
             {
                 Features.GetFeaturesInstance(connectionString);//This will force the database to load the features
                 database.LoadRooms();
-                //database.LoadGuests();
+                database.LoadGuests();
             });
         }//LoadRooms
         private async Task LoadUsersAsync()

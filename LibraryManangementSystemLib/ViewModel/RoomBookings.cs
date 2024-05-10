@@ -33,7 +33,7 @@ namespace HotelManangementSystemLibrary
             }
             return false;
         }//IsRoomBooked
-        void IGeneralCollection<IRoomBooking>.Add(IRoomBooking item)
+        public override void Add(IRoomBooking item)
         { 
             if (FindIndex(item) >= 0)
             {
