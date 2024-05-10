@@ -99,36 +99,53 @@
                 return;
 
             //Reverse the amount
-            DepositAmount(amount);
+            DepositAmount(amount, "Reversed");
         }//ReverseAmount
-        public void CancelBooking(IBookingFees bookingFees)
+        public void CancelBooking(IBookingFees fees)
         {
-            //For now to am going to keep it simple.
-            //-This will however change as time goes by.
+            //https://www.bluewatershotel.co.za/terms-conditions/guarantee-payment-cancellations-policy.html
+            //Business rules
+            //-If user has paid for a booking, deduct the amount needed to pay for cancelling and refund the remaining
+            //-If the cancellation fee is larger than the amount paid, add the amount as dept.
+            //-If the user paid for booking and there's still change after deductions, refund the user.
 
-            //Get  the amounts for cancelation and refund
-            decimal mCancel = bookingFees.GetCancellationFee();
-            decimal mRefund = bookingFees.GetRefundAmount();
-            
-            //Create a transaction for cancelling
-            TransactionArgs args = new TransactionArgs("Void", (-1)* bookingFees.AmoutToPay, BalanceAffected.DeptBalance);
-            
-            //Deduct the amount that has not been pay yet from the dept
-            AmountOwing -= bookingFees.AmoutToPay;
-            //Alert the user about this transaction
+            decimal cancellationfee = fees.GetCancellationFee();
+            TransactionArgs args;
+            //If the user hasn't paid the full amount and the cancellation fees is more than the amount paid
+            //-This means that the user will not get any refund.
+            if (cancellationfee >= fees.AmountPaid)
+            {
+                this.AmountOwing -= fees.AmountPaid;
+
+                //Raise the event handlers to alert the user about what is happening
+                args = new TransactionArgs("Cancellation fee", cancellationfee, BalanceAffected.DeptBalance);
+                OnTransactionEvent?.Invoke(args);
+
+                args = new TransactionArgs("Paid Cancelation fee", (-1) * fees.AmountPaid, BalanceAffected.DeptBalance);
+                OnTransactionEvent?.Invoke(args);
+
+                //-Raise the balance changed event
+                BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
+                return;
+            }//end if
+
+            //Here it means that the user has paid more and they must get a refund after deduction of the cancellation fee
+            decimal refund = fees.AmountPaid - cancellationfee;
+
+            //Deduct the refund amount from the amout they are owing
+            this.AmountOwing -= refund;
+
+            //Raise the transaction event to alert the user about what is happening
+            args = new TransactionArgs("Cancelled booking", (-1) * fees.BookingCost, BalanceAffected.DeptBalance);
             OnTransactionEvent?.Invoke(args);
 
-            //Refund the user
-            ReverseAmount(mRefund);
-
-            //Add the cancelation fee to the dept of the user balance
-            AmountOwing += mCancel;
-            //Alert the user about this transaction
-            args = new TransactionArgs("Cancelation fee", bookingFees.GetCancellationFee(), BalanceAffected.DeptBalance);
+            args = new TransactionArgs("Cancelletion fee", cancellationfee, BalanceAffected.DeptBalance);
             OnTransactionEvent?.Invoke(args);
 
-            //Invoke the balance change for all listerners
-            BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
-        }//CancelBooking
+            args = new TransactionArgs("Paid Cancelation fee", (-1)*cancellationfee, BalanceAffected.DeptBalance);
+            OnTransactionEvent?.Invoke(args);
+            //Reverse the amount left
+            ReverseAmount(refund);
+        }//CancelBooking2
     }//class
 }//namespace

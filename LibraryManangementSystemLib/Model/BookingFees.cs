@@ -63,6 +63,7 @@ namespace HotelManangementSystemLibrary
 
         public decimal GetCancellationFee()
         {
+            //https://www.bluewatershotel.co.za/terms-conditions/guarantee-payment-cancellations-policy.html
             DateTime maxDate = _bookingDate.AddDays(-2);
             //If the user decides to cancel in less than 48hours before the booked date
             //-The pay the full amount for cancellation fee
