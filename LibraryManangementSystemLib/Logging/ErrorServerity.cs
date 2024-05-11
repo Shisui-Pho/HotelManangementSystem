@@ -30,6 +30,7 @@ namespace HotelManangementSystemLibrary.Logging
     {
         UserError,
         SystemError,
-        DatabaseError
+        DatabaseError,
+        BusinessRuleBridge
     }
 }//namespace

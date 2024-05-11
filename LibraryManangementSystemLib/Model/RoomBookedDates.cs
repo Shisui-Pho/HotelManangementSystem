@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Logging;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 namespace HotelManangementSystemLibrary
@@ -19,13 +20,19 @@ namespace HotelManangementSystemLibrary
         public bool AddBookingDate(DateTime date, int duration)
         {
             if (BookedDates.Contains(date))
-                throw new ArgumentException("Cannot booke room on this date");
+            {
+                ExceptionLog.Exception("Cannot booke room on this date");
+                return false;
+            }
             int count = 0;
             while(count <= duration)
             {
                 DateTime nextdate = date.AddDays(count);
                 if (BookedDates.FindIndex(d => d.Day == nextdate.Day && d.Year == nextdate.Year && d.Month == nextdate.Month) >= 0)
-                    throw new ArgumentException($"Room has been booked for the date :  {nextdate.ToShortDateString()}.");
+                {
+                    ExceptionLog.Exception($"Room has been booked for the date :  {nextdate.ToShortDateString()}.");
+                    return false;
+                }
                 BookedDates.Add(nextdate);
                 count++;
             }//end while
@@ -52,7 +59,13 @@ namespace HotelManangementSystemLibrary
             {
                 bool isRemoved = BookedDates.Remove(date.AddDays(duration));
                 if (!isRemoved)
-                    throw new KeyNotFoundException($"The specified date range was now found : Date {date.AddDays(duration).ToShortDateString()}");
+                {
+                    var ex =  new KeyNotFoundException($"The specified date range was now found : Date {date.AddDays(duration).ToShortDateString()}");
+                    bool handled = ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.BusinessRuleBridge);
+                    if (!handled)
+                        throw ex;
+                    return false;
+                }
                 duration--;
             }//end while
             return true;

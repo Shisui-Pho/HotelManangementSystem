@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Logging;
+using System;
 namespace HotelManangementSystemLibrary
 {
     internal class RoomBooking : IRoomBooking
@@ -23,7 +24,10 @@ namespace HotelManangementSystemLibrary
             //Check if the bookings is valid first
             //-Cannot book on the date befor today
             if (DateTime.Now > date)
-                throw new ArgumentException("Cannot book on this date");
+            {
+                ExceptionLog.Exception($"Cannot book on this date : {date}");
+                return;
+            }
 
             //Passed/Injected through the contructor
             this.Guest = guest;

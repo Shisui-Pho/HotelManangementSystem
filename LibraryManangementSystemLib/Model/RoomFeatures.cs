@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,7 +20,10 @@ namespace HotelManangementSystemLibrary
         public void AddFeature(IFeature feature)
         {
             if (features.IndexOf(feature) >= 0)
-                throw new ArgumentException("The feature has already been implemented");
+            {
+                ExceptionLog.Exception("The feature has already been implemented");
+                return;
+            }
             features.Add(feature);
             OnFeaturesModified?.Invoke(feature, true, new FeatureEventArgs()); ;
         }
@@ -27,7 +31,10 @@ namespace HotelManangementSystemLibrary
         {
             IFeature temp = features.FirstOrDefault(f => f.FeatureID == featureid);
             if (temp == null)
-                throw new ArgumentException("The feature ID was not found in this room");
+            {
+                ExceptionLog.Exception($"The feature Id \"{featureid}\" does not exist.");
+                return;
+            }
             features.Remove(temp);
             OnFeaturesModified?.Invoke(temp, false, new FeatureEventArgs());
         }//

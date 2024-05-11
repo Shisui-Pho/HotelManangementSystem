@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Logging;
+using System;
 namespace HotelManangementSystemLibrary
 {
     internal class ServicePersonel : User, IServicePersonel
@@ -12,10 +13,30 @@ namespace HotelManangementSystemLibrary
         public void UpdateRole(IUser admin_user, ServiceRole newrole)
         {
             if (!(admin_user is IAdministrator))
-                throw new UnauthorizedAccessException("Can only be perfomed by administrator");
+            {
+                Exception("Can olny be performed by an administrator.");
+                return;
+            }
             if(((IAdministrator)admin_user).Rights != AccessRights.Universal)
-                throw new UnauthorizedAccessException("Not enough access rights");
+            {
+                Exception("Not enough access rights");
+                return;
+            }
             Role = newrole;
         }//UpdateRole
+        private void Exception(string message)
+        {
+            var ex = new UnauthorizedAccessException(message);
+            bool handled = ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Warning, TypeOfError.UserError);
+            if (!handled)
+                throw ex;
+        }//CreateLog
+        //private void Exception(string message)
+        //{
+        //    var ex = new ArgumentException(message);
+        //    bool handled = ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Warning, TypeOfError.UserError);
+        //    if (!handled)
+        //        throw ex;
+        //}//CreateLog
     }//class
 }//namespace

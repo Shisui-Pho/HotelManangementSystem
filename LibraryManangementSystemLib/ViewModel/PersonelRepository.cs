@@ -10,7 +10,7 @@ namespace HotelManangementSystemLibrary
         public PersonelRepository() : base() { }
         public PersonelRepository(IServicePersonel[] personels) : base(personels) { }
         public PersonelRepository(List<IServicePersonel> personels) : base(personels) { }
-        public IEnumerator<Ticket?> GetPersonelTickets(string personID)
+        public IEnumerator<Ticket> GetPersonelTickets(string personID)
         {
             yield return null;
         }

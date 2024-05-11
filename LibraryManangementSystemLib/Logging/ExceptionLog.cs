@@ -10,16 +10,20 @@ namespace HotelManangementSystemLibrary.Logging
     {
         private readonly string file = Path.Combine(Directory.GetCurrentDirectory(), "Log", "Error.log");
         public event delUserExceptionEvent UserExceptionEvent;
+        private delUserExceptionEvent AlertUser;
         public static ExceptionLog _logger = new ExceptionLog();
         private ExceptionLog() { }//ctor default
         public static ExceptionLog GetLogger() => _logger;
-        public void LogActivity(Exception ex, ErrorServerity ser, TypeOfError type)
+        public bool LogActivity(Exception ex, ErrorServerity ser, TypeOfError type)
         {
             if (type == TypeOfError.UserError)
             {
-                //Alert the user about what they are doing
+                //Alert the user about what they are doing wrong
                 UserExceptionEvent?.Invoke(ex.Message);
-                return;
+                if (AlertUser == null)
+                    return false;//User was not alerted
+
+                return AlertUser(ex.Message);
             }//end if user error
             string error_lines_of_code = ExtactLinesCode(ex.StackTrace);
             string header = $"Date : {DateTime.Now}\t Type : {type.ToString()}\t Serverity : {ser.ToString()}";
@@ -33,6 +37,7 @@ namespace HotelManangementSystemLibrary.Logging
                 wr.WriteLine("Stacktrace        :\n{0}\n", ex.StackTrace);
                 wr.WriteLine("End logg-------------------\n\n");
             }//write to a log file
+            return true;
         }//LogActivity
         private string ExtactLinesCode(string stacktrace)
         {
@@ -41,5 +46,13 @@ namespace HotelManangementSystemLibrary.Logging
 
             return lines[len - 2] + "\n" + lines[len - 1];
         }//GetLastwoMessages
+        public static void Exception(string message)
+        {
+            //It does not matter where this is throw since the user's exceptions won't be logged.
+            var ex = new ArgumentException(message);
+            bool handled = GetLogger().LogActivity(ex, ErrorServerity.Warning, TypeOfError.UserError);
+            if (!handled)
+                throw ex;
+        }//Exception
     }//class
 }//namespace

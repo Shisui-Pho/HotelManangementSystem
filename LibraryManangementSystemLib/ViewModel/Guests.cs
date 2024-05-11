@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using HotelManangementSystemLibrary.Logging;
+
 namespace HotelManangementSystemLibrary
 {
     internal class Guests : GeneralCollection<IGuest>, IGuests
@@ -24,8 +26,12 @@ namespace HotelManangementSystemLibrary
         public IGuest FindGuest(IUser user)
         {
             if (!(user is IGuest))
-                throw new System.ArgumentException($"Cannot retrieve profile of {user.UserType.ToString()}");
-            
+            {
+                var ex = new System.ArgumentException($"Cannot retrieve profile of {user.UserType.ToString()}");
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw ex;
+            }
+
             int i = base._collection.FindIndex(gs => gs.UserID == user.UserID);
             CurrentGuest = base._collection[i];
             //If the guest exists

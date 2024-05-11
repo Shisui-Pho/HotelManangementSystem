@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Logging;
+using System;
 namespace HotelManangementSystemLibrary
 {
     internal abstract class User : Person, IUser
@@ -68,5 +69,12 @@ namespace HotelManangementSystemLibrary
                 throw new ArgumentException("Unauthorized access");
             Rights = _rights;
         }//ChangeAccessRights
+        private void Exception(string message)
+        {
+            var ex = new ArgumentException(message);
+            bool handled = ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Warning, TypeOfError.UserError);
+            if (!handled)
+                throw ex;
+        }//CreateLog
     }//Administrator
 }//namespace

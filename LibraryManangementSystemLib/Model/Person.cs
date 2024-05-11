@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Logging;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,7 +16,10 @@ namespace HotelManangementSystemLibrary
             private set
             {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Please enter a valid name!!");
+                {
+                    ExceptionLog.Exception("Please enter a valid name");
+                    return;
+                }//end 
                 _name = value;
             }//end setter
         }//Name
@@ -26,7 +30,10 @@ namespace HotelManangementSystemLibrary
             private set
             {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Please enter a valid name!!");
+                {
+                    ExceptionLog.Exception("Please enter a valid name!!");
+                    return;
+                }
                 _surname = value;
             }//end setter
         }//Surname

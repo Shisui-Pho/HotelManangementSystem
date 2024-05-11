@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManangementSystemLibrary.Logging;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -71,7 +72,10 @@ namespace HotelManangementSystemLibrary
         {
             int i = IndexOf(old);
             if (i < 0)
-                throw new ArgumentException("Item was not found.");
+            {
+                ExceptionLog.Exception("Item was not found.");
+                return;
+            }
             _collection[i] = _new;
             UpdatedEvent?.Invoke(old, _new, new HotelEventArgs("", "") { IsHandled = false });
         }//Update
