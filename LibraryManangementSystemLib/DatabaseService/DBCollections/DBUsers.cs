@@ -2,6 +2,7 @@
 using System.Data;
 using System;
 using HotelManangementSystemLibrary.Factory;
+using HotelManangementSystemLibrary.Logging;
 
 namespace HotelManangementSystemLibrary
 {
@@ -55,12 +56,10 @@ namespace HotelManangementSystemLibrary
             }//end try
             catch (Exception ex)
             {
-                throw ex;
-            }//end catch
-            finally
-            {
-                con.Close();
-            }//end finally
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
 
             isLoading = false;
         }//LoadData
@@ -124,7 +123,8 @@ namespace HotelManangementSystemLibrary
                 //- if query 2 fails,the first query will be rolled back 
                 if (trans != null)
                     trans.Rollback();
-                throw ex;
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
             }
             finally
             {
@@ -144,12 +144,10 @@ namespace HotelManangementSystemLibrary
             }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
             }
-            finally
-            {
-                con.Close();
-            }
+            finally { con.Close(); }
         }//Item_PropertyChangedEvent
         public override void Remove(IUser item)
         {

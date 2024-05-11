@@ -3,6 +3,7 @@ using System;
 using System.Data.OleDb;
 using System.Data;
 using System.Threading.Tasks;
+using HotelManangementSystemLibrary.Logging;
 
 namespace HotelManangementSystemLibrary
 {
@@ -90,7 +91,8 @@ namespace HotelManangementSystemLibrary
             }//try
             catch(Exception ex)
             {
-                throw ex;
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
             }//catch
             finally
             {
@@ -113,7 +115,8 @@ namespace HotelManangementSystemLibrary
             }//try
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
             }//catch
             finally
             {
@@ -132,15 +135,17 @@ namespace HotelManangementSystemLibrary
                         return;
                     if (!await PushToDatabase(item))
                         return;
-                }
-                catch(Exception ex)
+                }catch(Exception ex)
                 {
+                    ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
                     throw;
                 }
             }
             //Subscibe to the OnPropertyChanged event
             item.PropertyChangedEvent += Item_PropertyChangedEvent;
-
+            item.RoomService.PropertyChangedEvent += RoomService_PropertyChangedEvent;
+            item.RoomService.OnServiceLogging += RoomService_OnServiceLogging;
+            item.RoomService.OnTicketAdded += RoomService_OnTicketAdded;
             //Add to the base class
             base.Add(item);
         }//Add
@@ -198,14 +203,44 @@ namespace HotelManangementSystemLibrary
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.ExecuteNonQuery();
             }//try
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                throw ex;
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
             }//catch
-            finally
-            {
-                con.Close();
-            }//finally
+            finally{con.Close();}//finally
         }//Item_PropertyChangedEvent
+        private void RoomService_OnServiceLogging(ServiceLogEventArgs args)
+        {
+            
+        }//RoomService_OnServiceLogging
+        private void RoomService_OnTicketAdded(Ticket ticket,string serviceid)
+        {
+            try
+            {
+                con.Open();
+                string sql = "qr_CreateTicket";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //VALUES (@PersonelD,@RoomServiceID, @Desc,FALSE);
+                //Pass the parameters
+                cmd.Parameters.AddWithValue("@PersonelD", ticket.AssignedPersonelID);
+                cmd.Parameters.AddWithValue("@RoomServiceID", serviceid);
+                cmd.Parameters.AddWithValue("@Desc", ticket.Description);
+
+                //Extecute the sommnad
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw; }
+            finally { con.Close(); }
+        }//RoomService_OnTicketAdded
+        private void RoomService_PropertyChangedEvent(string id, string field, string newVal)
+        {
+            
+        }//RoomService_PropertyChangedEvent
     }//class
 }//namespace

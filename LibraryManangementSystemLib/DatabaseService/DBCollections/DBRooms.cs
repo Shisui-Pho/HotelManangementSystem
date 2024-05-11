@@ -2,6 +2,8 @@
 using System;
 using System.Data.OleDb;
 using System.Data;
+using HotelManangementSystemLibrary.Logging;
+
 namespace HotelManangementSystemLibrary
 {
     internal class DBRooms : Rooms, IRooms
@@ -68,12 +70,10 @@ namespace HotelManangementSystemLibrary
             }//end using
             catch (Exception ex)
             {
-                throw ex;
-            }//end catch
-            finally
-            {
-                con.Close();
-            }//end finally
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
             isLoading = false;
         }//LoadData
         public override void Add(IRoom item)
@@ -111,12 +111,10 @@ namespace HotelManangementSystemLibrary
             }//end try
             catch (Exception ex)
             {
-                throw ex;
-            }//end catch
-            finally
-            {
-                con.Close();
-            }//end finaly
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
         }
         private void RoomFeatures_OnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args)
         {
@@ -140,12 +138,10 @@ namespace HotelManangementSystemLibrary
             }//end try
             catch (Exception ex)
             {
-                throw ex;
-            }//end catch
-            finally
-            {
-                con.Close();
-            }//end finally
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
         }//RoomFeatures_OnFeaturesModified
 
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
@@ -161,12 +157,10 @@ namespace HotelManangementSystemLibrary
             }//end try
             catch (Exception ex)
             {
-                throw ex;
-            }//end catch 
-            finally
-            {
-                con.Close();
-            }//end finally
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
         }//Item_PropertyChangedEvent
 
         public override void Remove(IRoom item)
@@ -188,12 +182,10 @@ namespace HotelManangementSystemLibrary
             }//end try
             catch (Exception ex)
             {
-                throw ex;
-            }//catch
-            finally
-            {
-                con.Close();
-            }//finally
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
 
             //Remove from the collection
             base.Remove(item);

@@ -16,7 +16,10 @@ namespace HotelManangementSystemLibrary
     public delegate void delOnBalanceChanged(decimal newBalance, decimal newAmountOwing);
     public delegate void delBalanceChanged(BalanceChangedEventArgs args);
     public delegate void delOnBookingFeesChanged(BookingFeesChangedEventArgs args);
-
+    public delegate void delOnServiceLog(ServiceLogEventArgs args);
+    public delegate void delOnTicketAdded(Ticket ticket,string serviceid);
+    public delegate bool delUserExceptionEvent(string message);
+    //Event Class
     public class HotelEventArgs : EventArgs
     {
         public bool IsHandled { get; set; }
@@ -27,11 +30,11 @@ namespace HotelManangementSystemLibrary
             Name = name;
             Description = description;
         }//HotelEventArgs
-    }//class
+    }//HotelEventArgs
     public class FeatureEventArgs : EventArgs
     {
         public string RoomNumber { get; set; }
-    }
+    }//FeatureEventArgs
     public class BalanceChangedEventArgs : EventArgs
     {
         public decimal CurrentBalance { get; private set; }
@@ -55,5 +58,17 @@ namespace HotelManangementSystemLibrary
             this.AmountToPay = topay;
             this.BookingID = id;
         }//ctor 
-    }//ctor 01
+    }//BookingFeesChangedEventArgs
+    public class ServiceLogEventArgs : EventArgs
+    {
+        public string RoomServiceID { get; private set; }
+        public string Activity { get; private set; }
+        public DateTime TimeStamp { get; private set; }
+        internal ServiceLogEventArgs(string serviceid, string activity, DateTime date)
+        {
+            this.RoomServiceID = serviceid;
+            this.Activity = activity;
+            this.TimeStamp = date;
+        }//ctor
+    }//ServiceLogEventArgs
 }//namespace

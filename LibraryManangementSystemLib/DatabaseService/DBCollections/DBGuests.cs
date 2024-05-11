@@ -3,6 +3,7 @@ using System;
 using System.Data.OleDb;
 using System.Data;
 using System.Runtime.ExceptionServices;
+using HotelManangementSystemLibrary.Logging;
 
 namespace HotelManangementSystemLibrary
 {
@@ -65,12 +66,10 @@ namespace HotelManangementSystemLibrary
             }//end try
             catch (Exception ex)
             {
-                throw ex;
-            }//end catch
-            finally
-            {
-                con.Close();
-            }//end finaly
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
 
             //Turn off our flag for loading
             isLoading = false;
@@ -148,7 +147,8 @@ namespace HotelManangementSystemLibrary
                 //- if query 2 fails,the first query will be rolled back 
                 if (trans != null)
                     trans.Rollback();
-                throw ex;
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
             }//end catch
             finally
             {
@@ -169,12 +169,10 @@ namespace HotelManangementSystemLibrary
             }//end try
             catch (Exception ex)
             {
-                throw ex;
-            }//end catch
-            finally
-            {
-                con.Close();
-            }//end finally
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
         }//Item_PropertyChangedEvent
         private async void Item_BalanceChangedEvent(BalanceChangedEventArgs args)
         {
@@ -196,12 +194,10 @@ namespace HotelManangementSystemLibrary
             }
             catch (Exception ex)
             {
-                throw ex;
-            }//end catch
-            finally
-            {
-                con.Close();
-            }//end finally
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
         }//Item_BalanceChangedEvent
     }//class
 }//namespace
