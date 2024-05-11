@@ -1,4 +1,5 @@
-﻿using HotelManangementSystemLibrary.Logging;
+﻿using HotelManangementSystemLibrary.Factory;
+using HotelManangementSystemLibrary.Logging;
 using System;
 namespace HotelManangementSystemLibrary
 {
@@ -25,7 +26,7 @@ namespace HotelManangementSystemLibrary
             //-Cannot book on the date befor today
             if (DateTime.Now > date)
             {
-                ExceptionLog.Exception($"Cannot book on this date : {date}");
+                ExceptionLog.Exception($"Cannot book on this date : {date}", "Booking Error");
                 return;
             }
 
@@ -38,18 +39,19 @@ namespace HotelManangementSystemLibrary
             this.BookingID = bookingCount.ToString();
             fees.BookingFeesChanged += Fees_BookingFeesChanged;
             this.DateBookedFor = date;
-        }//ctor 01
 
+            //For now create an empty room service
+            RoomService = BookingsFactory.CreateEmptyRoomService(room);
+        }//ctor 01
+        internal RoomBooking(string id, IGuest guest, IRoom room, DateTime date, IBookingFees fees, int length = 1)
+            : this(guest, room, date, fees, length)
+        {
+            BookingID = id;
+        }//RoomBooking
         private void Fees_BookingFeesChanged(BookingFeesChangedEventArgs args)
         {
             args.BookingID = this.BookingID;
         }//Fees_BookingFeesChanged
-
-        internal RoomBooking(string id,IGuest guest, IRoom room, DateTime date,IBookingFees fees, int length = 1) 
-            : this(guest,room,date,fees,length)
-        {
-            BookingID = id;
-        }//RoomBooking
         internal void SetBookingID(string _id) => BookingID = _id;
         public void ChangeBookingDate(DateTime date, int numberOfDays = 1)
         {

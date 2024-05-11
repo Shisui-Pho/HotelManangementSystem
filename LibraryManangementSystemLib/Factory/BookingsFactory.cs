@@ -22,5 +22,13 @@ namespace HotelManangementSystemLibrary.Factory
         {
             return new BookingFees(bookingdate, bookingAmount, amountToPAY, amountPaid);
         }//CreateBookingFee
+        internal static IRoomService CreateEmptyRoomService(IRoom room)
+        {
+            return new RoomService(room);
+        }//CreateEmptyRoomService
+        internal static IRoomService CreateEmptyRoomService(IRoom room, IServicePersonel person)
+        {
+            return new RoomService(room, person);
+        }//CreateEmptyRoomService
     }//class
 }//namesapce
