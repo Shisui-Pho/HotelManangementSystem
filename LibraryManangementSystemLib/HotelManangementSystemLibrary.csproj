@@ -62,6 +62,8 @@
     <Compile Include="Factory\UsersFactory.cs" />
     <Compile Include="Factory\WareHouseFactory.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Logging\ErrorServerity.cs" />
+    <Compile Include="Logging\ExceptionLog.cs" />
     <Compile Include="Model\BookingFees.cs" />
     <Compile Include="Model\ContactDetails.cs" />
     <Compile Include="Model\DoubleRoom.cs" />

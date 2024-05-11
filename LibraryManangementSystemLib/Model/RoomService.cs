@@ -9,7 +9,11 @@ namespace HotelManangementSystemLibrary
         //data member
         private List<Ticket> _tickets;
         private List<ServiceLog> _servicelogs;
+
+        //Events
         public event delOnPropertyChanged PropertyChangedEvent;
+        public event delOnServiceLog OnServiceLogging;
+        public event delOnTicketAdded OnTicketAdded;
 
         public string ServiceID { get; private set; }
 
@@ -24,17 +28,6 @@ namespace HotelManangementSystemLibrary
         public IEnumerable<Ticket> Tickets => _tickets;
 
         public IEnumerable<ServiceLog> ServiveLogs => _servicelogs;
-
-        public Ticket this[int index]
-        {
-            get
-            {
-                if (index >= _tickets.Count)
-                    return null;
-                return _tickets[index];
-            }//
-        }//end indexer of tickets
-
         public RoomService(IRoom room, IServicePersonel personel)
         {
             _tickets = new List<Ticket>();
@@ -58,10 +51,13 @@ namespace HotelManangementSystemLibrary
         public void AddTicket(string _description)
         {
             //Create the ticket
-            Ticket ticket = new Ticket(_tickets.Count + 1, _description, this.Personel.UserID);
+            Ticket ticket = new Ticket(_tickets.Count + 1, _description, this.Personel.UserID);//, this.ServiceID);
 
             //Add it to the list of tickests
             _tickets.Add(ticket);
+
+            //Push the ticket to the database
+            OnTicketAdded?.Invoke(ticket,this.ServiceID);
 
             //Log it to the service log
             LogServiceActivity($"New ticket added: { _description}");
@@ -122,8 +118,14 @@ namespace HotelManangementSystemLibrary
         }//EndService
         public void LogServiceActivity(string activity)
         {
+            //Create a new service log
             ServiceLog log = new ServiceLog(activity, DateTime.Now);
+
+            //Add it to the internal list
             _servicelogs.Add(log);
+
+            //Invoke the service logged event
+            OnServiceLogging?.Invoke(new ServiceLogEventArgs(this.ServiceID, activity, log.Timestamp));
         }//LogServiceActivity
         public string ToCSVFormat()
         {

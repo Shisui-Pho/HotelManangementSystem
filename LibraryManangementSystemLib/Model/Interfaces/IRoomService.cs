@@ -13,7 +13,8 @@ namespace HotelManangementSystemLibrary
         IServicePersonel Personel { get; }
         IEnumerable<Ticket> Tickets { get; }
         IEnumerable<ServiceLog> ServiveLogs { get; }
-        Ticket this[int index] { get; }
+        event delOnServiceLog OnServiceLogging;
+        event delOnTicketAdded OnTicketAdded;
         void ChangeServicePersonel(IServicePersonel personel);
         void LogServiceActivity(string activity);
         void AddTicket(string _description);
