@@ -212,7 +212,24 @@ namespace HotelManangementSystemLibrary
         }//Item_PropertyChangedEvent
         private void RoomService_OnServiceLogging(ServiceLogEventArgs args)
         {
-            
+            try
+            {
+                con.Open();
+                string sql = "qr_CreateServiceLog";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@RoomServiceID", args.RoomServiceID);
+                cmd.Parameters.AddWithValue("@Activity", args.Activity);
+                cmd.Parameters.AddWithValue("@Timestamp", args.TimeStamp);
+                //Extecute the sommnad
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
         }//RoomService_OnServiceLogging
         private void RoomService_OnTicketAdded(Ticket ticket,string serviceid)
         {
@@ -240,7 +257,31 @@ namespace HotelManangementSystemLibrary
         }//RoomService_OnTicketAdded
         private void RoomService_PropertyChangedEvent(string id, string field, string newVal)
         {
-            
+            try
+            {
+                string service = "EndTimeStartTimePersonelID";
+                con.Open();
+                //BuildSql
+                string sql = "";
+                if (service.IndexOf(field) >= 0)
+                {
+                    //if we are changing the service it self
+                    sql = $"UPDATE tbl_RoomService SET {field} = \"{newVal}\" WHERE ID = {id}";
+                }
+                else
+                {
+                    //We are changing the ticket
+                    sql = $"UPDATE tbl_Ticket SET {field} = \"{newVal }\" WHERE TicketID = \"{id }\"";
+                }
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }
+            finally { con.Close(); }
         }//RoomService_PropertyChangedEvent
     }//class
 }//namespace
