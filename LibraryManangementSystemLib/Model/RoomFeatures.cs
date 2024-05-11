@@ -21,7 +21,7 @@ namespace HotelManangementSystemLibrary
         {
             if (features.IndexOf(feature) >= 0)
             {
-                ExceptionLog.Exception("The feature has already been implemented");
+                ExceptionLog.Exception("The feature has already been implemented","Feature Creation Error");
                 return;
             }
             features.Add(feature);
@@ -32,7 +32,7 @@ namespace HotelManangementSystemLibrary
             IFeature temp = features.FirstOrDefault(f => f.FeatureID == featureid);
             if (temp == null)
             {
-                ExceptionLog.Exception($"The feature Id \"{featureid}\" does not exist.");
+                ExceptionLog.Exception($"The feature Id \"{featureid}\" does not exist.","Feature not found");
                 return;
             }
             features.Remove(temp);

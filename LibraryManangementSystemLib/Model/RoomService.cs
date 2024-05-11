@@ -38,6 +38,15 @@ namespace HotelManangementSystemLibrary
             //Log the activity
             LogServiceActivity($"Room service created for {personel.UserID}");
         }//ctor 01
+        internal RoomService(IRoom room)
+        {
+            _tickets = new List<Ticket>();
+            _servicelogs = new List<ServiceLog>();
+
+            Room = room;
+            //Log the activity
+            LogServiceActivity($"Room service created for witout a service personel");
+        }//RoomService
         public void ChangeServicePersonel(IServicePersonel personel)
         {
             string oldPersonel = this.Personel.UserID;

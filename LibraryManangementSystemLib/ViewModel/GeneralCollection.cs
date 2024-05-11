@@ -73,7 +73,7 @@ namespace HotelManangementSystemLibrary
             int i = IndexOf(old);
             if (i < 0)
             {
-                ExceptionLog.Exception("Item was not found.");
+                ExceptionLog.Exception("Item was not found.","Item not found");
                 return;
             }
             _collection[i] = _new;

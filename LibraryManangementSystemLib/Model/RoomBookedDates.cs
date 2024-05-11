@@ -21,7 +21,7 @@ namespace HotelManangementSystemLibrary
         {
             if (BookedDates.Contains(date))
             {
-                ExceptionLog.Exception("Cannot booke room on this date");
+                ExceptionLog.Exception("Cannot book room on this date", "Booking error");
                 return false;
             }
             int count = 0;
@@ -30,7 +30,7 @@ namespace HotelManangementSystemLibrary
                 DateTime nextdate = date.AddDays(count);
                 if (BookedDates.FindIndex(d => d.Day == nextdate.Day && d.Year == nextdate.Year && d.Month == nextdate.Month) >= 0)
                 {
-                    ExceptionLog.Exception($"Room has been booked for the date :  {nextdate.ToShortDateString()}.");
+                    ExceptionLog.Exception($"The room has been booked for the following date :\n\t {nextdate.ToShortDateString()}.", "Booking Error");
                     return false;
                 }
                 BookedDates.Add(nextdate);

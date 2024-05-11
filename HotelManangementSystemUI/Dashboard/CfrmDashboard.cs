@@ -11,6 +11,7 @@ using HotelManangementControlLibrary.Dashboard.Guest;
 using HotelManangementSystemLibrary.Factory;
 using UIServiceLibrary.Extensions;
 using UIServiceLibrary;
+using HotelManangementSystemLibrary.Logging;
 
 namespace HotelManangementSystemUI.Dashboard
 {
@@ -57,6 +58,7 @@ namespace HotelManangementSystemUI.Dashboard
             }
             _guestRoomBookingsControl = new RoomBookingControl(database.Rooms, RoomBookingFromRoomBookingControl);//use ctor 01
             LinkUnlinkedButtons();
+            AttachErrorAlert();
         }//ctor 01
 
         //Guest Contructor
@@ -71,6 +73,7 @@ namespace HotelManangementSystemUI.Dashboard
             _guestProfileControl = new GuestProfileControl(profile);
             _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
             _guestRoomBookingsControl = new RoomBookingControl(_rooms,RoomBookingFromRoomBookingControl);//use ctor 01
+            AttachErrorAlert();
         }//ctor 01
         //Testing
         public CfrmDashboard()
@@ -91,6 +94,23 @@ namespace HotelManangementSystemUI.Dashboard
         #endregion Constructors
 
         #region Helper Methods
+        private void AttachErrorAlert()
+        {
+            ExceptionLog.GetLogger().UserExceptionEvent += CfrmDashboard_UserExceptionEvent;
+        }//AttachErrorAlert
+        private void DetachErrorAlert()
+        {
+            ExceptionLog.GetLogger().UserExceptionEvent -= CfrmDashboard_UserExceptionEvent;
+        }
+        private bool CfrmDashboard_UserExceptionEvent(AlertUserEvent args)
+        {
+            //Alert the user about what is happening
+            MessageBox.Show(args.Message, args.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //Handlere the exception
+            args.Handled = true;
+            return args.Handled;
+        }//CfrmDashboard_UserExceptionEvent
+
         private async Task LoadAllBookings()
         {
             //This will load all the other Properties
@@ -388,6 +408,7 @@ namespace HotelManangementSystemUI.Dashboard
                 database.SaveGuets();
                 database.SaveRooms();
             }
+            DetachErrorAlert();
         }//CfrmDashboard_FormClosing
 
         #endregion Form event handlers and Button clicks

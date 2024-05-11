@@ -17,7 +17,7 @@ namespace HotelManangementSystemLibrary
             {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 {
-                    ExceptionLog.Exception("Please enter a valid name");
+                    ExceptionLog.Exception("Please enter a valid name", "Invalid name");
                     return;
                 }//end 
                 _name = value;
@@ -31,7 +31,7 @@ namespace HotelManangementSystemLibrary
             {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 {
-                    ExceptionLog.Exception("Please enter a valid name!!");
+                    ExceptionLog.Exception("Please enter a valid name", "Invalid Surname");
                     return;
                 }
                 _surname = value;
