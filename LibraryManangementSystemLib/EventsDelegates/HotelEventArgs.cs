@@ -18,7 +18,7 @@ namespace HotelManangementSystemLibrary
     public delegate void delOnBookingFeesChanged(BookingFeesChangedEventArgs args);
     public delegate void delOnServiceLog(ServiceLogEventArgs args);
     public delegate void delOnTicketAdded(Ticket ticket,string serviceid);
-    public delegate bool delUserExceptionEvent(string message);
+    public delegate bool delUserExceptionEvent(AlertUserEvent args);
     //Event Class
     public class HotelEventArgs : EventArgs
     {
@@ -71,4 +71,14 @@ namespace HotelManangementSystemLibrary
             this.TimeStamp = date;
         }//ctor
     }//ServiceLogEventArgs
+    public class AlertUserEvent : EventArgs
+    {
+        public string Message { get; private set; }
+        public string Title { get; private set; }
+        public bool Handled { get; set; }
+        public AlertUserEvent(string message, string title)
+        {
+            this.Message = message;
+        }//ctor main
+    }//AlertUserEvent
 }//namespace
