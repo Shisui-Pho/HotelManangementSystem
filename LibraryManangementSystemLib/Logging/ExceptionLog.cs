@@ -19,16 +19,18 @@ namespace HotelManangementSystemLibrary.Logging
                 return args.Handled;
             }//end if user error
             string error_lines_of_code = ExtactLinesCode(ex.StackTrace);
+
             string header = $"Date : {DateTime.Now}\t Type : {type.ToString()}\t Serverity : {ser.ToString()}";
             int len = header.Length;
             header += "\n".PadRight(16 + len,'=');
-            using(StreamWriter wr = new StreamWriter(file))
+            using(StreamWriter wr = new StreamWriter(file,true))
             {
+                wr.WriteLine("".PadRight(16 + len, '='));
                 wr.WriteLine(header);
                 wr.WriteLine("Error message     :\n{0}\n", ex.Message);
                 wr.WriteLine("Importance lines  :\n{0}\n", error_lines_of_code);
                 wr.WriteLine("Stacktrace        :\n{0}\n", ex.StackTrace);
-                wr.WriteLine("End logg-------------------\n\n");
+                wr.WriteLine("----------------------------------End logg---------------------------------------\n\n");
             }//write to a log file
             return true;
         }//LogActivity

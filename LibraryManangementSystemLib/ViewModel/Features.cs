@@ -1,4 +1,5 @@
-﻿using HotelManangementSystemLibrary.Utilities.Extensions;
+﻿using HotelManangementSystemLibrary.Logging;
+using HotelManangementSystemLibrary.Utilities.Extensions;
 using System;
 using System.Data.OleDb;
 using System.Linq;
@@ -63,15 +64,12 @@ namespace HotelManangementSystemLibrary
                             base.Add(fet);
                         }
                     }//
-
                     catch (Exception ex)
                     {
-                        throw ex;
+                        ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                        throw;
                     }
-                    finally
-                    {
-                        con.Close();
-                    }
+                    finally { con.Close(); }
                 }
             });
         }//LoadAccess
