@@ -1,6 +1,6 @@
 ﻿namespace HotelManangementSystemLibrary
 { 
-    internal class UserAccount : IUSerAccount
+    internal class UserAccount : IUSerAccount, IUserAccountDB
     {
         public decimal CurrentBalance { get; private set; }
         public decimal AmountOwing { get; private set; }
@@ -78,6 +78,19 @@
             BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
             return true;      
         }//WithdrawAmount
+
+        public void AddDeptRemaining(decimal amount, string reason)
+        {
+            //This will add the amount of dept the user still owes as read from the database
+            if (amount < 0)
+                return;
+            //Create a transaction for adding a dept
+            TransactionArgs args = new TransactionArgs(reason, amount, BalanceAffected.DeptBalance);
+
+            //Let the user know abou this transaction
+            OnTransactionEvent?.Invoke(args);
+            BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
+        }//AddDeptRemaining
         public void AddDept(decimal amount, string reason)
         {
             //Prevent unnecessary transactions

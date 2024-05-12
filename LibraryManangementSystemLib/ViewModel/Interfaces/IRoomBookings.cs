@@ -15,4 +15,9 @@ namespace HotelManangementSystemLibrary
         IEnumerable<IRoom> GetBookedRooms<T>()
             where T : IRoom;
     }//Interface
+    internal interface IRoomBookingDB 
+    {
+        void AddFromDB(IRoomBooking account);
+    }//IRoomBookingDB
+
 }//namespace

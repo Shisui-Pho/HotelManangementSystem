@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace HotelManangementSystemLibrary
 {
-    internal class RoomBookings: GeneralCollection<IRoomBooking>, IRoomBookings
+    internal class RoomBookings: GeneralCollection<IRoomBooking>, IRoomBookings, IRoomBookingDB
     {
 
         public event delOnRemovedEvent RemovedBooking;
@@ -37,14 +37,22 @@ namespace HotelManangementSystemLibrary
         { 
             if (FindIndex(item) >= 0)
             {
-                //For temp
+                //This is temporary
                 item.ChangeBookingDate(item.DateBookedFor.AddDays(5), item.NumberOfDaysToStay);
             }
-            //throw new ArgumentException("Room has already been booked for that date.");
-            if (item.BookingFee.AmountPaid <= 0)
-                item.Guest.Account.AddDept(item.BookingFee.BookingCost, "Booked room");
+           item.Guest.Account.AddDept(item.BookingFee.BookingCost, "Booked room.");
+                
             base._collection.Add(item);
         }//ICollectionHotel<IRoomBooking>.Add
+
+        public void AddFromDB(IRoomBooking item)
+        {
+            //This will let us know that it is comming from the database and how much the user is owing
+            IUserAccountDB account = (IUserAccountDB)item.Guest.Account;
+            //item.Guest.Account.AddDept(item.BookingFee.AmoutToPay, "Booked room");
+            account.AddDeptRemaining(item.BookingFee.AmoutToPay, "Booked room.");
+            base._collection.Add(item);
+        }//AddFromDB
         private int FindIndex(IRoomBooking booking)
         {
             int i = base._collection.FindIndex(_b => booking.BookingID == _b.BookingID);
