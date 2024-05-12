@@ -57,6 +57,12 @@
     <Compile Include="DatabaseService\ExtensionsForDB\TextDataFile\IUsersExtensions.cs" />
     <Compile Include="DatabaseService\Interfacae\IDatabaseService.cs" />
     <Compile Include="DatabaseService\TextFileDatabase.cs" />
+    <Compile Include="EventsDelegates\AlertUserEvent.cs" />
+    <Compile Include="EventsDelegates\BalanceChangedEventArgs.cs" />
+    <Compile Include="EventsDelegates\BookingFeesChangedEventArgs.cs" />
+    <Compile Include="EventsDelegates\FeatureEventArgs.cs" />
+    <Compile Include="EventsDelegates\HotelEventArgs.cs" />
+    <Compile Include="EventsDelegates\ServiceLogEventArgs.cs" />
     <Compile Include="Factory\BookingsFactory.cs" />
     <Compile Include="Factory\RoomFactory.cs" />
     <Compile Include="Factory\UsersFactory.cs" />
@@ -99,7 +105,7 @@
     <Compile Include="Model\ServicePersonel.cs" />
     <Compile Include="Model\SingleRoom.cs" />
     <Compile Include="Model\Struct\Ticket.cs" />
-    <Compile Include="Model\TransactionArgs.cs" />
+    <Compile Include="EventsDelegates\TransactionArgs.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserAccount.cs" />
     <Compile Include="Old Data Repositories\Enum\CancellationReason.cs" />
@@ -112,7 +118,7 @@
     <Compile Include="Utilities\IDGenerator.cs" />
     <Compile Include="Utilities\IOldBookingsRepository.cs" />
     <Compile Include="Utilities\Service.cs" />
-    <Compile Include="EventsDelegates\HotelEventArgs.cs" />
+    <Compile Include="EventsDelegates\HotelDelegates.cs" />
     <Compile Include="ViewModel\Features.cs" />
     <Compile Include="ViewModel\GeneralCollection.cs" />
     <Compile Include="ViewModel\Guests.cs" />
