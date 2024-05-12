@@ -118,6 +118,8 @@ namespace HotelManangementSystemLibrary
         }
         private void RoomFeatures_OnFeaturesModified(IFeature feature, bool isAdded, FeatureEventArgs args)
         {
+            if (isLoading)
+                return;
             //This will be executed everytime we remove or add a new feature to a room 
             try 
             { 
@@ -146,6 +148,8 @@ namespace HotelManangementSystemLibrary
 
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
+            if (isLoading)
+                return;
             try 
             { 
                 con.Open();
@@ -165,6 +169,8 @@ namespace HotelManangementSystemLibrary
 
         public override void Remove(IRoom item)
         {
+            if (isLoading)
+                return;
             try 
             { 
                 //Open connection

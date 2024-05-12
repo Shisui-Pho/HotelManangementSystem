@@ -135,6 +135,8 @@ namespace HotelManangementSystemLibrary
         }
         private void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
+            if (isLoading)
+                return;
             //Establish the database connection here
             try { 
                     con.Open();

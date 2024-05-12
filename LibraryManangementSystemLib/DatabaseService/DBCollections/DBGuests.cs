@@ -159,6 +159,8 @@ namespace HotelManangementSystemLibrary
         }//PushToDataBase
         private async void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
+            if (isLoading)
+                return;
             try 
             { 
                 //Open the connection async to prevent connection delays from the UI
@@ -176,6 +178,8 @@ namespace HotelManangementSystemLibrary
         }//Item_PropertyChangedEvent
         private async void Item_BalanceChangedEvent(BalanceChangedEventArgs args)
         {
+            if (isLoading)
+                return;
             try
             {
                 //Open the connection async to prevent connection delays from the UI

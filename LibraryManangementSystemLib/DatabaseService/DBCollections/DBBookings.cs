@@ -102,6 +102,8 @@ namespace HotelManangementSystemLibrary
         }//LoadData
         private async void DBBookings_RemovedBooking(object sender, HotelEventArgs args)
         {
+            if (isLoading)
+                return;
             try 
             { 
                 await con.OpenAsync();
@@ -193,6 +195,8 @@ namespace HotelManangementSystemLibrary
         }//PushToDatabase 
         private async void Item_PropertyChangedEvent(string id, string field, string newVal)
         {
+            if (isLoading)
+                return;
             try
             {
                 //Open an async connection
@@ -212,6 +216,8 @@ namespace HotelManangementSystemLibrary
         }//Item_PropertyChangedEvent
         private void RoomService_OnServiceLogging(ServiceLogEventArgs args)
         {
+            if (isLoading)
+                return;
             try
             {
                 con.Open();
@@ -233,6 +239,8 @@ namespace HotelManangementSystemLibrary
         }//RoomService_OnServiceLogging
         private void RoomService_OnTicketAdded(Ticket ticket,string serviceid)
         {
+            if (isLoading)
+                return;
             try
             {
                 con.Open();
@@ -257,6 +265,8 @@ namespace HotelManangementSystemLibrary
         }//RoomService_OnTicketAdded
         private void RoomService_PropertyChangedEvent(string id, string field, string newVal)
         {
+            if (isLoading)
+                return;
             try
             {
                 string service = "EndTimeStartTimePersonelID";
