@@ -21,6 +21,7 @@ namespace HotelManangementSystemUI.Input_Forms
             lblRefundAmount.Text = booking.BookingFee.GetRefundAmount().ToString("C2");
             lblDuration.Text = booking.NumberOfDaysToStay.ToString();
             lblTimeSpent.Text = booking.DaysStayed.ToString();
+            lblBookedDate.Text = booking.DateBookedFor.ToString("dd MMMM yyyy");
             IsBookingCancelled = false;
             //btnConfirm.Enabled = false;
             cmboCancellationReason.Items.Clear();
