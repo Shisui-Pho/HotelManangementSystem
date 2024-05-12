@@ -41,7 +41,7 @@ namespace HotelManangementControlLibrary.Input_Forms
             //We don't need the returned values for now since fefensive programming has bee implemented
             decimal amount = _booking.Guest.Account.PayForBooking(Amount);
             _booking.BookingFee.PayForBooking(amount, out decimal change);
-            _booking.Guest.Account.DepositAmount(change);
+            _booking.Guest.Account.DepositAmount(change,"Change");
         }//btnPay_Click
     }//class
 }//namespace

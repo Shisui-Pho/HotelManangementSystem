@@ -80,7 +80,7 @@ namespace HotelManangementSystemLibrary
                         guest = this._guests.CurrentGuest;
                         
                     //Create the booking fees
-                    IBookingFees fee = BookingsFactory.CreateBookingFee(dt, cost, amountToPay, amountPayed);
+                    IBookingFees fee = BookingsFactory.CreateBookingFee(dt, cost,amountPayed, amountToPay);
 
                     //Create the booking
                     IRoomBooking booking = BookingsFactory.CreateBookingWithFees(Id, guest, room, dt, fee, duration);
