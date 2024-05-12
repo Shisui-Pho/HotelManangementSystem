@@ -7,7 +7,7 @@ using HotelManangementSystemLibrary.Logging;
 
 namespace HotelManangementSystemLibrary
 {
-    internal class DBBookings : RoomBookings ,IRoomBookings
+    internal class DBBookings : RoomBookings ,IRoomBookings, IRoomBookingDB
     {
         //Collections needed for loading the bookings
         //-They are going to be injected through the constructor
@@ -148,9 +148,42 @@ namespace HotelManangementSystemLibrary
             item.RoomService.PropertyChangedEvent += RoomService_PropertyChangedEvent;
             item.RoomService.OnServiceLogging += RoomService_OnServiceLogging;
             item.RoomService.OnTicketAdded += RoomService_OnTicketAdded;
-            //Add to the base class
-            base.Add(item);
+            item.BookingFee.BookingFeesChanged += BookingFee_BookingFeesChanged;
+            //Check 
+            if (isLoading)
+                base.AddFromDB(item);
+            else
+                base.Add(item);
         }//Add
+
+        private void BookingFee_BookingFeesChanged(BookingFeesChangedEventArgs args)
+        {
+
+            if (isLoading)
+                return;
+            try
+            {
+                //Open an async connection
+                con.OpenAsync();
+
+                //Build the required sql based on the field changed
+                string sql = "qr_UpdateBookingFees";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                // @AmountPaid , AmountToPay = @AmountToPay  WHERE BookingID = @BookingID;
+                cmd.Parameters.AddWithValue("@AmountPaid", args.AmountPaid);
+                cmd.Parameters.AddWithValue("@AmountToPay", args.AmountToPay);
+                cmd.Parameters.AddWithValue("@BookingID",args.BookingID);
+                cmd.ExecuteNonQuery();
+            }//try
+            catch (Exception ex)
+            {
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }//catch
+            finally { con.Close(); }//finally
+        }//BookingFee_BookingFeesChanged
+
         private async Task<bool> PushToDatabase(IRoomBooking booking)
         {
             OleDbTransaction trans = null;
