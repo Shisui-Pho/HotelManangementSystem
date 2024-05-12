@@ -32,5 +32,29 @@
         {
             return FeatureName;
         }//ToString()
+
+        public void ChangePrice(decimal newprice)
+        {
+            //Business rule apply
+            if (newprice < 0)
+                return;
+            this.Price = newprice;
+            //Invoke the propert changed event
+            PropertyChangedEvent?.Invoke(this.FeatureID, "Price", newprice.ToString());
+        }//ChangePrice
+
+        public void ChangeDescription(string desc)
+        {
+            this.Description = desc;
+            //Invoke the propert changed event
+            PropertyChangedEvent?.Invoke(this.FeatureID, "Desc", desc);
+        }//ChangeDescription
+
+        public void ChangeName(string newname)
+        {
+            this.FeatureName = newname;
+            //Invoke the propert changed event
+            PropertyChangedEvent?.Invoke(this.FeatureID, "FeatureName", newname);
+        }//ChangeName
     }//end class
 }//

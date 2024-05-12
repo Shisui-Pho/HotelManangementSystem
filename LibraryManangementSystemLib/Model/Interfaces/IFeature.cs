@@ -6,5 +6,8 @@
         string FeatureID { get; }
         string FeatureName { get; }
         decimal Price { get; }
+        void ChangePrice(decimal newprice);
+        void ChangeDescription(string desc);
+        void ChangeName(string newname);
     }
 }
