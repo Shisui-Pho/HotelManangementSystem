@@ -54,7 +54,7 @@
         {
             if (amount < 0)
                 return 0m;
-            if (amount > CurrentBalance || amount > AmountOwing)
+            if (amount > CurrentBalance)
                 return 0m;
 
             TransactionArgs args = new TransactionArgs("Payed booking", (-1) * amount, BalanceAffected.CurrentBalance);

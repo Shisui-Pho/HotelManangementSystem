@@ -44,7 +44,8 @@ namespace HotelManangementSystemLibrary
                 AmoutToPay -= amount;
                 AmountPaid += amount;
             }
-
+            //Invoke the booking fees changed event
+            BookingFeesChanged?.Invoke(new BookingFeesChangedEventArgs(AmountPaid, AmoutToPay, "?"));
             return true;
         }//PayForBooking
 
