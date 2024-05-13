@@ -14,7 +14,6 @@ namespace HotelManangementSystemLibrary
             _count++;
             UserType = TypeOfUser.Guest;
             UserID = $"GU-895485685{_count}";
-            Account.BalanceChanged += Account_BalanceChanged;
         }//ctor 01
 
         private void Account_BalanceChanged(decimal newBalance, decimal newAmountOwing)
@@ -56,6 +55,7 @@ namespace HotelManangementSystemLibrary
         {
             ContactDetails = contacts;
             Account = account;
+            Account.BalanceChanged += Account_BalanceChanged;
         }//SetAccountAndContactDetails
         public void SetContactDetails(IContactDetails details) => ContactDetails = details;
         public string ToGuestCSVFormat()

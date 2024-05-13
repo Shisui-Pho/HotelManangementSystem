@@ -89,9 +89,10 @@ namespace HotelManangementSystemLibrary
             }//
 
             //-Subscribe to the PropertyChanged event and Balance changed
-            //-This two events handlers will do the updates to the database
+            //-This three events handlers will do the updates to the database
             item.GuestPropertyChangedEvent += Item_PropertyChangedEvent;
             item.BalanceChangedEvent += Item_BalanceChangedEvent;
+            item.Account.OnTransactionEvent += Account_OnTransactionEvent;
 
             //Add the guest to the local collection
             base.Add(item);
@@ -207,5 +208,32 @@ namespace HotelManangementSystemLibrary
             }
             finally { con.Close(); }
         }//Item_BalanceChangedEvent
+        private void Account_OnTransactionEvent(TransactionArgs transaction)
+        {
+            if (isLoading)
+                return;
+
+            try
+            {
+                con.Open();
+                //@AccountNumber,@TimeStamp,@Message,@BalanceAffected,@Amount
+                //qr_CreateTransaction
+                string sql = "qr_CreateTransaction";
+                OleDbCommand cmd = new OleDbCommand(sql, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AccountNumber", transaction.AccountNumber);
+                cmd.Parameters.AddWithValue("@TimeStamp", transaction.TimeStamp);
+                cmd.Parameters.AddWithValue("@Message", transaction.Message);
+                cmd.Parameters.AddWithValue("@BalanceAffected", transaction.AffectedBalance);
+                cmd.Parameters.AddWithValue("@Amount", transaction.Amount);
+
+                cmd.ExecuteNonQuery();
+            }//end try
+            catch (Exception ex)
+            {
+                ExceptionLog.GetLogger().LogActivity(ex, ErrorServerity.Fetal, TypeOfError.DatabaseError);
+                throw;
+            }finally{con.Close();}
+        }//Account_OnTransactionEvent
     }//class
 }//namespace
