@@ -54,7 +54,7 @@ namespace HotelManangementSystemUI
             {
                 if(item.UserType == TypeOfUser.Guest)
                 {
-                    IGuest gs = UsersFactory.CreateGuest(item);
+                    IGuest gs = UsersFactory.CreateGuest(item, UsersFactory.CreateContactDetails(), UsersFactory.CreateUserAccount());
                     ser.Guests.Add(gs);
                 }
             }

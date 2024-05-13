@@ -39,7 +39,9 @@ namespace HotelManangementSystemLibrary
                 return CurrentGuest;
             //if guest does not exist
             //-Create a new guest profile
-            IGuest guest = UsersFactory.CreateGuest(user);
+            IUSerAccount account = UsersFactory.CreateUserAccount();
+            IContactDetails contacts = UsersFactory.CreateContactDetails();
+            IGuest guest = UsersFactory.CreateGuest(user,contacts,account);
             Add(guest);
             CurrentGuest = guest;
             return CurrentGuest;

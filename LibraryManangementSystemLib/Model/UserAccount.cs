@@ -2,14 +2,27 @@
 { 
     internal class UserAccount : IUSerAccount, IUserAccountDB
     {
+        private static int CountAccounts;
         public decimal CurrentBalance { get; private set; }
         public decimal AmountOwing { get; private set; }
+
+        public string AccountNumber { get; private set; }
+
         public event delOnTrasnaction OnTransactionEvent;
         public event delOnBalanceChanged BalanceChanged;
 
         public UserAccount(decimal initialAamount = 0m)
         {
             CurrentBalance = initialAamount;
+            this.AccountNumber = CountAccounts.ToString();
+            CountAccounts++;
+        }//ctor default
+        internal UserAccount(decimal balance, decimal amountOwing, string accountNumber)
+        {
+            this.AccountNumber = accountNumber;
+            this.CurrentBalance = balance;
+            this.AmountOwing = amountOwing;
+            CountAccounts++;
         }//ctor 01
         public bool DepositAmount(decimal amount)
         {

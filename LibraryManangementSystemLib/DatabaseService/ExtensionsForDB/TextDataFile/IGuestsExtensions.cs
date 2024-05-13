@@ -39,10 +39,9 @@ namespace HotelManangementSystemLibrary.Utilities.Extensions
 
                 decimal mBalance = Service.GetValueOfMoney(fields[4]);
                 decimal mDept = Service.GetValueOfMoney(fields[5]);
-                IGuest guest = UsersFactory.CreateGuest(user, mBalance,mDept);
-                guest.SetCellNumber(fields[1]);
-                guest.SetEmailAddress(fields[2]);
-                guest.SetEmergencyNumber(fields[3]);
+                IUSerAccount account = UsersFactory.CreateUserAccount(mBalance, mDept, "");
+                IContactDetails det = UsersFactory.CreateContactDetails(fields[2], fields[1], fields[3]);
+                IGuest guest = UsersFactory.CreateGuest(user,det,account);
                 guests.Add(guest);
             }//end foreach
             return guests;

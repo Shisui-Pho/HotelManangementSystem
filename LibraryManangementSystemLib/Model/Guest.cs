@@ -14,8 +14,6 @@ namespace HotelManangementSystemLibrary
             _count++;
             UserType = TypeOfUser.Guest;
             UserID = $"GU-895485685{_count}";
-            ContactDetails = new ContactDetails();
-            Account = new UserAccount();
             Account.BalanceChanged += Account_BalanceChanged;
         }//ctor 01
 
@@ -54,7 +52,11 @@ namespace HotelManangementSystemLibrary
             ContactDetails.EmergencyNumber = _emergency;
             GuestPropertyChangedEvent?.Invoke(this.UserID, "Emergency_PhoneNumber", _emergency);
         }//SetEmergencyNumber
-
+        internal void SetAccountAndContactDetails(IContactDetails contacts, IUSerAccount account)
+        {
+            ContactDetails = contacts;
+            Account = account;
+        }//SetAccountAndContactDetails
         public void SetContactDetails(IContactDetails details) => ContactDetails = details;
         public string ToGuestCSVFormat()
         {

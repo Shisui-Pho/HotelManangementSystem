@@ -50,13 +50,17 @@ namespace HotelManangementSystemLibrary
                     string email = rd["Email_Address"].ToString();
                     string emegencyNo = rd["Emergency_PhoneNumber"].ToString();
 
-                    //Conversions
+                    //Account details
+                    string accountNumber = rd["AccountNumber"].ToString();
                     decimal owing = decimal.Parse(rd["Amount_Owing"].ToString());
                     decimal balance = decimal.Parse(rd["Balance"].ToString());
 
                     //Get the user profile from users collection
                     IUser user = this._users.GetUser(id);
-                    IGuest guest = UsersFactory.CreateGuest(user, owing,balance);
+                    IUSerAccount account = UsersFactory.CreateUserAccount(balance, owing, accountNumber);
+                    IContactDetails contacts = UsersFactory.CreateContactDetails(email, cellphoneNumber, emegencyNo);
+
+                    IGuest guest = UsersFactory.CreateGuest(user,contacts,account);
                     guest.SetCellNumber(cellphoneNumber);
                     guest.SetEmailAddress(email);
                     guest.SetEmergencyNumber(emegencyNo);

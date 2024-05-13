@@ -5,6 +5,7 @@
 
         decimal CurrentBalance { get; }
         decimal AmountOwing { get; }
+        string AccountNumber { get; }
         event delOnBalanceChanged BalanceChanged;
         event delOnTrasnaction OnTransactionEvent;
         void AddDept(decimal amount, string reason);
