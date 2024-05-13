@@ -28,7 +28,7 @@
         {
             if (amount < 0)
                 return false;
-            TransactionArgs args = new TransactionArgs("Deposited", amount, BalanceAffected.CurrentBalance);
+            TransactionArgs args = new TransactionArgs("Deposited", amount, BalanceAffected.CurrentBalance, this.AccountNumber);
             CurrentBalance += amount;
             OnTransactionEvent?.Invoke(args);
             BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
@@ -38,7 +38,7 @@
         {
             if (amount < 0)
                 return false;
-            TransactionArgs args = new TransactionArgs(sMsg, amount, BalanceAffected.CurrentBalance);
+            TransactionArgs args = new TransactionArgs(sMsg, amount, BalanceAffected.CurrentBalance, this.AccountNumber);
             CurrentBalance += amount;
             OnTransactionEvent?.Invoke(args);
             BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
@@ -52,7 +52,7 @@
         public decimal PayAllDepts()
         {
             decimal temp = CurrentBalance;
-            TransactionArgs args = new TransactionArgs("Payed for dept", (-1) *temp, BalanceAffected.CurrentBalance);
+            TransactionArgs args = new TransactionArgs("Payed for dept", (-1) *temp, BalanceAffected.CurrentBalance, this.AccountNumber);
             CurrentBalance = 0m;
             OnTransactionEvent?.Invoke(args);
             BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
@@ -70,7 +70,7 @@
             if (amount > CurrentBalance)
                 return 0m;
 
-            TransactionArgs args = new TransactionArgs("Payed booking", (-1) * amount, BalanceAffected.CurrentBalance);
+            TransactionArgs args = new TransactionArgs("Payed booking", (-1) * amount, BalanceAffected.CurrentBalance, this.AccountNumber);
             CurrentBalance -= amount;
             AmountOwing -= amount;
             OnTransactionEvent?.Invoke(args);
@@ -85,7 +85,7 @@
             if (amount > CurrentBalance)
                 return false;
 
-            TransactionArgs args = new TransactionArgs("Withdraw amount", (-1) * amount, BalanceAffected.CurrentBalance);
+            TransactionArgs args = new TransactionArgs("Withdraw amount", (-1) * amount, BalanceAffected.CurrentBalance, this.AccountNumber);
             CurrentBalance -= amount;
             OnTransactionEvent?.Invoke(args);
             BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
@@ -98,7 +98,7 @@
             if (amount < 0)
                 return;
             //Create a transaction for adding a dept
-            TransactionArgs args = new TransactionArgs(reason, amount, BalanceAffected.DeptBalance);
+            TransactionArgs args = new TransactionArgs(reason, amount, BalanceAffected.DeptBalance, this.AccountNumber);
 
             //Let the user know abou this transaction
             OnTransactionEvent?.Invoke(args);
@@ -111,7 +111,7 @@
                 return;
             
             //Create a transaction for adding a dept
-            TransactionArgs args = new TransactionArgs(reason, amount, BalanceAffected.DeptBalance);
+            TransactionArgs args = new TransactionArgs(reason, amount, BalanceAffected.DeptBalance, this.AccountNumber);
             AmountOwing += amount;
 
             //Let the user know abou this transaction
@@ -144,10 +144,10 @@
                 this.AmountOwing -= fees.AmountPaid;
 
                 //Raise the event handlers to alert the user about what is happening
-                args = new TransactionArgs("Cancellation fee", cancellationfee, BalanceAffected.DeptBalance);
+                args = new TransactionArgs("Cancellation fee", cancellationfee, BalanceAffected.DeptBalance, this.AccountNumber);
                 OnTransactionEvent?.Invoke(args);
 
-                args = new TransactionArgs("Paid Cancelation fee", (-1) * fees.AmountPaid, BalanceAffected.DeptBalance);
+                args = new TransactionArgs("Paid Cancelation fee", (-1) * fees.AmountPaid, BalanceAffected.DeptBalance, this.AccountNumber);
                 OnTransactionEvent?.Invoke(args);
 
                 //-Raise the balance changed event
@@ -162,13 +162,13 @@
             this.AmountOwing -= refund;
 
             //Raise the transaction event to alert the user about what is happening
-            args = new TransactionArgs("Cancelled booking", (-1) * fees.BookingCost, BalanceAffected.DeptBalance);
+            args = new TransactionArgs("Cancelled booking", (-1) * fees.BookingCost, BalanceAffected.DeptBalance, this.AccountNumber);
             OnTransactionEvent?.Invoke(args);
 
-            args = new TransactionArgs("Cancelletion fee", cancellationfee, BalanceAffected.DeptBalance);
+            args = new TransactionArgs("Cancelletion fee", cancellationfee, BalanceAffected.DeptBalance, this.AccountNumber);
             OnTransactionEvent?.Invoke(args);
 
-            args = new TransactionArgs("Paid Cancelation fee", (-1)*cancellationfee, BalanceAffected.DeptBalance);
+            args = new TransactionArgs("Paid Cancelation fee", (-1)*cancellationfee, BalanceAffected.DeptBalance, this.AccountNumber);
             OnTransactionEvent?.Invoke(args);
             //Reverse the amount left
             ReverseAmount(refund);

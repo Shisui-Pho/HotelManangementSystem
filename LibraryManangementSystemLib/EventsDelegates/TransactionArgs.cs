@@ -3,27 +3,22 @@ namespace HotelManangementSystemLibrary
 {
     public class TransactionArgs : EventArgs
     {
-        private DateTime date;
-        private BalanceAffected type;
-        public string TypeOfTransaction { get; private set; }
+        public string Message { get; private set; }
         public decimal Amount { get; private set; }
-        public DateTime Date
+        public BalanceAffected AffectedBalance { get; private set; }
+        public DateTime TimeStamp { get; private set; }
+        public string AccountNumber { get; private set; }
+        public TransactionArgs(string message, decimal amount, BalanceAffected ballance,string accountNumber)
         {
-            get { return date; }
-        }
-        //A flag to let me know which amount it affects
-        public BalanceAffected Affected => type;
-        public TransactionArgs(string type, decimal amount, BalanceAffected ballance)
-        {
-            TypeOfTransaction = type;
+            Message = message;
             Amount = amount;
-            date = DateTime.Now;
-            this.type = ballance;
+            TimeStamp = DateTime.Now;
+            AffectedBalance = ballance;
         }//ctor 01
         public override string ToString()
         {
             string sAmount = (Amount >= 0) ? "+" + Amount.ToString("C2") : Amount.ToString("C2");
-            return Date.ToString("dd/MM/yyyy HH:mm:ss").PadRight(25) + sAmount.PadRight(15) + TypeOfTransaction +"(" +(Affected.ToString()[0].ToString()) + ")"; 
+            return TimeStamp.ToString("dd/MM/yyyy HH:mm:ss").PadRight(25) + sAmount.PadRight(15) + Message +"(" +(AffectedBalance.ToString()[0].ToString()) + ")"; 
         }//ToString()
     }//class
 }//namespace
