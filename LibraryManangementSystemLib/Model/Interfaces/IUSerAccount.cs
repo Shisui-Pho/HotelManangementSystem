@@ -24,5 +24,6 @@
         /// <param name="amount">The dept amount.</param>
         /// <param name="reason">The reason.</param>
         void AddDeptRemaining(decimal amount, string reason);
+        void AddTransaction(TransactionArgs transaction);
     }//IUserAccountDB
 }//namespace

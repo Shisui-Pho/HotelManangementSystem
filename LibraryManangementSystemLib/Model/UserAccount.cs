@@ -40,6 +40,8 @@
                 return false;
             TransactionArgs args = new TransactionArgs(sMsg, amount, BalanceAffected.CurrentBalance, this.AccountNumber);
             CurrentBalance += amount;
+            if (amount == 0)
+                args.CanPushToDatabase = false;
             OnTransactionEvent?.Invoke(args);
             BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
             return true;
@@ -99,7 +101,7 @@
                 return;
             //Create a transaction for adding a dept
             TransactionArgs args = new TransactionArgs(reason, amount, BalanceAffected.DeptBalance, this.AccountNumber);
-
+            args.CanPushToDatabase = false;
             //Let the user know abou this transaction
             OnTransactionEvent?.Invoke(args);
             BalanceChanged?.Invoke(CurrentBalance, AmountOwing);
@@ -173,5 +175,12 @@
             //Reverse the amount left
             ReverseAmount(refund);
         }//CancelBooking2
+
+        public void AddTransaction(TransactionArgs transaction)
+        {
+            //This will add the top 10 transation that have happened recently
+            transaction.CanPushToDatabase = false;
+            OnTransactionEvent?.Invoke(transaction);
+        }//AddTransaction
     }//class
 }//namespace
