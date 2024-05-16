@@ -85,6 +85,29 @@ namespace HotelManangementSystemLibrary
                     //Create the booking
                     IRoomBooking booking = BookingsFactory.CreateBookingWithFees(Id, guest, room, dt, fee, duration);
 
+                    if (_user is IGuest)
+                    {
+                        //Add the top 10 transactions
+                        string sql = "qr_LoadTransactions";
+                        string accountNumber = guest.Account.AccountNumber;
+                        cmd = new OleDbCommand(sql, con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@AccountNumber", accountNumber);
+                        OleDbDataReader rdtransactions = cmd.ExecuteReader();
+
+                        IUserAccountDB accountdb = (IUserAccountDB)guest.Account;
+                        while (rdtransactions.Read())
+                        {
+                            DateTime timestamp = DateTime.Parse(rdtransactions["TransactionTimeStamp"].ToString());
+                            string message = rdtransactions["Message"].ToString();
+                            decimal amount = decimal.Parse(rdtransactions["Amount"].ToString());
+                            BalanceAffected affected = (BalanceAffected)Enum.Parse(typeof(BalanceAffected), rdtransactions["BalanceAffected"].ToString());
+
+                            TransactionArgs trans = new TransactionArgs(message, amount, affected, accountNumber);
+                            accountdb.AddTransaction(trans);
+                        }//end transaction reading
+                    }//end if guest transactions
+
                     //Add it to the collection
                     this.Add(booking);
                 }//Create objects here
