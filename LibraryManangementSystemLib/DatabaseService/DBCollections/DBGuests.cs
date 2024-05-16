@@ -210,7 +210,7 @@ namespace HotelManangementSystemLibrary
         }//Item_BalanceChangedEvent
         private void Account_OnTransactionEvent(TransactionArgs transaction)
         {
-            if (isLoading)
+            if (isLoading || !transaction.CanPushToDatabase)
                 return;
 
             try
@@ -222,10 +222,17 @@ namespace HotelManangementSystemLibrary
                 OleDbCommand cmd = new OleDbCommand(sql, con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@AccountNumber", transaction.AccountNumber);
-                cmd.Parameters.AddWithValue("@TimeStamp", transaction.TimeStamp);
+                cmd.Parameters.AddWithValue("@TTimeStamp", transaction.TimeStamp.ToString());
                 cmd.Parameters.AddWithValue("@Message", transaction.Message);
-                cmd.Parameters.AddWithValue("@BalanceAffected", transaction.AffectedBalance);
+                cmd.Parameters.AddWithValue("@BalanceAffected", transaction.AffectedBalance.ToString());
                 cmd.Parameters.AddWithValue("@Amount", transaction.Amount);
+
+                //INSERT INTO tbl_Transaction ( AccountNumber, Time_Stamp, Message, BalanceAffected, Amount )
+                //VALUES([@AccountNumber], [@TimeStamp], [@Message], [@BalanceAffected], [@Amount]);
+
+                //string sql = $"INSERT INTO tbl_Transaction ( AccountNumber, Time_Stamp, Message, BalanceAffected, Amount) VALUES " +
+                //    $"(\"{transaction.AccountNumber}\", \"{transaction.}\")";
+                //OleDbCommand cmd = new OleDbCommand();
 
                 cmd.ExecuteNonQuery();
             }//end try
