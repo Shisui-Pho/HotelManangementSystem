@@ -36,7 +36,7 @@ namespace HotelManangementSystemUI.Dashboard
         private readonly BookingsControl _adminBookingsControl;
         private readonly GuestsControl _adminGuestControl;
         private readonly HotelStatisticsControl _adminHotelStatics;
-        private readonly GuestBookingsControl _guestBookingsControl;
+        private readonly GuestManangeBookingsControl _guestBookingsControl;
         //private readonly HistoricalBookingsControl _adminOldBookings;
         #endregion Datamembers
 
@@ -71,7 +71,7 @@ namespace HotelManangementSystemUI.Dashboard
             this.LoadBookingsFunc = LoadBookingsFunc;
             //For guests
             _guestProfileControl = new GuestProfileControl(profile);
-            _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
+            _guestBookingsControl = new GuestManangeBookingsControl(CancelBookingDelFunction);
             _guestRoomBookingsControl = new RoomBookingControl(_rooms,RoomBookingFromRoomBookingControl);//use ctor 01
             AttachErrorAlert();
         }//ctor 01
@@ -85,7 +85,7 @@ namespace HotelManangementSystemUI.Dashboard
             _adminRoomsControl = new RoomsControl
                     (database.Rooms, UpdatingRoomFromAdminRoomManangementControl, CreatingNewRoomFromAdminRoomManangementControl);
             _guestProfileControl = new GuestProfileControl(database.Guests[0]);
-            _guestBookingsControl = new GuestBookingsControl(CancelBookingDelFunction);
+            _guestBookingsControl = new GuestManangeBookingsControl(CancelBookingDelFunction);
             //To modify
             
             LinkUnlinkedButtons();

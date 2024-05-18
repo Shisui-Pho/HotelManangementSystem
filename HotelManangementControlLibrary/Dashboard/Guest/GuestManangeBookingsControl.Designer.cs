@@ -1,6 +1,6 @@
 ﻿namespace HotelManangementControlLibrary.Dashboard.Guest
 {
-    partial class GuestBookingsControl
+    partial class GuestManangeBookingsControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -399,31 +399,31 @@
             // 
             // kryptonLabel5
             // 
-            this.kryptonLabel5.Location = new System.Drawing.Point(18, 260);
+            this.kryptonLabel5.Location = new System.Drawing.Point(18, 286);
             this.kryptonLabel5.Name = "kryptonLabel5";
-            this.kryptonLabel5.Size = new System.Drawing.Size(112, 26);
+            this.kryptonLabel5.Size = new System.Drawing.Size(124, 29);
             this.kryptonLabel5.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel5.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel5.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel5.TabIndex = 18;
             this.kryptonLabel5.Values.Text = "IsCheckedIn";
             // 
             // kryptonLabel3
             // 
-            this.kryptonLabel3.Location = new System.Drawing.Point(17, 204);
+            this.kryptonLabel3.Location = new System.Drawing.Point(17, 235);
             this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(117, 26);
+            this.kryptonLabel3.Size = new System.Drawing.Size(133, 29);
             this.kryptonLabel3.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel3.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel3.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel3.TabIndex = 18;
             this.kryptonLabel3.Values.Text = "Amount Paid";
             // 
             // kryptonLabel2
             // 
-            this.kryptonLabel2.Location = new System.Drawing.Point(18, 110);
+            this.kryptonLabel2.Location = new System.Drawing.Point(18, 115);
             this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(121, 26);
+            this.kryptonLabel2.Size = new System.Drawing.Size(136, 29);
             this.kryptonLabel2.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel2.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel2.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel2.TabIndex = 18;
             this.kryptonLabel2.Values.Text = "Booking Cost";
             // 
@@ -462,21 +462,21 @@
             // 
             // kryptonLabel23
             // 
-            this.kryptonLabel23.Location = new System.Drawing.Point(16, 155);
+            this.kryptonLabel23.Location = new System.Drawing.Point(16, 170);
             this.kryptonLabel23.Name = "kryptonLabel23";
-            this.kryptonLabel23.Size = new System.Drawing.Size(130, 26);
+            this.kryptonLabel23.Size = new System.Drawing.Size(150, 29);
             this.kryptonLabel23.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel23.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel23.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel23.TabIndex = 18;
             this.kryptonLabel23.Values.Text = "Amount to pay";
             // 
             // kryptonLabel21
             // 
-            this.kryptonLabel21.Location = new System.Drawing.Point(17, 61);
+            this.kryptonLabel21.Location = new System.Drawing.Point(17, 71);
             this.kryptonLabel21.Name = "kryptonLabel21";
-            this.kryptonLabel21.Size = new System.Drawing.Size(82, 26);
+            this.kryptonLabel21.Size = new System.Drawing.Size(94, 29);
             this.kryptonLabel21.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel21.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel21.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel21.TabIndex = 18;
             this.kryptonLabel21.Values.Text = "Duration";
             // 
@@ -484,59 +484,59 @@
             // 
             this.kryptonLabel19.Location = new System.Drawing.Point(17, 22);
             this.kryptonLabel19.Name = "kryptonLabel19";
-            this.kryptonLabel19.Size = new System.Drawing.Size(99, 26);
+            this.kryptonLabel19.Size = new System.Drawing.Size(114, 29);
             this.kryptonLabel19.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel19.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel19.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel19.TabIndex = 18;
             this.kryptonLabel19.Values.Text = "Room type";
             // 
             // lblBookingCost
             // 
-            this.lblBookingCost.Location = new System.Drawing.Point(205, 110);
+            this.lblBookingCost.Location = new System.Drawing.Point(205, 115);
             this.lblBookingCost.Name = "lblBookingCost";
-            this.lblBookingCost.Size = new System.Drawing.Size(60, 26);
+            this.lblBookingCost.Size = new System.Drawing.Size(64, 29);
             this.lblBookingCost.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblBookingCost.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookingCost.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBookingCost.TabIndex = 18;
             this.lblBookingCost.Values.Text = "R0.00";
             // 
             // lblCheckIn
             // 
-            this.lblCheckIn.Location = new System.Drawing.Point(205, 260);
+            this.lblCheckIn.Location = new System.Drawing.Point(205, 286);
             this.lblCheckIn.Name = "lblCheckIn";
-            this.lblCheckIn.Size = new System.Drawing.Size(60, 26);
+            this.lblCheckIn.Size = new System.Drawing.Size(64, 29);
             this.lblCheckIn.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblCheckIn.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCheckIn.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCheckIn.TabIndex = 18;
             this.lblCheckIn.Values.Text = "R0.00";
             // 
             // lblAmountPaidd
             // 
-            this.lblAmountPaidd.Location = new System.Drawing.Point(205, 204);
+            this.lblAmountPaidd.Location = new System.Drawing.Point(205, 235);
             this.lblAmountPaidd.Name = "lblAmountPaidd";
-            this.lblAmountPaidd.Size = new System.Drawing.Size(60, 26);
+            this.lblAmountPaidd.Size = new System.Drawing.Size(64, 29);
             this.lblAmountPaidd.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblAmountPaidd.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmountPaidd.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmountPaidd.TabIndex = 18;
             this.lblAmountPaidd.Values.Text = "R0.00";
             // 
             // lblAmountToPay
             // 
-            this.lblAmountToPay.Location = new System.Drawing.Point(205, 155);
+            this.lblAmountToPay.Location = new System.Drawing.Point(205, 170);
             this.lblAmountToPay.Name = "lblAmountToPay";
-            this.lblAmountToPay.Size = new System.Drawing.Size(60, 26);
+            this.lblAmountToPay.Size = new System.Drawing.Size(64, 29);
             this.lblAmountToPay.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblAmountToPay.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmountToPay.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmountToPay.TabIndex = 18;
             this.lblAmountToPay.Values.Text = "R0.00";
             // 
             // lblDuration
             // 
-            this.lblDuration.Location = new System.Drawing.Point(205, 61);
+            this.lblDuration.Location = new System.Drawing.Point(205, 71);
             this.lblDuration.Name = "lblDuration";
-            this.lblDuration.Size = new System.Drawing.Size(23, 26);
+            this.lblDuration.Size = new System.Drawing.Size(24, 29);
             this.lblDuration.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblDuration.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDuration.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDuration.TabIndex = 18;
             this.lblDuration.Values.Text = "0";
             // 
@@ -544,9 +544,9 @@
             // 
             this.lblRoomType.Location = new System.Drawing.Point(205, 22);
             this.lblRoomType.Name = "lblRoomType";
-            this.lblRoomType.Size = new System.Drawing.Size(23, 26);
+            this.lblRoomType.Size = new System.Drawing.Size(24, 29);
             this.lblRoomType.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblRoomType.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoomType.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoomType.TabIndex = 18;
             this.lblRoomType.Values.Text = "0";
             // 

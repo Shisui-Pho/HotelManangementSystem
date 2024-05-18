@@ -7,10 +7,10 @@ using UIServiceLibrary;
 
 namespace HotelManangementControlLibrary.Dashboard.Guest
 {
-    public partial class GuestBookingsControl : UserControl
+    public partial class GuestManangeBookingsControl : UserControl
     {
         private readonly delOnBookingCancelled BookingCancelled;
-        public GuestBookingsControl(delOnBookingCancelled cancelled)
+        public GuestManangeBookingsControl(delOnBookingCancelled cancelled)
         {
             InitializeComponent();
             BookingCancelled = cancelled;
