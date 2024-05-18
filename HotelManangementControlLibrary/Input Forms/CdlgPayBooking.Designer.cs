@@ -33,13 +33,13 @@ namespace HotelManangementControlLibrary.Input_Forms
             this.numAmount = new System.Windows.Forms.NumericUpDown();
             this.lblAmountToPay = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lblBalance = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.lblMessage = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel12 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnPay = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnCancelBooking = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.lblMessage = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAmount)).BeginInit();
             this.SuspendLayout();
@@ -49,14 +49,14 @@ namespace HotelManangementControlLibrary.Input_Forms
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.numAmount);
             this.panel1.Controls.Add(this.lblAmountToPay);
-            this.panel1.Controls.Add(this.lblBalance);
             this.panel1.Controls.Add(this.lblMessage);
+            this.panel1.Controls.Add(this.lblBalance);
             this.panel1.Controls.Add(this.kryptonLabel12);
             this.panel1.Controls.Add(this.kryptonLabel2);
             this.panel1.Controls.Add(this.kryptonLabel9);
             this.panel1.Location = new System.Drawing.Point(25, 37);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(273, 235);
+            this.panel1.Size = new System.Drawing.Size(334, 235);
             this.panel1.TabIndex = 0;
             // 
             // numAmount
@@ -73,7 +73,7 @@ namespace HotelManangementControlLibrary.Input_Forms
             0,
             0});
             this.numAmount.Name = "numAmount";
-            this.numAmount.Size = new System.Drawing.Size(155, 20);
+            this.numAmount.Size = new System.Drawing.Size(181, 20);
             this.numAmount.TabIndex = 0;
             this.numAmount.ValueChanged += new System.EventHandler(this.numAmount_ValueChanged);
             // 
@@ -96,19 +96,6 @@ namespace HotelManangementControlLibrary.Input_Forms
             this.lblBalance.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBalance.TabIndex = 19;
             this.lblBalance.Values.Text = "R0,00";
-            // 
-            // lblMessage
-            // 
-            this.lblMessage.AutoSize = false;
-            this.lblMessage.Location = new System.Drawing.Point(21, 158);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(224, 70);
-            this.lblMessage.StateCommon.ShortText.Color1 = System.Drawing.Color.Red;
-            this.lblMessage.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.StateCommon.ShortText.TextH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Center;
-            this.lblMessage.StateCommon.ShortText.TextV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Center;
-            this.lblMessage.TabIndex = 19;
-            this.lblMessage.Values.Text = "";
             // 
             // kryptonLabel12
             // 
@@ -154,7 +141,7 @@ namespace HotelManangementControlLibrary.Input_Forms
             // 
             this.btnPay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPay.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnPay.Location = new System.Drawing.Point(30, 278);
+            this.btnPay.Location = new System.Drawing.Point(48, 278);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(95, 45);
             this.btnPay.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
@@ -188,7 +175,7 @@ namespace HotelManangementControlLibrary.Input_Forms
             // 
             this.btnCancelBooking.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelBooking.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelBooking.Location = new System.Drawing.Point(203, 278);
+            this.btnCancelBooking.Location = new System.Drawing.Point(251, 278);
             this.btnCancelBooking.Name = "btnCancelBooking";
             this.btnCancelBooking.Size = new System.Drawing.Size(95, 45);
             this.btnCancelBooking.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(194)))), ((int)(((byte)(126)))));
@@ -217,11 +204,24 @@ namespace HotelManangementControlLibrary.Input_Forms
             this.btnCancelBooking.TabIndex = 2;
             this.btnCancelBooking.Values.Text = "Cancel";
             // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = false;
+            this.lblMessage.Location = new System.Drawing.Point(21, 157);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(298, 71);
+            this.lblMessage.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
+            this.lblMessage.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.StateCommon.ShortText.TextH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Center;
+            this.lblMessage.StateCommon.ShortText.TextV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Center;
+            this.lblMessage.TabIndex = 18;
+            this.lblMessage.Values.Text = "";
+            // 
             // CdlgPayBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 334);
+            this.ClientSize = new System.Drawing.Size(371, 332);
             this.Controls.Add(this.btnPay);
             this.Controls.Add(this.btnCancelBooking);
             this.Controls.Add(this.kryptonLabel7);
@@ -246,9 +246,9 @@ namespace HotelManangementControlLibrary.Input_Forms
         private System.Windows.Forms.NumericUpDown numAmount;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblAmountToPay;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblBalance;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblMessage;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel12;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblMessage;
     }
 }
