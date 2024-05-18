@@ -46,8 +46,8 @@ namespace HotelManangementSystemUI.Dashboard
             this.btnSignOut = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.plnHeader = new System.Windows.Forms.Panel();
             this.lblNameAndSurname = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.picUser = new System.Windows.Forms.PictureBox();
             this.plnContainer = new System.Windows.Forms.Panel();
+            this.picUser = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.plnCommonControls.SuspendLayout();
@@ -475,6 +475,13 @@ namespace HotelManangementSystemUI.Dashboard
             this.lblNameAndSurname.TabIndex = 1;
             this.lblNameAndSurname.Values.Text = "Names and Surname";
             // 
+            // plnContainer
+            // 
+            this.plnContainer.Location = new System.Drawing.Point(288, 0);
+            this.plnContainer.Name = "plnContainer";
+            this.plnContainer.Size = new System.Drawing.Size(955, 780);
+            this.plnContainer.TabIndex = 1;
+            // 
             // picUser
             // 
             this.picUser.Image = global::HotelManangementSystemUI.Properties.Resources.generaluser;
@@ -484,13 +491,6 @@ namespace HotelManangementSystemUI.Dashboard
             this.picUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picUser.TabIndex = 0;
             this.picUser.TabStop = false;
-            // 
-            // plnContainer
-            // 
-            this.plnContainer.Location = new System.Drawing.Point(288, 0);
-            this.plnContainer.Name = "plnContainer";
-            this.plnContainer.Size = new System.Drawing.Size(955, 780);
-            this.plnContainer.TabIndex = 1;
             // 
             // CfrmDashboard
             // 

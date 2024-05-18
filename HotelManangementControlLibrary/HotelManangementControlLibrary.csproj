@@ -101,11 +101,17 @@
     <Compile Include="Dashboard\Admin\StaffControl.Designer.cs">
       <DependentUpon>StaffControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard\Guest\GuestBookingsControl.cs">
+    <Compile Include="Dashboard\Guest\GuestManangeBookingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dashboard\Guest\GuestBookingsControl.Designer.cs">
-      <DependentUpon>GuestBookingsControl.cs</DependentUpon>
+    <Compile Include="Dashboard\Guest\GuestManangeBookingsControl.Designer.cs">
+      <DependentUpon>GuestManangeBookingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Guest\GuestCurrentBookingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Guest\GuestCurrentBookingControl.Designer.cs">
+      <DependentUpon>GuestCurrentBookingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\Guest\GuestProfileControl.cs">
       <SubType>UserControl</SubType>
@@ -182,8 +188,11 @@
     <EmbeddedResource Include="Dashboard\Admin\StaffControl.resx">
       <DependentUpon>StaffControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard\Guest\GuestBookingsControl.resx">
-      <DependentUpon>GuestBookingsControl.cs</DependentUpon>
+    <EmbeddedResource Include="Dashboard\Guest\GuestManangeBookingsControl.resx">
+      <DependentUpon>GuestManangeBookingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Guest\GuestCurrentBookingControl.resx">
+      <DependentUpon>GuestCurrentBookingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Guest\GuestProfileControl.resx">
       <DependentUpon>GuestProfileControl.cs</DependentUpon>

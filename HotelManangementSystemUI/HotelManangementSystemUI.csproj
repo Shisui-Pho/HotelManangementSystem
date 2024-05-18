@@ -154,6 +154,7 @@
     <Content Include="images\search-online.png" />
     <Content Include="images\sign-up.png" />
     <Content Include="images\writer.png" />
+    <None Include="Resources\close.png" />
     <None Include="Resources\single.jpg" />
     <None Include="Resources\double.jpeg" />
   </ItemGroup>

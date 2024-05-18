@@ -213,7 +213,7 @@ namespace HotelManangementControlLibrary.Dashboard.Admin
         private void btnAddFeature_Click(object sender, EventArgs e)
         {
             //A feature will be added
-            CdlgAddRoomFeature roomFeature = new CdlgAddRoomFeature(selectedRoom.RoomNumber);
+            CdlgAddRoomFeature roomFeature = new CdlgAddRoomFeature(selectedRoom.RoomNumber, selectedRoom.IsSingleRoom);
 
             if(roomFeature.ShowDialog() == DialogResult.OK)
             {
