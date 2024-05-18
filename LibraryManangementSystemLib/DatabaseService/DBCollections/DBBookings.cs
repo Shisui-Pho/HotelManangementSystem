@@ -103,7 +103,7 @@ namespace HotelManangementSystemLibrary
                             decimal amount = decimal.Parse(rdtransactions["Amount"].ToString());
                             BalanceAffected affected = (BalanceAffected)Enum.Parse(typeof(BalanceAffected), rdtransactions["BalanceAffected"].ToString());
 
-                            TransactionArgs trans = new TransactionArgs(message, amount, affected, accountNumber);
+                            TransactionArgs trans = new TransactionArgs(message, amount, affected, accountNumber,timestamp);
                             accountdb.AddTransaction(trans);
                         }//end transaction reading
                     }//end if guest transactions
