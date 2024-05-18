@@ -8,12 +8,13 @@ namespace HotelManangementControlLibrary.Input_Forms
     {
         private static readonly IFeatures features = Features.GetFeaturesInstance();
         public IFeature Feature { get; private set; }
-        public CdlgAddRoomFeature(string roomNumber)
+        public CdlgAddRoomFeature(string roomNumber, bool isSingle)
         {
             InitializeComponent();
             LoadFeatures();
             btnAddFeature.Visible = false;
             lblRoomNumber.Text = roomNumber;
+            lblTypeOfRoom.Text = isSingle ? "Single room" : "Double room";
         }//CTOR 01
         private void LoadFeatures()
         {
