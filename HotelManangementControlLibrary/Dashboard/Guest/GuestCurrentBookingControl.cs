@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HotelManangementControlLibrary.Dashboard.Guest
 {
-    public partial class GuestBookingsManangementControl : UserControl
+    public partial class GuestCurrentBookingControl : UserControl
     {
-        public GuestBookingsManangementControl()
+        public GuestCurrentBookingControl()
         {
             InitializeComponent();
         }

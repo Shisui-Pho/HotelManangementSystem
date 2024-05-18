@@ -51,7 +51,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.picRoom = new System.Windows.Forms.PictureBox();
             this.lblRoomNumber = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnPayForBooking = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -59,7 +58,6 @@
             this.kryptonLabel21 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel19 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lblBookingCost = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.lblCheckIn = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lblAmountPaidd = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lblAmountToPay = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lblDuration = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -359,7 +357,6 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.picRoom);
             this.panel3.Controls.Add(this.lblRoomNumber);
-            this.panel3.Controls.Add(this.kryptonLabel5);
             this.panel3.Controls.Add(this.kryptonLabel3);
             this.panel3.Controls.Add(this.kryptonLabel2);
             this.panel3.Controls.Add(this.btnPayForBooking);
@@ -367,7 +364,6 @@
             this.panel3.Controls.Add(this.kryptonLabel21);
             this.panel3.Controls.Add(this.kryptonLabel19);
             this.panel3.Controls.Add(this.lblBookingCost);
-            this.panel3.Controls.Add(this.lblCheckIn);
             this.panel3.Controls.Add(this.lblAmountPaidd);
             this.panel3.Controls.Add(this.lblAmountToPay);
             this.panel3.Controls.Add(this.lblDuration);
@@ -396,16 +392,6 @@
             this.lblRoomNumber.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoomNumber.TabIndex = 18;
             this.lblRoomNumber.Values.Text = "...";
-            // 
-            // kryptonLabel5
-            // 
-            this.kryptonLabel5.Location = new System.Drawing.Point(18, 286);
-            this.kryptonLabel5.Name = "kryptonLabel5";
-            this.kryptonLabel5.Size = new System.Drawing.Size(124, 29);
-            this.kryptonLabel5.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.kryptonLabel5.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonLabel5.TabIndex = 18;
-            this.kryptonLabel5.Values.Text = "IsCheckedIn";
             // 
             // kryptonLabel3
             // 
@@ -500,16 +486,6 @@
             this.lblBookingCost.TabIndex = 18;
             this.lblBookingCost.Values.Text = "R0.00";
             // 
-            // lblCheckIn
-            // 
-            this.lblCheckIn.Location = new System.Drawing.Point(205, 286);
-            this.lblCheckIn.Name = "lblCheckIn";
-            this.lblCheckIn.Size = new System.Drawing.Size(64, 29);
-            this.lblCheckIn.StateCommon.ShortText.Color1 = System.Drawing.Color.RoyalBlue;
-            this.lblCheckIn.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCheckIn.TabIndex = 18;
-            this.lblCheckIn.Values.Text = "R0.00";
-            // 
             // lblAmountPaidd
             // 
             this.lblAmountPaidd.Location = new System.Drawing.Point(205, 235);
@@ -550,12 +526,12 @@
             this.lblRoomType.TabIndex = 18;
             this.lblRoomType.Values.Text = "0";
             // 
-            // GuestBookingsControl
+            // GuestManangeBookingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Name = "GuestBookingsControl";
+            this.Name = "GuestManangeBookingsControl";
             this.Size = new System.Drawing.Size(955, 780);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -592,8 +568,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblBookingCost;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblAmountPaidd;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblCheckIn;
         private System.Windows.Forms.Panel panel5;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnDeposit;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
