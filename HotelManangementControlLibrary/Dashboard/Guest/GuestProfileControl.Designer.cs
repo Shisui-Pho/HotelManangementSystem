@@ -113,7 +113,7 @@
             // groupBox2
             // 
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(6, 41);
+            this.groupBox2.Location = new System.Drawing.Point(6, 43);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(472, 83);
             this.groupBox2.TabIndex = 18;

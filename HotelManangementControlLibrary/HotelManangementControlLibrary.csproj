@@ -132,6 +132,12 @@
     <Compile Include="Input Forms\CdlgAddRoomFeature.Designer.cs">
       <DependentUpon>CdlgAddRoomFeature.cs</DependentUpon>
     </Compile>
+    <Compile Include="Input Forms\CdlgDeposit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input Forms\CdlgDeposit.Designer.cs">
+      <DependentUpon>CdlgDeposit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Input Forms\CdlgNewFeature.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Input Forms\CdlgAddRoomFeature.resx">
       <DependentUpon>CdlgAddRoomFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input Forms\CdlgDeposit.resx">
+      <DependentUpon>CdlgDeposit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Input Forms\CdlgNewFeature.resx">
       <DependentUpon>CdlgNewFeature.cs</DependentUpon>
